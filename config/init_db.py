@@ -1,5 +1,8 @@
 import os, django, sys, json
 from pathlib import Path
+json_path = Path("config/") # Before I change the file path, grab the path to the config file
+
+sys.path.append('email_client/') # Path so I can point to settings
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
