@@ -1,0 +1,73 @@
+{"emails":
+    [
+        {"sender": "Capital One",
+        "preview":"question about your account Visit Capital One Sign In Do you recognize this purchase? Re: Card ending in 3505,  Our fraud defenses flagged the purchase below as unusual for your MASTERCARD PLATINUM card ending in 3505. Do you or an authorized user recognize this purchase?",
+        "subject":"Do you recognize this purchase? Re: Card",
+        "sender_address": "notification@capitalone.com",
+        "ref": 2,
+        "num_links": 3},
+
+        {"sender": "Chase Online",
+        "preview":"We\"ve sent an important communication to your Secure Message Center, available on Chase Online or on the Chase Mobile app.  The subject is: New enhancements to your Chase QuickPay(R)  You can sign in to review this communication in your Secure Message Center until 09/24/2017.  Thank you for being a valued Chase customer.",
+        "subject":"A secure message from Chase",
+        "sender_address": "no-reply@alertsp.chase.com",
+        "ref": 3,
+        "num_links": 2},
+
+        {"sender": "Codeacademy",
+        "preview":"View this email in your browser  NEWSLETTER #31 July 26, 2017 Announcing our newest free course - now you can make your websites look beautiful on any device, for free!",
+        "subject":"New Free Course: Learn Responsive Design",
+        "sender_address": "contact@codeacademy.com",
+        "ref": 6,
+        "num_links": 2},
+
+        {"sender": "Google Docs",
+        "preview":"Ronald Jameson has invited you to view the following document:  Assignment 7 Write Up Open in Docs",
+        "subject":"Assignment 7 - Invitation to Edit",
+        "sender_address": "rjames@gmail.com",
+        "ref": 7,
+        "num_links": 3},
+        
+        {"sender": "Facebook",
+        "preview":"Hi, Your account was recently logged into from an unrecognized browser or device. Was this you?   New Login July 20, 2017 at 2:03pm Near Mumbai, India Chrome on Windows Review Login Manage Alerts",
+        "subject":"Login alert for Chrome on Windows",
+        "sender_address": "security@facebookmail.com",
+        "ref": 10,
+        "num_links": 4},
+
+        {"sender": "Yahoo",
+        "preview":"Hello!  We have locked your account due to suspicious activity.  Please log in below to unlock your account: https://www.yahoo.com Thanks, Yahoo",
+        "subject":"Security alert for your Yahoo account",
+        "sender_address": "no-reply@cc.yahoo-inc.com",
+        "ref": 12,
+        "num_links": 2},
+
+        {"sender": "Mint",
+        "preview":"Hmm. We can\"t seem to connect with your Bank of America account We should be able to get you back on track pretty quickly. A reason for the glitch might be: Has your Bank of America login email or password changed?    Have they updated their security measures?    Do they require additional security questions?       The easiest way to fix it is to double-check and re-enter the most current login information you have for them.",
+        "subject":"We\"re having a problem connecting with Bank of America",
+        "sender_address": "team@mint.com",
+        "ref": 13,
+        "num_links": 5},
+
+        {"sender": "Venmo",
+        "preview":"Hi,  Your transaction history for November 2017 is now available. View History on Venmo.com Venmo sends this notification periodically to help you stay on top of your account activity. Venmo is a service of PayPal, Inc., a licensed provider of money transfer services. All money transmission is provided by PayPal, Inc. pursuant to PayPal, Inc.\"s licenses.",
+        "subject":"Your November 2017 Transaction History",
+        "sender_address": "venmo@venmo.com",
+        "ref": 18,
+        "num_links": 3},
+
+        {"sender": "LinkedIn",
+        "preview":"We\"d like to help you  with your job search We invite you to try your Premium Job Seeker account - free! Here are just a few of the additional benefits you\"ll enjoy:",
+        "subject":"Get a free trial of Premium Job Seeker",
+        "sender_address": "linkedin@e.linkedin.com",
+        "ref": 19,
+        "num_links": 7},
+        
+        {"sender": "GitHub",
+        "preview":"GitHub, Inc Learn GitHub Flow Master the art of collaboration  The power of GitHub lies in the ability to work with others. GitHub Flow makes it easy for people to work together by simplifying how code changes are tracked, proposed, and merged. Check out our guide on GitHub Flow to learn more.",
+        "subject":"Learn GitHub Flow",
+        "sender_address": "support@github.com",
+        "ref": 20,
+        "num_links": 4}
+    ]
+}

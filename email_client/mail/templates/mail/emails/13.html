@@ -1,0 +1,584 @@
+{% block head %}
+	<!-- NAME: SIMPLE TEXT -->
+	<!--[if gte mso 15]>
+			<xml>
+					<o:OfficeDocumentSettings>
+					<o:AllowPNG/>
+					<o:PixelsPerInch>96</o:PixelsPerInch>
+					</o:OfficeDocumentSettings>
+			</xml>
+			<![endif]-->
+	<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<style type="text/css">
+	p{
+		margin:10px 0;
+		padding:0;
+	}
+	table{
+		border-collapse:collapse;
+	}
+	h1,h2,h3,h4,h5,h6{
+		display:block;
+		margin:0;
+		padding:0;
+	}
+	img,a img{
+		border:0;
+		height:auto;
+		outline:none;
+		text-decoration:none;
+	}
+	body,#bodyTable,#bodyCell{
+		height:100%;
+		margin:0;
+		padding:0;
+		width:100%;
+	}
+	.mcnPreviewText{
+		display:none !important;
+	}
+	#outlook a{
+		padding:0;
+	}
+	img{
+		-ms-interpolation-mode:bicubic;
+	}
+	table{
+		mso-table-lspace:0pt;
+		mso-table-rspace:0pt;
+	}
+	.ReadMsgBody{
+		width:100%;
+	}
+	.ExternalClass{
+		width:100%;
+	}
+	p,a,li,td,blockquote{
+		mso-line-height-rule:exactly;
+	}
+	a[href^=tel],a[href^=sms]{
+		color:inherit;
+		cursor:default;
+		text-decoration:none;
+	}
+	p,a,li,td,body,table,blockquote{
+		-ms-text-size-adjust:100%;
+		-webkit-text-size-adjust:100%;
+	}
+	.ExternalClass,.ExternalClass p,.ExternalClass td,.ExternalClass div,.ExternalClass span,.ExternalClass font{
+		line-height:100%;
+	}
+	a[x-apple-data-detectors]{
+		color:inherit !important;
+		text-decoration:none !important;
+		font-size:inherit !important;
+		font-family:inherit !important;
+		font-weight:inherit !important;
+		line-height:inherit !important;
+	}
+	#bodyCell{
+		padding:10px;
+	}
+	.templateContainer{
+		max-width:600px !important;
+	}
+	a.mcnButton{
+		display:block;
+	}
+	.mcnImage{
+		vertical-align:bottom;
+	}
+	.mcnTextContent{
+		word-break:break-word;
+	}
+	.mcnTextContent img{
+		height:auto !important;
+	}
+	.mcnDividerBlock{
+		table-layout:fixed !important;
+	}
+/*
+@tab Page
+@section Background Style
+@tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+*/
+	body,#bodyTable{
+		/*@editable*/background-color:#FFFFFF;
+		/*@editable*/background-image:none;
+		/*@editable*/background-repeat:no-repeat;
+		/*@editable*/background-position:center;
+		/*@editable*/background-size:cover;
+	}
+/*
+@tab Page
+@section Background Style
+@tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+*/
+	#bodyCell{
+		/*@editable*/border-top:0;
+	}
+/*
+@tab Page
+@section Email Border
+@tip Set the border for your email.
+*/
+	.templateContainer{
+		/*@editable*/border:0;
+	}
+/*
+@tab Page
+@section Heading 1
+@tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+@style heading 1
+*/
+	h1{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:26px;
+		/*@editable*/font-style:normal;
+		/*@editable*/font-weight:bold;
+		/*@editable*/line-height:125%;
+		/*@editable*/letter-spacing:normal;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Page
+@section Heading 2
+@tip Set the styling for all second-level headings in your emails.
+@style heading 2
+*/
+	h2{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:22px;
+		/*@editable*/font-style:normal;
+		/*@editable*/font-weight:bold;
+		/*@editable*/line-height:125%;
+		/*@editable*/letter-spacing:normal;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Page
+@section Heading 3
+@tip Set the styling for all third-level headings in your emails.
+@style heading 3
+*/
+	h3{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:20px;
+		/*@editable*/font-style:normal;
+		/*@editable*/font-weight:bold;
+		/*@editable*/line-height:125%;
+		/*@editable*/letter-spacing:normal;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Page
+@section Heading 4
+@tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+@style heading 4
+*/
+	h4{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:18px;
+		/*@editable*/font-style:normal;
+		/*@editable*/font-weight:bold;
+		/*@editable*/line-height:125%;
+		/*@editable*/letter-spacing:normal;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Header
+@section Header Style
+@tip Set the borders for your email's header area.
+*/
+	#templateHeader{
+		/*@editable*/border-top:0;
+		/*@editable*/border-bottom:0;
+	}
+/*
+@tab Header
+@section Header Text
+@tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+*/
+	#templateHeader .mcnTextContent,#templateHeader .mcnTextContent p{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:16px;
+		/*@editable*/line-height:150%;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Header
+@section Header Link
+@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+*/
+	#templateHeader .mcnTextContent a,#templateHeader .mcnTextContent p a{
+		/*@editable*/color:#2BAADF;
+		/*@editable*/font-weight:normal;
+		/*@editable*/text-decoration:underline;
+	}
+/*
+@tab Body
+@section Body Style
+@tip Set the borders for your email's body area.
+*/
+	#templateBody{
+		/*@editable*/border-top:0;
+		/*@editable*/border-bottom:0;
+	}
+/*
+@tab Body
+@section Body Text
+@tip Set the styling for your email's body text. Choose a size and color that is easy to read.
+*/
+	#templateBody .mcnTextContent,#templateBody .mcnTextContent p{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:16px;
+		/*@editable*/line-height:150%;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Body
+@section Body Link
+@tip Set the styling for your email's body links. Choose a color that helps them stand out from your text.
+*/
+	#templateBody .mcnTextContent a,#templateBody .mcnTextContent p a{
+		/*@editable*/color:#2BAADF;
+		/*@editable*/font-weight:normal;
+		/*@editable*/text-decoration:underline;
+	}
+/*
+@tab Footer
+@section Footer Style
+@tip Set the borders for your email's footer area.
+*/
+	#templateFooter{
+		/*@editable*/border-top:0;
+		/*@editable*/border-bottom:0;
+	}
+/*
+@tab Footer
+@section Footer Text
+@tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+*/
+	#templateFooter .mcnTextContent,#templateFooter .mcnTextContent p{
+		/*@editable*/color:#202020;
+		/*@editable*/font-family:Helvetica;
+		/*@editable*/font-size:12px;
+		/*@editable*/line-height:150%;
+		/*@editable*/text-align:left;
+	}
+/*
+@tab Footer
+@section Footer Link
+@tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+*/
+	#templateFooter .mcnTextContent a,#templateFooter .mcnTextContent p a{
+		/*@editable*/color:#202020;
+		/*@editable*/font-weight:normal;
+		/*@editable*/text-decoration:underline;
+	}
+@media only screen and (min-width:768px){
+	.templateContainer{
+		width:600px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	body,table,td,p,a,li,blockquote{
+		-webkit-text-size-adjust:none !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	body{
+		width:100% !important;
+		min-width:100% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	#bodyCell{
+		padding-top:10px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImage{
+		width:100% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer{
+		max-width:100% !important;
+		width:100% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnBoxedTextContentContainer{
+		min-width:100% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageGroupContent{
+		padding:9px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .mcnTextContent{
+		padding-top:9px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageCardTopImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:last-child .mcnTextContent{
+		padding-top:18px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageCardBottomImageContent{
+		padding-bottom:9px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageGroupBlockInner{
+		padding-top:0 !important;
+		padding-bottom:0 !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageGroupBlockOuter{
+		padding-top:9px !important;
+		padding-bottom:9px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnTextContent,.mcnBoxedTextContentColumn{
+		padding-right:18px !important;
+		padding-left:18px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
+		padding-right:18px !important;
+		padding-bottom:0 !important;
+		padding-left:18px !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+	.mcpreview-image-uploader{
+		display:none !important;
+		width:100% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Heading 1
+@tip Make the first-level headings larger in size for better readability on small screens.
+*/
+	h1{
+		/*@editable*/font-size:22px !important;
+		/*@editable*/line-height:125% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Heading 2
+@tip Make the second-level headings larger in size for better readability on small screens.
+*/
+	h2{
+		/*@editable*/font-size:20px !important;
+		/*@editable*/line-height:125% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Heading 3
+@tip Make the third-level headings larger in size for better readability on small screens.
+*/
+	h3{
+		/*@editable*/font-size:18px !important;
+		/*@editable*/line-height:125% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Heading 4
+@tip Make the fourth-level headings larger in size for better readability on small screens.
+*/
+	h4{
+		/*@editable*/font-size:16px !important;
+		/*@editable*/line-height:150% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Boxed Text
+@tip Make the boxed text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+*/
+	table.mcnBoxedTextContentContainer td.mcnTextContent,td.mcnBoxedTextContentContainer td.mcnTextContent p{
+		/*@editable*/font-size:14px !important;
+		/*@editable*/line-height:150% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Header Text
+@tip Make the header text larger in size for better readability on small screens.
+*/
+	td#templateHeader td.mcnTextContent,td#templateHeader td.mcnTextContent p{
+		/*@editable*/font-size:16px !important;
+		/*@editable*/line-height:150% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Body Text
+@tip Make the body text larger in size for better readability on small screens. We recommend a font size of at least 16px.
+*/
+	td#templateBody td.mcnTextContent,td#templateBody td.mcnTextContent p{
+		/*@editable*/font-size:16px !important;
+		/*@editable*/line-height:150% !important;
+	}
+
+}	@media only screen and (max-width: 480px){
+/*
+@tab Mobile Styles
+@section Footer Text
+@tip Make the footer content text larger in size for better readability on small screens.
+*/
+	td#templateFooter td.mcnTextContent,td#templateFooter td.mcnTextContent p{
+		/*@editable*/font-size:14px !important;
+		/*@editable*/line-height:150% !important;
+	}
+
+}</style>
+{% endblock %}
+	{% block body %}
+	<!--*|IF:MC_PREVIEW_TEXT|*-->
+	<!--[if !gte mso 9]><!----><span class="mcnPreviewText" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">*|MC_PREVIEW_TEXT|*</span><!--<![endif]-->
+	<!--*|END:IF|*-->
+			<center>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+							<tr>
+									<td align="left" valign="top" id="bodyCell">
+											<!-- BEGIN TEMPLATE // -->
+					<!--[if gte mso 9]>
+					<table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+					<tr>
+					<td align="center" valign="top" width="600" style="width:600px;">
+					<![endif]-->
+											<table border="0" cellpadding="0" cellspacing="0" width="100%" class="">
+													<tr>
+															<td valign="top" id="templateHeader"></td>
+													</tr>
+													<tr>
+															<td valign="top" id="templateBody"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCodeBlock">
+	<tbody class="mcnTextBlockOuter">
+			<tr>
+					<td valign="top" class="mcnTextBlockInner">
+							<div class="mcnTextContent"><div style="padding:0;margin:0;background-color:#ffffff" bgcolor="#ffffff">
+
+
+<table class="m_3942207932751192277desktopSection110" width="600" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff">
+<tbody><tr>
+	<td style="line-height:10px"><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/spacer.gif" width="1" height="10" alt="" border="0" class="CToWUd"></td>
+</tr>
+<tr>
+	<td align="center"><a name="m_3942207932751192277_Logo" href="https://mint.com" id=1 target="_blank"><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/mint_logo.jpg" width="305" height="37" alt="Mint" border="0" class="CToWUd"></a></td>
+</tr>
+	<tr>
+	<td valign="top" align="center">
+	<span style="font-size:20px;line-height:22px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#000000">&nbsp;</span>
+<span style="font-size:28px;line-height:32px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#000000">
+	<br>&nbsp;		<br>
+	<b>Hmm. We can't seem to connect with your Bank of America account</b>
+</span>
+		<span style="font-size:8px;line-height:10px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#999999"><br>&nbsp;</span>
+	<span style="font-size:8px;line-height:10px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#999999"><br>&nbsp;</span>
+		</td>
+</tr>
+			<tr>
+	<td align="center" style="line-height:1px"><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/580_gray_line.gif" width="580" height="1" alt="" border="0" class="CToWUd"></td>
+</tr>
+
+	<tr>
+	<td valign="top" align="center">
+			<span style="font-size:26px;line-height:28px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#000000">&nbsp;</span>
+<span style="font-size:14px;line-height:22px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#999999"><br>
+	We should be able to get you back on track pretty quickly. A reason for the glitch might be:
+			<br>&nbsp;        <br>&nbsp;		Has your Bank of America login email or password changed?
+			<br>&nbsp;        Have they updated their security measures?
+			<br>&nbsp;        Do they require additional security questions?
+			<br>&nbsp;        <br>&nbsp;        The easiest way to fix it is to double-check and re-enter the most current login information you have for them.
+			<br>&nbsp;        <br>&nbsp;        Sorry for the trouble! Let us know if you need help.
+	<br>&nbsp;	</span>
+
+		</td>
+</tr>
+
+			<tr>
+	<td valign="top" align="center">
+		<a name="m_3942207932751192277_Update_My_Login" href="https://www.mint.com" id=2 style="color:#4dc5e2" target="_blank"><img style="display:block" src="https://images.mint.com/i/email/common/button_update_my_login.gif" width="214" height="38" alt="Update My Login" border="0" class="CToWUd"></a>
+	</td>
+</tr>
+
+
+
+	<tr>
+	<td valign="top" align="center"><span style="font-size:36px;line-height:38px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#000000">&nbsp;</span></td>
+</tr>
+<tr>
+	<td align="center" style="line-height:1px"><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/580_gray_line.gif" width="580" height="1" alt="" border="0" class="CToWUd"></td>
+</tr>
+
+<tr>
+<td valign="top" align="center">	<span style="font-size:26px;line-height:28px;font-family:Avenir,Arial,Helvetica,sans-serif;color:#000000">&nbsp;</span>
+</td>
+
+</tr>
+<tr>
+<td valign="top" align="center"><table width="142" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td valign="top"><a name="m_3942207932751192277_Facebook" href="https://links.mint.com/wf/click?upn=FrwdNJz7BEaU-2FKPeA2ZCSd0GgwW-2FQVid9og9fLqeWVhRmQE67tV1auY-2B8P4IzJ1s_gB5zhB13QX0jxu3-2Bxm0CTGPsFAqRIBSub1jeZjvv57wc-2BdvakXiPk3vtYQyAOpMxxiweElxc8u-2B79i6s-2FsJ1qG2mCJItv2lFgaWipQ5alPNj-2BXLULvGTHH0D3n64HYAqsC9f-2BpdB-2Fp3tX-2FpZ6R3AZziHP59A0SAAaMxdTzMSPHPN4bh5p4eMlti9-2B1tQgT6B1WJkocGRQHwthKBWJYDZMpFykIAoLR9tIZhImagEEfMkvj6wzMynpqWFZjqK1NWuOx7WhWzE9co6F6P2P6ULJP-2FaTSsU3LKZU6BgU5Z7-2FIjOrhKrIoe9z-2BaE0Alv7ibvqMJN2UjEZMotOKTgtdNHBpLuz56I1uDeazaHq3yGpCWbqZ3C-2BnndRctuj28fmYiv8fflweB5RoBGeHKI5OeNkg-3D-3D" id=3 target="_blank"><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/facebook.gif" alt="Facebook" width="44" height="44" border="0" class="CToWUd"></a></td>
+		<td valign="top"><a name="m_3942207932751192277_Twitter" href="https://links.mint.com/wf/click?upn=FrwdNJz7BEaU-2FKPeA2ZCSa9LRP2cRNBa0dCMMqmAvDY-3D_gB5zhB13QX0jxu3-2Bxm0CTGPsFAqRIBSub1jeZjvv57wc-2BdvakXiPk3vtYQyAOpMxxiweElxc8u-2B79i6s-2FsJ1qG2mCJItv2lFgaWipQ5alPNj-2BXLULvGTHH0D3n64HYAqsC9f-2BpdB-2Fp3tX-2FpZ6R3AZziHP59A0SAAaMxdTzMSPHPN4bh5p4eMlti9-2B1tQgT6BdqWX2A3LH2aokg2DoIBRqvbVOUOm8oQ2f4WNdUAVaVloTQfPghEqsMuSsmzG-2Bo4Ll-2BVwYuHgh0jJ0gA5MnLxHEwG8UhrTJCIpzEwyKIU966IZ7zTzUGCMMIGG88xmmyAMDqwBJZ7hH1VvVDmmM0QJG7o9r06kJUv0l8FezgrlTWK-2FWN8Wuufx-2BlUGztaUqtoTeS-2BIlP-2BOLJ4MUOn4hJXKA-3D-3D" id=4 target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=https://links.mint.com/wf/click?upn%3DFrwdNJz7BEaU-2FKPeA2ZCSa9LRP2cRNBa0dCMMqmAvDY-3D_gB5zhB13QX0jxu3-2Bxm0CTGPsFAqRIBSub1jeZjvv57wc-2BdvakXiPk3vtYQyAOpMxxiweElxc8u-2B79i6s-2FsJ1qG2mCJItv2lFgaWipQ5alPNj-2BXLULvGTHH0D3n64HYAqsC9f-2BpdB-2Fp3tX-2FpZ6R3AZziHP59A0SAAaMxdTzMSPHPN4bh5p4eMlti9-2B1tQgT6BdqWX2A3LH2aokg2DoIBRqvbVOUOm8oQ2f4WNdUAVaVloTQfPghEqsMuSsmzG-2Bo4Ll-2BVwYuHgh0jJ0gA5MnLxHEwG8UhrTJCIpzEwyKIU966IZ7zTzUGCMMIGG88xmmyAMDqwBJZ7hH1VvVDmmM0QJG7o9r06kJUv0l8FezgrlTWK-2FWN8Wuufx-2BlUGztaUqtoTeS-2BIlP-2BOLJ4MUOn4hJXKA-3D-3D&amp;source=gmail&amp;ust=1502153237980000&amp;usg=AFQjCNEW-DV_KcnjzuEKkORhreNDyuw8iQ"><img style="display:block" src="https://ci6.googleusercontent.com/proxy/200gxHsr2JezT9Jr5V5NCnDvUMokqa01uvNUChBpxXlUyptwxIkskJ9nVzsnIZ0LO0_zRrOcvsvRR3yDarWYUtH_pNPyZjqK=s0-d-e1-ft#https://www.mint.com/ei/2014.evergreen/twitter.gif" alt="Twitter" width="52" height="44" border="0" class="CToWUd"></a></td>
+					<td valign="top"><a name="m_3942207932751192277_Instagram" href="https://links.mint.com/wf/click?upn=FrwdNJz7BEaU-2FKPeA2ZCSSBOl7BseaKUkqZfge3RFmiziQKHlFkDeV7sBZ1t4HYS_gB5zhB13QX0jxu3-2Bxm0CTGPsFAqRIBSub1jeZjvv57wc-2BdvakXiPk3vtYQyAOpMxxiweElxc8u-2B79i6s-2FsJ1qG2mCJItv2lFgaWipQ5alPNj-2BXLULvGTHH0D3n64HYAqsC9f-2BpdB-2Fp3tX-2FpZ6R3AZziHP59A0SAAaMxdTzMSPHPN4bh5p4eMlti9-2B1tQgT6B7Bh1-2BKrtZA0jTKKssDX0Iq-2B6QlYLW5qqkuwwtNwQqF23MrDingq2ottMUctvnkp7siKi1Q69nyAGd7eRu5AbZDBXMI8zGlIXLKPQrAdXbwfVBPYqwgo2Si8qTf-2B1hwTAyo3jDMeKOW-2F8UkdtnAx5Ys-2FyhASSP7fpO861ai9RzF9i1SncJY2ykvMJ8l2EOqJfr5yDcbg7Vvy3K73KhzUPbA-3D-3D" id=5 target="_blank"><img style="display:block" src="https://images.mint.com/i/email/common/social_white_insta_2x.gif" alt="Instagram" width="52" height="44" border="0" class="CToWUd"></a></td>
+
+	</tr>
+</tbody></table></td>
+</tr>
+<tr>
+<td><img style="display:block" src="https://www.mint.com/ei/2014.evergreen/spacer.gif" width="1" height="20" alt="" border="0" class="CToWUd"></td>
+</tr>
+
+</tbody></table>
+				</div></div></td>
+			</tr>
+	</tbody>
+</table></td>
+													</tr>
+													<tr>
+															<td valign="top" id="templateFooter"></td>
+													</tr>
+											</table>
+					<!--[if gte mso 9]>
+					</td>
+					</tr>
+					</table>
+					<![endif]-->
+											<!-- // END TEMPLATE -->
+									</td>
+							</tr>
+					</table>
+			</center>
+	{% endblock %}
