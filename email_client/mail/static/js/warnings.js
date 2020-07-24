@@ -1,28 +1,21 @@
 function load_warning(group_num){
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
-    if (group_num==1){
+    if (group_num==5){
         $('.sender-info').before(clon);
     }
-    else if (group_num==4){
+    else if (group_num==1){
         var names = ["chase.co.br","https://www.yahoo.co.br/"];
         $("#email_container a").each(function(){
             var raw_link = $(this).attr("href");
-            // console.log(raw_link);
-            var temp = '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner warning"></div></div>';
-            var text = "Warning text goes here";
             if (names.indexOf(raw_link) > 0){
                 $(this).attr('data-toggle', 'tooltip');
-                var trigger = 'hover';
-                //options for tooltip
-                options = {
-                    placement: 'bottom',
-                    html: true,
-                    title: text,
-                    trigger: trigger,
-                    template: temp,
-                }
-                $("[data-toggle='tooltip']").tooltip(options);
+                $("a[data-toggle='tooltip']").after(clon);
+                // $("a[data-toggle='tooltip']").on("mouseenter", function(){
+                //     $("div.tooltip").css('opacity', 100);
+                // }).on("mouseleave", function(){
+                //     $("div.tooltip").css('opacity', 0);
+                // });
                 
             }
         });

@@ -2,7 +2,7 @@ import os, django, sys, json
 from pathlib import Path
 json_path = Path("config/") # Before I change the file path, grab the path to the config file
 
-sys.path.append('email_client/') # Path so I can point to settings
+sys.path.append('email_client/') # Change path so email_client.settings will work below
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
@@ -11,7 +11,7 @@ import random as rd
 import string
 from random import shuffle
 
-n_users = 10
+n_users = 0
 n_of_groups = 7
 
 #Load email metadata
@@ -80,27 +80,25 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-user = User()
-user.username = 'tempuser'
-user.group_num = 4
-user.code = '432dsa4f'
-### Set this password ###
-user.set_password('1344m9882j')
-user.save()
-
-j=9
-for email in emails:
-    new = Mail()
-    new.user = user
-    new.sender = email['sender']
-    new.preview = email['preview']
-    new.time_sent = time_sent[j]
-    new.subject = email['subject']
-    new.sender_address = email['sender_address']
-    new.read = "unread"
-    new.ref = email['ref']
-    new.save()
-    j-=1
-
-
+for i in range(0, n_of_groups-1):
+    user = User()
+    user.username = 'tempuser'+str(i)
+    user.group_num = i
+    user.code = '432dsa4f'
+    ### Set this password ###
+    user.set_password('1344m9882j')
+    user.save()
+    j=9
+    for email in emails:
+        new = Mail()
+        new.user = user
+        new.sender = email['sender']
+        new.preview = email['preview']
+        new.time_sent = time_sent[j]
+        new.subject = email['subject']
+        new.sender_address = email['sender_address']
+        new.read = "unread"
+        new.ref = email['ref']
+        new.save()
+        j-=1
 exit()

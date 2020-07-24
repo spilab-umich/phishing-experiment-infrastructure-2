@@ -1,3 +1,13 @@
 <template>
-    <p>Warning goes here</p>
+    <div class="tooltip" role="tooltip">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner">
+            <p>Warning text goes here</p>
+        </div>
+    </div>
+    <style>
+        a[data-toggle="tooltip"]:hover + div.tooltip {
+            opacity: 100;
+        }
+    </style>
 </template>
