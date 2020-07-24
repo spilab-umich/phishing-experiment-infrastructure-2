@@ -93,6 +93,7 @@
 <script src="{% static 'js/warnings.js' %}"></script>
 <script>
     var n = '{{ user.group_num}}';
-    load_warning(n);
+    var email_id = '{{ email.ref }}'
+    read_email(n, email_id);
 </script>
 {% endblock %}
