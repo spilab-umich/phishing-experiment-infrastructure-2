@@ -58,12 +58,12 @@
                             <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right disabled"></i></a>
                             {% endif %}
                         </li>
-                    </ul>
-                <div class="col-md-12">
-                    <h4> {{ email.subject }}</h4>
-                </div>         
+                    </ul>         
     </div>
     <div class="sender-info">
+        <div class="col-md-12">
+            <h4> {{ email.subject }}</h4>
+        </div>
         <div class="row">
             <div class="col-md-12 email-head">
                 <img alt="" class="img-circle" src="{% static 'img/placeholder.jpg' %}">
@@ -80,56 +80,8 @@
             </div>   
         </div>
     </div>
-        <!-- <div class="mail-option">
-            <div class="chk-all">
-                <input type="checkbox" class="mail-checkbox mail-group-checkbox">
-                <div class="btn-group">
-                    <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
-                        All
-                        <i class="fa fa-angle-down "></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"> None</a></li>
-                        <li><a href="#"> Read</a></li>
-                        <li><a href="#"> Unread</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="btn-group">
-                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips disabled">
-                    <i class=" fa fa-refresh"></i>
-                </a>
-            </div>
-            <div class="btn-group hidden-phone">
-                <a data-toggle="dropdown" href="#" class="btn mini blue disabled" aria-expanded="false">
-                    More
-                    <i class="fa fa-angle-down "></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-pencil disabled"></i> Mark as Read</a></li>
-                    <li><a href="#"><i class="fa fa-ban disabled"></i> Spam</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#" class="disabled"><i class="fa fa-trash-o"></i> Delete</a></li>
-                </ul>
-            </div>
-            <div class="btn-group">
-                <a data-toggle="dropdown" href="#" class="btn mini blue disabled">
-                    Move to
-                    <i class="fa fa-angle-down "></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#" class="disabled"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                    <li><a href="#" class="disabled"><i class="fa fa-ban"></i> Spam</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#" class="disabled"><i class="fa fa-trash-o"></i> Delete</a></li>
-                </ul>
-            </div>
-
-
-        </div> -->
         <div class="container-fluid" id="email_container">
-            {% include file_name %}
+            {% include email_fname %}
         </div>
         <div class="compose-btn pull-left">
                 <a class="btn btn-sm btn-primary disabled" href=""><i class="fa fa-reply"></i> Reply</a>
@@ -138,4 +90,9 @@
                 <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm tooltips disabled"><i class="fa fa-trash-o"></i></button>
             </div>
 </div>
+<script src="{% static 'js/warnings.js' %}"></script>
+<script>
+    var n = '{{ user.group_num}}';
+    load_warning(n);
+</script>
 {% endblock %}

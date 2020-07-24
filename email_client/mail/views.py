@@ -84,7 +84,7 @@ def email(request, email_id):
             prev_email = emails[this_index-1]["ref"]
 
         #path to each email (templates/mail/<email_id>.html)
-        file_name = 'mail/emails/' + str(email_id) + '.html'
+        email_fname = 'mail/emails/' + str(email_id) + '.html'
 
         # If unread, change to read, decrement unread_count, and save. 
         # I think I should be using update instead of save()
@@ -101,15 +101,17 @@ def email(request, email_id):
             # user.unread_count = F('unread_count') - 1
             # user.save()
         
+        warning_fname = 'mail/warnings/' + str(4) + '.html'
         # Find the order_number of the email being retreived
         # order_num = emails.index()
         context = {
             'email': emails[this_index],
             'user': user,
-            'file_name': file_name,   ## The file path of the selected email
+            'email_fname': email_fname,   ## The file path of the selected email
             'next_email': next_email, ## Ref num of the next email if available
             'prev_email': prev_email,  ## Ref num of the previous email if available
-            'order_num': this_index+1,  ## This indicates an email is "N of 10"
+            'order_num': this_index+1,  ## This indicates an email is "N of 10",
+            'warning_fname': warning_fname,
         }
         return render(request, 'mail/email.html', context)
 

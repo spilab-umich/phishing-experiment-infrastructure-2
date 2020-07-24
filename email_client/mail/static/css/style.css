@@ -264,6 +264,7 @@ ul.inbox-pagination li {
 }
 .sender-info {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 .sender-info img {
     height: 30px;
@@ -373,3 +374,10 @@ a.disabled {
 .email-head {
     margin-top:12px;
 }
+
+/* .banner-w {
+    padding: 10px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #A64452;
+} */
