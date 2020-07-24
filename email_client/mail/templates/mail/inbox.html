@@ -62,35 +62,35 @@
          <table class="table table-inbox table-hover">
                <tbody>
                   {% for email in emails %}
-               <tr class="{{email.read}}" name="email_id" id="{{ email.ref }}">
-                     <td class="inbox-small-cells">
-                        <input type="checkbox" class="mail-checkbox">
-                     </td>
-                     <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
-                     <!-- <div><a href="{% url 'mail:email' email.ref %}"></a> -->
-                        <td class="view-message dont-show" >{{ email.sender }}</td>
-                        <td class="view-message">{{ email.subject}}</td>
-                        <td class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
-                     <!-- </div> -->
-                     <!-- <td class="view-message">
-                        <a href = "{% url 'mail:email' email.ref %}">
-                           <span class="view-message dont-show">{{ email.sender }}</span>
-                           <span class="view-message">{{ email.subject}}></span>
-                           <span class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</span>
-                        </a>
-                     </td> -->
-                     <td class="view-message inbox-small-cells" ><i class="fa fa-paperclip"></i></td>
-                     <td class="view-message text-right">{{ email.time_sent }}</td>
-               </tr>
+                    <tr class="{{email.read}}" name="email_id" id="{{ email.ref }}">
+                            <td class="inbox-small-cells">
+                                <input type="checkbox" class="mail-checkbox">
+                            </td>
+                            <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+                            <!-- <div><a href="{% url 'mail:email' email.ref %}"></a> -->
+                                <td class="view-message dont-show" >{{ email.sender }}</td>
+                                <td class="view-message">{{ email.subject}}</td>
+                                <td class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
+                            <!-- </div> -->
+                            <!-- <td class="view-message">
+                                <a href = "{% url 'mail:email' email.ref %}">
+                                <span class="view-message dont-show">{{ email.sender }}</span>
+                                <span class="view-message">{{ email.subject}}></span>
+                                <span class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</span>
+                                </a>
+                            </td> -->
+                            <td class="view-message inbox-small-cells" ><i class="fa fa-paperclip"></i></td>
+                            <td class="view-message text-right">{{ email.time_sent }}</td>
+                    </tr>
                {% endfor %}
-            </tbody>
+                </tbody>
             </table>
-         </div>
-      <script>
-          // This allows users to click on the correct parts of the table row
-         $("td.view-message").on("click", function (e) {
-            eid = $(this).closest('tr').attr('id');
-            location = document.location+'/'+eid;
-         });
-      </script>
+        </div>
+<script>
+    // This allows users to click on the correct parts of the table row
+    $("td.view-message").on("click", function (e) {
+    eid = $(this).closest('tr').attr('id');
+    location = document.location+'/'+eid;
+    });
+</script>
 {% endblock %}
