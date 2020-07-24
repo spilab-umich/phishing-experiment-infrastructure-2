@@ -100,7 +100,6 @@ def email(request, email_id):
             #     user.save()
             # user.unread_count = F('unread_count') - 1
             # user.save()
-        
         warning_fname = 'mail/warnings/' + str(4) + '.html'
         # Find the order_number of the email being retreived
         # order_num = emails.index()

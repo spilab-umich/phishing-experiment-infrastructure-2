@@ -1,15 +1,15 @@
 {"warnings": 
     [
         {"warning_name": "no-warning",
-        "warning_num": 0},
+        "group_num": 0},
 
         {"warning_name": "tooltip",
-        "warning_num": 1},
+        "group_num": 1},
 
         {"warning_name": "browser",
-        "warning_num": 6},
+        "group_num": 6},
 
         {"warning_name": "banner",
-        "warning_num": 4}
+        "group_num": 4}
      ]
 }
