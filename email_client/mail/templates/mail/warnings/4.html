@@ -1,0 +1,64 @@
+<template>
+    <div class="overlay">
+        <div class="browser-w">
+            <div class="overlay-content">
+                <h3 class="warning-header">Don't click on this link!</h3>
+                <p class="warning-text text-left">It goes to <a class="warning-link" target="_blank"></a></p>
+            </div>
+            <a href="" class="closebtn">&times;</a>
+        </div>
+    </div>
+    <style>
+        .overlay{
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.9);
+            text-align: center;
+        }
+        .overlay-content {
+            position: relative;
+            text-align: center;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        .warning-header {
+            left: 15px;
+            margin-top: 10px;
+        }
+        .browser-w {
+            text-align: center;
+            border-radius: 4px;
+            background-color: #A64452;
+            /* display: inline-block; */
+            height: 100px;
+            width: 400px;
+            position: absolute;
+            left: 45%;
+            top: 50%;
+        }
+        .overlay .closebtn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            font-size: 24px;
+            height: 30px;
+            width: 30px;
+            cursor: default;
+            content: 'x';
+        }
+        @media screen and (max-height: 450px) {
+            .overlay a {font-size: 20px}
+            .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
+            }
+}
+    </style>
+</template>
