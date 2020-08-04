@@ -35,7 +35,7 @@ function load_warning(group_num){
                         $('div.overlay').css('display','block');
                         $('a.warning-link').attr('href', raw_link)
                         .text(raw_link);
-                    });
+                });
                 $('.warning-link').on('click', function(){
                     $(".overlay").css("display","none");
                 });
