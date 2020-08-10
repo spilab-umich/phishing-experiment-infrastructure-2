@@ -1,14 +1,69 @@
 <template>
-    <div class='row banner-w text-center'>
-        <div style='padding: 15px;'>
-            <p class=''>Warning text here</p>
+    <div class='row text-center'>
+        <div class='warning-container'>
+            <div class='warning-wrapper'>
+                <!-- custom warning start -->
+                <div class='warning-sidebar'>
+                    <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
+                </div>
+                <div class='warning-headline'>
+                    <p>This might be a fake link! Check the link carefully.</p>
+                    <ul>
+                        <li>Reason #1 why this is suspicious</li>
+                        <li>Reason #2 why this is suspicious</li>
+                    </ul>
+                </div>
+                <!-- custom warning end -->
+            </div>
         </div>
     </div>
-    <style>.banner-w {
-        padding: 10px;
-        height: 100px;
-        border-radius: 4px;
-        background-color: #A64452;
+    <style>
+        /* .banner-w {
+            padding: 10px;
+            height: 100px;
+            border-radius: 4px;
+            background-color: #A64452;
+        } */
+        .warning-container {
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid #E74C3C;
+            box-sizing: border-box;
+            /* height: 100px; */
+            /* padding: 15px; */
+            /* Elevation / 6dp */
+            /* box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2); */
+            border-radius: 4px;
+        }
+
+        /* custom warning styles */
+        .warning-sidebar {
+            height: 100%;
+            background: #F2C2C2;
+            opacity: 0.7;
+            padding: 10px;
+            /* float: left; */
+            display: table-cell;
+            width: 50px;
+            vertical-align: middle;
+        }
+        .warning-headline {
+            display: table-cell;
+            /* position: absolute; */
+            /* display: inline-block; */
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            color: #D43232;
+            padding: 10px;
+            vertical-align: middle;
+            width: 100%;
+            /* transform: translateX(-50%); */
+        }
+        .warning-icon {
+            color: red;
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
 </template>

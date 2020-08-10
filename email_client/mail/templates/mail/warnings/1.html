@@ -2,12 +2,70 @@
     <div class="tooltip" role="tooltip">
         <div class="tooltip-arrow"></div>
         <div class="tooltip-inner">
-            <p>Warning text goes here</p>
+            <div class='warning-wrapper'>
+                <!-- custom warning start -->
+                <div class='warning-sidebar'>
+                    <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
+                </div>
+                <div class='warning-headline'>
+                    <p>This might be a fake link! Check the link carefully.</p>
+                    <ul>
+                        <li>Reason #1 why this is suspicious</li>
+                        <li>Reason #2 why this is suspicious</li>
+                    </ul>
+                </div>
+                <!-- custom warning end -->
+            </div>
         </div>
     </div>
     <style>
         a[data-toggle="tooltip"]:hover + div.tooltip {
             opacity: 100;
+        }
+        .tooltip-inner {
+            background-color: transparent;
+            max-width: 40%;
+            min-width: 400px;
+        }
+        .warning-wrapper {
+            position: relative;
+            border-radius: 4px;
+            background: #FFFFFF;
+            border: 1px solid #E74C3C;
+            box-sizing: border-box;
+            /* Elevation / 6dp */
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        /* custom warning stylesheets */
+        .warning-sidebar {
+            height: 100%;
+            background: #F2C2C2;
+            /* opacity: 0.7; */
+            padding: 10px;
+            /* float: left; */
+            display: table-cell;
+            width: 50px;
+            vertical-align: middle;
+        }
+        .warning-headline {
+            display: table-cell;
+            /* position: absolute; */
+            /* display: inline-block; */
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            color: #D43232;
+            padding: 10px;
+            vertical-align: middle;
+            width: 100%;
+            /* mix-blend-mode: normal; */
+        }
+        .warning-icon {
+            color: red;
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
 </template>

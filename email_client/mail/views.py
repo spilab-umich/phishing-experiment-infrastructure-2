@@ -32,6 +32,7 @@ def inbox(request):
         return redirect('mail:index')
     else:
         user = request.user
+        log_request(request)
         emails = Mail.objects.filter(user=user).values()
         context = {
             'user': user,
@@ -47,7 +48,7 @@ def email(request, email_id):
         return redirect('mail:index')
     else:
         #log the request on the server side
-        # log_request(request)
+        log_request(request)
         #query the requisite email from the database
         user = request.user
         # Get a dictionary list of all mail objects belonging to this user
