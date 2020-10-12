@@ -1,3 +1,6 @@
+var hover_time_limit = 500;
+var rows = [];
+
 function load_warning(group_num){
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
@@ -12,12 +15,6 @@ function load_warning(group_num){
             if (names.indexOf(raw_link) > 0){
                 $(this).attr('data-toggle', 'tooltip');
                 $("a[data-toggle='tooltip']").after(clon);
-                // $("a[data-toggle='tooltip']").on("mouseenter", function(){
-                //     $("div.tooltip").css('opacity', 100);
-                // }).on("mouseleave", function(){
-                //     $("div.tooltip").css('opacity', 0);
-                // });
-                
             }
         });
     }
@@ -41,16 +38,7 @@ function load_warning(group_num){
                 });
                 $('.closebtn').on('click', function(){
                     $(".overlay").css("display","none");
-                });
-                // function closeWarning(){
-                //     $(".overlay").css("display","none");
-                // }
-                // $("a[data-toggle='tooltip']").on("mouseenter", function(){
-                //     $("div.tooltip").css('opacity', 100);
-                // }).on("mouseleave", function(){
-                //     $("div.tooltip").css('opacity', 0);
-                // });
-                
+                });           
             }
         });
     }
@@ -63,4 +51,33 @@ function read_email(group_num, email_id){
     if (p_email_ids.includes((email_id_int))){
         load_warning(group_num_int);
     }
+    initListeners();
+}
+
+function initListeners(){
+    $('a').each(function(){
+        addclicklistener($(this));
+    });
+
+    $('#email_container a').each(function(){
+        addHoverListener($(this));
+    });
+}
+
+function addclicklistener(_this) {
+    _this.on('click', function() {
+        createLog(_this, 'click');
+    });
+}
+
+function addHoverListener(_this) {
+    _this.hover(function() {
+        start = new Date();
+    }, function() {
+        end = new Date();
+        var time = end - start;
+        if (time >= hover_time_limit) {
+          createLog(_this, 'hover', time);
+        }
+    });
 }

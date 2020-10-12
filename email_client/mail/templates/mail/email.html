@@ -93,8 +93,11 @@
 {% include warning_fname %}
 <script src="{% static 'js/warnings.js' %}"></script>
 <script>
-    var n = '{{ user.group_num}}';
-    var email_id = '{{ email.ref }}'
+    // determine if email is a phish
+    const n = '{{ user.group_num}}';
+    const email_id = '{{ email.ref }}'
+    // $(document).ready(function{
     read_email(n, email_id);
+    // });
 </script>
 {% endblock %}

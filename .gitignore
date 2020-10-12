@@ -1,7 +1,0 @@
-env/
-**/db.sqlite3
-**/*.pyc
-**/__pycache__/**
-**/migrations/**
-**/manage.py
-**/settings.py
