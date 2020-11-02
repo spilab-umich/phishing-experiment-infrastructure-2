@@ -25,7 +25,7 @@ SECRET_KEY = 'r)9&p3jmso^*%2!*sdwgn+qx(wbo$jv+z2$im104(9htw6nktl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['34.231.254.215', 'emailresearch.si.umich.edu', '127.0.0.1',]
 
 AUTH_USER_MODEL = 'mail.User'
 

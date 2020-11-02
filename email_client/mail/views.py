@@ -6,6 +6,9 @@ from .models import Mail, User, Server_Logs, Client_Logs
 from datetime import datetime, timezone
 from django.core import serializers
 
+log_array = []
+max_logs = 3
+
 # Bring up the login page
 def index(request):
     # return render(request, 'mail/index.html')
@@ -94,14 +97,7 @@ def email(request, email_id):
         ## I stopped working here, trying to figure out how to update the unread_count
         if read_status == "unread":
             Mail.objects.filter(user=user, ref=email_id).update(read="read")
-            # this_mail.read="read"
-            # user.unread_count -=1
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
-            # if user.unread_count > 0:
-            #     user.unread_count -= 1
-            #     user.save()
-            # user.unread_count = F('unread_count') - 1
-            # user.save()
         warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
         # Find the order_number of the email being retreived
         # order_num = emails.index()
@@ -119,26 +115,35 @@ def email(request, email_id):
 def ajax(request):
     # Catches POST requests from AJAX
     if request.method == 'POST':
-        print(request.POST['data'])
-        # log = Client_Logs(
-        #     username=request.POST['username'],
-        #     link = request.POST['link'],
-        #     link_id = request.POST['link_id'],
-        #     action = request.POST['action'],
-        #     hover_time = request.POST['hover_time'],
-        #     screen_width = request.POST['screen_width'],
-        #     screen_height = request.POST['screen_height'],
-        #     statusbar_visible = request.POST['statusbar_visible'],
-        #     client_time = request.POST['client_time'],
-        #     group_num = request.user.group_num,
-        #     response_id = request.user.response_id,
-        #     server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT"),
-        #     session_id = request.session.session_key,
-        # )
-        #     # if (request.META.get('REMOTE_ADDR')):
-        #     #     log.IP = request.META.get('REMOTE_ADDR')
-        # log.save()
-    return HttpResponse('Success')
+        collect_log(request)
+        return HttpResponse('Success')
+
+def collect_log(res):
+    global log_array
+    log = Client_Logs(
+        username=res.POST['username'],
+        link = res.POST['link'],
+        link_id = res.POST['link_id'],
+        action = res.POST['action'],
+        hover_time = res.POST['hover_time'],
+        # screen_width = res.POST['screen_width'],
+        # screen_height = res.POST['screen_height'],
+        # statusbar_visible = res.POST['statusbar_visible'],
+        client_time = res.POST['client_time'],
+        group_num = res.user.group_num,
+        response_id = res.user.response_id,
+        server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT"),
+        session_id = res.session.session_key,
+        # if (res.META.get('REMOTE_ADDR')):
+            # log.IP = res.META.get('REMOTE_ADDR')
+    )
+    log_array.append(log)
+    if (len(log_array) > max_logs):
+        logs_to_write = log_array[:max_logs]
+        log_array = log_array[max_logs:]
+        print(log_array)
+        print(logs_to_write)
+        Client_Logs.objects.bulk_create(logs_to_write)
 
 def log_request(request):
     log = Server_Logs(

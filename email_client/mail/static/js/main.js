@@ -1,6 +1,6 @@
-var max_log_size = 3;
-var send_intervals = 5000;
-var timeOutId = 0;
+// var max_log_size = 3;
+// var send_intervals = 5000;
+// var timeOutId = 0;
 
 // ajax_send_trigger();
 
@@ -11,53 +11,55 @@ function createLog(link, action, time){
     else if (link.attr('label')) link_url = link.attr('label');
     else if (link.attr('href')) link_url = link.attr('href');
     else link_url = '';
-    // If link has an id, it should be that, else it's 0
+    // If link has an id, link_id should be that id, else it's 0
     if (link[0].id) link_id = link[0].id;
-    // var dest = '{% url "mail:ajax" %}';
-    var d_to_add = {
+    var timestamp = new Date($.now()).toUTCString();
+    var d = {
         'username': username,
         'link': link_url,
         'action': action,
         'hover_time': time,
         'action': action,
         'link_id': link_id,
+        'client_time': timestamp,
+        csrfmiddlewaretoken: token,
     };
     // var things = JSON.stringify({d_to_add});
     // var things = d_to_add.toString();
-    console.log(d_to_add);
-    add_to_array(d_to_add);
+    // console.log(d_to_add);
+    // add_to_array(d_to_add);
     // console.log(data);
+    send_data(d);
 }
 
-function add_to_array(row){
-    rows.push(row);
-    console.log(rows.length);
-    if (rows.length>0 || timeOutId == 0) {
-        timeOutId = setTimeout(function(){
-            send_data(rows);
-        }, send_intervals);
-    }
-    if (rows.length==max_log_size){
-        send_data(rows);
-    }
-}
+// function add_to_array(row){
+//     rows.push(row);
+//     console.log(rows.length);
+//     if (rows.length>0 || timeOutId == 0) {
+//         timeOutId = setTimeout(function(){
+//             send_data(rows);
+//         }, send_intervals);
+//     }
+//     if (rows.length==max_log_size){
+//         send_data(rows);
+//     }
+// }
 
 function send_data(d){
-    data = JSON.stringify(d);
+    // data = JSON.stringify(d);
+    // data = d;
+    console.log(d);
     $.ajax({
         url: ajax_dest,
         method: 'POST',
-        data: {
-            data,
-            csrfmiddlewaretoken: token,
-        },
+        data: d,
         success: function(){
             console.log('log recorded');
             console.log(data.length);
-            if (timeOutId > 0) {
-                clearTimeout(timeOutId);
-            }
-            rows = []; // This is dangerous if there is a delay between client and server but idk what else to do
+            // if (timeOutId > 0) {
+            //     clearTimeout(timeOutId);
+            // }
+            // rows = []; // This is dangerous if there is a delay between client and server but idk what else to do
         },
         error: function(){
             console.log('log failure');
