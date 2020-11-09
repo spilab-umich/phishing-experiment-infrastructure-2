@@ -5,9 +5,21 @@ from django.db.models import F
 from .models import Mail, User, Server_Logs, Client_Logs
 from datetime import datetime, timezone
 from django.core import serializers
+import threading
 
 log_array = []
 max_logs = 3
+
+# From YouTube video
+class DBThread(threading.Thread):
+
+    def __init__(self, Client_Logs):
+        self.log = Client_Logsthreading.Thread.__init__(self)
+
+    def run(self):
+        # Save logs here
+        print(log_array)
+
 
 # Bring up the login page
 def index(request):
@@ -65,20 +77,19 @@ def email(request, email_id):
         # Find the index of the matching email in emails
         this_index=0
         # Go through the query set and find the db id for the email id
+
+        # """ I think I can use the filter function F() for this; """
         for mail in emails:
             if mail.get("ref") == int(email_id):
                 this_id = mail.get("id")
                 read_status = mail.get("read")
                 # Once the id is found, we don't need to keep looking
                 break
-            this_index += 1
-        # See if the next id is out of bounds
-        if (this_id+1 > last_id):
-            # Set to -1
-            next_email = -1
-        # Else set this to the next email ref number
+            this_index += 1 # Return the position of this email in the email_list
+        if (this_id+1 > last_id): # See if the next id is out of bounds
+            next_email = -1 # Set to -1
         else:
-            next_email = emails[this_index+1]["ref"]
+            next_email = emails[this_index+1]["ref"] # Else set the next email number to the next email ref number
 
         # See if the prev id is out of bounds
         if (this_id-1 < first_id):
@@ -91,16 +102,13 @@ def email(request, email_id):
         #path to each email (templates/mail/<email_id>.html)
         email_fname = 'mail/emails/' + str(email_id) + '.html'
 
-        # If unread, change to read, decrement unread_count, and save. 
-        # I think I should be using update instead of save()
-
-        ## I stopped working here, trying to figure out how to update the unread_count
+        # If unread, change to read, decrement unread_count. 
         if read_status == "unread":
             Mail.objects.filter(user=user, ref=email_id).update(read="read")
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
+
+        ### Do I need this line below? ###
         warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
-        # Find the order_number of the email being retreived
-        # order_num = emails.index()
         context = {
             'email': emails[this_index],
             'user': user,
@@ -108,14 +116,14 @@ def email(request, email_id):
             'next_email': next_email, ## Ref num of the next email if available
             'prev_email': prev_email,  ## Ref num of the previous email if available
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
-            'warning_fname': warning_fname,
+            'warning_fname': warning_fname, ## Warning number is needed to include warning html as django template
         }
         return render(request, 'mail/email.html', context)
 
 def ajax(request):
     # Catches POST requests from AJAX
     if request.method == 'POST':
-        collect_log(request)
+        collect_log(request) # """ Do this asynchronously """
         return HttpResponse('Success')
 
 def collect_log(res):
@@ -138,11 +146,12 @@ def collect_log(res):
             # log.IP = res.META.get('REMOTE_ADDR')
     )
     log_array.append(log)
+    # """  what if I just ran this check on a timer? """
     if (len(log_array) > max_logs):
-        logs_to_write = log_array[:max_logs]
+        logs_to_write = log_array[:max_logs] # Serialize before saving??
         log_array = log_array[max_logs:]
-        print(log_array)
-        print(logs_to_write)
+        # print(log_array)
+        # print(logs_to_write)
         Client_Logs.objects.bulk_create(logs_to_write)
 
 def log_request(request):
@@ -164,3 +173,4 @@ def logout_user(request):
     log_request(request)
     logout(request)
     return redirect('mail:index')
+

@@ -4,11 +4,11 @@ var rows = [];
 function load_warning(group_num){
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
-    var names = ["https://www.chase.co.us/","https://www.yahoo.co.br/",'https://www.venmo-payment.co.us/'];
+    var names = ["https://www.chase.co.us/","https://www.yahoo.co.br/",'https://www.venmo-payment.co.us/']; // Can I pull from phish_domains.json?
     if (group_num==5){
         $('.sender-info').before(clon);
     }
-    else if (group_num==1){
+    else if (group_num==1){ // can load from warnings.json?
         // var names = ["https://www.chase.co.us/","https://www.yahoo.co.br/"];
         $("#email_container a").each(function(){
             var raw_link = $(this).attr("href");
@@ -45,11 +45,11 @@ function load_warning(group_num){
 }
 
 function read_email(group_num, email_id){
-    var p_email_ids = [12, 3, 18];
+    var p_email_ids = [12, 3, 18]; // can bring in phish_domains.json somehow?
     var group_num_int = parseInt(group_num);
     var email_id_int = parseInt(email_id);
     if (p_email_ids.includes((email_id_int))){
-        load_warning(group_num_int);
+        load_warning(group_num_int); // Can I also add django template from here?
     }
     initListeners();
 }

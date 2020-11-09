@@ -6,8 +6,8 @@ class User(AbstractUser):
     group_num = models.IntegerField(blank=True, null=True)  # The numeric represention of group assignment
     unread_count = models.IntegerField(default=10)  # The number of unread_emails in a User's Inbox
     assigned = models.BooleanField(default=False)  # Indicates whether a User name has been taken
-    response_id = models.CharField(default="0", max_length=50, null=True)  # I think this is their unique Qualtrics response ID
-    code = models.CharField(default="Not Found", max_length=25) # I think this is their MTurk reward code?
+    response_id = models.CharField(default="0", max_length=50, null=True)  # Survey response ID
+    code = models.CharField(default="Not Found", max_length=25) # User's reward code
 
     def __str__(self):
         return str(self.username) + ' - ' + str(self.group_num)
@@ -39,8 +39,7 @@ class Server_Logs(models.Model):
     group_num = models.IntegerField(blank=True, null=True) # The numeric represention of group assignment
     response_id = models.CharField(default="0", max_length=50, null=True) # I think this is their unique Qualtrics response ID
     session_id = models.CharField(default="0", max_length=50, null=True) # I think this is the session_ID from somewhere?
-    # The action recorded; click, hover, etc. # The screen height of the client when the log was generated
-    action = models.CharField(max_length=20)
+    action = models.CharField(max_length=20) # The action recorded; click, hover, etc. # The screen height of the client when the log was generated
     # Numeric identifiers for each link in each email
     # Server-side link_ids are -1 
     # All email link_ids are > 0
