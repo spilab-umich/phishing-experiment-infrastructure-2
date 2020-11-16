@@ -7,18 +7,22 @@ from datetime import datetime, timezone
 from django.core import serializers
 import threading
 
-log_array = []
-max_logs = 3
-
-# From YouTube video
 class DBThread(threading.Thread):
 
-    def __init__(self, Client_Logs):
-        self.log = Client_Logsthreading.Thread.__init__(self)
+    def __init__(self, log):
+        self.log = log
+        self._lock = threading.Lock()
+        threading.Thread.__init__(self)
 
     def run(self):
-        # Save logs here
-        print(log_array)
+        with self._lock:
+            try:
+                self.log.save()
+                # print("log saved")
+            except:
+                # print("log not saved")
+        return
+            
 
 
 # Bring up the login page
@@ -127,16 +131,13 @@ def ajax(request):
         return HttpResponse('Success')
 
 def collect_log(res):
-    global log_array
+    # I could move all of this to the other thread
     log = Client_Logs(
         username=res.POST['username'],
         link = res.POST['link'],
         link_id = res.POST['link_id'],
         action = res.POST['action'],
         hover_time = res.POST['hover_time'],
-        # screen_width = res.POST['screen_width'],
-        # screen_height = res.POST['screen_height'],
-        # statusbar_visible = res.POST['statusbar_visible'],
         client_time = res.POST['client_time'],
         group_num = res.user.group_num,
         response_id = res.user.response_id,
@@ -145,14 +146,16 @@ def collect_log(res):
         # if (res.META.get('REMOTE_ADDR')):
             # log.IP = res.META.get('REMOTE_ADDR')
     )
-    log_array.append(log)
-    # """  what if I just ran this check on a timer? """
-    if (len(log_array) > max_logs):
-        logs_to_write = log_array[:max_logs] # Serialize before saving??
-        log_array = log_array[max_logs:]
-        # print(log_array)
-        # print(logs_to_write)
-        Client_Logs.objects.bulk_create(logs_to_write)
+    DBThread(log).start() ## Send log to DB thread for writing
+    return
+
+    # log_array.append(log)
+    # if (len(log_array) > max_logs):
+    #     logs_to_write = log_array[:max_logs] # Serialize before saving??
+    #     log_array = log_array[max_logs:]
+    #     # print(log_array)
+    #     # print(logs_to_write)
+    #     Client_Logs.objects.bulk_create(logs_to_write)
 
 def log_request(request):
     log = Server_Logs(
