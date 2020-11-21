@@ -5,22 +5,27 @@ from django.db.models import F
 from .models import Mail, User, Server_Logs, Client_Logs
 from datetime import datetime, timezone
 from django.core import serializers
-import threading
+from django.db import connection
+import threading, time
+# from time import process_time
 
-class DBThread(threading.Thread):
-
+class DBThread(threading.Thread): 
     def __init__(self, log):
         self.log = log
         self._lock = threading.Lock()
         threading.Thread.__init__(self)
 
     def run(self):
+        t1_start = time.process_time()
         with self._lock:
             try:
                 self.log.save()
-                # print("log saved")
+                print("log saved: {} {:.15f}".format(self.log, time.process_time()-t1_start))
+                if not connection.in_atomic_block:
+                    connection.close()
+                    print("DB connection closed")
             except:
-                # print("log not saved")
+                print("log not saved")
         return
             
 
@@ -44,7 +49,7 @@ def index(request):
         else:
             return render(request, 'mail/index.html', {'error_message': 'Invalid login'})
 
-    #if the request is not POST, render the index(login) page
+    #if the request is not POST, return the index(login) page
     return render(request, 'mail/index.html')
 
 def inbox(request):
@@ -73,7 +78,7 @@ def email(request, email_id):
         user = request.user
         # Get a dictionary list of all mail objects belonging to this user
         emails = Mail.objects.filter(user=user).values()
-        # Evaluate the query set (hit the database)
+        # Evaluate the query set (hits the database)
         len_emails = len(emails) - 1
         # Grab db ids for the first and last emails for this user
         first_id = emails[0]['id']
@@ -146,16 +151,9 @@ def collect_log(res):
         # if (res.META.get('REMOTE_ADDR')):
             # log.IP = res.META.get('REMOTE_ADDR')
     )
+    # threading lib recommends passing daemon property as keyword e.g. daemon = True
     DBThread(log).start() ## Send log to DB thread for writing
     return
-
-    # log_array.append(log)
-    # if (len(log_array) > max_logs):
-    #     logs_to_write = log_array[:max_logs] # Serialize before saving??
-    #     log_array = log_array[max_logs:]
-    #     # print(log_array)
-    #     # print(logs_to_write)
-    #     Client_Logs.objects.bulk_create(logs_to_write)
 
 def log_request(request):
     log = Server_Logs(
@@ -170,7 +168,9 @@ def log_request(request):
     )
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
-    log.save()
+    # log.save()
+    DBThread(log).start() ## Send log to DB thread for writing
+    return
 
 def logout_user(request):
     log_request(request)
