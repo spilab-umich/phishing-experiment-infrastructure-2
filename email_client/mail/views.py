@@ -5,27 +5,29 @@ from django.db.models import F
 from .models import Mail, User, Server_Logs, Client_Logs
 from datetime import datetime, timezone
 from django.core import serializers
-from django.db import connection
+from django.db import connection, connections
 import threading, time
 # from time import process_time
 
 class DBThread(threading.Thread): 
     def __init__(self, log):
         self.log = log
-        self._lock = threading.Lock()
-        threading.Thread.__init__(self)
+        self._lock = threading.RLock()
+        # threading.Thread.__init__(self, daemon=True)
+        threading.Thread.__init__(self, daemon=True)
 
     def run(self):
-        t1_start = time.process_time()
+        # t1_start = time.process_time()
         with self._lock:
             try:
                 self.log.save()
-                print("log saved: {} {:.15f}".format(self.log, time.process_time()-t1_start))
-                if not connection.in_atomic_block:
-                    connection.close()
-                    print("DB connection closed")
-            except:
-                print("log not saved")
+                # print("log saved: {} {:.15f}".format(self.log, time.process_time()-t1_start))
+                connection.close()                    
+                    # print("DB connection closed")
+                # print("log saved {:.15f}".format(time.process_time()-t1_start))
+            except Exception as e:
+                pass
+                # print("log not saved: {}".format(e))
         return
             
 
@@ -136,7 +138,7 @@ def ajax(request):
         return HttpResponse('Success')
 
 def collect_log(res):
-    # I could move all of this to the other thread
+    # I could move all of this to the new thread
     log = Client_Logs(
         username=res.POST['username'],
         link = res.POST['link'],
@@ -152,7 +154,9 @@ def collect_log(res):
             # log.IP = res.META.get('REMOTE_ADDR')
     )
     # threading lib recommends passing daemon property as keyword e.g. daemon = True
-    DBThread(log).start() ## Send log to DB thread for writing
+    t = DBThread(log) ## Send log to DB thread for writing
+    # t.setDaemon(True)
+    t.start()
     return
 
 def log_request(request):
