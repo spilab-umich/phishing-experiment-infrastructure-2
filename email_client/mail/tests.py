@@ -37,7 +37,7 @@ def create_request_data():
 class LogSavingTests(TestCase):
 
     def test_DBThread_stress_test(self):
-        num_logs_to_save = 300
+        num_logs_to_save = 3000
         # i = 1
         tme = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT")
         num_loops = 10
@@ -51,6 +51,8 @@ class LogSavingTests(TestCase):
                 t.start()
             time.sleep(1)
         # t.join()
+        print(threading.active_count())
+        # time.sleep(120)
         # t1_end = time.perf_counter()-t1_start
         t1_end = time.process_time()-t1_start
         all_logs = Client_Logs.objects.all()

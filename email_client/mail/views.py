@@ -22,7 +22,7 @@ class DBThread(threading.Thread):
             try:
                 self.log.save()
                 # print("log saved: {} {:.15f}".format(self.log, time.process_time()-t1_start))
-                connection.close()                    
+                # connection.close()                    
                     # print("DB connection closed")
                 # print("log saved {:.15f}".format(time.process_time()-t1_start))
             except Exception as e:
