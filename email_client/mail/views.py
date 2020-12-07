@@ -6,30 +6,27 @@ from .models import Mail, User, Server_Logs, Client_Logs
 from datetime import datetime, timezone
 from django.core import serializers
 from django.db import connection, connections
-import threading, time
-# from time import process_time
+import threading, time, logging, sys
 
-class DBThread(threading.Thread): 
-    def __init__(self, log):
-        self.log = log
-        self._lock = threading.RLock()
-        # threading.Thread.__init__(self, daemon=True)
-        threading.Thread.__init__(self, daemon=True)
+# logging.basicConfig(level=logging.INFO, filename='logs.log')
 
-    def run(self):
-        # t1_start = time.process_time()
-        with self._lock:
-            try:
-                self.log.save()
-                # print("log saved: {} {:.15f}".format(self.log, time.process_time()-t1_start))
-                # connection.close()                    
-                    # print("DB connection closed")
-                # print("log saved {:.15f}".format(time.process_time()-t1_start))
-            except Exception as e:
-                pass
-                # print("log not saved: {}".format(e))
-        return
-            
+client_logger = logging.getLogger('mail.client')
+client_logger.setLevel(logging.INFO)
+client_fh = logging.FileHandler('client_logs.log')
+client_fh.setLevel(logging.INFO)
+client_logger.addHandler(client_fh)
+# client_logger.basicConfig(level=logging.INFO,filename='client_logs.log')
+server_logger = logging.getLogger('mail.server')
+server_logger.setLevel(logging.INFO)
+server_fh = logging.FileHandler('server_logs.log')
+server_fh.setLevel(logging.INFO)
+server_logger.addHandler(server_fh)
+
+# def RequestLogger():
+#     logger = logging.getLogger('mail')
+#     logger.setLevel(logging.INFO)
+#     handler = logging.StreamHandler(sys.stderr)
+#     handler.setLevel(logging.INFO)
 
 
 # Bring up the login page
@@ -139,45 +136,52 @@ def ajax(request):
 
 def collect_log(res):
     # I could move all of this to the new thread
-    log = Client_Logs(
-        username=res.POST['username'],
-        link = res.POST['link'],
-        link_id = res.POST['link_id'],
-        action = res.POST['action'],
-        hover_time = res.POST['hover_time'],
-        client_time = res.POST['client_time'],
-        group_num = res.user.group_num,
-        response_id = res.user.response_id,
-        server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT"),
-        session_id = res.session.session_key,
-        # if (res.META.get('REMOTE_ADDR')):
-            # log.IP = res.META.get('REMOTE_ADDR')
-    )
+    # global q, t
+    username = res.POST['username']
+    link = res.POST['link']
+    link_id = res.POST['link_id']
+    action = res.POST['action']
+    hover_time = res.POST['hover_time']
+    client_time = res.POST['client_time']
+    group_num = res.user.group_num
+    response_id = res.user.response_id
+    server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT")
+    session_id = res.session.session_key
+    # if (res.META.get('REMOTE_ADDR')):
+        # log.IP = res.META.get('REMOTE_ADDR')
+    client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
+    print('client log saved')
+    # q.put(log)
+    # print(q.qsize())
+    # # print(q.get())
+    # # print(t.is_alive())
+    # if not t.is_alive():
+    #     t.start()
     # threading lib recommends passing daemon property as keyword e.g. daemon = True
-    t = DBThread(log) ## Send log to DB thread for writing
+    # t = DBThread(log) ## Send log to DB thread for writing
     # t.setDaemon(True)
-    t.start()
+    # t.start()
     return
 
 def log_request(request):
-    log = Server_Logs(
-        username = request.user.username,
-        link = request.path,
-        link_id = -1,
-        server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT"),
-        session_id = request.session.session_key,
-        response_id = request.user.response_id,
-        # Sun, 28 Jan 2018 04:05:02 GMT
-        group_num = request.user.group_num,
-    )
+    username = request.user.username
+    link = request.path
+    link_id = -1
+    server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT")
+    session_id = request.session.session_key
+    response_id = request.user.response_id
+    # Sun, 28 Jan 2018 04:05:02 GMT
+    group_num = request.user.group_num
+    server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
+    print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
     # log.save()
-    DBThread(log).start() ## Send log to DB thread for writing
+    # DBThread(log).start() ## Send log to DB thread for writing
     return
 
 def logout_user(request):
     log_request(request)
-    logout(request)
+    # logout(request)
     return redirect('mail:index')
 
