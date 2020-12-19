@@ -8,30 +8,23 @@ from django.core import serializers
 from django.db import connection, connections
 import threading, time, logging, sys
 
-# logging.basicConfig(level=logging.INFO, filename='logs.log')
 
+# Set client ajax logger
 client_logger = logging.getLogger('mail.client')
 client_logger.setLevel(logging.INFO)
 client_fh = logging.FileHandler('client_logs.log')
 client_fh.setLevel(logging.INFO)
 client_logger.addHandler(client_fh)
-# client_logger.basicConfig(level=logging.INFO,filename='client_logs.log')
+
+# Set server request logger
 server_logger = logging.getLogger('mail.server')
 server_logger.setLevel(logging.INFO)
 server_fh = logging.FileHandler('server_logs.log')
 server_fh.setLevel(logging.INFO)
 server_logger.addHandler(server_fh)
 
-# def RequestLogger():
-#     logger = logging.getLogger('mail')
-#     logger.setLevel(logging.INFO)
-#     handler = logging.StreamHandler(sys.stderr)
-#     handler.setLevel(logging.INFO)
-
-
 # Bring up the login page
 def index(request):
-    # return render(request, 'mail/index.html')
     #if the request is POST, authenticate the user's credentials
     if request.method == "POST":
         username = request.POST['username']
@@ -56,7 +49,7 @@ def inbox(request):
         return redirect('mail:index')
     else:
         user = request.user
-        log_request(request)
+        collect_log(request)
         emails = Mail.objects.filter(user=user).values()
         context = {
             'user': user,
@@ -72,7 +65,7 @@ def email(request, email_id):
         return redirect('mail:index')
     else:
         #log the request on the server side
-        log_request(request)
+        collect_log(request)
         #query the requisite email from the database
         user = request.user
         # Get a dictionary list of all mail objects belonging to this user
@@ -131,13 +124,12 @@ def email(request, email_id):
 def ajax(request):
     # Catches POST requests from AJAX
     if request.method == 'POST':
-        collect_log(request) # """ Do this asynchronously """
+        collect_ajax(request) # """ Do this asynchronously """
         return HttpResponse('Success')
 
-def collect_log(res):
-    # I could move all of this to the new thread
-    # global q, t
-    username = res.POST['username']
+def collect_ajax(res):
+    # username = res.POST['username']
+    username = res.user.username
     link = res.POST['link']
     link_id = res.POST['link_id']
     action = res.POST['action']
@@ -149,39 +141,29 @@ def collect_log(res):
     session_id = res.session.session_key
     # if (res.META.get('REMOTE_ADDR')):
         # log.IP = res.META.get('REMOTE_ADDR')
-    client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
-    print('client log saved')
-    # q.put(log)
-    # print(q.qsize())
-    # # print(q.get())
-    # # print(t.is_alive())
-    # if not t.is_alive():
-    #     t.start()
-    # threading lib recommends passing daemon property as keyword e.g. daemon = True
-    # t = DBThread(log) ## Send log to DB thread for writing
-    # t.setDaemon(True)
-    # t.start()
+    # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
+    # client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
+    client_logger.info('%(username)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+        {'username':username,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
+    # print('client log saved')
     return
 
-def log_request(request):
+def collect_log(request):
     username = request.user.username
     link = request.path
     link_id = -1
     server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT")
     session_id = request.session.session_key
     response_id = request.user.response_id
-    # Sun, 28 Jan 2018 04:05:02 GMT
     group_num = request.user.group_num
     server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
-    print('server log saved')
+    # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
-    # log.save()
-    # DBThread(log).start() ## Send log to DB thread for writing
     return
 
 def logout_user(request):
-    log_request(request)
-    # logout(request)
+    collect_log(request)
+    logout(request)
     return redirect('mail:index')
 
