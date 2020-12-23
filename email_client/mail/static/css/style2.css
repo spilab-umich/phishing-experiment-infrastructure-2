@@ -1,170 +1,68 @@
-
-/* Base CSS revisions */
-
-/*anchor*/
-a {
-    color: #667fa0;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #2A3542;
-}
-
-.chk-all:focus {
-    outline: 0;
-    box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-} 
-
-.label {
-    padding: 0.5em 0.8em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    border-radius: .25em;
-}
-
-.label-danger {
-    /* background-color: #FF6C60; */
-    color: #FF6C60;
-    font-weight: bold;
-    font-size: 100%;
-    padding: 0;
-}
-
-
-input, textarea, select, button {
-    outline: none !important;
-}
-
-/*list*/
-
-ul {
-    padding-left: 0;
-}
-
-/*dropdown shadow*/
-
-/* .btn-group.open .dropdown-toggle, .btn-white.active, .btn:active, .btn.active {
-    box-shadow: none;
-} */
-
-/* dropdown menu */
-.dropdown-menu {
-    padding: 0;
-}
-
-.dropdown-item {
-    padding: .75rem 1rem 1rem 1rem;
-}
-
-.dropdown-divider {
-    margin: 0;
-}
-
-/* dropdown item link color */
-.dropdown-item a {
-    color: #2A3542;
-}
-
-/*dropdown select bg*/
-.dropdown-item:focus, .dropdown-item:hover {
-    background-color: rgba(0,0,0,0.075);
-    text-decoration: none;
-}
-
-/* Page specific CSS */
-
-.inbox {
+.mail-box {
     border-collapse: collapse;
     border-spacing: 0;
     display: table;
     table-layout: fixed;
     width: 100%;
 }
-
-.inbox aside {
+.mail-box aside {
     display: table-cell;
     float: none;
     height: 100%;
     padding: 0;
     vertical-align: top;
 }
-
-.inbox .inbox-left {
-    background: none repeat scroll 0 0 #fff;
+.mail-box .sm-side {
+    background: none repeat scroll 0 0 #e5e8ef;
     border-radius: 4px 0 0 4px;
     width: 240px;
 }
-
-.inbox .inbox-right {
+.mail-box .lg-side {
     background: none repeat scroll 0 0 #fff;
     border-radius: 0 4px 4px 0;
     /* width: 75%; */
 }
-
-.inbox .inbox-left .user-head {
-    background: none repeat scroll 0 0 #fff;
-    border-radius: 4px 0 0; 
-    color: #fff;
-    min-height: 85px;
-    padding: 10px;
-    /* border-top: 1px solid #d5d8df; */
-    border-bottom: 1px solid #d5d8df;
-}
-
-.inbox .inbox-right .user-head {
-    background: none repeat scroll 0 0;
+.mail-box .sm-side .user-head {
+    background: none repeat scroll 0 0 #00a8b3;
     border-radius: 4px 0 0; 
     color: #fff;
     min-height: 80px;
-    /* padding: 10px; */
-    margin: -20px;
     padding: 10px;
 }
-
-
-
 .user-head .inbox-avatar {
     float: left;
     width: 65px;
 }
-
-.user-head .username {
-    /* display: inline-block; */
-    margin: 10px;
+/* turned this one off to make the avatar pic a circle 
+.user-head .inbox-avatar img {
+    border-radius: 4px;
+}  */
+.user-head .user-name {
+    display: inline-block;
+    margin: 0 0 0 10px;
 }
-.user-head .username h5 {
+.user-head .user-name h5 {
     font-size: 14px;
     font-weight: 300;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    color: #8a8a8a;
-    font-weight: bold;
-    /* margin-bottom: 0; */
-    /* margin-top: 15px; */
-    /* margin-right: 15px; */
+    margin-bottom: 0;
+    margin-top: 15px;
 }
-.user-head .username h5 a {
-    color: #000;
-}
-/* .user-head .username span a {
+.user-head .user-name h5 a {
     color: #fff;
+}
+.user-head .user-name span a {
+    color: #87e2e7;
     font-size: 12px;
-} */
+}
 a.mail-dropdown {
     background: none repeat scroll 0 0 #80d3d9;
     border-radius: 2px;
-    color: #000;
+    color: #01a7b3;
     font-size: 10px;
     margin-top: 20px;
     padding: 3px 5px;
-    margin-left: 0px !important;
 }
-.panel-body {
+.inbox-body {
     padding: 20px;
 }
 .btn-compose {
@@ -173,63 +71,44 @@ a.mail-dropdown {
     padding: 12px 0;
     text-align: center;
     width: 100%;
-    border-radius: 12px;
 }
 .btn-compose:hover {
     background: none repeat scroll 0 0 #f5675c;
     color: #fff;
 }
-
-ul.side-panel-nav {
+ul.inbox-nav {
     display: inline-block;
     margin: 0;
     padding: 0;
     width: 100%;
 }
-
-#inbox_button {
-    text-decoration: none;
-    line-height: 1.1;
-    font-family: inherit;
-}
-
 .inbox-divider {
     border-bottom: 1px solid #d5d8df;
 }
-ul.side-panel-nav li {
+ul.inbox-nav li {
     display: inline-block;
     line-height: 45px;
     width: 100%;
 }
-ul.side-panel-nav li a {
+ul.inbox-nav li a {
     color: #6a6a6a;
     display: inline-block;
     line-height: 45px;
     padding: 0 20px;
     width: 100%;
 }
-ul.side-panel-nav li a:hover, ul.side-panel-nav li.active a, ul.side-panel-nav li a:focus {
-    background: none repeat scroll 0 0 #fce8e6;
-    color: #d93025;
-    font-weight: bold;
-    border-radius: 0 12px 12px 0;
+ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
+    background: none repeat scroll 0 0 #d5d7de;
+    color: #6a6a6a;
 }
-
-ul.side-panel-nav li.active i {
-    color: #d93025;
-    font-size: 16px;
-    padding-right: 10px;
-}
-
-ul.side-panel-nav li a i {
+ul.inbox-nav li a i {
     color: #6a6a6a;
     font-size: 16px;
     padding-right: 10px;
 }
-ul.side-panel-nav li a span.label {
+ul.inbox-nav li a span.label {
     margin-top: 13px;
 }
-
 ul.labels-info li h4 {
     color: #5c5c5e;
     font-size: 13px;
@@ -259,38 +138,19 @@ ul.labels-info li a i {
     padding: 0 22px;
 }
 .inbox-head {
-    background: none repeat scroll 0 0 #fff;
+    background: none repeat scroll 0 0 #41cac0;
     border-radius: 0 4px 0 0;
     color: #fff;
     min-height: 80px;
     padding: 20px;
-    /* border-top: 1px solid #d5d8df; */
-    border-bottom: 1px solid #d5d8df;
 }
-
-.inbox-head .d-flex {
-    justify-content: space-between;
-}
-
 .inbox-head h3 {
     display: inline-block;
     font-weight: 300;
     margin: 0;
     padding-top: 6px;
 }
-
-.inbox-head .d-flex form {
-    /* flex: 1 1 720em; */
-    border: 1px solid transparent;
-    border-radius: 8px;
-    /* max-width: 50%; */
-    flex: 0 1 75%;
-    display: inline-flex;
-}
-
 .inbox-head .sr-input {
-    background: none repeat scroll 0 0 #f1f3f4;
-    flex: 0 1 50%;
     border: medium none;
     border-radius: 4px 0 0 4px;
     box-shadow: none;
@@ -299,14 +159,13 @@ ul.labels-info li a i {
     height: 40px;
     padding: 0 10px;
 }
-
 .inbox-head .sr-btn {
-    background: none repeat scroll 0 0 #f1f3f4;
+    background: none repeat scroll 0 0 #00a6b2;
     border: medium none;
     border-radius: 0 4px 4px 0;
-    color: #8a8a8a;
+    color: #fff;
     height: 40px;
-    padding: 6px 15px;
+    padding: 0 20px;
 }
 .table-inbox {
     border: 1px solid #d3d3d3;
@@ -330,7 +189,6 @@ ul.labels-info li a i {
 }
 ul.inbox-pagination {
     float: right;
-    width: auto;
 }
 ul.inbox-pagination li {
     float: left;
@@ -343,23 +201,14 @@ ul.inbox-pagination li {
 .mail-option .chk-all, .mail-option .btn-group {
     margin-right: 5px;
 }
-.mail-option .chk-all, .mail-option .btn-group {
+.mail-option .chk-all, .mail-option .btn-group a.btn {
     background: none repeat scroll 0 0 #fcfcfc;
     border: 1px solid #e7e7e7;
     border-radius: 3px !important;
     color: #afafaf;
     display: inline-block;
-    /* padding: 5px 10px; */
-}
-
-.mail-option .chk-all {
     padding: 5px 10px;
 }
-
-.mail-option a.btn {
-    color: #afafaf;
-}
-
 .inbox-pagination a.np-btn {
     background: none repeat scroll 0 0 #fcfcfc;
     border: 1px solid #e7e7e7;
@@ -368,8 +217,7 @@ ul.inbox-pagination li {
     display: inline-block;
     padding: 5px 15px;
 }
-
-.mail-option input[type="checkbox"] {
+.mail-option .chk-all input[type="checkbox"] {
     margin-top: 0;
 }
 .mail-option .btn-group a.all {
@@ -388,11 +236,6 @@ ul.inbox-pagination li {
     background: none repeat scroll 0 0 #eeeeee;
     border: 1px solid #e6e6e6;
 }
-.inbox-body {
-    padding: 15px 15px 15px 15px;
-}
-
-
 .inbox-body .modal .modal-body input, .inbox-body .modal .modal-body textarea {
     border: 1px solid #e6e6e6;
     box-shadow: none;
@@ -412,12 +255,6 @@ ul.inbox-pagination li {
     font-family: "Open Sans",sans-serif;
     font-weight: 400;
 }
-.heading-inbox {
-    justify-content: space-between;
-    padding: 0px 0 15px 0;
-}
-
-
 .heading-inbox h4 {
     border-bottom: 1px solid #ddd;
     color: #444;
@@ -426,51 +263,13 @@ ul.inbox-pagination li {
     padding-bottom: 10px;
 }
 .sender-info {
-    border-top: 1px solid #d5d8df;
-    /* display: flex; */
-    padding-top: 20px;
-    /* margin-bottom: 20px; */
-    /* justify-content: space-between; */
-/*    margin-bottom: 20px;
-    margin-top: 20px; */
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
-/* .sender-info img {
+.sender-info img {
     height: 30px;
     width: 30px;
-} */
-
-.email-footer {
-    display:flex;
-    justify-content: start;
-    margin-left: 60px;
 }
-
-.email-footer .btn {
-    /* justify-content: start; */
-    /* background: none repeat scroll 0 0 #eaeaea; */
-    background: #fff;
-    color: #5f6368;
-    border-radius: 4px;
-    border: 1px solid #5f6368;
-    /* padding: 5px 0; */
-    font-weight: bold;
-    padding: .3rem .75rem;
-    margin-right: .5em;
-}
-
-.subject-row {
-    justify-content: space-between;
-    padding-left: 72px;
-}
-
-.subject-row .col {
-    padding: 0;
-}
-
-/* .subject-row h4 {
-} */
-
-
 .sender-dropdown {
     background: none repeat scroll 0 0 #eaeaea;
     color: #777;
@@ -570,36 +369,15 @@ ul {
 /* stuff I added */
 a.disabled {
     cursor: not-allowed;
-    pointer-events: auto !important;
-}
-
-a[disabled] {
-    cursor: not-allowed;
-}
-
-i.fa-star[disabled] {
-    cursor: not-allowed;
-}
-
-input[disabled] {
-    cursor: not-allowed;
 }
 
 .email-head {
     margin-top:12px;
-    margin-bottom:12px;
 }
 
-.email-head .email-sender {
-    padding-left: 8px;
-}
-
-.email-head .sender-address {
-    text-decoration: underline;
-}
-
-#email_container {
-    padding: 0 0 0 62px;
-    /* padding-left: 58px; */
-}
-
+/* .banner-w {
+    padding: 10px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #A64452;
+} */

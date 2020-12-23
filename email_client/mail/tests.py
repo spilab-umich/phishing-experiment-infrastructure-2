@@ -44,6 +44,7 @@ class LoggingTests(TestCase):
             response_id= 'some_response_id',
         )
     def tearDown(self):
+        return
         # os.remove('client_logs.log')
 
 
@@ -53,7 +54,7 @@ class LoggingTests(TestCase):
         # I think a reasonable number of requests to expect is 2 * num_participants
         num_concur_participants = 1000
         num_reqs = 2 * num_concur_participants
-        num_secs = 10
+        num_secs = 100
         requests = []
         # t1_start = time.perf_counter()
         t1_start = time.process_time()
@@ -78,7 +79,6 @@ class LoggingTests(TestCase):
         with open(fname, 'r') as f:
             for line in f:
                 i += 1
-        print(f.closed)
         print(f'{num_reqs} logs saved {num_secs} times, taking {t1_end} seconds')
         print(f'{num_secs*num_reqs} logs created; {i} successfully written.')
         self.assertEqual(num_reqs*num_secs, i)

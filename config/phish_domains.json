@@ -2,15 +2,15 @@
     [
         {"domain_URL": "https://chase.co.us/something",
         "pruned_domain_name": "chase.com",
-        "link_id": 3,
-        "email_id": 1},
+        "link_id": 1,
+        "email_id": 3},
         {"domain_URL": "https://yahoo-info.br/something",
         "pruned_domain_name": "yahoo-info.br",
-        "link_id": 2,
-        "email_id": 5},
+        "link_id": 1,
+        "email_id": 12},
         {"domain_URL": "https://venmo-login.us/something",
         "pruned_domain_name": "venmo-login.us",
-        "link_id": 2,
-        "email_id": 7}
+        "link_id": 1,
+        "email_id": 18}
     ]
 }

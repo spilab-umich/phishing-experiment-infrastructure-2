@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
-from .models import Mail, User, Server_Logs, Client_Logs
+from .models import Mail, User
 from datetime import datetime, timezone
 from django.core import serializers
 from django.db import connection, connections

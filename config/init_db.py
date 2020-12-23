@@ -26,6 +26,23 @@ emails = []
 for item in d["emails"]:
     emails.append(item)
 
+# Load warning metadata
+warning_json_fname = 'phish_domains.json'
+warning_json_path = Path('config/')
+open_warning_json_file = warning_json_path / warning_json_fname
+
+with open(open_warning_json_file) as f:
+    d = json.load(f)
+
+warning_data = []
+for item in d['phish_domains']:
+    warning_data.append(item)
+
+phish_email_ids = [x['email_id'] for x in warning_data]
+print(phish_email_ids)
+
+
+
 # These are the dates each email displayed in the inbox
 time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', 'Dec 17', 'Dec 18', 'Dec 23']
 
@@ -75,6 +92,11 @@ for i in range(0, n_users):
         new.read = "unread"
         new.ref = email['ref']
         new.num_links = email['num_links']
+        print(email['ref'])
+        if email['ref'] in phish_email_ids:
+            new.is_phish = True 
+            new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
+            # print(new.phish_id)
         new.save()
         j-=1
 
@@ -99,6 +121,11 @@ for i in range(0, n_of_groups-1):
         new.sender_address = email['sender_address']
         new.read = "unread"
         new.ref = email['ref']
+        new.num_links = email['num_links']
+        if email['ref'] in phish_email_ids:
+            print('phish detected')
+            new.is_phish = True 
+            new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
         new.save()
         j-=1
 exit()
