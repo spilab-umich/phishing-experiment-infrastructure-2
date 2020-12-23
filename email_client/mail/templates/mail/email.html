@@ -5,7 +5,7 @@
 
 <div class="inbox-body">
     <div class= "heading-inbox row">
-        <div class="col-md-8">
+        <div class="col-md-8" aria-hidden='true'>
             <!-- <div class=""> -->
                 <!-- <a class="btn btn-sm btn-primary" disabled><i class="fa fa-reply"></i> Reply</a> -->
                 <!-- <a title="" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled" ><i class="fa fa-archive"></i></a> -->
@@ -15,31 +15,31 @@
                 <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a>
             <!-- </div> -->
         </div>
-        <ul class="unstyled inbox-pagination">
-            <li><span>{{ order_num }}-10 of 10</span></li>
-            <!-- <li><span>1-10 of 10</span></li> -->
-            <li>
-                {% if prev_email > 0 %}
-                <a class="np-btn" href="{% url 'mail:email' prev_email %}"><i class="fa fa-angle-left pagination-left"></i></a>
-                {% else %}
-                <a class="np-btn" disabled><i class="fa fa-angle-left pagination-left disabled"></i></a>
-                {% endif %}
-            </li>
-            <li>
-                {% if next_email > 0 %}
-                <a class="np-btn" href="{% url 'mail:email' next_email %}"><i class="fa fa-angle-right pagination-right"></i></a>
-                {% else %}
-                <a class="np-btn" disabled><i class="fa fa-angle-right pagination-right"></i></a>
-                {% endif %}
-            </li>
-        </ul>
+            <ul class="unstyled inbox-pagination" role='navigation' aria-label='Email Navigation'>
+                <li><span>{{ order_num }}-10 of 10</span></li>
+                <!-- <li><span>1-10 of 10</span></li> -->
+                <li>
+                    {% if prev_email > 0 %}
+                    <a class="np-btn" href="{% url 'mail:email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
+                    {% else %}
+                    <a class="np-btn" aria-hidden='true' disabled><i class="fa fa-angle-left pagination-left"></i></a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if next_email > 0 %}
+                    <a class="np-btn" href="{% url 'mail:email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
+                    {% else %}
+                    <a class="np-btn" aria-hidden='true' disabled><i class="fa fa-angle-right pagination-right"></i></a>
+                    {% endif %}
+                </li>
+            </ul>
     </div>
     <div class="sender-info">
         <div class="row subject-row">
             <div class="col">
                 <h4> {{ email.subject }}</h4>
             </div>
-            <div class='col'>
+            <div class='col' aria-hidden='true'>
                 <div class="pull-right">
                     <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a>
                     <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
@@ -55,7 +55,7 @@
                 <span class='sender-address'>{{ email.sender_address }}</span>
                 to
                 <strong>me</strong>
-                <a class="sender-dropdown disabled" href="#">
+                <a class="sender-dropdown disabled" aria-hidden='true'>
                     <i class="fa fa-chevron-down"></i>
                 </a>
             </span>
@@ -67,7 +67,7 @@
     <div class="container-fluid" id="email_container">
         {% include email_fname %}
     </div>
-    <div class="email-footer">
+    <div class="email-footer" aria-hidden='true'>
         <a class="btn btn-sm disabled"><i class="fa fa-reply"></i> Reply</a>
         <a class="btn btn-sm disabled"><i class="fa fa-arrow-right"></i> Forward</a>
         <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled"><i class="fa fa-print"></i> </a>

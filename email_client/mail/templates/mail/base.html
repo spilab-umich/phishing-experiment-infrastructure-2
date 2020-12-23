@@ -30,12 +30,13 @@
                             
                         </div>
                         <div class='panel-body'>
-                            <a href='#' title='Compose' class='btn btn-compose' disabled>Compose</a>
+                            <a title='Compose' class='btn btn-compose' disabled>Compose</a>
                         </div>
                         <ul class='side-panel-nav inbox-divider'>
                             <li class='active'>
                                 <a href='{% url "mail:inbox" %}'><i class='fa fa-inbox'></i>Inbox
                                 {% if user.unread_count > 0 %}
+                                <span class='visually-hidden'>Number of unread emails: </span>
                                 <span class='label label-danger pull-right'>
                                     {{ user.unread_count }}
                                 </span>
@@ -43,40 +44,40 @@
                                 </a>
                             </li>
                             <li>
-                                <a href='#' class='disabled'><i class='fa fa-envelope-o'></i>Sent Mail</a>
+                                <a class='disabled' aria-hidden='true'><i class='fa fa-envelope-o'></i>Sent Mail</a>
                             </li>
                             <li>
-                                <a href="#" class="disabled"><i class=" fa fa-external-link"></i> Drafts 
+                                <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts 
                                     <!-- <span class="label label-info pull-right">30</span> -->
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="disabled"><i class=" fa fa-trash-o"></i> Trash</a>
+                                <a class="disabled" aria-hidden='true'><i class=" fa fa-trash-o"></i>Trash</a>
                             </li>
                         </ul> 
                     </aside>
                     <aside class='inbox-right'>
                         <div class='inbox-head'>
                             <div class='d-flex'>
-                                <form action='#' class=''>
+                                <form action='#' class='' aria-hidden='true'>
                                     <!-- <div class='input-append'> -->
-                                <input type='text' class='sr-input' placeholder='Search Mail' disabled>
-                                <a class='btn sr-btn' disabled><i class='fa fa-search'></i></a>
+                                    <input type='text' class='sr-input' placeholder='Search Mail' disabled>
+                                    <a class='btn sr-btn' disabled><i class='fa fa-search'></i></a>
                 <!-- </div>     -->
                                 </form>
                                 <div class='user-head'>
                                     <!-- <div style="float:none;"> -->
-                                    <a class='user-avatar' data-bs-toggle='dropdown' aria-expanded='false' href='#' title='Email Account'>
+                                    <a class='user-avatar' data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup='true' role='button' title='Email Account'>
                                         <img class='rounded-circle' width='64' height='64' alt='' src="{% static 'img/placeholder.jpg' %}">
                                     </a>
-                                    <ul class='dropdown-menu dropdown-menu-end' aria-labbeledby='dropdownMenuLink'>
+                                    <ul class='dropdown-menu dropdown-menu-end' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
                                         <li class='username dropdown-header'>
                                             <h5 class='text-center'>
                                                 {{ user.username }}
                                             </h5>
                                         </li>
                                         <li class='dropdown-divider'></li>
-                                        <li class='dropdown-item'><a href="{% url 'mail:logout_user' %}">Sign Out</a></li>
+                                        <li class='dropdown-item'><a href="{% url 'mail:logout_user' %}" role='button' aria-label='Sign out button'>Sign Out</a></li>
                                     </ul>
                                 </div>
                             </div>

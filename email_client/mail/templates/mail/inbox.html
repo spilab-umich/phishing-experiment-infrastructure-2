@@ -3,7 +3,7 @@
 {% block title %} Inbox {% endblock %}
 {% block body %}
 <div class='panel-body'>
-    <div class='mail-option'>
+    <div class='mail-option' aria-hidden='true'>
         <div class='btn-group chk-all'>
             <!-- <div class="chk-all"> -->
             <input type='checkbox' class='mail-checkbox mail-group-checkbox' disabled>
@@ -52,25 +52,25 @@
         <ul class="unstyled inbox-pagination">
             <li><span>1-10 of 10</span></li>
             <li>
-                <a class="np-btn" disabled><i class="fa fa-angle-left  pagination-left" disabled></i></a>
+                <a class="np-btn" disabled><i class="fa fa-angle-left pagination-left"></i></a>
             </li>
             <li>
                 <a class="np-btn" disabled><i class="fa fa-angle-right pagination-right"></i></a>
             </li>
         </ul>
     </div>
-    <table class="table table-inbox table-hover">
+    <table class="table table-inbox table-hover" aria-label="Main inbox">
         <tbody>
            {% for email in emails %}
              <tr class="{{email.read}}" name="email_id" id="{{ email.ref }}">
-                     <td class="inbox-small-cells">
+                     <td class="inbox-small-cells" aria-hidden='true'>
                          <input type="checkbox" class="mail-checkbox" disabled>
                      </td>
-                     <td class="inbox-small-cells"><i class="fa fa-star" disabled></i></td>
+                     <td class="inbox-small-cells"><i class="fa fa-star" aria-hidden='true' disabled></i></td>
                      <!-- <div><a href="{% url 'mail:email' email.ref %}"></a> -->
                          <td class="view-message dont-show" >{{ email.sender }}</td>
                          <td class="view-message">{{ email.subject}}</td>
-                         <td class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
+                         <td class="view-message" aria-hidden='true' style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
                      <!-- </div> -->
                      <!-- <td class="view-message">
                          <a href = "{% url 'mail:email' email.ref %}">
