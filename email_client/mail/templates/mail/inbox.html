@@ -90,8 +90,8 @@
 <script>
     // This allows users to click on the correct parts of the table row
     $("td.view-message").on("click", function (e) {
-    eid = $(this).closest('tr').attr('id');
-    location = document.location+'/'+eid;
+        eid = $(this).closest('tr').attr('id');
+        location = document.location+'/'+eid;
     });
 </script>
 {% endblock %}
