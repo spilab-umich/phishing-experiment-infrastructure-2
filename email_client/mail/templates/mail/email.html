@@ -78,7 +78,7 @@
 <script src="{% static 'js/warnings.js' %}"></script>
 <script>
     // determine if email is a phish
-    const n = '{{ user.group_num }}';
+    const n = parseInt('{{ user.group_num }}');
     // console.log('{{ email.phish_id }}');
     // const email_id = '{{ email.ref }}'
     const p_detected = ('{{ email.is_phish }}' == 'True');
