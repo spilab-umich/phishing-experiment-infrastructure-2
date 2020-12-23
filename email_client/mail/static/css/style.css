@@ -599,7 +599,7 @@ input[disabled] {
 }
 
 #email_container {
-    padding: 0 0 0 62px;
+    padding: 0 0 10px 62px;
     /* padding-left: 58px; */
 }
 
