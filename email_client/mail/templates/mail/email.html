@@ -22,14 +22,14 @@
                     {% if prev_email > 0 %}
                     <a class="np-btn" href="{% url 'mail:email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
                     {% else %}
-                    <a class="np-btn" aria-hidden='true' disabled><i class="fa fa-angle-left pagination-left"></i></a>
+                    <a class="np-btn" aria-label="You are on the first email" disabled><i class="fa fa-angle-left pagination-left"></i></a>
                     {% endif %}
                 </li>
                 <li>
                     {% if next_email > 0 %}
                     <a class="np-btn" href="{% url 'mail:email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
                     {% else %}
-                    <a class="np-btn" aria-hidden='true' disabled><i class="fa fa-angle-right pagination-right"></i></a>
+                    <a class="np-btn" aria-label="You are on the last email" disabled><i class="fa fa-angle-right pagination-right"></i></a>
                     {% endif %}
                 </li>
             </ul>
@@ -37,6 +37,7 @@
     <div class="sender-info">
         <div class="row subject-row">
             <div class="col">
+                <span class="visually-hidden">Email subject:</span>
                 <h4> {{ email.subject }}</h4>
             </div>
             <div class='col' aria-hidden='true'>
@@ -51,7 +52,9 @@
         <div class="col-md-12 email-head">
             <img class='rounded-circle' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
             <span class='email-sender'>
+                <span class="visually-hidden">Email sender:</span>
                 <strong>{{ email.sender }}</strong>
+                <span class="visually-hidden">Sender's email address:</span>
                 <span class='sender-address'>{{ email.sender_address }}</span>
                 to
                 <strong>me</strong>
@@ -77,15 +80,10 @@
 {% include warning_fname %}
 <script src="{% static 'js/warnings.js' %}"></script>
 <script>
+    // Do we want this here or in the bottom of base.html?
     // determine if email is a phish
     const n = parseInt('{{ user.group_num }}');
-    // console.log('{{ email.phish_id }}');
-    // const email_id = '{{ email.ref }}'
     const p_detected = ('{{ email.is_phish }}' == 'True');
-    // console.log('{{ email.is_phish }}');
-    // $(document).ready(function{
-    // read_email = '{{ email.is_phish }}';
-    // console.log(p_detected);
     if (p_detected){
         // console.log('loading warning');
         p_link_id = '{{ email.phish_id }}';

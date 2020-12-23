@@ -119,8 +119,9 @@ function load_warning(group_num, p_id){
 
 function initListeners(){
     // maybe change this to a[href] and remove href attributes from inbox buttons
-    $('a').each(function(){
+    $('a[href][label]').each(function(){
         addclicklistener($(this));
+        // console.log($(this));
     });
 
     $('#email_container a').each(function(){
