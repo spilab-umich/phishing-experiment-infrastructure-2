@@ -25,7 +25,7 @@
             </noscript>
             <div class="container-fluid">
                 <div class='inbox'>
-                    <aside class='inbox-left d-none d-sm-none d-md-table-cell'>
+                    <aside class='inbox-left d-none d-sm-none d-md-none d-lg-table-cell'>
                         <div class="user-head">
                             
                         </div>
@@ -57,11 +57,11 @@
                         </ul> 
                     </aside>                    
                     <aside class='inbox-right'>
-                        <!-- begin sm screen nav -->
-                        <nav class="inbox-head d-sm-block d-md-none">
+                        <!-- begin mobile screen nav -->
+                        <nav class="inbox-head d-md-block d-lg-none">
                             <div class="d-flex">
-                                <form action="#">
-                                    <input type="text" class="sr-input" placeholder='Search' disabled>
+                                <form action="">
+                                    <input type="text" class="sr-input" placeholder='  Search Mail' disabled>
                                     <a class="user-avatar" data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup="true"role='button' title='Email Account'>
                                         <img src="{% static 'img/placeholder.jpg' %}" height='42' width='42' alt="" class="rounded-circle">
                                     </a>
@@ -90,9 +90,9 @@
                                 </form>
                             </div>
                         </nav>
-                        <!-- end sm screen nav -->
+                        <!-- end mobile screen nav -->
                         <!-- begin md screen nav -->
-                        <div class='inbox-head d-none d-sm-none d-md-block'>
+                        <div class='inbox-head d-none d-sm-none d-md-none d-lg-block'>
                             <div class='d-flex'>
                                 <form action='#' class='' aria-hidden='true'>
                                     <input type='text' class='sr-input' placeholder='Search Mail' disabled>
