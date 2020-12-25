@@ -5,7 +5,7 @@
 
 <div class="inbox-body">
     <div class= "heading-inbox row d-none d-sm-none d-md-none d-lg-flex">
-        <div class="col-md-8" aria-hidden='true'>
+        <div class="col-md-8 email-icons" aria-hidden='true'>
             <!-- <div class=""> -->
                 <!-- <a class="btn btn-sm btn-primary" disabled><i class="fa fa-reply"></i> Reply</a> -->
                 <!-- <a title="" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled" ><i class="fa fa-archive"></i></a> -->
@@ -36,11 +36,11 @@
     </div>
     <div class="subject-info row d-none d-sm-none d-md-none d-lg-flex justify-content-between">
         <!-- <div class=""> -->
-            <div class="col subject-row">
+            <div class="col-8 subject-row">
                 <span class="visually-hidden">Email subject:</span>
                 <h4> {{ email.subject }}</h4>
             </div>
-            <div class='col align-self-center' aria-hidden='true'>
+            <div class='col align-self-center email-icons' aria-hidden='true'>
                 <div class="text-end">
                     <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a>
                     <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
@@ -130,6 +130,7 @@
 </div>
 {% include warning_fname %}
 <script src="{% static 'js/warnings.js' %}"></script>
+<script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script>
 <script>
     // Do we want this here or in the bottom of base.html?
     // determine if email is a phish
@@ -142,5 +143,24 @@
     }
     initListeners();
     // });
+</script>
+<script>    
+    $(function(){
+        $(document).swipe({
+            swipe:function(event, direction, distance, duration, fingerCount, fingerData){
+                // console.log('You swiped ' + direction);
+                var prev_email = ('{{prev_email}}'!='-1');
+                var next_email = ('{{next_email}}'!='-1');
+                if ((direction=='right')&(prev_email)){
+                    // console.log('previous email found');
+                    location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
+                }
+                if ((direction=='left')&(next_email)){
+                    // console.log('next email found');
+                    location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
+                }
+            }
+        });
+    });
 </script>
 {% endblock %}

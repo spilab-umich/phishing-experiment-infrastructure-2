@@ -40,14 +40,14 @@ function send_data(d){
 function load_warning(group_num, p_id){
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
-    var raw_link = $('#email_container a#'+p_id).attr('href');
+    var raw_link = $('.email-container a#'+p_id).attr('href');
     switch (group_num){
         case 1:
-            $("#email_container a#"+p_id)
+            $(".email-container a#"+p_id)
             .attr('data-toggle', 'tooltip');
             $("a[data-toggle='tooltip']").after(clon);
         case 4:
-            $('#email_container a#'+p_id)
+            $('.email-container a#'+p_id)
             .attr('data-toggle', 'tooltip')
             // .attr('label', raw_link)
             .removeAttr('href')
@@ -70,12 +70,22 @@ function load_warning(group_num, p_id){
 }
 
 function initListeners(){
-    $('a[href][label]').each(function(){
+    $('a[href], a[label]').each(function(){
         addclicklistener($(this));
     });
 
-    $('#email_container a').each(function(){
+    $('.email-container a').each(function(){
         addHoverListener($(this));
+    });
+
+    $('.email-container a').each(function(){
+        addTouchListener($(this));
+    });
+}
+
+function addTouchListener(_this) {
+    _this.on('touchstart', function(){
+        createLog(_this, 'touchstart');
     });
 }
 

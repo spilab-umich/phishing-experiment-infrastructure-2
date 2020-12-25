@@ -489,28 +489,6 @@ a.mobile-table-inbox div{
 }
 
 
-/* .table-inbox tr td {
-    padding: 12px !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: auto;
-    max-width: 75ch;
-} */
-
-/* .table-inbox tr td:hover {
-    cursor: pointer;
-}
-.table-inbox tr td .fa-star.inbox-started, .table-inbox tr td .fa-star:hover {
-    color: #f78a09;
-}
-.table-inbox tr td .fa-star {
-    color: #d5d5d5;
-}
-.table-inbox tr.unread td {
-    background: none repeat scroll 0 0 #f7f7f7;
-    font-weight: 600;
-} */
 ul.inbox-pagination {
     float: right;
     width: auto;
@@ -574,31 +552,6 @@ ul.inbox-pagination li {
 .inbox-body {
     padding: 15px 15px 15px 15px;
 }
-
-
-/* .inbox-body .modal .modal-body input, .inbox-body .modal .modal-body textarea {
-    border: 1px solid #e6e6e6;
-    box-shadow: none;
-}
-.btn-send, .btn-send:hover {
-    background: none repeat scroll 0 0 #00a8b3;
-    color: #fff;
-}
-.btn-send:hover {
-    background: none repeat scroll 0 0 #009da7;
-}
-.modal-header h4.modal-title {
-    font-family: "Open Sans",sans-serif;
-    font-weight: 300;
-}
-.modal-body label {
-    font-family: "Open Sans",sans-serif;
-    font-weight: 400;
-} */
-
-
-
-
 
 
 .view-mail a {
@@ -745,7 +698,7 @@ input[disabled] {
     padding-bottom: 10px;
 }
 
-.heading-inbox a.btn:hover, .heading-inbox a.btn:focus {
+.email-icons a.btn:hover, .email-icons a.btn:focus {
     background-color: #8a8a8a;
     color: #fff;
 }

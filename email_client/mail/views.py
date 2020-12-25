@@ -27,7 +27,7 @@ server_logger.addHandler(server_fh)
 def index(request):
     #if the request is POST, authenticate the user's credentials
     if request.method == "POST":
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
