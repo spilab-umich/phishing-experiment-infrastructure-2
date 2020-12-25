@@ -59,39 +59,48 @@
             </li>
         </ul>
     </div>
-    <table class="table table-inbox table-hover" aria-label="Main inbox">
+    <div class='container-fluid'>
+    <!-- <table class="table table-inbox table-hover table-responsive" aria-label="Main inbox">
         <tbody>
            {% for email in emails %}
              <tr class="{{email.read}}" name="email_id" id="{{ email.ref }}">
-                     <td class="inbox-small-cells" aria-hidden='true'>
-                         <input type="checkbox" class="mail-checkbox" disabled>
-                     </td>
-                     <td class="inbox-small-cells"><i class="fa fa-star" aria-hidden='true' disabled></i></td>
-                     <!-- <div><a href="{% url 'mail:email' email.ref %}"></a> -->
-                         <td class="view-message dont-show" >{{ email.sender }}</td>
-                         <td class="view-message">{{ email.subject}}</td>
-                         <td class="view-message" aria-hidden='true' style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
-                     <!-- </div> -->
-                     <!-- <td class="view-message">
-                         <a href = "{% url 'mail:email' email.ref %}">
-                         <span class="view-message dont-show">{{ email.sender }}</span>
-                         <span class="view-message">{{ email.subject}}></span>
-                         <span class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</span>
-                         </a>
-                     </td> -->
-                     <!-- <td class="view-message inbox-small-cells" ><i class="fa fa-paperclip"></i></td> -->
-                     <td class="view-message text-right">{{ email.time_sent }}</td>
+                <td class="inbox-small-cells" aria-hidden='true'>
+                    <input type="checkbox" class="mail-checkbox" disabled>
+                </td>
+                <td class="inbox-small-cells" aria-hidden='true'><i class="fa fa-star" disabled></i></td>
+                <td class="view-message dont-show" ><a href='{% url "mail:email" email.ref %}'>{{ email.sender }}</a></td>
+                <td class="view-message"><a href='{% url "mail:email" email.ref %}'>{{ email.subject}}</a></td>
+                <td class="view-message" aria-hidden='true'><a href='{% url "mail:email" email.ref %}'>{{email.preview}}</a></td>
+                <td class="view-message text-right">{{ email.time_sent }}</td>
              </tr>
         {% endfor %}
          </tbody>
-     </table>
-
+     </table> -->
+     {% for email in emails %}
+        <div class="{{email.read}} row table-inbox justify-content-between">
+            <div class="col-md-1 text-left">
+                <!-- <div class='row'> -->
+                    <!-- <div class="col-12"> -->
+                        <input type="checkbox" class="mail-checkbox" disabled> 
+                        <i class="fa fa-star"></i>
+                    <!-- </div> -->
+                <!-- </div> -->
+            </div>
+            <a href='{% url "mail:email" email.ref %}'>
+                <div class="col-md-1">{{email.sender}}</div>
+                <div class="col-md-4">{{email.subject}}</div>
+                <div class="col-md-5">{{email.preview}}</div>
+                <div class="col-md-1">{{email.time_sent}}</div>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
 </div>
 <script>
     // This allows users to click on the correct parts of the table row
-    $("td.view-message").on("click", function (e) {
-        eid = $(this).closest('tr').attr('id');
-        location = document.location+'/'+eid;
-    });
+    // $("td.view-message").on("click", function (e) {
+    //     eid = $(this).closest('tr').attr('id');
+    //     location = document.location+'/'+eid;
+    // });
 </script>
 {% endblock %}
