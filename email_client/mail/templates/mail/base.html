@@ -25,7 +25,7 @@
             </noscript>
             <div class="container-fluid">
                 <div class='inbox'>
-                    <aside class='inbox-left'>
+                    <aside class='inbox-left d-none d-sm-none d-md-table-cell'>
                         <div class="user-head">
                             
                         </div>
@@ -55,19 +55,51 @@
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-trash-o"></i>Trash</a>
                             </li>
                         </ul> 
-                    </aside>
+                    </aside>                    
                     <aside class='inbox-right'>
-                        <div class='inbox-head'>
+                        <!-- begin sm screen nav -->
+                        <nav class="inbox-head d-sm-block d-md-none">
+                            <div class="d-flex">
+                                <form action="#">
+                                    <input type="text" class="sr-input" placeholder='Search' disabled>
+                                    <a class="user-avatar" data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup="true"role='button' title='Email Account'>
+                                        <img src="{% static 'img/placeholder.jpg' %}" height='42' width='42' alt="" class="rounded-circle">
+                                    </a>
+                                    <ul class='dropdown-menu dropdown-menu-end mobile-avatar-menu' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
+                                        <li class='username dropdown-header'>
+                                            <h5 class='text-center'>
+                                                {{ user.username }}
+                                            </h5>
+                                        </li>
+                                        <li class='dropdown-divider'></li>
+                                        <li><a class="dropdown-item d-flex justify-content-start align-items-center" href="{% url 'mail:inbox' %}" aria-label='Return to Inbox'><i class='fa fa-inbox'></i>Inbox
+                                            {% if user.unread_count > 0 %}
+                                            <span class='visually-hidden'>Number of unread emails: </span>
+                                            <span class='label ms-auto'>
+                                                {{ user.unread_count }}
+                                            </span>
+                                            {% endif %}
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class='fa fa-envelope-o'></i>Sent Mail</a></li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-external-link"></i>Drafts</a></li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-trash-o"></i>Trash</a></li>         
+                                        <li class='dropdown-divider'></li>
+                                        <li class=''><a href="{% url 'mail:logout_user' %}" class='dropdown-item' role='button' aria-label='Sign out button'>Sign Out</a></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </nav>
+                        <!-- end sm screen nav -->
+                        <!-- begin md screen nav -->
+                        <div class='inbox-head d-none d-sm-none d-md-block'>
                             <div class='d-flex'>
                                 <form action='#' class='' aria-hidden='true'>
-                                    <!-- <div class='input-append'> -->
                                     <input type='text' class='sr-input' placeholder='Search Mail' disabled>
                                     <a class='btn sr-btn' disabled><i class='fa fa-search'></i></a>
-                <!-- </div>     -->
                                 </form>
                                 <div class='user-head'>
-                                    <!-- <div style="float:none;"> -->
-                                    <a class='user-avatar' data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup='true' role='button' title='Email Account'>
+                                    <a class='' data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup='true' role='button' title='Email Account'>
                                         <img class='rounded-circle' width='64' height='64' alt='' src="{% static 'img/placeholder.jpg' %}">
                                     </a>
                                     <ul class='dropdown-menu dropdown-menu-end' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
@@ -82,6 +114,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end md screen nav -->
                             {% block body %}
                             {% endblock %}
                     </aside>

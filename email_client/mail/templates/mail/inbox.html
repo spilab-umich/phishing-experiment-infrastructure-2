@@ -3,7 +3,7 @@
 {% block title %} Inbox {% endblock %}
 {% block body %}
 <div class='panel-body'>
-    <div class='mail-option' aria-hidden='true'>
+    <div class='mail-option d-none d-sm-none d-md-block' aria-hidden='true'>
         <div class='btn-group chk-all'>
             <!-- <div class="chk-all"> -->
             <input type='checkbox' class='mail-checkbox mail-group-checkbox' disabled>
@@ -78,7 +78,7 @@
      </table> -->
      {% for email in emails %}
         <div class="{{email.read}} row table-inbox justify-content-between">
-            <div class="col-md-1 text-left">
+            <div class="col-md-1 text-left d-none d-sm-none d-md-block">
                 <!-- <div class='row'> -->
                     <!-- <div class="col-12"> -->
                         <input type="checkbox" class="mail-checkbox" disabled> 
