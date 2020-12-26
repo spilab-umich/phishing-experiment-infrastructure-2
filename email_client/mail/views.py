@@ -130,6 +130,7 @@ def ajax(request):
 def collect_ajax(res):
     # username = res.POST['username']
     username = res.user.username
+    email_ref = res.POST['ref']
     link = res.POST['link']
     link_id = res.POST['link_id']
     action = res.POST['action']
@@ -143,8 +144,8 @@ def collect_ajax(res):
         # log.IP = res.META.get('REMOTE_ADDR')
     # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
     # client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
-    client_logger.info('%(username)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
-        {'username':username,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
+    client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+        {'username':username,'email_ref':email_ref,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
     # print('client log saved')
     return
 

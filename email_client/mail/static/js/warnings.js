@@ -1,18 +1,19 @@
 var hover_time_limit = 500;
 var rows = [];
 
-function createLog(link, action, time){
+function createLog(link, action, emailid, time){
     var link_id = 0, link_url;
     if (time==undefined) time= -1;
     // need to rethink these if statements
     if (typeof(link) == 'string') link_url = link;
-    // else if (link.attr('label')) link_url = link.attr('label');
-    // else if (link.attr('href')) link_url = link.attr('href');
+    else if (link.attr('label')) link_url = link.attr('label');
+    else if (link.attr('href')) link_url = link.attr('href');
     else link_url = '';
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
     var timestamp = new Date($.now()).toUTCString();
     var d = {
         // 'username': username,
+        'ref': emailid,
         'link': link_url,
         'action': action,
         'hover_time': time,
@@ -65,44 +66,44 @@ function load_warning(group_num, p_id){
                 $(".overlay").css("display","none");
             }); 
         case 5:
-            $('.sender-info').before(clon);
+            $('.subject-info').before(clon);
     }
 }
 
-function initListeners(){
+function initListeners(eid){
     $('a[href], a[label]').each(function(){
-        addclicklistener($(this));
+        addclicklistener($(this), eid);
     });
 
     $('.email-container a').each(function(){
-        addHoverListener($(this));
+        addHoverListener($(this), eid);
     });
 
     $('.email-container a').each(function(){
-        addTouchListener($(this));
+        addTouchListener($(this), eid);
     });
 }
 
-function addTouchListener(_this) {
+function addTouchListener(_this, emailid) {
     _this.on('touchstart', function(){
-        createLog(_this, 'touchstart');
+        createLog(_this, 'touchstart', emailid);
     });
 }
 
-function addclicklistener(_this) {
+function addclicklistener(_this, emailid) {
     _this.on('click', function() {
-        createLog(_this, 'click');
+        createLog(_this, 'click', emailid);
     });
 }
 
-function addHoverListener(_this) {
+function addHoverListener(_this, emailid) {
     _this.hover(function() {
         start = new Date();
     }, function() {
         end = new Date();
         var time = end - start;
         if (time >= hover_time_limit) {
-          createLog(_this, 'hover', time);
+          createLog(_this, 'hover', emailid, time);
         }
     });
 }
