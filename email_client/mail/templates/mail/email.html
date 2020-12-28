@@ -80,6 +80,18 @@
     </div> 
         <!-- end email header  -->
         <!-- begin mobile email header -->
+    <div class="row d-md-flex d-lg-none">
+        <div class="col-10 subject-row">
+            <span class="visually-hidden">Email subject:</span>
+            <h3> {{ email.subject }}</h3>
+        </div>
+        <div class='col align-self-center email-icons' aria-hidden='true'>
+            <div class="text-end">
+                <!-- <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a> -->
+                <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
+            </div>
+        </div>
+    </div>
     <div class="row mobile-email-head d-md-flex d-lg-none justify-content-start">
         <!-- <div class="email-head"> -->
             <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
