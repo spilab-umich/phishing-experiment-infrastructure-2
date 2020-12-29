@@ -12,7 +12,6 @@ function createLog(link, action, emailid, time){
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
     var timestamp = new Date($.now()).toUTCString();
     var d = {
-        // 'username': username,
         'ref': emailid,
         'link': link_url,
         'action': action,

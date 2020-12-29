@@ -124,11 +124,10 @@ def email(request, email_id):
 def ajax(request):
     # Catches POST requests from AJAX
     if request.method == 'POST':
-        collect_ajax(request) # """ Do this asynchronously """
+        collect_ajax(request)
         return HttpResponse('Success')
 
 def collect_ajax(res):
-    # username = res.POST['username']
     username = res.user.username
     email_ref = res.POST['ref']
     link = res.POST['link']
@@ -143,10 +142,8 @@ def collect_ajax(res):
     # if (res.META.get('REMOTE_ADDR')):
         # log.IP = res.META.get('REMOTE_ADDR')
     # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
-    # client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
     client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
         {'username':username,'email_ref':email_ref,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
-    # print('client log saved')
     return
 
 def collect_log(request):
@@ -158,7 +155,6 @@ def collect_log(request):
     response_id = request.user.response_id
     group_num = request.user.group_num
     server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
-    # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
     return

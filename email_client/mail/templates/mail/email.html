@@ -6,18 +6,13 @@
 <div class="inbox-body">
     <div class= "heading-inbox row d-none d-sm-none d-md-none d-lg-flex">
         <div class="col-md-8 email-icons" aria-hidden='true'>
-            <!-- <div class=""> -->
-                <!-- <a class="btn btn-sm btn-primary" disabled><i class="fa fa-reply"></i> Reply</a> -->
-                <!-- <a title="" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled" ><i class="fa fa-archive"></i></a> -->
-                <a title="" data-placement="top" data-original-title="Archive" class="btn btn-sm disabled" ><i class="fa fa-archive"></i></a>
-                <a title="" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled" ><i class="fa fa-trash-o"></i></a>
-                <a title="" data-placement="top" data-original-title="Report" class="btn btn-sm disabled" ><i class="fa fa-flag-o"></i></a>
-                <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a>
-            <!-- </div> -->
+            <a title="" data-placement="top" data-original-title="Archive" class="btn btn-sm disabled" ><i class="fa fa-archive"></i></a>
+            <a title="" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled" ><i class="fa fa-trash-o"></i></a>
+            <a title="" data-placement="top" data-original-title="Report" class="btn btn-sm disabled" ><i class="fa fa-flag-o"></i></a>
+            <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a>
         </div>
             <ul class="unstyled inbox-pagination" role='navigation' aria-label='Email Navigation'>
                 <li><span>{{ order_num }}-10 of 10</span></li>
-                <!-- <li><span>1-10 of 10</span></li> -->
                 <li>
                     {% if prev_email > 0 %}
                     <a class="np-btn" href="{% url 'mail:email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
@@ -35,7 +30,6 @@
             </ul>
     </div>
     <div class="subject-info row d-none d-sm-none d-md-none d-lg-flex justify-content-between">
-        <!-- <div class=""> -->
             <div class="col-8 subject-row">
                 <span class="visually-hidden">Email subject:</span>
                 <h4> {{ email.subject }}</h4>
@@ -46,24 +40,19 @@
                     <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
                 </div>
             </div>
-        <!-- </div> -->
     </div>
     <!-- begin email header -->
     <div class="row email-head d-none d-sm-none d-md-none d-lg-flex">
         <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
         <div class='email-sender col'>
             <span class='row justify-content-between'>
-                <!-- <span class='col-md-4'> -->
                     <div class="col">
                         <span class="visually-hidden">Email sender:</span>
                         <strong>{{ email.sender }}</strong>
                     </div>
-                <!-- </span> -->
                 <div class="col text-end"> {{email.time_sent}}
-                    <!-- <p class="date"> {{email.time_sent}}</p> -->
                 </div>
                 
-                <!-- </span> -->
             </span>
             <span class="row">
                 <span class='col d-none d-lg-flex'>
@@ -87,27 +76,20 @@
         </div>
         <div class='col align-self-center email-icons' aria-hidden='true'>
             <div class="text-end">
-                <!-- <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a> -->
                 <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
             </div>
         </div>
     </div>
     <div class="row mobile-email-head d-md-flex d-lg-none justify-content-start">
-        <!-- <div class="email-head"> -->
             <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
             <span class='email-sender col'>
                 <span class='row justify-content-between'>
-                    <!-- <span class='col-md-4'> -->
                         <div class="col">
                             <span class="visually-hidden">Email sender:</span>
                             <strong>{{ email.sender }}</strong>
                         </div>
-                    <!-- </span> -->
                     <div class="col text-end"> {{email.time_sent}}
-                        <!-- <p class="date"> {{email.time_sent}}</p> -->
                     </div>
-                    
-                    <!-- </span> -->
                 </span>
                 <span class="row d-flex d-lg-none">
                     <span class='col'>
@@ -120,14 +102,9 @@
                         </div>
                     </span>
                 </span>
-            </span> 
-            
-        <!-- </div>  -->
-        
+            </span>        
     </div>
     <!-- end mobile email header -->
-    <!-- <div class="row d-none d-sm-flex text-center" id="email_container">
-    </div> -->
     <div class="row email-container">
         <div class='col'>
             {% include email_fname %}
@@ -150,26 +127,21 @@
     const p_detected = ('{{ email.is_phish }}' == 'True');
     const eid = '{{email.ref}}';
     if (p_detected){
-        // console.log('loading warning');
         p_link_id = '{{ email.phish_id }}';
         load_warning(n,p_link_id);
     }
     initListeners(eid);
-    // });
 </script>
 <script>    
     $(function(){
         $(document).swipe({
             swipe:function(event, direction, distance, duration, fingerCount, fingerData){
-                // console.log('You swiped ' + direction);
                 var prev_email = ('{{prev_email}}'!='-1');
                 var next_email = ('{{next_email}}'!='-1');
                 if ((direction=='right')&(prev_email)){
-                    // console.log('previous email found');
                     location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
                 }
                 if ((direction=='left')&(next_email)){
-                    // console.log('next email found');
                     location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
                 }
             }
