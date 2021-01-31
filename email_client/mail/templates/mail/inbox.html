@@ -3,11 +3,9 @@
 {% block title %} Inbox {% endblock %}
 {% block body %}
 <div class='panel-body'>
-    <div class='mail-option' aria-hidden='true'>
+    <div class='mail-option d-none d-sm-none d-md-none d-lg-block' aria-hidden='true'>
         <div class='btn-group chk-all'>
-            <!-- <div class="chk-all"> -->
             <input type='checkbox' class='mail-checkbox mail-group-checkbox' disabled>
-            <!-- <div class='btn-group'> -->
                 <a data-toggle='dropdown' href='#' class='btn mini all' aria-expanded='false' disabled>
                     All
                     <i class='fa fa-angle-down'></i>
@@ -17,8 +15,6 @@
                     <li><a class='dropdown-item' href="#"> Read</a></li>
                     <li><a class='dropdown-item' href="#"> Unread</a></li>
                 </ul>
-            <!-- </div> -->
-            <!-- </div> -->
         </div>
         <div class='btn-group'>
             <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips" disabled>
@@ -42,12 +38,6 @@
                 Move to
                 <i class="fa fa-angle-down "></i>
             </a>
-            <!-- <ul class="dropdown-menu">
-                <li><a href="#" class="disabled"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-                <li><a href="#" class="disabled"><i class="fa fa-ban"></i> Spam</a></li>
-                <li class="divider"></li>
-                <li><a href="#" class="disabled"><i class="fa fa-trash-o"></i> Delete</a></li>
-            </ul> -->
         </div>
         <ul class="unstyled inbox-pagination">
             <li><span>1-10 of 10</span></li>
@@ -59,39 +49,37 @@
             </li>
         </ul>
     </div>
-    <table class="table table-inbox table-hover" aria-label="Main inbox">
-        <tbody>
-           {% for email in emails %}
-             <tr class="{{email.read}}" name="email_id" id="{{ email.ref }}">
-                     <td class="inbox-small-cells" aria-hidden='true'>
-                         <input type="checkbox" class="mail-checkbox" disabled>
-                     </td>
-                     <td class="inbox-small-cells"><i class="fa fa-star" aria-hidden='true' disabled></i></td>
-                     <!-- <div><a href="{% url 'mail:email' email.ref %}"></a> -->
-                         <td class="view-message dont-show" >{{ email.sender }}</td>
-                         <td class="view-message">{{ email.subject}}</td>
-                         <td class="view-message" aria-hidden='true' style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</td>
-                     <!-- </div> -->
-                     <!-- <td class="view-message">
-                         <a href = "{% url 'mail:email' email.ref %}">
-                         <span class="view-message dont-show">{{ email.sender }}</span>
-                         <span class="view-message">{{ email.subject}}></span>
-                         <span class="view-message" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:100ch; font-weight: normal;">{{ email.preview}}</span>
-                         </a>
-                     </td> -->
-                     <!-- <td class="view-message inbox-small-cells" ><i class="fa fa-paperclip"></i></td> -->
-                     <td class="view-message text-right">{{ email.time_sent }}</td>
-             </tr>
-        {% endfor %}
-         </tbody>
-     </table>
-
+    <div class='container-fluid'>
+     {% for email in emails %}
+        <div class="{{email.read}} row table-inbox justify-content-between d-none d-sm-none d-md-none d-lg-flex">
+            <div class="col-1 text-left">
+                        <input type="checkbox" class="mail-checkbox" disabled> 
+                        <i class="fa fa-star"></i>
+            </div>
+            <a href='{% url "mail:email" email.ref %}'>
+                <div class="col-2">{{email.sender}}</div>
+                <div class="col-4">{{email.subject}}</div>
+                <div class="col-4">{{email.preview}}</div>
+                <div class="col-1">{{email.time_sent}}</div>
+            </a>
+        </div>
+        <div class="{{email.read}} row mobile-table-inbox justify-content-between d-md-flex d-lg-none">
+            <div class="col-12 w-100">
+                <a href='{% url "mail:email" email.ref %}' class='mobile-table-inbox'>
+                    <div class="row justify-content-between mobile-header-row">
+                        <div class="col-2 mobile-sender-text">{{email.sender}}</div>
+                        <div class="col-2">{{email.time_sent}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">{{email.subject}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">{{email.preview}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>
-<script>
-    // This allows users to click on the correct parts of the table row
-    $("td.view-message").on("click", function (e) {
-        eid = $(this).closest('tr').attr('id');
-        location = document.location+'/'+eid;
-    });
-</script>
 {% endblock %}
