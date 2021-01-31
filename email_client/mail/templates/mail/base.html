@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    -->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet prefetch" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- <link rel="stylesheet prefetch" href="{% static 'css/bootstrap.min.css' %}"> -->
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <!-- <link rel='stylesheet prefetch' href='{% static "css/fontawesome.min.css" %}'> -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/googlefont-roboto.css' %}" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
-    <!-- <script src="{% static 'js/warnings.js' %}"></script> -->
+    <!-- <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script> -->
    </head>
     <body>
             <noscript>
@@ -25,7 +25,7 @@
             </noscript>
             <div class="container-fluid">
                 <div class='inbox'>
-                    <aside class='inbox-left'>
+                    <aside class='inbox-left d-none d-sm-none d-md-none d-lg-table-cell'>
                         <div class="user-head">
                             
                         </div>
@@ -48,26 +48,57 @@
                             </li>
                             <li>
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts 
-                                    <!-- <span class="label label-info pull-right">30</span> -->
                                 </a>
                             </li>
                             <li>
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-trash-o"></i>Trash</a>
                             </li>
                         </ul> 
-                    </aside>
+                    </aside>                    
                     <aside class='inbox-right'>
-                        <div class='inbox-head'>
+                        <!-- begin mobile screen nav -->
+                        <nav class="inbox-head d-md-block d-lg-none">
+                            <div class="d-flex">
+                                <form action="">
+                                    <input type="text" class="sr-input" placeholder='  Search Mail' disabled>
+                                    <a class="user-avatar" data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup="true"role='button' title='Email Account'>
+                                        <img src="{% static 'img/placeholder.jpg' %}" height='42' width='42' alt="" class="rounded-circle">
+                                    </a>
+                                    <ul class='dropdown-menu dropdown-menu-end mobile-avatar-menu' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
+                                        <li class='username dropdown-header'>
+                                            <h5 class='text-center'>
+                                                {{ user.username }}
+                                            </h5>
+                                        </li>
+                                        <li class='dropdown-divider'></li>
+                                        <li><a class="dropdown-item d-flex justify-content-start align-items-center" href="{% url 'mail:inbox' %}" aria-label='Return to Inbox'><i class='fa fa-inbox'></i>Inbox
+                                            {% if user.unread_count > 0 %}
+                                            <span class='visually-hidden'>Number of unread emails: </span>
+                                            <span class='label ms-auto'>
+                                                {{ user.unread_count }}
+                                            </span>
+                                            {% endif %}
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class='fa fa-envelope-o'></i>Sent Mail</a></li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-external-link"></i>Drafts</a></li>
+                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-trash-o"></i>Trash</a></li>         
+                                        <li class='dropdown-divider'></li>
+                                        <li class=''><a href="{% url 'mail:logout_user' %}" class='dropdown-item' role='button' aria-label='Sign out button'>Sign Out</a></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </nav>
+                        <!-- end mobile screen nav -->
+                        <!-- begin md screen nav -->
+                        <div class='inbox-head d-none d-sm-none d-md-none d-lg-block'>
                             <div class='d-flex'>
                                 <form action='#' class='' aria-hidden='true'>
-                                    <!-- <div class='input-append'> -->
                                     <input type='text' class='sr-input' placeholder='Search Mail' disabled>
                                     <a class='btn sr-btn' disabled><i class='fa fa-search'></i></a>
-                <!-- </div>     -->
                                 </form>
                                 <div class='user-head'>
-                                    <!-- <div style="float:none;"> -->
-                                    <a class='user-avatar' data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup='true' role='button' title='Email Account'>
+                                    <a class='' data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup='true' role='button' title='Email Account'>
                                         <img class='rounded-circle' width='64' height='64' alt='' src="{% static 'img/placeholder.jpg' %}">
                                     </a>
                                     <ul class='dropdown-menu dropdown-menu-end' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
@@ -82,17 +113,18 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end md screen nav -->
                             {% block body %}
                             {% endblock %}
                     </aside>
                 </div>
             </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+                <!-- <script src='{% static "js/bootstrap.bundle.min.js" %}'></script> -->
     <script type='text/javascript'>
         const username = '{{ user.username }}';
         const ajax_dest = '{% url "mail:ajax" %}';
         const token = '{{ csrf_token }}';
     </script>
-    <!-- <script type='text/javascript' src="{% static 'js/main.js' %}"></script> -->
     </body>
 </html>
