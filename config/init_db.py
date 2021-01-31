@@ -75,6 +75,7 @@ for i in range(0, n_users):
     # Assign to one of seven groups [0-6]
     user.group_num = i % n_of_groups
     user.code = codelist[i]
+    user.assigned = False
     # user.set_password('pass1234')
     user.save()
 
@@ -109,6 +110,7 @@ for i in range(0, 200):
     user.code = '432dsa4f'
     ### Set this password ###
     user.set_password('TestPassword')
+    user.assigned = True
     user.save()
     j=9
     for email in emails:
