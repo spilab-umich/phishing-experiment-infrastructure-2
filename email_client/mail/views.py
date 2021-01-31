@@ -142,7 +142,6 @@ def collect_ajax(res):
         # log.IP = res.META.get('REMOTE_ADDR')
     # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
     client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
-<<<<<<< HEAD
         {
             'username':username,
             'email_ref':email_ref,
@@ -157,9 +156,6 @@ def collect_ajax(res):
             'session_id':session_id
         })
     # print('client log saved')
-=======
-        {'username':username,'email_ref':email_ref,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
->>>>>>> f6fe2cf3d7c49dc5e377187cccc19753a82cad26
     return
 
 def collect_log(request):
@@ -170,7 +166,6 @@ def collect_log(request):
     session_id = request.session.session_key
     response_id = request.user.response_id
     group_num = request.user.group_num
-<<<<<<< HEAD
     # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
     server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
         {
@@ -183,9 +178,6 @@ def collect_log(request):
             'session_id':session_id
         })
     # print('server log saved')
-=======
-    server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
->>>>>>> f6fe2cf3d7c49dc5e377187cccc19753a82cad26
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
     return
