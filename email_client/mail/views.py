@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import F
 from .models import Mail, User
 from datetime import datetime, timezone
 from django.core import serializers
 from django.db import connection, connections
-import threading, time, logging, sys
-
+import threading, time, logging, sys, string, random as rd
 
 # Set client ajax logger
 client_logger = logging.getLogger('mail.client')
@@ -27,7 +26,7 @@ server_logger.addHandler(server_fh)
 def index(request):
     #if the request is POST, authenticate the user's credentials
     if request.method == "POST":
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
@@ -124,12 +123,12 @@ def email(request, email_id):
 def ajax(request):
     # Catches POST requests from AJAX
     if request.method == 'POST':
-        collect_ajax(request) # """ Do this asynchronously """
+        collect_ajax(request)
         return HttpResponse('Success')
 
 def collect_ajax(res):
-    # username = res.POST['username']
     username = res.user.username
+    email_ref = res.POST['ref']
     link = res.POST['link']
     link_id = res.POST['link_id']
     action = res.POST['action']
@@ -137,14 +136,25 @@ def collect_ajax(res):
     client_time = res.POST['client_time']
     group_num = res.user.group_num
     response_id = res.user.response_id
-    server_time = datetime.now(timezone.utc).strftime("%a, %d %B %Y %H:%M:%S GMT")
+    server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
     session_id = res.session.session_key
     # if (res.META.get('REMOTE_ADDR')):
         # log.IP = res.META.get('REMOTE_ADDR')
     # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
-    # client_logger.info('{},{},{},{},{},{},{},{},{},{}'.format(username,link,link_id,action,hover_time,client_time,group_num,response_id,server_time,session_id))
-    client_logger.info('%(username)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
-        {'username':username,'link':link,'link_id':link_id,'action':action,'hover_time':hover_time,'client_time':client_time,'group_num':group_num,'response_id':response_id,'server_time':server_time,'session_id':session_id})
+    client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+        {
+            'username':username,
+            'email_ref':email_ref,
+            'link':link,
+            'link_id':link_id,
+            'action':action,
+            'hover_time':hover_time,
+            'client_time':client_time,
+            'group_num':group_num,
+            'response_id':response_id,
+            'server_time':server_time,
+            'session_id':session_id
+        })
     # print('client log saved')
     return
 
@@ -156,7 +166,17 @@ def collect_log(request):
     session_id = request.session.session_key
     response_id = request.user.response_id
     group_num = request.user.group_num
-    server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
+    # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
+    server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+        {
+            'username':username,
+            'link':link,
+            'link_id':link_id,
+            'group_num':group_num,
+            'response_id':response_id,
+            'server_time':server_time,
+            'session_id':session_id
+        })
     # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
@@ -167,3 +187,47 @@ def logout_user(request):
     logout(request)
     return redirect('mail:index')
 
+def assign_password():
+    str_code = ''
+    letter_pool = string.ascii_letters+'1234567890'
+    for i in range(8):
+        str_code += rd.choice(letter_pool)
+    return str_code
+
+def assign_credentials(request):
+    if request.method == 'GET':
+        # Return a list of the remaining available usernames
+        users = User.objects.filter(assigned=False).filter(is_superuser=False)
+        # users is a QuerySet. Calling len() on users caches the whole database at once
+        # This avoids multiple db calls
+        len_users = len(users)
+        if len_users < 1:
+            username = 'Available user names depleted. Please contact the research team.'
+            password = ''
+        else:
+            # Choose a random available username
+            # Try it twice just in case.
+            try:
+                user_index = rd.randint(0,len_users-1)
+                user = users[user_index]
+            except:
+                user_index = rd.randint(0,len_users-1)
+                user = users[user_index]
+            # Save the response_id from Qualtrics
+            if (request.META.get("PROLIFIC_PID")):
+                user.response_id = request.META.get("PROLIFIC_PID")
+            username = user.username
+            password = assign_password()
+            # Mark the username as 'assigned'
+            user.assigned = True
+            user.set_password(password)
+            user.save()
+            group_num = user.group_num
+            code = user.code
+        context = {
+            'username': username,
+            'password': password,
+            'group_num': group_num,
+            'code': code,
+        }
+        return JsonResponse(context)
