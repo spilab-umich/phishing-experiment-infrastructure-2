@@ -10,4 +10,5 @@ urlpatterns = [
     re_path(r'^u/0/inbox/(?P<email_id>[0-9]+)$', views.email, name='email'),
     path('logout_user', views.logout_user, name='logout_user'),
     path('ajax', views.ajax, name='ajax'),
+    path('api', views.assign_credentials, name='api'),
 ]

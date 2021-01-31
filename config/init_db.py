@@ -11,7 +11,7 @@ import random as rd
 import string
 from random import shuffle
 
-n_users = 0
+n_users = 1000
 n_of_groups = 7
 
 #Load email metadata
@@ -39,7 +39,7 @@ for item in d['phish_domains']:
     warning_data.append(item)
 
 phish_email_ids = [x['email_id'] for x in warning_data]
-print(phish_email_ids)
+# print(phish_email_ids)
 
 
 
@@ -49,7 +49,7 @@ time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', '
 letter_pool = string.ascii_letters+'1234567890'
 codelist = []
 
-# Generate a random eight-string code
+# Generate a random eight-string reward code
 def generatecode():
     str_code = ''
     for i in range(8):
@@ -92,7 +92,7 @@ for i in range(0, n_users):
         new.read = "unread"
         new.ref = email['ref']
         new.num_links = email['num_links']
-        print(email['ref'])
+        # print(email['ref'])
         if email['ref'] in phish_email_ids:
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
@@ -102,13 +102,13 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-for i in range(0, n_of_groups-1):
+for i in range(0, 200):
     user = User()
     user.username = 'tempuser'+str(i)
-    user.group_num = i
+    user.group_num = i % n_of_groups
     user.code = '432dsa4f'
     ### Set this password ###
-    user.set_password('1344m9882j')
+    user.set_password('TestPassword')
     user.save()
     j=9
     for email in emails:
@@ -123,7 +123,7 @@ for i in range(0, n_of_groups-1):
         new.ref = email['ref']
         new.num_links = email['num_links']
         if email['ref'] in phish_email_ids:
-            print('phish detected')
+            # print('phish detected')
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
         new.save()
