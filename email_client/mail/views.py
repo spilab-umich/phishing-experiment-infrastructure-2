@@ -135,7 +135,10 @@ def collect_ajax(res):
     hover_time = res.POST['hover_time']
     client_time = res.POST['client_time']
     group_num = res.user.group_num
-    response_id = res.user.response_id
+    try:
+        response_id = res.user.response_id
+    except:
+        response_id = 'test_user'
     server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
     session_id = res.session.session_key
     # if (res.META.get('REMOTE_ADDR')):
@@ -159,24 +162,30 @@ def collect_ajax(res):
     return
 
 def collect_log(request):
-    username = request.user.username
-    link = request.path
-    link_id = -1
-    server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
-    session_id = request.session.session_key
-    response_id = request.user.response_id
-    group_num = request.user.group_num
-    # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
-    server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
-        {
-            'username':username,
-            'link':link,
-            'link_id':link_id,
-            'group_num':group_num,
-            'response_id':response_id,
-            'server_time':server_time,
-            'session_id':session_id
-        })
+    try:
+        username = request.user.username
+        link = request.path
+        link_id = -1
+        server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
+        session_id = request.session.session_key
+        try:
+            response_id = request.user.response_id
+        except Exception as e:
+            server_logger.info(e)
+        group_num = request.user.group_num
+        # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
+        server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+            {
+                'username':username,
+                'link':link,
+                'link_id':link_id,
+                'group_num':group_num,
+                'response_id':response_id,
+                'server_time':server_time,
+                'session_id':session_id
+            })
+    except Exception as e:
+        server_logger.info(e)
     # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
