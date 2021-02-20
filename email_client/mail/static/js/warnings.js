@@ -1,4 +1,4 @@
-// var hover_time_limit = 500;
+var hover_time_limit = 0;
 var rows = [];
 
 function createLog(link, action, emailid, time){

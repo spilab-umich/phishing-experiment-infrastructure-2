@@ -9,16 +9,16 @@ from django.db import connection, connections
 import threading, time, logging, sys, string, random as rd
 
 # Set client ajax logger
-client_logger = logging.getLogger('email_client/mail.client')
+client_logger = logging.getLogger('mail.client')
 client_logger.setLevel(logging.INFO)
-client_fh = logging.FileHandler('email_client/client_logs.log')
+client_fh = logging.FileHandler('email_client/logs/client_logs.log')
 client_fh.setLevel(logging.INFO)
 client_logger.addHandler(client_fh)
 
 # Set server request logger
 server_logger = logging.getLogger('mail.server')
 server_logger.setLevel(logging.INFO)
-server_fh = logging.FileHandler('server_logs.log')
+server_fh = logging.FileHandler('email_client/logs/server_logs.log')
 server_fh.setLevel(logging.INFO)
 server_logger.addHandler(server_fh)
 
