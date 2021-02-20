@@ -9,9 +9,9 @@ from django.db import connection, connections
 import threading, time, logging, sys, string, random as rd
 
 # Set client ajax logger
-client_logger = logging.getLogger('mail.client')
+client_logger = logging.getLogger('email_client/mail.client')
 client_logger.setLevel(logging.INFO)
-client_fh = logging.FileHandler('client_logs.log')
+client_fh = logging.FileHandler('email_client/client_logs.log')
 client_fh.setLevel(logging.INFO)
 client_logger.addHandler(client_fh)
 
@@ -127,38 +127,38 @@ def ajax(request):
         return HttpResponse('Success')
 
 def collect_ajax(res):
-    username = res.user.username
-    email_ref = res.POST['ref']
-    link = res.POST['link']
-    link_id = res.POST['link_id']
-    action = res.POST['action']
-    hover_time = res.POST['hover_time']
-    client_time = res.POST['client_time']
-    group_num = res.user.group_num
-    try:
+    try:    
+        username = res.user.username
+        email_ref = res.POST['ref']
+        link = res.POST['link']
+        link_id = res.POST['link_id']
+        action = res.POST['action']
+        hover_time = res.POST['hover_time']
+        client_time = res.POST['client_time']
+        group_num = res.user.group_num
         response_id = res.user.response_id
-    except:
-        response_id = 'test_user'
-    server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
-    session_id = res.session.session_key
-    # if (res.META.get('REMOTE_ADDR')):
-        # log.IP = res.META.get('REMOTE_ADDR')
-    # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
-    client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
-        {
-            'username':username,
-            'email_ref':email_ref,
-            'link':link,
-            'link_id':link_id,
-            'action':action,
-            'hover_time':hover_time,
-            'client_time':client_time,
-            'group_num':group_num,
-            'response_id':response_id,
-            'server_time':server_time,
-            'session_id':session_id
-        })
-    # print('client log saved')
+        server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
+        session_id = res.session.session_key
+        # if (res.META.get('REMOTE_ADDR')):
+            # log.IP = res.META.get('REMOTE_ADDR')
+        # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
+        client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+            {
+                'username':username,
+                'email_ref':email_ref,
+                'link':link,
+                'link_id':link_id,
+                'action':action,
+                'hover_time':hover_time,
+                'client_time':client_time,
+                'group_num':group_num,
+                'response_id':response_id,
+                'server_time':server_time,
+                'session_id':session_id
+            })
+        # print('client log saved')
+    except Exception as e:
+        client_logger.info(e)
     return
 
 def collect_log(request):
@@ -168,10 +168,8 @@ def collect_log(request):
         link_id = -1
         server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
         session_id = request.session.session_key
-        try:
-            response_id = request.user.response_id
-        except Exception as e:
-            server_logger.info(e)
+        # respondant id makes more sense to Florian
+        response_id = request.user.response_id
         group_num = request.user.group_num
         # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
         server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
