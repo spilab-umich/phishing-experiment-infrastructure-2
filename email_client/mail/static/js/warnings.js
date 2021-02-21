@@ -65,10 +65,6 @@ function load_warning(group_num, p_id){
             _this.attr('data-toggle', 'tooltip');
             disable_link(_this);
             addTemplate(_this, clon);
-            // .attr('data-toggle', 'tooltip')
-            // .attr('onclick', 'return false')
-            // .css('cursor','not-allowed');
-            // $("a[data-toggle='tooltip']").after(clon);
             $('a.warning-link').text(raw_link).attr('href',raw_link);
             disable_link($('a.warning-link'));
             $('span.secsRemaining').text(time_delay);
@@ -101,15 +97,31 @@ function load_warning(group_num, p_id){
             console.log('Entering case 4');
             // var warLink = $('.email-container a#'+p_id).attr('href');
             _this = $('.email-container a#'+p_id)
-            disable_link(_this);
+            // disable_link(_this);
             addTemplate(_this, clon);
+            _this.attr('data-toggle', 'tooltip')
+                .attr('onclick','return false');
             $('a.warning-link').attr('href', raw_link).text(raw_link);
+            disable_link($('a.warning-link'));
             $("a[data-toggle='tooltip']")
                 .on('click', function(){
                     $('div.overlay').css('display','block');
+                    var countdownToClick = setInterval(function(){
+                        if (time_delay > 0){
+                            $('span.secsRemaining').text(time_delay);
+                        }
+                        else {
+                            $('li.timer').text('You may now visit the link');
+                            enable_link($('a.warning-link'));
+                            clearInterval(countdownToClick);
+                        }
+                        time_delay--;
+                    },1000);
             });
             $('.warning-link').on('click', function(){
-                $(".overlay").css("display","none");
+                if (!(time_delay)){
+                    $(".overlay").css("display","none");
+                }
             });
             $('.closebtn').on('click', function(){
                 $(".overlay").css("display","none");
