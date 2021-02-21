@@ -1,5 +1,6 @@
 var hover_time_limit = 0;
 var rows = [];
+var time_delay = 5;
 
 function createLog(link, action, emailid, time){
     var link_id = 0, link_url;
@@ -37,36 +38,89 @@ function send_data(d){
     });
 }
 
+function disable_link(link){
+    link.attr('onclick', 'return false')
+        .css('cursor','not-allowed');
+}
+
+function addTemplate(_node, template){
+    _node.after(template);
+}
+
+function enable_link(link){
+    link.css('cursor','pointer')
+        .removeAttr('onclick');
+}
+
 function load_warning(group_num, p_id){
+    // On-hover, forced choice
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
     var raw_link = $('.email-container a#'+p_id).attr('href');
     switch (group_num){
         case 1:
-            $(".email-container a#"+p_id)
-            .attr('data-toggle', 'tooltip');
-            $("a[data-toggle='tooltip']").after(clon);
+            // var time_delay = 5;
+            console.log('Entering case 1');
+            _this = $(".email-container a#"+p_id);
+            _this.attr('data-toggle', 'tooltip');
+            disable_link(_this);
+            addTemplate(_this, clon);
+            // .attr('data-toggle', 'tooltip')
+            // .attr('onclick', 'return false')
+            // .css('cursor','not-allowed');
+            // $("a[data-toggle='tooltip']").after(clon);
+            $('a.warning-link').text(raw_link).attr('href',raw_link);
+            disable_link($('a.warning-link'));
+            $('span.secsRemaining').text(time_delay);
+            $("a[data-toggle='tooltip']")
+                .on('mouseenter', function(){
+                    $('div.tooltip').css('opacity',100);
+                    var countdownToClick = setInterval(function(){
+                        if (time_delay > 0){
+                            $('span.secsRemaining').text(time_delay);
+                        }
+                        else {
+                            $('li.timer').text('You may now visit the link');
+                            enable_link($('a.warning-link'));
+                            clearInterval(countdownToClick);
+                        }
+                        time_delay--;
+                    },1000);
+                }).on('mouseleave', function(){
+                var refreshInterval = setInterval(function() {
+                    // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
+                    if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
+                        // console.log($(".tooltip:hover").length);
+                        $(".tooltip").css('opacity',0);
+                        clearInterval(refreshInterval);
+                    }
+                }, 500);                    
+            });
+            break;
         case 4:
-            $('.email-container a#'+p_id)
-            .attr('data-toggle', 'tooltip')
-            // .attr('label', raw_link)
-            .removeAttr('href')
-            .css('cursor','pointer');
-            $("a[data-toggle='tooltip']").after(clon)
+            console.log('Entering case 4');
+            // var warLink = $('.email-container a#'+p_id).attr('href');
+            _this = $('.email-container a#'+p_id)
+            disable_link(_this);
+            addTemplate(_this, clon);
+            $('a.warning-link').attr('href', raw_link).text(raw_link);
+            $("a[data-toggle='tooltip']")
                 .on('click', function(){
                     $('div.overlay').css('display','block');
-                    $('a.warning-link').attr('href', raw_link)
-                    .text(raw_link);
             });
             $('.warning-link').on('click', function(){
                 $(".overlay").css("display","none");
             });
             $('.closebtn').on('click', function(){
                 $(".overlay").css("display","none");
-            }); 
+            });
+            break; 
         case 5:
+            console.log('Entering case 5');
             $('.subject-info').before(clon);
+            break;
     }
+    // console.log($('.email-container a#'+p_id).attr('href'));
 }
 
 function initListeners(eid){
