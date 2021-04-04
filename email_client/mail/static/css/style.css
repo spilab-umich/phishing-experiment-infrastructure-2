@@ -450,7 +450,7 @@ ul.inbox-pagination li {
     border-radius: 3px !important;
     color: #afafaf;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 0rem .5rem;
 }
 
 .mail-option input[type="checkbox"] {
@@ -466,7 +466,6 @@ ul.inbox-pagination li {
 .inbox-pagination li span {
     display: inline-block;
     margin-right: 5px;
-    margin-top: 7px;
 }
 
 .inbox-body {
