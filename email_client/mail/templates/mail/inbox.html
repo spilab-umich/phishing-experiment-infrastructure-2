@@ -3,7 +3,8 @@
 {% block title %} Inbox {% endblock %}
 {% block body %}
 <div class='panel-body'>
-    <div class='mail-option d-none d-sm-none d-md-none d-lg-block' aria-hidden='true'>
+    <!-- <div class='mail-option d-none d-sm-none d-md-none d-lg-block' aria-hidden='true'> -->
+    <div class='mail-option' aria-hidden='true'>
         <div class='btn-group chk-all'>
             <input type='checkbox' class='mail-checkbox mail-group-checkbox' disabled>
                 <a data-toggle='dropdown' href='#' class='btn mini all' aria-expanded='false' disabled>
@@ -51,7 +52,8 @@
     </div>
     <div class='container-fluid'>
      {% for email in emails %}
-        <div class="{{email.read}} row table-inbox justify-content-between d-none d-sm-none d-md-none d-lg-flex">
+        <!-- <div class="{{email.read}} row table-inbox justify-content-between d-none d-sm-none d-md-none d-lg-flex"> -->
+        <div class="{{email.read}} row table-inbox justify-content-between">
             <div class="col-1 text-left">
                         <input type="checkbox" class="mail-checkbox" disabled> 
                         <i class="fa fa-star"></i>
@@ -63,7 +65,7 @@
                 <div class="col-1">{{email.time_sent}}</div>
             </a>
         </div>
-        <div class="{{email.read}} row mobile-table-inbox justify-content-between d-md-flex d-lg-none">
+        <!-- <div class="{{email.read}} row mobile-table-inbox justify-content-between d-md-flex d-lg-none">
             <div class="col-12 w-100">
                 <a href='{% url "mail:email" email.ref %}' class='mobile-table-inbox'>
                     <div class="row justify-content-between mobile-header-row">
@@ -78,7 +80,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> -->
     {% endfor %}
     </div>
 </div>

@@ -32,93 +32,93 @@
     </div>
     <!-- begin email header -->
         <!-- <div class="subject-info row d-none d-sm-none d-md-none d-lg-flex justify-content-between"> -->
-        <div class="subject-info row justify-content-between">
-            <div class="col-8 subject-row">
-                <span class="visually-hidden">Email subject:</span>
-                <h4> {{ email.subject }}</h4>
-            </div>
-            <div class='col align-self-center email-icons' aria-hidden='true'>
-                <div class="text-end">
-                    <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a>
-                    <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
-                </div>
+    <div class="subject-info row justify-content-between">
+        <div class="col-8 subject-row">
+            <span class="visually-hidden">Email subject:</span>
+            <p> {{ email.subject }}</p>
+        </div>
+        <div class='col align-self-center email-icons' aria-hidden='true'>
+            <div class="text-end">
+                <a title="" data-placement="top" data-original-title="Reply" class="btn btn-sm disabled" ><i class="fa fa-reply"></i></a>
+                <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
             </div>
         </div>
-        <!-- <div class="row email-head d-none d-sm-none d-md-none d-lg-flex"> -->
-        <div class="row email-head">
-            <img class='rounded-circle col' width='40' height='40' alt='' src="{% static 'img/placeholder.jpg' %}">
-            <div class='email-sender col'>
+    </div>
+    <!-- <div class="row email-head d-none d-sm-none d-md-none d-lg-flex"> -->
+    <div class="row email-head">
+        <img class='rounded-circle col' width='40' height='40' alt='' src="{% static 'img/placeholder.jpg' %}">
+        <div class='email-sender col'>
+            <span class='row justify-content-between'>
+                    <div class="col">
+                        <span class="visually-hidden">Email sender:</span>
+                        <strong>{{ email.sender }}</strong>
+                        <span class="visually-hidden">Sender's email address:</span>
+                        <span class='sender-address'>&nbsp;&lt;{{ email.sender_address }}&gt;</span>
+                    </div>
+                <div class="col text-end"> {{email.time_sent}}
+                </div>
+                
+            </span>
+            <span class="row">
+                <!-- <span class='col d-none d-lg-flex'> -->
+                <span class='col sender-address'>
+                    <span>to me</span>
+                    <a class="sender-dropdown disabled" aria-hidden='true'>
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </span>
+            </span>
+        </div> 
+    </div> 
+        <!-- end email header  -->
+        <!-- begin mobile email header -->
+    <!-- <div class="row d-md-flex d-lg-none">
+        <div class="col-10 subject-row">
+            <span class="visually-hidden">Email subject:</span>
+            <h3> {{ email.subject }}</h3>
+        </div>
+        <div class='col align-self-center email-icons' aria-hidden='true'>
+            <div class="text-end">
+                <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="row mobile-email-head d-md-flex d-lg-none justify-content-start">
+            <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
+            <span class='email-sender col'>
                 <span class='row justify-content-between'>
                         <div class="col">
                             <span class="visually-hidden">Email sender:</span>
                             <strong>{{ email.sender }}</strong>
-                            <span class="visually-hidden">Sender's email address:</span>
-                            <span class='sender-address'>&nbsp;&lt;{{ email.sender_address }}&gt;</span>
                         </div>
                     <div class="col text-end"> {{email.time_sent}}
                     </div>
-                    
                 </span>
-                <span class="row">
-                    <!-- <span class='col d-none d-lg-flex'> -->
-                    <span class='col sender-address'>
-                        <span>to me</span>
-                        <a class="sender-dropdown disabled" aria-hidden='true'>
-                            <i class="fa fa-chevron-down"></i>
-                        </a>
-                    </span>
-                </span>
-            </div> 
-        </div> 
-            <!-- end email header  -->
-            <!-- begin mobile email header -->
-        <!-- <div class="row d-md-flex d-lg-none">
-            <div class="col-10 subject-row">
-                <span class="visually-hidden">Email subject:</span>
-                <h3> {{ email.subject }}</h3>
-            </div>
-            <div class='col align-self-center email-icons' aria-hidden='true'>
-                <div class="text-end">
-                    <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="row mobile-email-head d-md-flex d-lg-none justify-content-start">
-                <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
-                <span class='email-sender col'>
-                    <span class='row justify-content-between'>
-                            <div class="col">
-                                <span class="visually-hidden">Email sender:</span>
-                                <strong>{{ email.sender }}</strong>
-                            </div>
-                        <div class="col text-end"> {{email.time_sent}}
+                <span class="row d-flex d-lg-none">
+                    <span class='col'>
+                        <span class="visually-hidden">Sender's email address:</span>
+                        <span class='sender-address'>{{ email.sender_address }}</span>
+                        <div class='d-none d-lg-flex'>to <strong>me</strong>
+                            <a class="sender-dropdown disabled" aria-hidden='true'>
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
                         </div>
                     </span>
-                    <span class="row d-flex d-lg-none">
-                        <span class='col'>
-                            <span class="visually-hidden">Sender's email address:</span>
-                            <span class='sender-address'>{{ email.sender_address }}</span>
-                            <div class='d-none d-lg-flex'>to <strong>me</strong>
-                                <a class="sender-dropdown disabled" aria-hidden='true'>
-                                    <i class="fa fa-chevron-down"></i>
-                                </a>
-                            </div>
-                        </span>
-                    </span>
-                </span>        
-        </div> -->
-        <!-- end mobile email header -->
-        <div class="row email-container">
-            <div class='col'>
-                {% include email_fname %}
-            </div>
+                </span>
+            </span>        
+    </div> -->
+    <!-- end mobile email header -->
+    <div class="row email-container">
+        <div class='col'>
+            {% include email_fname %}
         </div>
-        <div class="email-footer" aria-hidden='true'>
-            <a class="btn btn-sm disabled"><i class="fa fa-reply"></i> Reply</a>
-            <a class="btn btn-sm disabled"><i class="fa fa-arrow-right"></i> Forward</a>
-            <a title="print" data-placement="top" data-original-title="Print" class="btn btn-sm disabled"><i class="fa fa-print"></i> </a>
-            <a title="trash" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></a>
-        </div>
+    </div>
+    <div class="email-footer" aria-hidden='true'>
+        <a class="btn btn-sm disabled"><i class="fa fa-reply"></i> Reply</a>
+        <a class="btn btn-sm disabled"><i class="fa fa-arrow-right"></i> Forward</a>
+        <a title="print" data-placement="top" data-original-title="Print" class="btn btn-sm disabled"><i class="fa fa-print"></i> </a>
+        <a title="trash" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></a>
+    </div>
 </div>
 {% include warning_fname %}
 <script src="{% static 'js/warnings.js' %}"></script>
