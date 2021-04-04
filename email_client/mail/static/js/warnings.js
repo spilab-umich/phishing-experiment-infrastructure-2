@@ -59,8 +59,6 @@ function load_warning(group_num, p_id){
     var raw_link = $('.email-container a#'+p_id).attr('href');
     switch (group_num){
         case 1:
-            // var time_delay = 5;
-            console.log('Entering case 1');
             _this = $(".email-container a#"+p_id);
             _this.attr('data-toggle', 'tooltip');
             disable_link(_this);
@@ -94,8 +92,6 @@ function load_warning(group_num, p_id){
             });
             break;
         case 4:
-            console.log('Entering case 4');
-            // var warLink = $('.email-container a#'+p_id).attr('href');
             _this = $('.email-container a#'+p_id)
             // disable_link(_this);
             addTemplate(_this, clon);
@@ -128,7 +124,6 @@ function load_warning(group_num, p_id){
             });
             break; 
         case 5:
-            console.log('Entering case 5');
             $('.subject-info').before(clon);
             break;
     }

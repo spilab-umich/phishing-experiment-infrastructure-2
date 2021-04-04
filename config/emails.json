@@ -8,7 +8,7 @@
         "num_links": 3},
 
         {"sender": "Chase Online",
-        "preview":"We\"ve sent an important communication to your Secure Message Center, available on Chase Online or on the Chase Mobile app.  The subject is: New enhancements to your Chase QuickPay(R)  You can sign in to review this communication in your Secure Message Center until 09/24/2017.  Thank you for being a valued Chase customer.",
+        "preview":"We've sent an important communication to your Secure Message Center, available on Chase Online or on the Chase Mobile app.  The subject is: New enhancements to your Chase QuickPay(R)  You can sign in to review this communication in your Secure Message Center until 09/24/2017.  Thank you for being a valued Chase customer.",
         "subject":"A secure message from Chase",
         "sender_address": "no-reply@alertsp.chase.com",
         "ref": 3,
@@ -43,8 +43,8 @@
         "num_links": 2},
 
         {"sender": "Mint",
-        "preview":"Hmm. We can\"t seem to connect with your Bank of America account We should be able to get you back on track pretty quickly. A reason for the glitch might be: Has your Bank of America login email or password changed?    Have they updated their security measures?    Do they require additional security questions?       The easiest way to fix it is to double-check and re-enter the most current login information you have for them.",
-        "subject":"We\"re having a problem connecting with Bank of America",
+        "preview":"Hmm. We can't seem to connect with your Bank of America account We should be able to get you back on track pretty quickly. A reason for the glitch might be: Has your Bank of America login email or password changed?    Have they updated their security measures?    Do they require additional security questions?       The easiest way to fix it is to double-check and re-enter the most current login information you have for them.",
+        "subject":"We're having a problem connecting with Bank of America",
         "sender_address": "team@mint.com",
         "ref": 13,
         "num_links": 5},

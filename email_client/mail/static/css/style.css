@@ -506,8 +506,8 @@ input[disabled] {
 .mobile-email-head img, .email-head img {
     /* width: auto;
     height: auto; */
-    max-width: 48px;
-    max-height: 48px;
+    max-width: 40px;
+    max-height: 40px;
     padding: 0;
 }
 
@@ -520,7 +520,9 @@ input[disabled] {
 }
 
 .email-head .sender-address, .mobile-email-head .sender-address {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    font-size: 0.75rem;
+    color: #555;
 }
 
 /* email page stylesheets */
