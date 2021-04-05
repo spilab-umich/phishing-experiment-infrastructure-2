@@ -368,6 +368,12 @@ a.mobile-table-inbox div{
 .table-inbox {
     border: 1px solid #d3d3d3;
     margin-bottom: 0;
+    border-left: none;
+    border-right: none;
+}
+
+.table-inbox input {
+    margin-right: 0.5rem;
 }
 
 .table-inbox a {
