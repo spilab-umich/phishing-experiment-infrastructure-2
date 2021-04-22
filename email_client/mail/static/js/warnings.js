@@ -91,7 +91,7 @@ function load_warning(group_num, p_id){
                 }, 500);                    
             });
             break;
-        case 4:
+        case 2: //temporarily changed to 2
             _this = $('.email-container a#'+p_id)
             // disable_link(_this);
             addTemplate(_this, clon);
@@ -123,7 +123,7 @@ function load_warning(group_num, p_id){
                 $(".overlay").css("display","none");
             });
             break; 
-        case 5:
+        case 3: //temporarily changed to 3
             $('.subject-info').before(clon);
             break;
     }

@@ -11,8 +11,8 @@ import random as rd
 import string
 from random import shuffle
 
-n_users = 1000
-n_of_groups = 7
+n_users = 0
+n_of_groups = 3
 
 #Load email metadata
 json_fname = "emails.json"
@@ -72,7 +72,7 @@ for i in range(0, n_users):
     user = User()
     # Initialize the numbers as usernameXXXX
     user.username = 'username{}'.format(usernameNumbers[i])
-    # Assign to one of seven groups [0-6]
+    # Assign to one of the group numbers
     user.group_num = i % n_of_groups
     user.code = codelist[i]
     user.assigned = False
@@ -103,7 +103,7 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-for i in range(0, 200):
+for i in range(0, 30):
     user = User()
     user.username = 'tempuser'+str(i)
     user.group_num = i % n_of_groups
