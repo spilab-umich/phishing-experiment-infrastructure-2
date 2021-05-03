@@ -50,7 +50,7 @@ function addTemplate(_node, template){
 function enable_link(link){
     link.css('cursor','pointer')
         .removeAttr('onclick')
-        .attr('id','-100');
+        .attr('id',-100);
 }
 
 function load_warning(group_num, p_id){
