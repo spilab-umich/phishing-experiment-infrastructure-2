@@ -58,7 +58,7 @@ function load_warning(group_num, p_id){
     var clon = template.content.cloneNode(true);
     var raw_link = $('.email-container a#'+p_id).attr('href');
     switch (group_num){
-        case 0:
+        case 1:
             _this = $(".email-container a#"+p_id);
             _this.attr('data-toggle', 'tooltip');
             disable_link(_this);
@@ -91,7 +91,7 @@ function load_warning(group_num, p_id){
                 }, 500);                    
             });
             break;
-        case 1: //temporarily changed to 2
+        case 2: //temporarily changed to 2
             _this = $('.email-container a#'+p_id)
             // disable_link(_this);
             addTemplate(_this, clon);
@@ -123,7 +123,7 @@ function load_warning(group_num, p_id){
                 $(".overlay").css("display","none");
             });
             break; 
-        case 2: //temporarily changed to 3
+        case 0: //temporarily changed to 3
             $('.subject-info').before(clon);
             break;
     }
