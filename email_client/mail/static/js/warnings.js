@@ -6,9 +6,9 @@ function createLog(link, action, emailid, time){
     var link_id = 0, link_url;
     if (time==undefined) time= -1;
     // need to rethink these if statements
-    if (typeof(link) == 'string') link_url = link;
+    if (link.attr('href')) link_url = link.attr('href');
     else if (link.attr('label')) link_url = link.attr('label');
-    else if (link.attr('href')) link_url = link.attr('href');
+    else if (typeof(link) == 'string') link_url = link;
     else link_url = 'NaN';
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
     var timestamp = new Date($.now()).toUTCString();
