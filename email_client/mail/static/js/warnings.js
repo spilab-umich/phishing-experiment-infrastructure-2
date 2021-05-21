@@ -1,23 +1,27 @@
-var hover_time_limit = 0;
-var rows = [];
-var time_delay = 5;
-var warning_shown = false;
+let hover_time_limit = 0;
+// let rows = [];
+let time_delay = 5;
+let warning_shown = false;
+let warning_shown_text = 'warning-shown';
 
-function createLog(link, action, emailid, time){
+function createLog(link, action, emailid, hover_time){
     var link_id = 0, link_url;
-    if (time==undefined) time= -1;
-    // need to rethink these if statements
-    if (link.attr('href')) link_url = link.attr('href');
+    if (hover_time==undefined) hover_time= -1;
+    // if link has an href property, assign it to link_url
+    if (typeof(link) == 'string') link_url = link;
+    // else if link has a label property, assign it to link_url
+    else if (link.attr('href')) link_url = link.attr('href');
+    // else if link is a string, assign the string to link_url
     else if (link.attr('label')) link_url = link.attr('label');
-    else if (typeof(link) == 'string') link_url = link;
-    else link_url = 'NaN';
+    // else if link is none of these things, just type 'NaN'
+    else link_url = 'NaN'; 
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
     var timestamp = new Date($.now()).toUTCString();
     var d = {
         'ref': emailid,
         'link': link_url,
         'action': action,
-        'hover_time': time,
+        'hover_time': hover_time,
         'action': action,
         'link_id': link_id,
         'client_time': timestamp,
@@ -71,6 +75,10 @@ function load_warning(group_num, p_id){
             $("a[data-toggle='tooltip']")
                 .on('mouseenter', function(){
                     $('div.tooltip').css('opacity',100);
+                    if (!warning_shown){
+                        createLog(warning_shown_text,warning_shown_text,eid);
+                        warning_shown = true;
+                    }
                     var countdownToClick = setInterval(function(){
                         time_delay--;
                         $('span.secsRemaining').text(time_delay);
@@ -102,7 +110,11 @@ function load_warning(group_num, p_id){
             $('span.secsRemaining').text(time_delay);
             $("a[data-toggle='tooltip']")
                 .on('click', function(){
-                    $('div.overlay').css('display','block');                    
+                    $('div.overlay').css('display','block');
+                    if (!warning_shown){
+                        createLog(warning_shown_text,warning_shown_text,eid);
+                        warning_shown = true;
+                    }                    
                     var countdownToClick = setInterval(function(){
                         time_delay--;
                         $('span.secsRemaining').text(time_delay);
@@ -124,6 +136,10 @@ function load_warning(group_num, p_id){
             break; 
         case 0: //temporarily changed to 3
             $('.subject-info').before(clon);
+            if (!warning_shown){
+                createLog(warning_shown_text,warning_shown_text,eid);
+                warning_shown = true;
+            }
             break;
     }
     // console.log($('.email-container a#'+p_id).attr('href'));
