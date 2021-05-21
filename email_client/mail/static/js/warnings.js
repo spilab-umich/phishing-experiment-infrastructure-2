@@ -1,6 +1,7 @@
 var hover_time_limit = 0;
 var rows = [];
 var time_delay = 5;
+var warning_shown = false;
 
 function createLog(link, action, emailid, time){
     var link_id = 0, link_url;
@@ -71,15 +72,13 @@ function load_warning(group_num, p_id){
                 .on('mouseenter', function(){
                     $('div.tooltip').css('opacity',100);
                     var countdownToClick = setInterval(function(){
-                        if (time_delay > 0){
-                            $('span.secsRemaining').text(time_delay);
-                        }
-                        else {
+                        time_delay--;
+                        $('span.secsRemaining').text(time_delay);
+                        if (time_delay == 0){
                             $('li.timer').text('You may now visit the link');
                             enable_link($('a.warning-link'));
                             clearInterval(countdownToClick);
                         }
-                        time_delay--;
                     },1000);
                 }).on('mouseleave', function(){
                 var refreshInterval = setInterval(function() {
@@ -100,19 +99,18 @@ function load_warning(group_num, p_id){
                 .attr('onclick','return false');
             $('a.warning-link').attr('href', raw_link).text(raw_link);
             disable_link($('a.warning-link'));
+            $('span.secsRemaining').text(time_delay);
             $("a[data-toggle='tooltip']")
                 .on('click', function(){
-                    $('div.overlay').css('display','block');
+                    $('div.overlay').css('display','block');                    
                     var countdownToClick = setInterval(function(){
-                        if (time_delay > 0){
-                            $('span.secsRemaining').text(time_delay);
-                        }
-                        else {
+                        time_delay--;
+                        $('span.secsRemaining').text(time_delay);
+                        if (time_delay == 0) {
                             $('li.timer').text('You may now visit the link');
                             enable_link($('a.warning-link'));
                             clearInterval(countdownToClick);
                         }
-                        time_delay--;
                     },1000);
             });
             $('.warning-link').on('click', function(){
