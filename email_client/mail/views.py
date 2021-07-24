@@ -161,7 +161,7 @@ def email(request, email_id):
         if read_status == "unread":
             Mail.objects.filter(user=user, ref=email_id).update(read="read")
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
-
+            user.unread_count -= 1
         ### Do I need this line below? ###
         warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
         context = {
