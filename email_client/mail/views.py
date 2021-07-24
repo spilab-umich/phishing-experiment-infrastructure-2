@@ -93,7 +93,7 @@ def flag_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_flagged=Case(
             When(is_flagged=True, then=Value(False)),
             When(is_flagged=False, then=Value(True))))
-        return redirect('mail:inbox')
+        return redirect('mail:flagged')
 
 def delete_email(request, email_id):
     if not request.user.is_authenticated:
@@ -104,7 +104,7 @@ def delete_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_deleted=Case(
             When(is_deleted=True, then=Value(False)),
             When(is_deleted=False, then=Value(True))))
-        return redirect('mail:inbox')
+        return redirect('mail:trash')
 
 
 
