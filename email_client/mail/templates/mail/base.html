@@ -48,11 +48,13 @@
                                 <a class='disabled' aria-hidden='true'><i class='fa fa-envelope-o'></i>Sent Mail</a>
                             </li>
                             <li>
-                                <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts 
-                                </a>
+                                <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts</a>
                             </li>
                             <li>
-                                <a class="disabled" aria-hidden='true'><i class=" fa fa-trash-o"></i>Trash</a>
+                                <a class="" href='{% url "mail:flagged" %}'><i class="fa fa-flag-o"></i>Flagged</a>
+                            </li>
+                            <li>
+                                <a class="" href='{% url "mail:trash" %}'><i class="fa fa-trash-o"></i>Trash</a>
                             </li>
                         </ul> 
                     </aside>                    

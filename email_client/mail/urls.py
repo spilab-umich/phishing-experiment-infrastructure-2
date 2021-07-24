@@ -11,4 +11,6 @@ urlpatterns = [
     path('logout_user', views.logout_user, name='logout_user'),
     path('ajax', views.ajax, name='ajax'),
     path('api', views.assign_credentials, name='api'),
+    path('trash', views.trash, name='trash'),
+    path('flagged', views.flagged, name='flagged'),
 ]

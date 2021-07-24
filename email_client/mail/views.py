@@ -43,6 +43,34 @@ def index(request):
     #if the request is not POST, return the index(login) page
     return render(request, 'mail/index.html')
 
+#~mail/flagged
+def flagged(request):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        user = request.user
+        collect_log(request)
+        emails = Mail.objects.filter(user=user,is_flagged=True).values()
+        context = {
+            'user': user,
+            'emails': emails,
+        }
+        return render(request, 'mail/inbox.html', context)
+
+#~mail/trash
+def trash(request):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        user = request.user
+        collect_log(request)
+        emails = Mail.objects.filter(user=user,is_deleted=True).values()
+        context = {
+            'user': user,
+            'emails': emails,
+        }
+        return render(request, 'mail/inbox.html', context)
+
 def inbox(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -57,7 +85,7 @@ def inbox(request):
         return render(request, 'mail/inbox.html', context)
 
 #~mail/email/email_id
-#individual email view
+#individual email inbox view
 def email(request, email_id):
     #bounce the request if the user is not authenticated
     if not request.user.is_authenticated:
