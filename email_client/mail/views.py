@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import F
+from django.db.models import F, Case, Value, When
 from .models import Mail, User
 from datetime import datetime, timezone
 from django.core import serializers
@@ -77,12 +77,36 @@ def inbox(request):
     else:
         user = request.user
         collect_log(request)
-        emails = Mail.objects.filter(user=user).values()
+        emails = Mail.objects.filter(user=user, is_flagged=False, is_deleted=False).values()
         context = {
             'user': user,
             'emails': emails,
         }
         return render(request, 'mail/inbox.html', context)
+
+def flag_email(request, email_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        collect_log(request)
+        user=request.user
+        Mail.objects.filter(user=user, ref=email_id).update(is_flagged=Case(
+            When(is_flagged=True, then=Value(False)),
+            When(is_flagged=False, then=Value(True))))
+        return redirect('mail:inbox')
+
+def delete_email(request, email_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        collect_log(request)
+        user=request.user
+        Mail.objects.filter(user=user, ref=email_id).update(is_deleted=Case(
+            When(is_deleted=True, then=Value(False)),
+            When(is_deleted=False, then=Value(True))))
+        return redirect('mail:inbox')
+
+
 
 #~mail/email/email_id
 #individual email inbox view

@@ -615,3 +615,12 @@ input[disabled] {
     color: #fff;
 }
 
+a.btn.trash-icon:hover, a.btn.trash-icon:focus {
+    background-color: #f5675c;
+    color: #fff;
+}
+
+a.btn.flag-icon:hover, a.btn.flag-icon:focus {
+    background-color: #f0d7a9;
+    color: #fff;
+}

@@ -13,4 +13,6 @@ urlpatterns = [
     path('api', views.assign_credentials, name='api'),
     path('trash', views.trash, name='trash'),
     path('flagged', views.flagged, name='flagged'),
+    re_path(r'^flag_email/(?P<email_id>[0-9]+)$', views.flag_email, name='flag_email'),
+    re_path(r'^delete_email/(?P<email_id>[0-9]+)$', views.delete_email, name='delete_email'),
 ]
