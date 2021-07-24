@@ -16,6 +16,7 @@ function createLog(link, action, emailid, hover_time){
     // else if link is none of these things, just type 'NaN'
     else link_url = 'NaN'; 
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
+    // consider changing to Date().toUTCString();
     var timestamp = new Date($.now()).toUTCString();
     var d = {
         'ref': emailid,
@@ -99,7 +100,7 @@ function load_warning(group_num, p_id){
                 }, 500);                    
             });
             break;
-        case 2: //temporarily changed to 2
+        case 2: //on-click
             _this = $('.email-container a#'+p_id)
             // disable_link(_this);
             addTemplate(_this, clon);

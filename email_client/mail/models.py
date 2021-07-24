@@ -23,6 +23,8 @@ class Mail(models.Model):
     num_links = models.IntegerField(default=-1) # The number of links in a Mail object
     is_phish = models.BooleanField(default=False)
     phish_id = models.IntegerField(default=-1)
+    is_flagged = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.ref) + ' - ' + self.sender
