@@ -54,6 +54,7 @@ def flagged(request):
         context = {
             'user': user,
             'emails': emails,
+            'flag': True,
         }
         return render(request, 'mail/inbox.html', context)
 
@@ -68,6 +69,7 @@ def trash(request):
         context = {
             'user': user,
             'emails': emails,
+            'trash': True,
         }
         return render(request, 'mail/inbox.html', context)
 
@@ -81,6 +83,7 @@ def inbox(request):
         context = {
             'user': user,
             'emails': emails,
+            'inbox': True,
         }
         return render(request, 'mail/inbox.html', context)
 

@@ -34,11 +34,22 @@
                             <a title='Compose' class='btn btn-compose' disabled>Compose</a>
                         </div>
                         <ul class='side-panel-nav inbox-divider'>
-                            <li class='active'>
+                        <!-- {% url 'mail:flagged' as flag_url}
+                        {% url 'mail:trash' as trash_url}
+                        {% url 'mail:inbox' as inbox_url} -->
+                            {% if inbox %}
+                            <li class='active inbox'>
+                            {% else %}
+                            <li class='inbox'>
+                            {% endif %}
                                 <a href='{% url "mail:inbox" %}'><i class='fa fa-inbox'></i>Inbox
                                 {% if user.unread_count > 0 %}
                                 <span class='visually-hidden'>Number of unread emails: </span>
+                                {% if not inbox %}
+                                    <span class='label label-no-danger pull-right'>
+                                {% else %}
                                 <span class='label label-danger pull-right'>
+                                {% endif %}
                                     {{ user.unread_count }}
                                 </span>
                                 {% endif %}
@@ -50,10 +61,18 @@
                             <li>
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts</a>
                             </li>
+                            {% if flag %}
+                            <li class='active'>
+                            {% else %}
                             <li>
+                            {% endif %}
                                 <a class="" href='{% url "mail:flagged" %}'><i class="fa fa-flag-o"></i>Flagged</a>
                             </li>
+                            {% if trash %}
+                            <li class='active'>
+                            {% else %}
                             <li>
+                            {% endif %}
                                 <a class="" href='{% url "mail:trash" %}'><i class="fa fa-trash-o"></i>Trash</a>
                             </li>
                         </ul> 

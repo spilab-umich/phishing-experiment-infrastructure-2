@@ -26,7 +26,14 @@ a:hover {
     border-radius: .25em;
 }
 
-.label-danger {
+.label-no-danger {
+    color: #a7a7a7;
+    font-weight: bold;
+    font-size: 100%;
+    padding: 0;
+}
+
+.label-danger, .inbox a:hover .label-no-danger {
     color: #FF6C60;
     font-weight: bold;
     font-size: 100%;
@@ -177,9 +184,8 @@ ul.side-panel-nav {
 
 /* begin mobile avatar menu */
 
-ul.mobile-avatar-menu a {
+/* ul.mobile-avatar-menu a {
     color: #6a6a6a;
-    /* display: inline-flex; */
     line-height: 45px;
     padding: 0 15px;
     width: 100%;
@@ -195,7 +201,7 @@ ul.mobile-avatar-menu li span.label {
     color: #6a6a6a;
     font-size: inherit;
     font-weight: 550;
-}
+} */
 
 /* end mobile avatar menu */
 
@@ -211,24 +217,39 @@ ul.side-panel-nav li a {
     padding: 0 20px;
     width: 100%;
 }
-ul.side-panel-nav li a:hover, ul.side-panel-nav li.active a, ul.side-panel-nav li a:focus {
+
+ul.side-panel-nav li.inbox.active a, ul.side-panel-nav li.inbox.active a i, ul.side-panel-nav li.inbox a:hover, ul.side-panel-nav li.inbox a:focus, ul.side-panel-nav li.inbox a:hover i, ul.side-panel-nav li.inbox a:focus i {
     background: none repeat scroll 0 0 #fce8e6;
     color: #d93025;
     font-weight: bold;
     border-radius: 0 12px 12px 0;
 }
 
-ul.side-panel-nav li.active i {
+/* ul.side-panel-nav li.inbox a:hover{
+    background: none repeat scroll 0 0 #fce8e6;
     color: #d93025;
-    font-size: 16px;
-    padding-right: 10px;
+    font-weight: bold;
+    border-radius: 0 12px 12px 0;
+} */
+
+ul.side-panel-nav li a:hover, ul.side-panel-nav li a:focus, ul.side-panel-nav li.active {
+    background: none repeat scroll 0 0 rgba(0,0,0,0.075);
+    color: #6a6a6a;
+    font-weight: bold;
+    border-radius: 0 12px 12px 0;
 }
+
+/* , ul.side-panel-nav li.active a, ul.side-panel-nav li a:focus { */ 
+
+
 
 ul.side-panel-nav li a i {
     color: #6a6a6a;
     font-size: 16px;
     padding-right: 10px;
 }
+
+
 ul.side-panel-nav li a span.label {
     margin-top: 13px;
 }
