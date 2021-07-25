@@ -54,7 +54,7 @@ def flagged(request):
         context = {
             'user': user,
             'emails': emails,
-            'flag': True,
+            'page': 'flag',
         }
         return render(request, 'mail/inbox.html', context)
 
@@ -69,7 +69,7 @@ def trash(request):
         context = {
             'user': user,
             'emails': emails,
-            'trash': True,
+            'page': 'trash', # shortcut for if deleted emails are shown
         }
         return render(request, 'mail/inbox.html', context)
 
@@ -83,7 +83,7 @@ def inbox(request):
         context = {
             'user': user,
             'emails': emails,
-            'inbox': True,
+            'page': 'inbox',
         }
         return render(request, 'mail/inbox.html', context)
 
@@ -97,8 +97,8 @@ def flag(request, email_id, next_id):
             When(is_flagged=True, then=Value(False)),
             When(is_flagged=False, then=Value(True))))
         if int(next_id) < 1:
-            if "inbox" in request.META['HTTP_REFERER']:
-                return redirect('mail:inbox')
+            # if "inbox" in request.META['HTTP_REFERER']:
+            #     return redirect('mail:inbox')
             return redirect('mail:flagged')
         return redirect('mail:email', email_id=next_id)
 
@@ -112,8 +112,8 @@ def delete(request, email_id, next_id):
             When(is_deleted=True, then=Value(False)),
             When(is_deleted=False, then=Value(True))))
         if int(next_id) < 1:
-            if "inbox" in request.META['HTTP_REFERER']:
-                return redirect('mail:inbox')
+            # if "inbox" in request.META['HTTP_REFERER']:
+            #     return redirect('mail:inbox')
             return redirect('mail:trash')
         return redirect('mail:email', email_id=next_id)
 
@@ -135,10 +135,13 @@ def email(request, email_id):
         email = Mail.objects.get(user=user, ref=email_id)
         if (email.is_flagged):
             emails = Mail.objects.filter(user=user, is_flagged=True).values()
+            page = 'flag'
         elif (email.is_deleted):
             emails = Mail.objects.filter(user=user, is_deleted=True).values()
+            page = 'trash'
         else:
             emails = Mail.objects.filter(user=user, is_deleted=False, is_flagged=False).values()
+            page = 'inbox'
         
         # Evaluate the query set (hits the database)
         len_emails = len(emails)
@@ -182,6 +185,7 @@ def email(request, email_id):
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
             'warning_fname': warning_fname, ## Warning number is needed to include warning html as django template
             'num_emails': len_emails,
+            'page': page,
         }
         return render(request, 'mail/email.html', context)
 

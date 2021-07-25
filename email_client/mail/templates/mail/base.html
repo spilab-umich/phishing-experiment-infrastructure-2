@@ -37,7 +37,7 @@
                         <!-- {% url 'mail:flagged' as flag_url}
                         {% url 'mail:trash' as trash_url}
                         {% url 'mail:inbox' as inbox_url} -->
-                            {% if inbox %}
+                            {% if page == 'inbox' %}
                             <li class='active inbox'>
                             {% else %}
                             <li class='inbox'>
@@ -61,14 +61,14 @@
                             <li>
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts</a>
                             </li>
-                            {% if flag %}
+                            {% if page == 'flag' %}
                             <li class='active'>
                             {% else %}
                             <li>
                             {% endif %}
                                 <a class="" href='{% url "mail:flagged" %}'><i class="fa fa-flag-o"></i>Flagged</a>
                             </li>
-                            {% if trash %}
+                            {% if page == 'trash' %}
                             <li class='active'>
                             {% else %}
                             <li>
