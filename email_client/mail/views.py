@@ -96,7 +96,7 @@ def flag_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_flagged=Case(
             When(is_flagged=True, then=Value(False)),
             When(is_flagged=False, then=Value(True))))
-        return redirect('mail:flagged')
+        return redirect('mail:inbox')
 
 def delete_email(request, email_id):
     if not request.user.is_authenticated:
@@ -107,7 +107,7 @@ def delete_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_deleted=Case(
             When(is_deleted=True, then=Value(False)),
             When(is_deleted=False, then=Value(True))))
-        return redirect('mail:trash')
+        return redirect('mail:inbox')
 
 
 
@@ -122,37 +122,38 @@ def email(request, email_id):
         collect_log(request)
         #query the requisite email from the database
         user = request.user
-        # Get a dictionary list of all mail objects belonging to this user
-        emails = Mail.objects.filter(user=user).values()
+        # Get a dictionary list of mail objects belonging to this user
+        #check if the link is trash, inbox, or flagged
+        email = Mail.objects.get(user=user, ref=email_id)
+        if (email.is_flagged):
+            emails = Mail.objects.filter(user=user, is_flagged=True).values()
+        elif (email.is_deleted):
+            emails = Mail.objects.filter(user=user, is_deleted=True).values()
+        else:
+            emails = Mail.objects.filter(user=user, is_deleted=False, is_flagged=False).values()
+        
         # Evaluate the query set (hits the database)
-        len_emails = len(emails) - 1
-        # Grab db ids for the first and last emails for this user
-        first_id = emails[0]['id']
-        last_id = emails[len_emails]['id']
-        # Find the index of the matching email in emails
-        this_index=0
-        # Go through the query set and find the db id for the email id
-
-        # """ I think I can use the filter function F() for this; """
-        for mail in emails:
-            if mail.get("ref") == int(email_id):
-                this_id = mail.get("id")
-                read_status = mail.get("read")
-                # Once the id is found, we don't need to keep looking
-                break
-            this_index += 1 # Return the position of this email in the email_list
-        if (this_id+1 > last_id): # See if the next id is out of bounds
-            next_email = -1 # Set to -1
-        else:
-            next_email = emails[this_index+1]["ref"] # Else set the next email number to the next email ref number
-
-        # See if the prev id is out of bounds
-        if (this_id-1 < first_id):
-            # Set to -1
-            prev_email = -1
-            # Else set this to the next email ref number
-        else:
-            prev_email = emails[this_index-1]["ref"]
+        len_emails = len(emails)
+        read_status = email.read
+        this_id = email.pk
+        prev_email = -1
+        next_email = -1
+        this_index = 0
+        if len_emails > 1:
+            this_index = -1
+            for index, item in enumerate(emails):
+                if item['id'] == this_id:
+                    this_index = index
+                    break
+            # Grab db ids for the previous and next emails
+            try:
+                prev_email = emails[this_index-1]['ref']
+            except:
+                pass
+            try:
+                next_email = emails[this_index+1]['ref']
+            except:
+                pass
 
         #path to each email (templates/mail/<email_id>.html)
         email_fname = 'mail/emails/' + str(email_id) + '.html'
@@ -165,13 +166,14 @@ def email(request, email_id):
         ### Do I need this line below? ###
         warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
         context = {
-            'email': emails[this_index],
+            'email': email,
             'user': user,
             'email_fname': email_fname,   ## The file path of the selected email
             'next_email': next_email, ## Ref num of the next email if available
             'prev_email': prev_email,  ## Ref num of the previous email if available
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
             'warning_fname': warning_fname, ## Warning number is needed to include warning html as django template
+            'num_emails': len_emails,
         }
         return render(request, 'mail/email.html', context)
 

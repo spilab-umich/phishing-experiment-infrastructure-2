@@ -22,7 +22,7 @@
             <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a>
         </div>
             <ul class="unstyled inbox-pagination" role='navigation' aria-label='Email Navigation'>
-                <li><span>{{ order_num }}-10 of 10</span></li>
+                <li><span>{{ order_num }}-{{num_emails}} of {{num_emails}}</span></li>
                 <li>
                     {% if prev_email > 0 %}
                     <a class="np-btn" href="{% url 'mail:email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>

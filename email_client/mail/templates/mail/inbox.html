@@ -41,6 +41,10 @@
             </a>
         </div>
         <ul class="unstyled inbox-pagination">
+            {% if emails|length < 1 %}
+            <li><span>No emails in this folder</span></li>
+            
+            {% else %}
             <li><span>1-{{emails|length}} of {{emails|length}}</span></li>
             <li>
                 <a class="np-btn" disabled><i class="fa fa-angle-left pagination-left"></i></a>
@@ -48,6 +52,7 @@
             <li>
                 <a class="np-btn" disabled><i class="fa fa-angle-right pagination-right"></i></a>
             </li>
+            {% endif %}
         </ul>
     </div>
     <div class='container-fluid'>
