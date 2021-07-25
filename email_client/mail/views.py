@@ -87,7 +87,7 @@ def inbox(request):
         }
         return render(request, 'mail/inbox.html', context)
 
-def flag_email(request, email_id):
+def flag(request, email_id, next_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -96,9 +96,13 @@ def flag_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_flagged=Case(
             When(is_flagged=True, then=Value(False)),
             When(is_flagged=False, then=Value(True))))
-        return redirect('mail:inbox')
+        if int(next_id) < 1:
+            if "inbox" in request.META['HTTP_REFERER']:
+                return redirect('mail:inbox')
+            return redirect('mail:flagged')
+        return redirect('mail:email', email_id=next_id)
 
-def delete_email(request, email_id):
+def delete(request, email_id, next_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -107,7 +111,11 @@ def delete_email(request, email_id):
         Mail.objects.filter(user=user, ref=email_id).update(is_deleted=Case(
             When(is_deleted=True, then=Value(False)),
             When(is_deleted=False, then=Value(True))))
-        return redirect('mail:inbox')
+        if int(next_id) < 1:
+            if "inbox" in request.META['HTTP_REFERER']:
+                return redirect('mail:inbox')
+            return redirect('mail:trash')
+        return redirect('mail:email', email_id=next_id)
 
 
 
