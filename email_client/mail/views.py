@@ -100,7 +100,7 @@ def flag(request, email_id, next_id):
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
             return redirect('mail:flagged')
-        return redirect('mail:email', email_id=next_id)
+        return redirect('mail:flagged_email', email_id=next_id)
 
 def delete(request, email_id, next_id):
     if not request.user.is_authenticated:
@@ -115,30 +115,21 @@ def delete(request, email_id, next_id):
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
             return redirect('mail:trash')
-        return redirect('mail:email', email_id=next_id)
+        return redirect('mail:trashed_email', email_id=next_id)
 
-
-
-#~mail/email/email_id
-#individual email inbox view
-def email(request, email_id):
-    #bounce the request if the user is not authenticated
-    if not request.user.is_authenticated:
-        return redirect('mail:index')
-    else:
+def return_emails(request, email_id):
         #log the request on the server side
         collect_log(request)
-        #query the requisite email from the database
         user = request.user
         # Get a dictionary list of mail objects belonging to this user
-        #check if the link is trash, inbox, or flagged
         email = Mail.objects.get(user=user, ref=email_id)
-        if (email.is_flagged):
-            emails = Mail.objects.filter(user=user, is_flagged=True).values()
-            page = 'flag'
-        elif (email.is_deleted):
+        page = "NA"
+        if (email.is_deleted):
             emails = Mail.objects.filter(user=user, is_deleted=True).values()
             page = 'trash'
+        elif (email.is_flagged):
+            emails = Mail.objects.filter(user=user, is_flagged=True).values()
+            page = 'flag' # If the email is flagged, this is the Flagged folder page
         else:
             emails = Mail.objects.filter(user=user, is_deleted=False, is_flagged=False).values()
             page = 'inbox'
@@ -165,7 +156,6 @@ def email(request, email_id):
                 next_email = emails[this_index+1]['ref']
             except:
                 pass
-
         #path to each email (templates/mail/<email_id>.html)
         email_fname = 'mail/emails/' + str(email_id) + '.html'
 
@@ -174,7 +164,7 @@ def email(request, email_id):
             Mail.objects.filter(user=user, ref=email_id).update(read="read")
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
             user.unread_count -= 1
-        ### Do I need this line below? ###
+        
         warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
         context = {
             'email': email,
@@ -187,7 +177,32 @@ def email(request, email_id):
             'num_emails': len_emails,
             'page': page,
         }
-        return render(request, 'mail/email.html', context)
+        print(context)
+        return context
+
+
+def flagged_email(request, email_id):
+    #bounce the request if the user is not authenticated
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        context = return_emails(request, email_id)
+    return render(request, 'mail/email.html', context)
+
+def trashed_email(request, email_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        context = return_emails(request, email_id)
+    return render(request, 'mail/email.html', context)
+            
+
+def inbox_email(request, email_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        context = return_emails(request, email_id)
+    return render(request, 'mail/email.html', context)            
 
 def ajax(request):
     # Catches POST requests from AJAX

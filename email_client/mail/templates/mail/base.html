@@ -45,11 +45,11 @@
                                 <a href='{% url "mail:inbox" %}'><i class='fa fa-inbox'></i>Inbox
                                 {% if user.unread_count > 0 %}
                                 <span class='visually-hidden'>Number of unread emails: </span>
-                                {% if not inbox %}
+                                    {% if page != 'inbox' %}
                                     <span class='label label-no-danger pull-right'>
-                                {% else %}
+                                    {% else %}
                                 <span class='label label-danger pull-right'>
-                                {% endif %}
+                                    {% endif %}
                                     {{ user.unread_count }}
                                 </span>
                                 {% endif %}

@@ -1,0 +1,204 @@
+/* for the signin page */
+.form-group input {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+
+}
+
+.form-group input:focus {
+  border-bottom: 1.5px solid #4285f4;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+}
+
+/* inbox.html */
+/* from akshay's old file */
+.sidebar {
+  color: #000000;
+  position: relative;
+  max-width: 240px;
+  border-bottom-width: 5px;
+  border-bottom-color: #6a6f80;
+  /* -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+}
+
+
+.sidebar .category-content {
+  text-align:center;
+}
+
+.sidebar li{
+  color: #202124;
+  font-size: .875rem;
+}
+
+.sidebar .icon img {
+  /* background-image: url('/static/img/inbox_gm_googlered600_20dp.png'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: #202124;
+  opacity: .54;
+}
+
+.sidebar .icon img.inbox {
+  /* background-image: url('/static/img/inbox_gm_googlered600_20dp.png'); */
+  opacity: 1;
+}
+
+.folders{
+  align-items: center;
+  display: flex;
+}
+
+a.brand-logo {
+  min-width:238px;
+}
+
+/* ------------------------------------------------------------------------------
+*
+*  # Mail list
+*
+*  Inbox page - list, read and write
+*
+*  Version: 1.0
+*  Latest update: Dev 5, 2016
+*
+* ---------------------------------------------------------------------------- */
+.table-inbox {
+  table-layout: fixed;
+}
+.table-inbox tr td {
+  cursor: pointer;
+  background-color: #fafafa;
+}
+.table-inbox tr td:not(:first-child) {
+  padding-left: 0;
+}
+.table-inbox tr.unread {
+  font-weight: 700;
+}
+.table-inbox tr.unread td {
+  background-color: #fff;
+}
+.table-inbox .table-inbox-checkbox {
+  width: 58px;
+}
+.table-inbox .table-inbox-star,
+.table-inbox .table-inbox-attachment {
+  width: 36px;
+}
+.table-inbox .table-inbox-image {
+  width: 54px;
+}
+.table-inbox .table-inbox-name {
+  width: 180px;
+}
+.table-inbox .table-inbox-message,
+.table-inbox .table-inbox-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.table-inbox .table-inbox-preview {
+  font-weight: normal;
+  color: #999999;
+}
+.table-inbox .table-inbox-time {
+  text-align: right;
+  width: 80px;
+}
+@media (max-width: 768px) {
+  .table-inbox {
+    min-width: 480px;
+  }
+  .table-inbox .table-inbox-message,
+  .table-inbox .table-inbox-name {
+    white-space: normal;
+  }
+  .table-inbox .table-inbox-subject {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .table-inbox .table-inbox-star,
+  .table-inbox .table-inbox-attachment,
+  .table-inbox .table-inbox-image {
+    display: none;
+  }
+}
+.mail-details-read {
+  margin: 0;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+.mail-details-write {
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+.mail-details-write .control-label {
+  padding: 10px 20px;
+}
+.mail-details-write .form-control {
+  border-width: 0;
+  padding: 10px 20px;
+  border-radius: 0;
+  height: auto;
+}
+.mail-details-write .form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.mail-container-read {
+  max-width: 100%;
+  overflow: auto;
+  padding: 20px;
+}
+.mail-container-write {
+  border-top: 1px solid #ddd;
+}
+.mail-container-write .note-editor {
+  border-width: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.mail-attachments-container {
+  padding: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+.mail-attachments-heading {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mail-attachments {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  list-style: none;
+}
+.mail-attachments > li {
+  display: inline-block;
+  font-size: 13px;
+  padding: 15px 20px;
+  background-color: #fcfcfc;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.mail-attachments .mail-attachments-preview {
+  display: inline-block;
+  float: left;
+}
+.mail-attachments .mail-attachments-preview > i {
+  top: 0;
+  margin-top: 4px;
+}
+.mail-attachments .mail-attachments-content {
+  margin-left: 47px;
+}

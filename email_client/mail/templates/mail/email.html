@@ -25,14 +25,26 @@
                 <li><span>{{ order_num }}-{{num_emails}} of {{num_emails}}</span></li>
                 <li>
                     {% if prev_email > 0 %}
-                    <a class="np-btn" href="{% url 'mail:email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
+                        {% if email.is_deleted %}
+                    <a class="np-btn" href="{% url 'mail:trashed_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
+                        {% elif email.is_flagged %}
+                    <a class="np-btn" href="{% url 'mail:flagged_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
+                        {% else %}
+                    <a class="np-btn" href="{% url 'mail:inbox_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
+                        {% endif %}
                     {% else %}
                     <a class="np-btn" aria-label="You are on the first email" disabled><i class="fa fa-angle-left pagination-left"></i></a>
                     {% endif %}
                 </li>
                 <li>
                     {% if next_email > 0 %}
-                    <a class="np-btn" href="{% url 'mail:email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
+                        {% if email.is_deleted %}
+                    <a class="np-btn" href="{% url 'mail:trashed_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>                    
+                        {% elif email.is_flagged %}
+                    <a class="np-btn" href="{% url 'mail:flaged_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
+                        {% else %}
+                    <a class="np-btn" href="{% url 'mail:inbox_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
+                        {% endif %}
                     {% else %}
                     <a class="np-btn" aria-label="You are on the last email" disabled><i class="fa fa-angle-right pagination-right"></i></a>
                     {% endif %}
