@@ -177,7 +177,6 @@ def return_emails(request, email_id):
             'num_emails': len_emails,
             'page': page,
         }
-        print(context)
         return context
 
 

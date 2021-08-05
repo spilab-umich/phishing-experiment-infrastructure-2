@@ -41,7 +41,7 @@
                         {% if email.is_deleted %}
                     <a class="np-btn" href="{% url 'mail:trashed_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>                    
                         {% elif email.is_flagged %}
-                    <a class="np-btn" href="{% url 'mail:flaged_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
+                    <a class="np-btn" href="{% url 'mail:flagged_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
                         {% else %}
                     <a class="np-btn" href="{% url 'mail:inbox_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
                         {% endif %}
