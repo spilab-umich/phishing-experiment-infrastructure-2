@@ -1,0 +1,1088 @@
+Delivered-To: jpetelka@gmail.com
+Received: by 2002:ac9:1ecc:0:0:0:0:0 with SMTP id u12csp5890979oci;
+        Wed, 28 Jul 2021 09:19:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwC9h8A9cCGi9OkkuKIWM29Nm7Eavqw+yAu9Q6L5LD/CSv11LQi/y8eiKQjdnMkN9I5CMw7
+X-Received: by 2002:a37:84c1:: with SMTP id g184mr476625qkd.102.1627489193287;
+        Wed, 28 Jul 2021 09:19:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1627489193; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZoF+qyVPJSbt+4vMRQFFCEhvc8VcRQU6ACww7NfHaqSwcvBqxIXhOPePvxGnDTyKuz
+         aajSKo3KgN9+A91HM3rS1tI49J2+Tz5V709hUa18R/9f/rcB9AgWdGZzFRu0PrptpPFu
+         jkF4ReWQstpTC0pDR/E14DhWp8FqF3trSFTgTvmb6gRHaz8iISMklMNOqCUYjlCjHcvC
+         Guga4WS6BoXRtfVmFDLm/SLWSm4j1OAg4Q1yLtpbTJtFeGMu1yUc5RkY53mPr0yDR+S+
+         jIjqNqhN2aENRtYqP2mVW2m9BoNi/P+ImgITvv/tBbhOfTO90oqTJ8VbxmG9f2849Nz+
+         Yw1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:message-id:list-id:reply-to:mime-version
+         :list-unsubscribe-post:list-unsubscribe:date:subject:to:from
+         :dkim-signature;
+        bh=l5xeY+wQ1nYyLHkjotCKw7P4OYNc+mJU6Qg33Xxq1j0=;
+        b=tgut+g83JOFpHBWF7BQN+Srgu3Uz3GBK7nhAHqN5yDLmk4Wx3T/7JQ5y6870/oRkhS
+         v6sZQug3/mayhryaqMiNZQblfv4XZIsvbZ8dvDB20jbtJ+WBh5wapRelPVjqAteu19Rt
+         q4N0VVu3CAxnQvEyPZS0PqOJ+yTAvYSoT7lnQo5rCsY7fyCOVrK9ZzClA/85ze2dfqfG
+         xpwFXgx78OGRP1gkWc6EH73X3ijirpcCsUB8Gt/MYgP50Oz7AC1ww0KE3z+aSnunyyD+
+         LKa/fgeRffaZUAXHJ/4TSTZW8ZiGzC4SEIRQGmvqfQmaGQ8BbdmiF7o7qfAQPF3ra8MW
+         AhLQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@o.delta.com header.s=200608 header.b=l6+V9m1s;
+       spf=pass (google.com: domain of bounce-26_html-14076799-180546-10965567-5112@bounce.o.delta.com designates 136.147.181.248 as permitted sender) smtp.mailfrom=bounce-26_HTML-14076799-180546-10965567-5112@bounce.o.delta.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=delta.com
+Return-Path: <bounce-26_HTML-14076799-180546-10965567-5112@bounce.o.delta.com>
+Received: from mta3.o.delta.com (mta3.o.delta.com. [136.147.181.248])
+        by mx.google.com with ESMTPS id k16si188760qkk.213.2021.07.28.09.19.52
+        for <jpetelka@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Jul 2021 09:19:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-26_html-14076799-180546-10965567-5112@bounce.o.delta.com designates 136.147.181.248 as permitted sender) client-ip=136.147.181.248;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@o.delta.com header.s=200608 header.b=l6+V9m1s;
+       spf=pass (google.com: domain of bounce-26_html-14076799-180546-10965567-5112@bounce.o.delta.com designates 136.147.181.248 as permitted sender) smtp.mailfrom=bounce-26_HTML-14076799-180546-10965567-5112@bounce.o.delta.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=delta.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=o.delta.com;
+ h=From:To:Subject:Date:List-Unsubscribe:List-Unsubscribe-Post:MIME-Version:
+ Reply-To:List-ID:X-CSA-Complaints:Message-ID:Content-Type;
+ i=DeltaAirLines@o.delta.com;
+ bh=l5xeY+wQ1nYyLHkjotCKw7P4OYNc+mJU6Qg33Xxq1j0=;
+ b=l6+V9m1ssTzy1ycIVxAJUTN0nhVpUnkFD2PvJT2QCvi9PRq0LA0/Qey1talsMaWud7mNM2kEagx5
+   W9dD9UTKZfIt4KU4ZRVXtZrcw+HHD7xzlMklL9viwJ9iHmtS7PTXl9pNp8zb0hbvr/gW1MH+Brj5
+   CJwoVtaE12O70SMzMGQ=
+Received: by mta3.o.delta.com id h061qi2fmd4c for <jpetelka@gmail.com>; Wed, 28 Jul 2021 16:19:51 +0000 (envelope-from <bounce-26_HTML-14076799-180546-10965567-5112@bounce.o.delta.com>)
+From: "Delta Air Lines" <DeltaAirLines@o.delta.com>
+To: <jpetelka@gmail.com>
+Subject: More Time To Enjoy Your Benefits
+Date: Wed, 28 Jul 2021 10:19:51 -0600
+List-Unsubscribe: <http://click.o.delta.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiIxMDk2NTU2NyIsInMiOiIxNDA3Njc5OSIsImxpZCI6IjI2IiwiaiI6IjE4MDU0NiIsImpiIjoiNTExMiIsImQiOiIxMDE0OCJ9.WpQ6mLL3Wf_VDE3O_-mIc30EVbqQvq1a5mQ049iafTY>, <mailto:leave-fd8316761a3c402029-fe5415747563027a7c1d-fec715787561007b-fe5815707c6201787313-ff3611717466@leave.o.delta.com>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+x-CSA-Compliance-Source: SFMC
+MIME-Version: 1.0
+Reply-To: "Marketing Email Reply Inbox" <reply-180546-26_HTML-14076799-10965567-5112@o.delta.com>
+List-ID: <10965567.xt.local>
+X-CSA-Complaints: csa-complaints@eco.de
+X-SFMC-Stack: 1
+x-job: 10965567_180546
+Message-ID: <65ea88bb-2148-4145-8096-119ae009b025@ind1s01mta1196.xt.local>
+Feedback-ID: 10965567:180546:136.147.181.248:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="tIrEOmpkEOa6=_?:"
+
+This is a multi-part message in MIME format.
+
+--tIrEOmpkEOa6=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Delta Air Lines
+ 
+
+ 
+
+
+ 
+ 
+ 
+ 
+https://view.o.delta.com/?qs=306d97ed69f630a06b8668d22788530f360f8eb33a498ff3cb33598f3b04180b2d24b6928aa02247b5bfa61393a6c238b58fdf9e83b4a63c56633db588b2fa11f6c50e7009b1042cba9cb2690a0b9c35 
+View as a Web Page 
+ 
+
+ 
+
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8ebc6d9519401f335a6c56a8c06be26507728bc7cc2a715b69cbdffec8131625b1d3906708aa1f2198ac2eef8990318384d17b66ac104f4aa 
+
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f883ded8a93146650f03bf9cb19e45427ad1608cc7ce4d005e171012fd7cbf7c08295ad81e2ee130ce8d65e8fa062177c9bdf7e42f8eb93603 
+#6512652808 
+| 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8bc09eed1ecac2a8048f110323324e7d370612609af6e5cc6c4aba9c41c00eaf1f0c608c80362788bf71bd22417815c1e3ae8ea6d3d5eff4c 
+SkyMiles<sup style="font-size:70%">(R)</sup> Member 
+| 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8914e6cbe926ea715db953c12e4da7cf391b1fe8471b6941cf68293026b4ecedfe171226e5db0704a12934dec4142ff7f8a71cd5f7cc20d1e 
+130,337 Miles 
+
+
+
+
+ 
+ 
+
+ 
+https://click.o.delta.com/u/?qs=c6b04cb528b83feb0644f11f648c2d5fb730f8b1a41d3f53cd586f5c2b2586ecbb080fff0d8f6b0368c0bfa43637ca41484eae6b4d4fb9a0 
+
+
+
+As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our "new normal" looks like. In appreciation of your loyalty, we've extended the expiration date of Companion Certificates, Delta Sky Club Passes and Delta Flight Credits to January 31, 2023 to give you more time to reconnect with the people and places you love most. We look forward to serving you onboard soon.
+
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f87d30fc9c80fd1dc7521118d38cb648af9e6e4f1b407aaacc07f155d405e909ce34b5cf031e5a28840da03d1e9ddb6604 
+LEARN MORE 
+
+
+ 
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8ebc6d9519401f335a6c56a8c06be26507728bc7cc2a715b69cbdffec8131625b1d3906708aa1f2198ac2eef8990318384d17b66ac104f4aa 
+
+
+ 
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f89e9fde27532f4fc64c5a87c80a057875827df7d128a0e7ef62d61ede92776b62c23503a39cc6eb62c305d39e3abff81c69ec7678284be6bc 
+Help Center 
+ -
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f829e4ee9ad96b81f785c7573ad29d78afe2a4d447e2e30a28a93553fe2d6b1278275c703236ef8d7884d44547360546123305ff177b4ca274 
+Flight Deals 
+ -
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8a7f89d85c543a0e59dee3a63327805594c5cf2c88caa4160fc641b968ad199bc5cb542b9d1f20a51d37ff16dd4f68b9e903240a5017c12ce 
+Earn Miles 
+ -
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f82c0d96939d57211286171fa3456d4d35d9f91bdac27dc0d7091e5db2ad99cd02fb7ec619bd9cba2bf15006f1ef0fa1e281e8b214407406bb 
+Give Back 
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8256af1f832c5768f607a373e2c5aeaf931952eda052dd1798263499356633df5b8718730bd20c189528cacf50e6074117665fb4599f96844 
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8d6bb10a060177c990dba49c4989c52a9ca19a1be45e391a7f7709b453255549f9fb8208648cdb40f5abb218f397033f5bdab67170953a72f 
+
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f88f3ed533be74ce62ff2d73b7c646577883385f0aaae8dd2fe3a91d4888339b11362358c10d89ae861963b49dead8e1221e00388033da5807 
+
+ 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8bf793067d246803dea152f41aad12b1d12103e7b173a1d5c329938d71da0cd5b0be19c6d3c29c9e9b49706fa381b3445f18bd5c295bbb6ba 
+Privacy Policy 
+
+
+ 
+Terms and Conditions
+
+SkyMiles: All SkyMiles Program rules apply to SkyMiles Program membership, miles, offers, mile accrual, mile redemption, and travel benefits. To review the rules, please visit 
+https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8b1a84dafa66e441c069e7952d8e9c9effb38ada66b5b31c12b16a52b19dbc8f2fa9877097a133c7d439f7a268344bf76 
+delta.com/memberguide.  Other restrictions may apply. Offers, prices, rules, and benefits subject to change without notice.
+
+
+ 
+
+ 
+ 
+
+ You are receiving this operational message due to your upcoming travel or recent activity with Delta. Even if you have opted-out of receiving Delta marketing communications, you may still receive operational emails with relevant information based on your upcoming travel or recent activity. 
+ 
+ 
+ 
+
+
+ This email was sent to: 
+mailto:JPETELKA@GMAIL.COM 
+JPETELKA@GMAIL.COM 
+
+
+ (c) 2021 Delta Air Lines, Inc. All rights reserved.
+ 
+
+ Delta Blvd. P.O. Box 20706 - Atlanta, GA 30320-6001
+ 
+
+
+
+--tIrEOmpkEOa6=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" xml:lang="en">
+<html>
+ <!-- Delta Air Lines Email Template -->
+   <!-- Approved Version 08.12.19 -->
+   <!-- Footer nav and logo updates 03.03.20 -->
+   <!-- Media query updates 08.19.20 -->
+   <!-- eCredit added 10.07.20 -->
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="format-detection" content="telephone=no"> 
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+  <title>Delta Air Lines</title>
+
+  <style type="text/css">
+   
+   ReadMsgBody {
+    width: 100%;
+   }
+
+   .ExternalClass {
+    width: 100%;
+   }
+
+   .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+    line-height: 100%;
+   }
+
+   #outlook a {
+    padding: 0;
+   }
+
+   body {
+    -webkit-text-size-adjust:100%; 
+    -ms-text-size-adjust:100%; 
+    margin:0 !important; 
+    padding: 0 !important;
+    line-height:normal;
+   }
+
+   h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px !important; 
+    line-height: normal !important;
+    color:#0B1F66 !important; 
+    margin: 0px !important;
+    font-weight: normal !important;
+   }
+
+   h2 {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 18px !important; 
+    line-height: normal !important; 
+    color:#0B1F66 !important; 
+    margin: 0px !important;
+    font-weight: bold !important;
+   }
+
+   h3 {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 16px !important; 
+    line-height: normal !important; 
+    color:#0B1F66 !important; 
+    margin: 0px !important;
+    font-weight: normal !important;
+   }
+
+   p {
+    margin: 1em 0;
+   font-size: 16px; 
+   line-height: 130%; 
+   }
+
+   table td {
+    border-collapse: collapse;
+   }
+
+   img {
+    outline:0; 
+    display: block;
+    border: 0;
+    text-decoration: none;
+   }
+   
+    a {
+       font-size: 16px;
+       font-weight: bold;
+       color: #4470C3;
+       text-decoration: none;
+     }
+    
+     #Greeting a {
+      font-size: 14px;
+      font-weight: normal;
+      color: #0B1F66;
+    }
+    
+    #Terms a {
+      font-size: 12px;
+      font-weight: normal;
+      color: #4470C3;
+      text-decoration: none;
+    }
+    
+   a img {
+    border:none;
+   }
+
+   sup, sub {
+    font-size: 0.6em !important;
+    line-height: 100% !important;
+   }
+
+   sup {
+    vertical-align: text-top !important;
+   }
+
+   sub { 
+    vertical-align: text-bottom !important; 
+   }
+         ul li {
+         text-align:-webkit-match-parent;
+         display:list-item;
+         list-style: disc !important;
+         }
+         ol li {
+         text-align:-webkit-match-parent;
+         display:list-item;
+         }
+         ul li ul, ol li ul {
+         list-style: circle !important;
+         }
+         .transparent:hover {
+         -khtml-opacity: 0.75;
+         -moz-opacity: 0.75;
+         -ms-filter: progid: DXImageTransform.Microsoft.Alpha(opacity=75);
+         filter: alpha(opacity=75);
+         opacity: 0.75;
+         zoom: 1
+         }
+  </style>
+
+  <!--[if (mso 12) | (mso 14) | (mso 15) | (mso 16)]>    <style type="text/css">     sup, sub {      font-size: 100% !important;     }    </style>   <![endif]-->
+
+  <!-- Break styles into groups to prevent Gmail ignore -->
+  
+  <style type="text/css">
+   /* Browser-specific workarounds */
+   @-ms-viewport {
+    width: device-width;
+   }
+
+   /* Stops email clients resizing small text. */
+   *{
+    -ms-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+   } 
+
+   /* Centers email on Android 4.4 */
+   div[style*="margin: 16px 0"] {
+    margin:0 !important;
+   }
+
+   /* Prevents Email Clients & Outlook from adding extra spacing to tables. */
+   table,td {
+    border-spacing: 0 !important; 
+    border-collapse: collapse !important; 
+    mso-table-lspace: 0pt !important; 
+    mso-table-rspace: 0pt !important;
+   }
+
+   /* Uses a better rendering method when resizing images in IE. */
+   img {
+    -ms-interpolation-mode:bicubic;
+   }
+
+   /* A work-around for iOS meddling in triggered links. */
+   *[x-apple-data-detectors] {
+    color: inherit !important; 
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+   }
+
+   /* A work-around for Gmail meddling in triggered links. */
+   .x-gmail-data-detectors, .x-gmail-data-detectors *, .aBn {
+    border-bottom: 0 !important; 
+    cursor: default !important;
+   }
+
+   /* A work-around for Samsung Mail meddling in triggered links. */
+   #MessageViewBody a {
+    color: inherit; 
+    text-decoration: none; 
+    font-size: inherit; 
+    font-family: inherit; 
+    font-weight: inherit; 
+    line-height: inherit;
+   }
+
+   /* Hotmail symbol fix for mobile devices */
+         .ExternalClass img[class^=Emoji] {
+         width: 10px !important;
+         height: 10px !important;
+         display: inline !important;
+         }
+
+   /* Prevents Gmail from displaying an download button on large, non-linked images. */
+   .a6S {
+    display: none !important; 
+    opacity: 0.01 !important;
+   }
+
+    /* Prevents Gmail from displaying large, open spaces when images are not loaded. */
+   td[class=em_hide], table[class=em_hide], span[class=em_hide], br[class=em_hide] {
+    display:none !important;
+   }
+
+   /* Prevents underlining the button text in Windows 10 */
+   .button-link {
+    text-decoration: none !important;
+   }
+
+   /* End Browser-specific workarounds */
+     </style>
+  
+  <!-- MOBILE GLOBAL STYLES -->
+  
+  <style type="text/css">
+   @media only screen and (max-width: 600px) {
+    .container {
+     width: 100% !important;
+    }
+    
+    .mobile-hidden { 
+     display:none !important; 
+    }
+     
+    .desktop-hidden { 
+     display:inline !important;
+    }
+    
+    .responsive-td {
+     width:100% !important; 
+     display:block !important; 
+     padding:0 !important; 
+    }
+    
+    body {
+     padding: 0px !important; 
+     font-size: 16px !important;
+    }
+    
+    h1 { 
+     font-size: 20px !important;
+     font-weight: normal !important;
+    }
+    
+    h2 {
+     font-size: 18px !important;
+     font-weight: bold !important;
+    }
+    
+    h3 {
+     font-size: 16px !important;
+     font-weight: normal !important;
+    }
+     
+    .buttonstyles {
+      font-size:16px !important;
+      line-height:16px !important;
+      padding-left:20px !important;
+      padding-right:20px !important;
+     }
+     
+     .copy {
+      font-size:16px !important;
+      line-height: normal !important;
+      padding:0 !important;
+     }
+     
+     .banner-txt{
+     font-size:14px !important;
+     line-height: normal !important;
+     }
+     
+    .module-mobile-spacer {
+      height:30px !important;
+     }
+     
+    .header_logo {
+     height:24px !important; 
+     width: 140px !important;
+     margin-top:0px !important;
+    }
+
+    .header_jvlogo {
+     height:21px !important;
+     width: auto !important;
+     margin-top:0px !important;
+    }
+
+     #Greeting a {
+       font-size: 12px !important;
+       font-weight: normal !important;
+     }
+
+    .SMInfo {
+     font-size: 12px !important; 
+     line-height: normal !important;
+     padding-top: 15px !important;
+     text-align:center !important;
+    }
+    
+    .footer_logo {
+     padding-bottom:20px !important;
+    }
+    
+    .navigation_stack {
+     width:100% !important; 
+     display:block !important; 
+     padding:0.5em 0 !important;
+    }
+    
+    .navigation_divider {
+     width:100% !important;
+      border-style:none !important; 
+     border-width:0 !important; 
+     padding-bottom:0px !important;
+    }
+    
+    td[class=social_icons] {
+     padding-top:15px !important; 
+     padding-bottom:20px !important;
+    }
+     
+     /* Added on 10/4/19 by Evan Vega as very helpful responsive classes */
+    .devicewidth {
+      width:100% !important; 
+     }
+     .halfwidth {
+      width: 280px !important; 
+      margin-right: auto !important;
+      margin-left: auto !important;
+     }
+     .font26 {
+       font-size:26px !important;
+       line-height: 30px !important;
+      }
+    .font25 {
+      font-size:25px !important;
+      line-height: 29px !important;
+      }
+    .font24 {
+      font-size:24px !important;
+      line-height: 28px !important;
+      }
+    .font23 {
+      font-size:23px !important;
+      line-height: 27px !important;
+      }
+    .font22 {
+      font-size:22px !important;
+      line-height: 26px !important;
+      }
+    .font21 {
+      font-size:21px !important;
+      line-height: 25px !important;
+      }
+    .font20 {
+      font-size:20px !important;
+      line-height: 24px !important;
+      }
+     .font19 {
+      font-size:19px !important;
+      line-height: 23px !important;
+      }
+    .font18 {
+      font-size:18px !important;
+      line-height: 22px !important;
+      }
+    .font17 {
+      font-size:17px !important;
+      line-height: 21px !important;
+      }
+    .font16 {
+      font-size:16px !important;
+      line-height: 20px !important;
+      }
+    .font15 {
+      font-size:15px !important;
+      line-height: 19px !important;
+      }
+    .font14 {
+      font-size:14px !important;
+      line-height: 18px !important;
+      }
+    .font13 {
+      font-size:13px !important;
+      line-height: 16px !important;
+      }
+    .font12 {
+      font-size:12px !important;
+      line-height: 15px !important;
+    }
+    .font11 {
+      font-size:11px !important;
+      line-height: 14px !important;
+    }
+    .font10 {
+      font-size:10px !important;
+      line-height: 13px !important;
+    }
+     .mLeft {
+      text-align: left !important;
+     }
+      .mRight {
+      text-align: right !important;
+      }
+     .mPadR0 {
+      padding-right: 0px !important;
+     }
+     .mPadR5 {
+      padding-right: 5px !important;
+     }
+     .mPadR10 {
+      padding-right: 10px !important;
+     }
+     .mPadR15 {
+      padding-right: 15px !important;
+     }
+     .mPadR20 {
+      padding-right: 20px !important;
+     }
+     .mPadR25 {
+      padding-right: 25px !important;
+     }
+     .mPadR30 {
+      padding-right: 30px !important;
+     }
+     .mPadL0 {
+      padding-left: 0px !important;
+     }
+     .mPadL5 {
+      padding-left: 5px !important;
+     }
+     .mPadL10 {
+      padding-left: 10px !important;
+     }
+     .mPadL15 {
+      padding-left: 15px !important;
+     }
+     .mPadL20 {
+      padding-left: 20px !important;
+     }
+     .mPadL25 {
+      padding-left: 25px !important;
+     }
+     .mPadL30 {
+      padding-left: 30px !important;
+     }
+     .mPadLR5 {
+       padding-right: 5px !important;
+       padding-left: 5px !important;
+     }
+     .mPadLR10 {
+       padding-right: 10px !important;
+       padding-left: 10px !important;
+     }
+     .mPadLR15 {
+       padding-right: 15px !important;
+       padding-left: 15px !important;
+     }
+     .mPadLR20 {
+       padding-right: 20px !important;
+       padding-left: 20px !important;
+     }
+     .mPadT15 {
+       padding-top: 15px !important;
+     }
+     .mPadT21 {
+       padding-top: 21px !important;
+     }
+     .mPadB15 {
+       padding-bottom: 15px !important;
+     }
+     .mWidth5 {
+       width:5px !important; 
+     }
+     .mWidth10 {
+       width:10px !important; 
+     }
+     .mWidth12 {
+       width:12px !important; 
+     }
+     .mWidth13 {
+       width:13px !important; 
+     }
+     .mWidth15 {
+       width:15px !important; 
+     }
+     .mWidth20 {
+       width:20px !important; 
+     }
+     .mWidth25 {
+       width:25px !important; 
+     }
+     .mWidth30 {
+       width:30px !important; 
+     }
+     .mWidth35 {
+       width:35px !important; 
+     }
+     .mWidth40 {
+       width:40px !important; 
+     }
+     .mWidth45 {
+       width:45px !important; 
+     }
+     .mWidth50 {
+       width:50px !important; 
+     }
+     /* Outlook app-specific width fix */
+     body[data-outlook-cycle] .oa {
+      display: block !important;
+      max-width: 300px !important;
+      min-width: 300px !important;
+      width: 300px !important;  
+    }
+    body[data-outlook-cycle] .outlookhide {
+      display:none !important;
+     }
+    [class~="x_hideoutlookweb"] {
+      display:none !important;
+     }
+
+/* Added on 9/30/2019 by Tony Rogers to address poll choices in 2 column layout */
+    td[class=poll_option] {
+     line-height: normal !important;
+     padding: 10px 20px 10px 0;
+     width: 20% !imporatant;
+    }
+
+    img[class=social_icons] {
+     height:30px !important; 
+     width: 30px !important;
+    }
+    
+    .multi_purpose_txt_width {
+     line-height: normal !important;
+     margin: auto !important;
+     width: 256px !important;
+     text-align: left !important;
+    }
+     
+    .multi_purpose_alt_title {
+     font-weight:normal !important;
+     font-size:14px !important;
+    }
+     
+    .multi_purpose_alt_price {
+     font-size:18px !important;
+     font-weight:bold !important;
+     line-height: normal !important;
+    }
+    
+    .multi_purpose_cta_width {
+     font-size:14px !important;
+     line-height: normal !important;
+     margin: auto !important;
+     width: 256px !important;
+     text-align: left !important;
+    }
+    
+    .icon_list_sxs_txt_width {
+     font-size:14px !important;
+     line-height: normal !important;
+     width: auto !important;
+     text-align: left !important;
+    }
+     
+    .icon_list_sxs_txt {
+     font-size:14px !important;
+     line-height: normal !important;
+     }
+     
+    .icon_list_txt_width {
+     font-size:14px !important;
+     line-height: normal !important;
+     margin: auto !important;
+     width: 175px !important;
+     text-align: center !important;
+    }
+
+/* Added on 9/27/2019 by Tony Rogers to address Thumbs Up/Down image resizing issues on mobile */
+     img[class=poll_thumbs] {
+     height: 18px !important; 
+     width: 18px !important;
+    }
+
+     img[class=poll_thumbs_2] {
+     height: 28px !important; 
+     width: 60px !important;
+    }
+
+/* Added on 9/30/2019 by Tony Rogers to address Flight Info resizing issues on mobile */
+     .itinerary {
+     line-height: normal !important; 
+     text-align: center !important;
+     font-size:18px !important;
+     width: auto !important;
+    }
+     
+     .flight_info {
+     line-height: normal !important; 
+     text-align: center !important;
+     font-size:10px !important;
+     width: auto !important;
+    }
+
+ /* Prevents Gmail App from increasing the font sizes on some mobile devices */   
+  *[class="gmail-fix"] {
+   width: 100% !important;
+   min-width: 320px !important;
+   height: 1px !important;
+  }
+    
+    .gmail-fix {
+    width: 100% !important;
+    min-width: 320px !important;
+    height: 1px !important;
+   }
+ }
+  </style>
+  <!-- END MOBILE GLOBAL STYLES -->
+  
+  <!--[if mso]>    <style type="text/css">     /* Begin Outlook Font Fix */     body, div, table, td {      font-family: Arial, Helvetica, sans-serif ;      font-size:12px;      color:#7C828A;      line-height:14px;     }     /* End Outlook Font Fix */    </style>   <![endif]-->
+<!--[if gte mso 9]>       <xml>          <o:OfficeDocumentSettings>             <o:AllowPNG></o:AllowPNG>             <o:PixelsPerInch>96</o:PixelsPerInch>          </o:OfficeDocumentSettings>       </xml>       <![endif]-->
+      <!--[if gte mso 9]>       <style>          li {text-align:-webkit-match-parent; display:list-item;text-indent: -1em;}       </style>       <![endif]-->
+ </head>
+
+ <body bgcolor="#ffffff" text="#0B1F66" style="background-color: #ffffff; color: #0B1F66; padding: 0px; -webkit-text-size-adjust:none; font-size: 14px; font-family:arial,helvetica,sans-serif;">
+  
+  <div style="font-size:0px; line-height:1px;">
+    <img src="https://click.o.delta.com/open.aspx?ffcb10-fec715787561007b-fe631574756003797413-fe5815707c6201787313-ff971676-fe5415747563027a7c1d-ff3611717466&d=10148&bmt=0" width="1" height="1" alt="">
+    
+    <!-- BEGIN CONTENT BLOCK LINK TABLE LOOKUP SCRIPT -->
+      <table style="min-width: 100%; " class="stylingblock-content-wrapper" width="100%" cellspacing="0" cellpadding="0"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table>
+    <!-- END CONTENT BLOCK LINK TABLE LOOKUP SCRIPT -->
+  </div>
+  
+  <!-- BEGIN OUTER TABLE WITH 100% WIDTH -->
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" role="presentation">
+   <tr>
+    <td width="100%" align="center" style="background-color:#ffffff;" bgcolor="#ffffff">
+     <!-- BEGIN CONTAINER TABLE FOR EMAIL BODY -->
+     <table width="600" class="container" align="center" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto; padding: 0;" role="presentation">
+   
+ <!-- BEGIN FIX TO PREVENT GMAIL APP FROM INCREASING THE FONT SIZES ON SOME MOBILE DEVICES -->  
+  <tr>
+   <td>
+    <table class="gmail-fix" cellpadding="0" cellspacing="0" border="0" align="center" width="600" role="presentation">
+     <tr>
+      <td class="gmail-fix" style="line-height: 1px; mso-line-height-rule: exactly; min-width: 600px;">
+       <img class="gmail-fix" src="http://image.o.delta.com/lib/fe5815707c6201787313/m/10/3f473969-95d8-43bc-8d81-7bdb8c2d4dd8.png" width="600" height="1" style="display: block; max-height: 1px; min-height: 1px; width: 600px;"/>
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+ <!-- END FIX TO PREVENT GMAIL APP FROM INCREASING THE FONT SIZES ON SOME MOBILE DEVICES -->
+   
+      <tr>
+       <td align="center" valign="top">
+        <!-- BEGIN EMAIL BODY TABLE -->
+        <table cellspacing="0" cellpadding="0" style="width:100%" role="presentation">
+         <tbody>
+          <!-- BEGIN HEADER REGION -->
+                                 <tr>
+                                    <td align="center" valign="middle" style="padding-top: 10px; padding-bottom: 0px;">
+                                       <table cellspacing="0" cellpadding="0" style="width:100%" role="presentation">
+                                          <tr>
+                                            <td valign="middle" class="devicewidth" style="padding: 5px 5px 10px 10px; text-align:left; font-size:12px; mso-line-height-rule: exactly; line-height: 14px !important; font-weight:normal; width: 230px;">
+                                                
+                                                
+                                             </td>
+                                             <td valign="middle" class="mobile-hidden" style="margin-top:20px; text-align:right; font-size:12px; font-weight:normal;padding: 5px 10px 10px 0px;">
+                                                <a href="https://view.o.delta.com/?qs=306d97ed69f630a06b8668d22788530f360f8eb33a498ff3cb33598f3b04180b2d24b6928aa02247b5bfa61393a6c238b58fdf9e83b4a63cf89972bd495fa133f2afb8e6b9328c1302a0e907dccbd73e"  target="_blank" style="font-size:11px; font-weight:normal; text-decoration:underline; color:#666666;">View as a Web Page</a>
+                                             </td>
+                                          </tr>
+                                       </table>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td height="20" style="font-size:20px; line-height:20px; font-weight:normal;" bgcolor="#F5F7FA" >&nbsp;</td>
+                                 </tr>
+                                 <tr>
+                                    <td id="Header" width="100%" align="center" valign="middle" bgcolor="#FFFFFF;" style="background-color: #F5F7FA; padding-bottom:0;">
+                                       <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table style="background-color:#F5F7FA;" width="100%" cellspacing="0" cellpadding="0" bgcolor="#F5F7FA">
+        <tr><td style="padding-right:20px; padding-left:20px;">
+<table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="responsive-td" style="width: 43%; padding-right: 3px;" valign="middle" align="center"><a target="_blank" style="text-decoration:none; margin: auto 0px;" href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb7cecb609f5c04c208f4c383cf40a00d9249c6bd48265660aa5f9749048b501ec24c3345c073e568ab8be05d3ff714d3e6035afa1999916aa" title="DELTA AIR LINES"   data-linkto="other"><img data-assetid="15681" src="https://image.o.delta.com/lib/fe5815707c6201787313/m/13/a3419f86-e2e8-47f8-adde-434f169d7e9a.png" alt="DELTA" style="display: block; text-align: center; height: 38px; width: 225px; margin: 12px auto 0px auto; padding: 0px; border: 0px;" class="header_logo" width="225" height="38"></a></td>
+            <td class="responsive-td" style="width: 57%; padding-left: 3px;" valign="middle"><div class="SM_Info" style="font-family: Arial,Helvetica,sans-serif; text-align:right; color: #0B1F66; font-size:14px; font-weight:normal;"><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px; " class="stylingblock-content-wrapper camarker-inner">
+
+<table id="Greeting" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+    <tr>
+  <td class="SMInfo" style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.35em; color:#0B1F66; text-align:right;"><a href="https://click.o.delta.com/u/?qs=c6b04cb528b83febc8222c38bb41608b51d180555ec57898f5112836295a10b5825c5eb1da742ae8dfc89aefaa64497d4cefa75f4e1f1869bfafb8dad30ae9b0"  target="_blank" style="font-weight:normal; color:#0B1F66; text-decoration:underline;">#6512652808</a><span class="mobile-hidden"><br></span><span class="desktop-hidden" style="display:none;">&nbsp;|&nbsp;</span><a href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb9e83c3dc924e3a52419301319dae3c427b5ade5a10329c55556a0bb75e67a229f8c4c1736a6d808bcc1c6a346e1e5ae275ca9285e2deedf3"  target="_blank" style="font-weight:normal; text-decoration:none; color:#0B1F66; ">SkyMiles<sup style="font-size:70%">&reg;</sup> Member</a><span class="mobile-hidden"><br></span><span class="desktop-hidden" style="display:none;">&nbsp;|&nbsp;</span>
+<a href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb0529695314148672b5ddc37776d150338342dc93798971a6e7352c621a1ad0dcba1f801554efafad8a8988e8c47e52c06b756bc470f482d1"  target="_blank" style="text-decoration:none; font-weight:normal; color:#0B1F66;">130,337 Miles</a></td>
+    </tr>
+
+</table></td></tr></table></div></td>
+        </tr>
+    </table>
+          </td>
+        </tr>
+    </table></td></tr></table>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td height="20" style="font-size:10px; font-weight:normal; line-height:10px;" bgcolor="#F5F7FA" >&nbsp;</td>
+                                 </tr>
+                                 <!-- END HEADER REGION -->
+          
+          <!-- BEGIN MAIN BODY REGION -->
+          <tr> 
+           <td id="Body" width="100%" valign="top" bgcolor="#FFFFFF;" style="background-color: #FFFFFF;">
+            <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px; " class="stylingblock-content-wrapper camarker-inner"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><a href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb0644f11f648c2d5fb730f8b1a41d3f53cd586f5c2b2586ecbb080fff0d8f6b0368c0bfa43637ca41484eae6b4d4fb9a0" title=""   data-linkto="https://">
+<img data-assetid="34032" src="https://image.o.delta.com/lib/fe5815707c6201787313/m/15/AA900993_We_Value_Your_Loyalty_hero.png" alt="We Value Your Loyalty" width="600" style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px;"></a></td></tr></table></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 35px 30px 15px; " class="stylingblock-content-wrapper camarker-inner"><div class="copy" style="text-align: center; padding: 0 30px;">
+	<p style="margin: 0; padding: 0; color:#0B1F66; font-size:16px; font-family:arial,helvetica,sans-serif;mso-line-height-rule: exactly; line-height: 130%;">
+		As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our &quot;new normal&quot; looks like. In appreciation of your loyalty, we've extended the expiration date of Companion Certificates, Delta Sky Club Passes and Delta Flight Credits to January&nbsp;31, 2023 to give you more time to reconnect with the people and places you love most. We look forward to serving you onboard soon.</p></div></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: transparent; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 20px 30px 40px; " class="stylingblock-content-wrapper camarker-inner"><table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><table border="0" cellspacing="0" cellpadding="0" role="presentation"><tr>
+<td class="innertd buttonblock" bgcolor="#E51937" style=" border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px; background-color: #E51937;">
+<a target="_blank" class="buttonstyles" style=" font-size: 16px; line-height: 18px; font-family: Arial, Helvetica, sans-serif; color: #FFFFFF; text-align: center; text-decoration: none; display: block; font-weight: bold; padding-top: 16px; padding-right: 50px; padding-bottom: 16px; padding-left: 50px; background-color: #E51937; border: 0px solid #E51937; padding: 16px 50px; border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;" href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb3498857f62e965127820033feeea1cd8f7da8a8c86dd2128a7cae675361d65d78a1a13c427a1cc6dad7d9b0c763f8e17c663a0e572b23dfb" title=""   data-linkto="https://">LEARN MORE</a></td></tr></table></td></tr></table></td></tr></table>
+           </td>
+          </tr>
+          <!-- END MAIN BODY REGION -->
+
+         </tbody>
+        </table>
+        <!-- END EMAIL BODY TABLE -->
+       </td>
+      </tr>
+      <!-- <tr>         <td height="10" style="font-size:10px; font-weight:normal; line-height:10px;" bgcolor="#FFFFFF" >&nbsp;</td>       </tr> -->
+     </table>
+     <!-- END CONTAINER TABLE FOR EMAIL BODY -->
+    </td>
+   </tr>
+   <tr>
+    <td width="100%" align="center">
+     <!-- BEGIN CONTAINER TABLE FOR FOOTER -->
+     <table width="600" class="container" align="center" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto; padding: 0; background-color:#F5F7FA;" bgcolor="#F5F7FA" role="presentation">
+      <tr>
+       <td align="center" valign="top">
+        <!-- BEGIN FOOTER BODY TABLE -->
+        <table cellspacing="0" cellpadding="0" style="width:100%" role="presentation">
+         <tbody>
+          <!-- BEGIN NAVIGATION + SOCIAL REGION -->
+          <tr>
+           <td width="100%" valign="top" bgcolor="#F5F7FA;" style="background-color: #F5F7FA;">
+            
+            <table id="Navigation" border="0" cellpadding="0" cellspacing="0" width="100%">
+             <!-- BEGIN FOOTER LOGO REGION -->
+             <tr>
+              <td align="center" class="footer_logo" style="padding-top:30px; padding-bottom:20px;">
+                <a target="_blank" style="text-decoration:none; margin: auto 0px;" href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb78816248dadb180dc5a2b904806e6495da00ffecda2f9d329a29fa12dd04a537e443fae4b502e37e8ed15b0738dc65a83b3df3ae4a1f6a18" title="DELTA AIR LINES"   data-linkto="other"><img src="https://image.o.delta.com/lib/fe5815707c6201787313/m/13/a3419f86-e2e8-47f8-adde-434f169d7e9a.png" height="23" width="135" alt="DELTA" style="color:#0B1F66; font-size:1.25em; font-weight: bold; letter-spacing: 0.2em; display:block;" /></a>
+              </td>
+             </tr>
+              
+             <!-- END FOOTER LOGO REGION -->
+             
+<!-- BEGIN NAVIGATION REGION -->
+                                       <tr>
+                                          <td align="center" >
+                                             <table width="540" cellpadding="0" cellspacing="0" class="navigation_divider" style="border-bottom: 1px solid #d8d8d8; max-width: 540px; padding-bottom: 30px; margin-right: auto;  margin-left: auto;" role="presentation">
+                                                <tr>
+                                                   <td align="center" class="navigation_divider" style="padding-bottom:30px;">
+                                                      <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+                                                         <tr>
+                                                            <td class="navigation_stack" width="120" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:15px; color:#4A4A4A; text-align: center;min-width: 120px">
+                                                               <a href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb89e9af7735d8ca56576383fc2660e55e624cfd44dc9e622126c7f611308786f3f675ffc568f8f0ba81c1f90cff5544c4fec71bee5d4333d7"  title="Need Help?" target="_blank" style="text-decoration: none; color:#4A4A4A;font-weight:normal;">Help Center</a>
+                                                            </td>
+                                                            <td class="mobile-hidden" width="20" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:30px; color:#d8d8d8; line-height:18px; vertical-align:middle;text-align: center;">
+                                                               &bull;
+                                                            </td>
+                                                            <td class="navigation_stack" width="115" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:15px; color:#4A4A4A; text-align: center; min-width: 115px">
+                                                               <a href="https://click.o.delta.com/u/?qs=c6b04cb528b83feb8cd277a35eb8d1e74811ebcd2cb3a9a81f2a51d9d5d163cb0846a4ad5442096dece0f0295b0f8e0f577139c87285133ce502dac4d83e9c39"  title="Flight Deals" target="_blank" style="text-decoration: none; color:#4A4A4A;font-weight:normal;">Flight Deals</a>
+                                                            </td>
+                                                            <td class="mobile-hidden" width="20" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:30px; color:#d8d8d8; line-height:18px; text-align: center;">
+                                                               &bull;
+                                                            </td>
+                                                            <td class="navigation_stack" width="115" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:15px; color:#4A4A4A; text-align: center;min-width: 115px">
+                                                               <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f86058a8411d6b2c0cba33671b67b75377f1464bbead072f5938496dd0542c3d205d0c3d59bb7cdb0258356905d395933a8eaf3a99a5143143"  title="Earn Miles" target="_blank" style="text-decoration: none; color:#4A4A4A;font-weight:normal;text-align: center;">Earn Miles</a>
+                                                            </td>
+                                                            <td class="mobile-hidden" width="20" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:30px; color:#d8d8d8; line-height:18px; text-align: center;">
+                                                               &bull;
+                                                            </td>
+                                                            <td class="navigation_stack" width="110" valign="middle" style="font-family:arial,helvetica,sans-serif; font-size:15px; color:#4A4A4A; text-align: center;min-width: 110px">
+                                                               <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f892b5497d329161a5f5cbcfadfcaaf978d8d2214bcda03dbfd80425267772d24f7409101864029abf67cc6db0d931388b601e00ac0523b805"  title="Give Back" target="_blank" style="text-decoration: none; color:#4A4A4A; font-weight:normal;">Give Back</a>
+                                                            </td>
+                                                         </tr>
+                                                      </table>
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                          </td>
+                                       </tr>
+                                       <!-- END NAVIGATION REGION -->
+            </table>
+            
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
+             <!-- BEGIN SOCIAL REGION -->
+             <tr>
+              <td align="center">
+               <table id="Social" border="0" cellpadding="10" cellspacing="0" role="presentation">
+                <tr>
+                 <td valign="top" class="social_icons"  style="padding-top:30px; padding-bottom:30px;">
+                  <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8e3b3b0f3ef512eb4eeaade595b9bba01e033a7145a1d0576cbe772ba7cadd3f011f909e7ed9b49f0043fe3945ecd2170846bf5ef5d0c00ac"  title="Facebook" target="_blank" style="text-decoration:none;"><img src="http://image.o.delta.com/lib/fe5815707c6201787313/m/9/0650bbdc-2208-4a1d-a595-b86d76783ab2.png" alt="Facebook" height="43" width="43" class="social_icons" style="border:none; display:block; height: 43px; width:43px;" /></a>
+                 </td>  
+                 <td valign="top" class="social_icons" style="padding-top:30px; padding-bottom:30px;">
+                  <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8b02ab6f74912b5afc953025d3ad251513737c19893c0aaa1faa2676aad9cd8452c3d7aa4b0a0cccb71770bf19bc98de93b448c54ea9ca2f1"  title="Twitter" target="_blank" style="text-decoration:none;"><img src="http://image.o.delta.com/lib/fe5815707c6201787313/m/9/8da7b1ad-90b2-4d10-9323-9264eecf6d30.png" alt="Twitter" height="43" width="43" class="social_icons" style="border:none; display:block; height: 43px; width:43px;"/></a>
+                 </td>
+                 <td valign="top" class="social_icons"  style="padding-top:30px; padding-bottom:30px;">
+                  <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8b55a4c3806427914a43ca6dfae6b1e3dd047d4a33cd8a64d8ab2fa4af4bfd4809537812979e2ef9357dc93a291a9b808a67526932c8106d8"  title="Instagram" target="_blank" style="text-decoration:none;"><img src="http://image.o.delta.com/lib/fe5815707c6201787313/m/9/ade8219b-eca9-442c-8301-afe4cb85261b.png" alt="Instagram" height="43" width="43" class="social_icons" style="border:none; display:block; height: 43px; width:43px;"/></a>
+                 </td>
+                </tr>
+               </table>
+              </td>
+             </tr>
+             <!-- END SOCIAL REGION -->
+             
+             <!-- BEGIN EMAIL PREFERECENCES, UNSUBSCRIBE, AND PRIVACY POLICY REGION -->
+             <tr>
+              <td align="center">
+                
+<table width="540" cellpadding="0" cellspacing="0" class="navigation_divider" align="center" style="border-bottom: 1px solid #d8d8d8; padding-bottom: 30px; max-width: 540px;" role="presentation">
+  <tr>
+     <td class="navigation_divider"  style="font-family:arial,helvetica,sans-serif; text-align: center; color:#7C828A; line-height: 1.5em; padding-bottom: 30px;"> <a href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f81115d740ed10eac453dd76cc0a9894df11b1d7766d1b337e9541bcb2998fd3cda644f5395f81045b09ddc8f1b22e4abab76cc3df03a0491f"  title="Privacy Policy" target="_blank" style="font-size: 14px; font-weight: normal; text-decoration: none; color:#7C828A;">Privacy Policy</a></td></tr></table>
+                  
+              </td>
+             </tr>
+             <!-- END EMAIL PREFERECENCES, UNSUBSCRIBE, AND PRIVACY POLICY REGION -->
+            </table> 
+           </td>
+          </tr>
+          <!-- END NAVIGATION + SOCIAL REGION -->
+
+          <!-- BEGIN TERMS REGION -->
+                                 <tr>
+                                    <td id="Terms" width="100%" valign="top" bgcolor="#F5F7FA;" style="background-color: #F5F7FA; font-family:arial,helvetica,sans-serif;  font-size:12px; color:#7C828A; line-height:14px; padding-top:30px; padding-left:30px; padding-right:30px; padding-bottom: 0px;">
+                                       <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="background-color: #F5F7FA; min-width: 100%; " class="stylingblock-content-wrapper"><tr><td style="padding: 0px; " class="stylingblock-content-wrapper camarker-inner"><div style="text-align:left;">
+ <p style="margin: 0; padding: 0;color:#7C828A; font-size:12px; mso-line-height-rule: exactly; line-height:130%; font-family:arial,helvetica,sans-serif;">
+  <span style="font-size: 13px;"><strong>Terms and Conditions</strong></span><br>
+  <br>
+  <b>SkyMiles</b>: All SkyMiles Program rules apply to SkyMiles Program membership, miles, offers, mile accrual, mile redemption, and travel benefits. To review the rules, please visit <a   data-linkto="https://" href="https://click.o.delta.com/u/?qs=7ffc75b3ccc869f8345c19734fe14606032b8c8f0aea6b2f84bafecfba2e20e28fb4b35a7c73655f53df68abebaabf9f826c6e9aefcd0f6370a464d00eea3c14" style="text-decoration:underline;" title="">delta.com/memberguide.</a> Other restrictions may apply. Offers, prices, rules, and benefits subject to change without notice.</p></div></td></tr></table>
+                                    </td>
+                                 </tr>
+                                 <!-- END TERMS REGION -->
+                                 <!-- BEGIN FOOTER REGION -->
+                                 <tr>
+                                    <td id="Footer" width="100%" valign="top" bgcolor="#F5F7FA;" style="font-family:arial,helvetica,sans-serif; background-color: #F5F7FA; padding:0 30px 30px 30px; font-size:12px; color:#7C828A; line-height:14px;">
+            
+             <br>
+            You are receiving this operational message due to your upcoming travel or recent activity with Delta. Even if you have opted-out of receiving Delta marketing communications, you may still receive operational emails with relevant information based on your upcoming travel or recent activity. 
+            
+  
+             <br><br>
+             This email was sent to: <a href="mailto:JPETELKA@GMAIL.COM" style="font-size:12px; font-weight:normal; text-decoration: underline; color:#4470C3;">JPETELKA@GMAIL.COM</a>
+
+            <br><br>
+            &copy; 2021 Delta Air Lines, Inc. All rights reserved.
+            <br>
+            Delta Blvd. P.O. Box 20706 &bull; Atlanta, GA 30320-6001
+           </td>
+          </tr>
+          <!-- END FOOTER REGION -->
+         </tbody>
+        </table>
+        <!-- END FOOTER BODY TABLE -->
+       </td>
+      </tr>
+     </table>
+     <!-- END CONTAINER TABLE FOR FOOTER -->
+    </td>
+   </tr>
+  </table>
+  <!-- END OUTER TABLE WITH 100% WIDTH -->
+  <img src="https://pixel.app.returnpath.net/pixel.gif?r=c92625ae9b3fc2b9df656aa90dafa77706f21cee" width="1" height="1" />
+ </body>
+</html>
+
+--tIrEOmpkEOa6=_?:--
+
