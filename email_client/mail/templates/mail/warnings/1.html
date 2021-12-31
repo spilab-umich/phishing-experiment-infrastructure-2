@@ -10,7 +10,10 @@
                 <div class='warning-headline'>
                     <p>Check this link! Link is not well known.</p>
                     <ul>
-                        <li class='domain-bar'><i class= 'fa fa-lock'></i><a class='warning-link' label='warning-link' target='_blank'></a></li>
+                        <li class='domain-bar'><i class= 'fa fa-lock'></i><a class='warning-link' label='warning-link' target='_blank'>
+                            <span class="url-domain"></span>
+                            <span class="url-path"></span>
+                        </a></li>
                         <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
                     </ul>
                 </div>
@@ -30,7 +33,7 @@
         .tooltip-inner {
             background-color: transparent;
             /* max-width: 40%; */
-            max-width: 30rem;
+            max-width: 50rem;
         }
         .warning-wrapper {
             position: relative;
@@ -57,11 +60,12 @@
 
         .domain-bar{
             border-radius: 15px;
-            background-color: #DADADF;
+            background-color: #E8E8F0;
             padding: 5px 0 5px 0;
+            /* color: #B8B8B8; */
         }
 
-        .domain-bar i{
+        .domain-bar i {
             padding: 0 .5rem 0 .5rem;
         }
 
@@ -69,6 +73,10 @@
             /* background-color: #FFFFFF; */
             /* padding-right: 15px; */
             padding: 0 .5rem 0 0;
+        }
+
+        .url-domain {
+            font-weight: bold;
         }
 
         .warning-headline {

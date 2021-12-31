@@ -1,8 +1,17 @@
 let hover_time_limit = 0;
 // let rows = [];
-let time_delay = 5;
+// let time_delay = 5;
 let warning_shown = false;
 let warning_shown_text = 'warning-shown';
+
+// automatically assign id attributes to all links in an email
+function id_links(){
+    var i = 1;
+    $('.email-container a').each(function(){
+        $(this).attr('id', i);
+        i++;
+    });
+}
 
 function createLog(link, action, emailid, hover_time){
     var link_id = 0, link_url;
@@ -59,19 +68,56 @@ function enable_link(link){
         .attr('id',-100);
 }
 
-function load_warning(group_num){
+function load_warning(group_num,p_id){
     // On-hover, forced choice
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
     // var raw_link = $('.email-container a#'+p_id).attr('href');
-    var _this = $('.email-container a:first');
+    var _this = $('.email-container a#'+p_id);
+    // console.log(_this);
     _this.attr('data-toggle', 'tooltip');
-    disable_link(_this);    
     addTemplate(_this, clon);
+    plinks = ['https://www.vvesternunion.com/global-service/track-transfer/'];
+    if (eid == 3){
+        var raw_link = plinks[0];
+    }
+    _this.attr('href', raw_link);
+    // console.log(_this.attr('href'));
+    // refine link here
+    var url = new URL(raw_link);
+    hostname = url.host.slice(4).split('').join(' ');
+    
+    pathname = url.pathname;
+    $('span.url-domain').text(hostname);
+    $('span.url-path').text(pathname);
+    $('a.warning-link').attr('href', raw_link);
+    // focused attention is +12
+    if (group_num > 12) {
+        disable_link(_this);    
+    }
+    // focused attention and time_delay 0 are the same
+    if (group_num < 4 | group_num > 12){
+        time_delay = 0;
+        $('li.timer').text('Link active');
+        enable_link($('a.warning-link'));
+    }
+    else if (group_num < 7){
+        time_delay = 3;
+        disable_link($('a.warning-link'));
+        $('span.secsRemaining').text(time_delay);
+    }
+    else if (group_num < 10){
+        time_delay = 5;
+        disable_link($('a.warning-link'));
+        $('span.secsRemaining').text(time_delay);
+    }
+    else if (group_num < 13){
+        time_delay = 7;
+        disable_link($('a.warning-link'));
+        $('span.secsRemaining').text(time_delay);
+    }
     // link adjustment here
-    $('span.secsRemaining').text(time_delay);
-    var raw_link = 'link-to-website.com/whateverelse';
-    $('a.warning-link').text(raw_link).attr('href',raw_link);
+    // var raw_link = 'link-to-website.com/whateverelse';
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
             $('div.tooltip').css('opacity',100);
@@ -79,15 +125,17 @@ function load_warning(group_num){
                 createLog(warning_shown_text,warning_shown_text,eid);
                 warning_shown = true;
             }
-            var countdownToClick = setInterval(function(){
-                time_delay--;
-                $('span.secsRemaining').text(time_delay);
-                if (time_delay == 0){
-                    $('li.timer').text('Link active');
-                    enable_link($('a.warning-link'));
-                    clearInterval(countdownToClick);
-                }
-            },1000);
+            if (group_num > 4 & group_num < 13){
+                var countdownToClick = setInterval(function(){
+                    time_delay--;
+                    $('span.secsRemaining').text(time_delay);
+                    if (time_delay <= 0){
+                        $('li.timer').text('Link active');
+                        enable_link($('a.warning-link'));
+                        clearInterval(countdownToClick);
+                    }
+                },1000);
+            }
         }).on('mouseleave', function(){
         var refreshInterval = setInterval(function() {
             // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip

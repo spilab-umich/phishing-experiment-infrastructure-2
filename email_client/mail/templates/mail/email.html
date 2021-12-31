@@ -173,12 +173,15 @@
     const n = parseInt('{{ user.group_num }}');
     const p_detected = ('{{ email.is_phish }}' == 'True');
     const eid = '{{email.ref}}';
-    // if (p_detected){
-    //     p_link_id = '{{ email.phish_id }}';
-    //     load_warning(n,p_link_id);
-    // }
-    load_warning(n)
+    id_links();
+    if (p_detected & n > 0){
+        p_link_id = '{{ email.phish_id }}';
+        load_warning(n,p_link_id);
+    }
     initListeners(eid);
+
+    // const time_sent = '{{ email.time_sent }}';
+    // console.log(time_sent);
 </script>
 
 <script>

@@ -3,25 +3,25 @@
         {
         "sender": "Sprint",
         "preview":"Important information on your bill",
-        "ref": 1,
+        "email_id": 1,
         "num_links": 3
         },
         {
         "sender": "Walmart",
         "preview":"Your new account is ready to use",
-        "ref": 2,
+        "email_id": 2,
         "num_links": 3
         },
         {
         "sender": "Western Union",
         "preview": "Welcome to Western Union. Now you can send money online anytime, from anywhere. Your final receiver can pick up the money at a convenient Western Union agent location, or get it sent directly to their bank account or mobile wallet.",
-        "ref": 3,
+        "email_id": 3,
         "num_links": 3
         },
         {
         "sender": "Delta",
         "preview": "As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our &quot;new normal&quot; looks like.",
-        "ref": 4,
+        "email_id": 4,
         "num_links": 3
         }
     ]

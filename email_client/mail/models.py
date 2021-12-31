@@ -28,3 +28,9 @@ class Mail(models.Model):
 
     def __str__(self):
         return str(self.ref) + ' - ' + self.sender
+
+    # class Warning(models.Model):
+    #     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #     focused_attention = models.BooleanField(default=False)
+    #     domain_type = models.CharField(max_length=20)
+    #     cooldown_timer = models.IntegerField(default=-1)
