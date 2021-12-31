@@ -645,3 +645,9 @@ a.btn.flag-icon:hover, a.btn.flag-icon:focus {
     background-color: #f0d7a9;
     color: #fff;
 }
+
+/* warning styles */
+
+.warning-template {
+    border: 2px solid #767676;
+}

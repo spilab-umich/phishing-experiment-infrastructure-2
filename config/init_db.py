@@ -1,7 +1,8 @@
-import os, django, sys, json, datetime, html2text
+import os, django, sys, json, datetime, email, mimetypes, re
 # from email.parser import Parser, BytesParser
 # from email import policy
-import email, mimetypes
+from html.parser import HTMLParser 
+import lxml.html
 from pathlib import Path
 # from bs4 import BeautifulSoup
 # import eml_parser
@@ -17,18 +18,31 @@ n_users = 0
 # Input number of treatment groups
 n_of_groups = 3
 
-# def getmailheader(header_text, default='ascii'):
-#     try:
-#         headers = email.Header.decode_header(header_text)
-#     except email.Errors.HeaderParseError:
-#         return header_text.encode('ascii', 'replace').decode('ascii')
-#     else:
-#         for i, (text, charset) in enumerate(headers):
-#             try:
-#                 headers[i] = unicode(text, charset or default, errors='replace')
-#                 except LookupError
-#                 headers[i] = unicode(text, default, errors='replace')
-#             return u"".join(headers)
+# class MyHTMLParser(HTMLParser):
+#     prev = ""
+
+#     def handle_data(self, data):
+#         data = data.strip()
+#         if not '\\r\\n' in data and not 'b\'' in data and data is not "":   
+#             self.prev += " " + data
+#             # print(self.prev[:150])
+#             # return data  
+    
+#     def get_preview(self):
+#         # print(self.prev.strip())
+#         return self.prev
+
+# #Load email metadata
+json_fname = "emails.json"
+open_json_file = config_path / Path("emails.json")
+
+with open(open_json_file) as f:
+    d = json.load(f)
+
+email_data = []
+for item in d["emails"]:
+    email_data.append(item)
+    
 
 # Read emails in folder, save to models in database
 def read_emails():
@@ -43,59 +57,79 @@ def read_emails():
     # Create reference IDs for each email
     i = 1
     # Convert html to text for preview pane
-    h = html2text.HTML2Text()
-    h.ignore_links = True
+    # h = html2text.HTML2Text()
+    # h.ignore_links = True
     # pol = email.policy.SMTP
     for mail in emails:
-        with open(email_folder / Path(mail), 'r') as f:
-            msg = email.message_from_file(f)
-            for part in msg.walk():
-                # if part.get_content_maintype() == 'multipart':
-                if part.is_multipart():
-                    print("Multipart found")
-                    print(part.is_multipart())
-                    continue
-                with open(Path('email_client/mail/templates/mail/emails') / Path(str(i)+'.html'), 'wb') as fol:
-                    # new_payload = payload.replace('=\n', '')
-                    fol.write(part.get_payload(decode=True))
-                    i+=1
-                
-                
-
-            # try:
-            #     content = msg.get_body(preferencelist('plain','html'))
-            # except KeyError:
-            #     print("This message does not have a printable HTML body")
-            #TO DO: clean eml files from 3D and =\n nonsense
-
-
-            # THIS WORKS BELOW
-            # raw_msg = f.read()
-            # msg = email.message_from_string(raw_msg)
-            # content = email.contentmanager.get_content(msg)
+        with open(email_folder / Path(mail), 'r') as fp:
+            msg = email.parser.Parser(policy=email.policy.SMTP).parse(fp)
             
-            # payload = msg.get_body(preferencelist=('plain')).get_content()
+            body = msg.get_body(preferencelist=('plain','html'))
+            # print(type(body))
+            # print(type(body.get_content()))
+            # print(h.handle(body.get_content())[:250])
+            # print(body.is_multipart())
+            sepr = '<'
+            sender = msg['from'].split(' ' + sepr)
+            # Add the separator back if it was removed 
+            # This is so sender addresses are in brackets <>
+            if len(sender) > 1:
+                sender[1] = sepr + sender[1]
 
-            # Uncomment past this
-            # payload = msg.get_payload()
-            # # write the eml file in it's entiriety
-            # with open(Path('email_client/mail/templates/mail/emails') / Path(str(i)+'.html'), 'w') as fol:
-            #     new_payload = payload.replace('=\n', '')
-            #     fol.write(new_payload)
-            # email_to_add = {
-            #     # 'from' item needs to be split into sender and sender address
-            #     'from': msg['from'].replace(" ","").replace(">","").replace("\"","").split('<'),
-            #     'subject': msg['subject'],
-            #     'date': msg['date'],
-            #     # 'payload': msg.get_payload(),
-            #     'preview': h.handle(payload)[:250],
-            #     'ref': i,
-            # }
-            # results.append(email_to_add)
-            # i += 1
-    return 
-# emails_to_add = 
-read_emails()
+            # Would this work?
+            # sender = [[sender[0], sepr+sender[1] if len(sender) > 1]
+
+            sender = [x.replace("\"","").rstrip() for x in sender] 
+            # print(msg['From'])
+
+            # Useful lines
+            # print(part.get_content_maintype())
+
+            # email.iterators._structure(msg)
+
+            for part in msg.walk():
+                if part.get_content_maintype() == 'multipart':
+                    continue
+                if part.get_content_subtype() != 'html':
+                    continue
+                if part.get_content_maintype() == 'text':
+                    with open(Path('email_client/mail/templates/mail/emails') / Path(str(i)+'.html'), 'wb') as fol:
+                        payload = part.get_payload(decode=True)
+                        fol.write(payload)
+                        
+                        ### I LEFT OFF USING LXML LIBRARY TO PARSE OUT A TEXT PREVIEW ###
+                        
+                        parser = lxml.etree.HTMLParser()
+                        tree = lxml.etree.parse(payload, parser)
+                        result = etree.tostring(tree.getroot(), pretty_print=True, method="html")
+                        print(result)
+                        exit()
+                        page = lxml.html.document_fromstring(str(payload)).text_content()
+                        print(page)
+                        # parser = MyHTMLParser()
+                        # parser.feed(str(payload))
+                        # preview = parser.get_preview()                        
+                        # test = preview.replace("<[^>]*>","")
+                        # print(test[:150])
+                        # exit()
+                            # print("parsing failed")
+                            # print(type(test)) # comes back as bytes
+                            # print(payload)
+                        # exit()
+                        # preview = h.handle
+
+                email_to_add = {
+                    # 'from' item needs to be split into sender and sender address
+                    'from': sender,
+                    'subject': msg['subject'],
+                    'date': msg['date'],
+                    'ref': i,
+                    # 'preview': preview,
+                }
+            results.append(email_to_add)
+            i+=1
+    return results
+emails_to_add = read_emails()
 exit()
 
 from mail.models import User, Mail
@@ -104,17 +138,7 @@ import string
 from random import shuffle
 
 ## Can get rid of this ##
-# #Load email metadata
-# json_fname = "emails.json"
-# # json_path = Path("config/")
-# open_json_file = json_path / json_fname
 
-# with open(open_json_file) as f:
-#     d = json.load(f)
-
-# emails = []
-# for item in d["emails"]:
-#     emails.append(item)
 
 
 ## Maybe Keep This ##
@@ -180,7 +204,8 @@ for i in range(0, n_users):
         new.sender = email['from'][0]
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
-        new.preview = email['preview']
+        # new.preview = email['preview']
+        new.preview = "Test preview for now"
         new.time_sent = email['date']
         new.subject = email['subject']
         # new.sender_address = email['sender_address']
@@ -213,7 +238,8 @@ for i in range(0, 30):
         new.sender = email['from'][0]
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
-        new.preview = email['preview']
+        # new.preview = email['preview']
+        new.preview = "Test preview for now"
         new.time_sent = email['date']
         new.subject = email['subject']
         new.read = "unread"

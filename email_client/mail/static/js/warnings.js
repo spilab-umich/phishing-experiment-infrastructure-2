@@ -59,90 +59,125 @@ function enable_link(link){
         .attr('id',-100);
 }
 
-function load_warning(group_num, p_id){
+function load_warning(group_num){
     // On-hover, forced choice
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
-    var raw_link = $('.email-container a#'+p_id).attr('href');
-    switch (group_num){
-        case 1:
-            _this = $(".email-container a#"+p_id);
-            _this.attr('data-toggle', 'tooltip');
-            disable_link(_this);
-            addTemplate(_this, clon);
-            $('a.warning-link').text(raw_link).attr('href',raw_link);
-            disable_link($('a.warning-link'));
-            $('span.secsRemaining').text(time_delay);
-            $("a[data-toggle='tooltip']")
-                .on('mouseenter', function(){
-                    $('div.tooltip').css('opacity',100);
-                    if (!warning_shown){
-                        createLog(warning_shown_text,warning_shown_text,eid);
-                        warning_shown = true;
-                    }
-                    var countdownToClick = setInterval(function(){
-                        time_delay--;
-                        $('span.secsRemaining').text(time_delay);
-                        if (time_delay == 0){
-                            $('li.timer').text('You may now visit the link');
-                            enable_link($('a.warning-link'));
-                            clearInterval(countdownToClick);
-                        }
-                    },1000);
-                }).on('mouseleave', function(){
-                var refreshInterval = setInterval(function() {
-                    // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
-                    if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
-                        // console.log($(".tooltip:hover").length);
-                        $(".tooltip").css('opacity',0);
-                        clearInterval(refreshInterval);
-                    }
-                }, 500);                    
-            });
-            break;
-        case 2: //on-click
-            _this = $('.email-container a#'+p_id)
-            // disable_link(_this);
-            addTemplate(_this, clon);
-            _this.attr('data-toggle', 'tooltip')
-                .attr('onclick','return false');
-            $('a.warning-link').attr('href', raw_link).text(raw_link);
-            disable_link($('a.warning-link'));
-            $('span.secsRemaining').text(time_delay);
-            $("a[data-toggle='tooltip']")
-                .on('click', function(){
-                    $('div.overlay').css('display','block');
-                    if (!warning_shown){
-                        createLog(warning_shown_text,warning_shown_text,eid);
-                        warning_shown = true;
-                    }                    
-                    var countdownToClick = setInterval(function(){
-                        time_delay--;
-                        $('span.secsRemaining').text(time_delay);
-                        if (time_delay == 0) {
-                            $('li.timer').text('You may now visit the link');
-                            enable_link($('a.warning-link'));
-                            clearInterval(countdownToClick);
-                        }
-                    },1000);
-            });
-            $('.warning-link').on('click', function(){
-                if (!(time_delay)){
-                    $(".overlay").css("display","none");
-                }
-            });
-            $('.closebtn').on('click', function(){
-                $(".overlay").css("display","none");
-            });
-            break; 
-        case 0: //temporarily changed to 3
-            $('.subject-info').before(clon);
+    // var raw_link = $('.email-container a#'+p_id).attr('href');
+    var _this = $('.email-container a:first');
+    _this.attr('data-toggle', 'tooltip');
+    disable_link(_this);    
+    addTemplate(_this, clon);
+    // link adjustment here
+    $('span.secsRemaining').text(time_delay);
+    var raw_link = 'link-to-website.com/whateverelse';
+    $('a.warning-link').text(raw_link).attr('href',raw_link);
+    $("a[data-toggle='tooltip']")
+        .on('mouseenter', function(){
+            $('div.tooltip').css('opacity',100);
             if (!warning_shown){
                 createLog(warning_shown_text,warning_shown_text,eid);
                 warning_shown = true;
             }
-            break;
-    }
+            var countdownToClick = setInterval(function(){
+                time_delay--;
+                $('span.secsRemaining').text(time_delay);
+                if (time_delay == 0){
+                    $('li.timer').text('Link active');
+                    enable_link($('a.warning-link'));
+                    clearInterval(countdownToClick);
+                }
+            },1000);
+        }).on('mouseleave', function(){
+        var refreshInterval = setInterval(function() {
+            // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
+            if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
+                // console.log($(".tooltip:hover").length);
+                $(".tooltip").css('opacity',0);
+                clearInterval(refreshInterval);
+            }
+        }, 500);                    
+    });
+
+    // switch (group_num){
+    //     case 1:
+    //         _this = $(".email-container a#"+p_id);
+    //         _this.attr('data-toggle', 'tooltip');
+    //         disable_link(_this);
+    //         addTemplate(_this, clon);
+    //         $('a.warning-link').text(raw_link).attr('href',raw_link);
+    //         disable_link($('a.warning-link'));
+    //         $('span.secsRemaining').text(time_delay);
+    //         $("a[data-toggle='tooltip']")
+    //             .on('mouseenter', function(){
+    //                 $('div.tooltip').css('opacity',100);
+    //                 if (!warning_shown){
+    //                     createLog(warning_shown_text,warning_shown_text,eid);
+    //                     warning_shown = true;
+    //                 }
+    //                 var countdownToClick = setInterval(function(){
+    //                     time_delay--;
+    //                     $('span.secsRemaining').text(time_delay);
+    //                     if (time_delay == 0){
+    //                         $('li.timer').text('You may now visit the link');
+    //                         enable_link($('a.warning-link'));
+    //                         clearInterval(countdownToClick);
+    //                     }
+    //                 },1000);
+    //             }).on('mouseleave', function(){
+    //             var refreshInterval = setInterval(function() {
+    //                 // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
+    //                 if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
+    //                     // console.log($(".tooltip:hover").length);
+    //                     $(".tooltip").css('opacity',0);
+    //                     clearInterval(refreshInterval);
+    //                 }
+    //             }, 500);                    
+    //         });
+    //         break;
+    //     case 2: //on-click
+    //         _this = $('.email-container a#'+p_id)
+    //         // disable_link(_this);
+    //         addTemplate(_this, clon);
+    //         _this.attr('data-toggle', 'tooltip')
+    //             .attr('onclick','return false');
+    //         $('a.warning-link').attr('href', raw_link).text(raw_link);
+    //         disable_link($('a.warning-link'));
+    //         $('span.secsRemaining').text(time_delay);
+    //         $("a[data-toggle='tooltip']")
+    //             .on('click', function(){
+    //                 $('div.overlay').css('display','block');
+    //                 if (!warning_shown){
+    //                     createLog(warning_shown_text,warning_shown_text,eid);
+    //                     warning_shown = true;
+    //                 }                    
+    //                 var countdownToClick = setInterval(function(){
+    //                     time_delay--;
+    //                     $('span.secsRemaining').text(time_delay);
+    //                     if (time_delay == 0) {
+    //                         $('li.timer').text('You may now visit the link');
+    //                         enable_link($('a.warning-link'));
+    //                         clearInterval(countdownToClick);
+    //                     }
+    //                 },1000);
+    //         });
+    //         $('.warning-link').on('click', function(){
+    //             if (!(time_delay)){
+    //                 $(".overlay").css("display","none");
+    //             }
+    //         });
+    //         $('.closebtn').on('click', function(){
+    //             $(".overlay").css("display","none");
+    //         });
+    //         break; 
+    //     case 0: //temporarily changed to 3
+    //         $('.subject-info').before(clon);
+    //         if (!warning_shown){
+    //             createLog(warning_shown_text,warning_shown_text,eid);
+    //             warning_shown = true;
+    //         }
+    //         break;
+    // }
     // console.log($('.email-container a#'+p_id).attr('href'));
 }
 

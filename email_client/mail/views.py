@@ -165,7 +165,7 @@ def return_emails(request, email_id):
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
             user.unread_count -= 1
         
-        warning_fname = 'mail/warnings/' + str(user.group_num) + '.html'
+        warning_fname = 'mail/warnings/' + str(1) + '.html'
         context = {
             'email': email,
             'user': user,

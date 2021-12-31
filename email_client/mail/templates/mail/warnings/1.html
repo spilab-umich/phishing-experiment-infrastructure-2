@@ -8,10 +8,10 @@
                     <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
                 </div>
                 <div class='warning-headline'>
-                    <p>This might be a fake link! Check the link carefully.</p>
+                    <p>Check this link! Link is not well known.</p>
                     <ul>
-                        <li>Link takes you to: <br> <a class='warning-link' label='warning-link' target='_blank'></a></li>
-                        <li class='timer'>Link can be clicked in <span class='secsRemaining'></span> seconds</li>
+                        <li class='domain-bar'><i class= 'fa fa-lock'></i><a class='warning-link' label='warning-link' target='_blank'></a></li>
+                        <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
                     </ul>
                 </div>
                 <!-- custom warning end -->
@@ -22,26 +22,31 @@
         /* a[data-toggle="tooltip"]:hover + div.tooltip {
             opacity: 100;
         } */
+
+        .warning-headline p {
+            margin-bottom: 5px;
+        }
+
         .tooltip-inner {
             background-color: transparent;
             /* max-width: 40%; */
-            min-width: 400px;
+            max-width: 30rem;
         }
         .warning-wrapper {
             position: relative;
-            border-radius: 4px;
-            background: #FFFFFF;
-            border: 1px solid #E74C3C;
+            border-radius: 15px;
+            background-color: #686868;
+            border: .2rem solid #767676;
             box-sizing: border-box;
             /* Elevation / 6dp */
             box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
-            
+            overflow: hidden;
         }
 
         /* custom warning stylesheets */
         .warning-sidebar {
             height: 100%;
-            background: #F2C2C2;
+            background-color: #b8b8b8;
             /* opacity: 0.7; */
             padding: 10px;
             /* float: left; */
@@ -49,23 +54,50 @@
             width: 50px;
             vertical-align: middle;
         }
+
+        .domain-bar{
+            border-radius: 15px;
+            background-color: #DADADF;
+            padding: 5px 0 5px 0;
+        }
+
+        .domain-bar i{
+            padding: 0 .5rem 0 .5rem;
+        }
+
+        .domain-bar a {
+            /* background-color: #FFFFFF; */
+            /* padding-right: 15px; */
+            padding: 0 .5rem 0 0;
+        }
+
         .warning-headline {
             display: table-cell;
             /* position: absolute; */
             /* display: inline-block; */
+            background-color: #FFFFFF;
             font-family: Roboto;
             font-style: normal;
-            font-weight: bold;
-            color: #D43232;
+            color: #4F4F4F;
             padding: 10px;
             vertical-align: middle;
             /* width: 100%; */
             /* mix-blend-mode: normal; */
         }
+
+        .warning-headline p {
+            font-weight: bold;
+        }
+
         .warning-icon {
-            color: red;
+            color: #FFD439;
             display: inline-block;
             vertical-align: middle;
+        }
+
+        .timer {
+            float: right;
+            margin-top: 5px;
         }
     </style>
 </template>
