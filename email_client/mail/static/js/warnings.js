@@ -53,6 +53,7 @@ function send_data(d){
     });
 }
 
+// disables clicking on a phishing link
 function disable_link(link){
     link.attr('onclick', 'return false')
         .css('cursor','not-allowed');
@@ -68,50 +69,73 @@ function enable_link(link){
         .attr('id',-100);
 }
 
-function load_warning(group_num,p_id){
-    // On-hover, forced choice
-    var template = document.getElementsByTagName("template")[0];
-    var clon = template.content.cloneNode(true);
-    // var raw_link = $('.email-container a#'+p_id).attr('href');
+// changes href of desired link to one of several phishing links
+function adjust_link(group_num,p_id){
     var _this = $('.email-container a#'+p_id);
-    // console.log(_this);
-    _this.attr('data-toggle', 'tooltip');
-    addTemplate(_this, clon);
-    plinks = ['https://www.vvesternunion.com/global-service/track-transfer/'];
+    // unrelated domains group_num % 3 = 0
+    // sort of related domains group_num % 3 == 1
+    // brand domains group_num % 3 = 2
+    var plinks = [
+        ['https://www.hrzzhfs.xyz/', 'https://dkozzlfods.info/', 'https://etooicdfi.studio/something'],
+        ['https://www.financial-pay.info/global-service/', 'https://www.online-shopping-payment.com/', 'https://www.client-mail-services.com/'],
+        ['https://www.westernunion-pay.com/global-service/track-transfer/', 'https://www.walmartpay.com/something','https://mail.google-services.com/'],
+    ];
     if (eid == 3){
-        var raw_link = plinks[0];
+        var raw_link = plinks[group_num % 3][0];
+    }
+    else if (eid == 2){
+        var raw_link = plinks[group_num % 3][1];
+    }
+    else if (eid == 1){
+        var raw_link = plinks[group_num % 3][2]
     }
     _this.attr('href', raw_link);
-    // console.log(_this.attr('href'));
+}
+
+function load_warning(group_num,p_id){
+    var template = document.getElementsByTagName("template")[0];
+    var clon = template.content.cloneNode(true);
+    var _this = $('.email-container a#'+p_id);
+    _this.attr('data-toggle', 'tooltip');
+    var raw_link = _this.attr('href');
+    addTemplate(_this, clon);
     // refine link here
     var url = new URL(raw_link);
-    hostname = url.host.slice(4).split('').join(' ');
-    
-    pathname = url.pathname;
+    // remove www. if it exists
+    var hostname = url.host.split('www.');
+    if (hostname.length > 1){
+        hostname = hostname[1]
+    }
+    else {
+        hostname = hostname[0];
+    }
+    hostname = hostname.split('').join(' '); // separate the characters in the host    
+    var pathname = url.pathname;
     $('span.url-domain').text(hostname);
     $('span.url-path').text(pathname);
     $('a.warning-link').attr('href', raw_link);
+    disable_link(_this);    
     // focused attention is +12
-    if (group_num > 12) {
-        disable_link(_this);    
-    }
-    // focused attention and time_delay 0 are the same
-    if (group_num < 4 | group_num > 12){
+    // if (group_num > 12) {
+    //     disable_link(_this);    
+    // }
+    // nm focused attention and time_delay 0 are the same
+    if (group_num < 6){
         time_delay = 0;
         $('li.timer').text('Link active');
         enable_link($('a.warning-link'));
     }
-    else if (group_num < 7){
+    else if (group_num < 9){
         time_delay = 3;
         disable_link($('a.warning-link'));
         $('span.secsRemaining').text(time_delay);
     }
-    else if (group_num < 10){
+    else if (group_num < 12){
         time_delay = 5;
         disable_link($('a.warning-link'));
         $('span.secsRemaining').text(time_delay);
     }
-    else if (group_num < 13){
+    else {
         time_delay = 7;
         disable_link($('a.warning-link'));
         $('span.secsRemaining').text(time_delay);
@@ -125,7 +149,8 @@ function load_warning(group_num,p_id){
                 createLog(warning_shown_text,warning_shown_text,eid);
                 warning_shown = true;
             }
-            if (group_num > 4 & group_num < 13){
+            // for groups with time_delay > 0, interval has to trigger
+            if (group_num >= 6){
                 var countdownToClick = setInterval(function(){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);

@@ -132,7 +132,6 @@
     <!-- end mobile email header -->
     <div class="row email-container">
         <div class='col'>
-            <!-- deleted because we are using a single template -->
             {% include email_fname %}
         </div>
     </div>
@@ -168,20 +167,18 @@
 <!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
 
 <script>
-    // Do we want this here or in the bottom of base.html?
-    // determine if email is a phish
     const n = parseInt('{{ user.group_num }}');
     const p_detected = ('{{ email.is_phish }}' == 'True');
     const eid = '{{email.ref}}';
     id_links();
-    if (p_detected & n > 0){
+    if (p_detected){
         p_link_id = '{{ email.phish_id }}';
-        load_warning(n,p_link_id);
+        adjust_link(n,p_link_id);
+        if (n >= 3){
+            load_warning(n,p_link_id);
+        }
     }
     initListeners(eid);
-
-    // const time_sent = '{{ email.time_sent }}';
-    // console.log(time_sent);
 </script>
 
 <script>
