@@ -93,15 +93,15 @@ function adjust_link(group_num,p_id){
 }
 
 function load_warning(group_num,p_id){
+    // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
     var _this = $('.email-container a#'+p_id);
-    _this.attr('data-toggle', 'tooltip');
-    var raw_link = _this.attr('href');
     addTemplate(_this, clon);
-    // refine link here
+    // change href attributes    
+    var raw_link = _this.attr('href');
     var url = new URL(raw_link);
-    // remove www. if it exists
+    // create domain text
     var hostname = url.host.split('www.');
     if (hostname.length > 1){
         hostname = hostname[1]
@@ -111,37 +111,46 @@ function load_warning(group_num,p_id){
     }
     hostname = hostname.split('').join(' '); // separate the characters in the host    
     var pathname = url.pathname;
+    // add domain text to warning
     $('span.url-domain').text(hostname);
     $('span.url-path').text(pathname);
-    $('a.warning-link').attr('href', raw_link);
-    disable_link(_this);    
-    // focused attention is +12
-    // if (group_num > 12) {
-    //     disable_link(_this);    
-    // }
-    // nm focused attention and time_delay 0 are the same
-    if (group_num < 6){
-        time_delay = 0;
-        $('li.timer').text('Link active');
-        enable_link($('a.warning-link'));
+    $('a.warning-link').attr('href', raw_link); 
+    // set time_delay for each group
+    // https://math.stackexchange.com/questions/1703882/mapping-all-numbers-in-a-set-to-a-particular-number
+    var timedelay_num = 4 * parseInt(group_num/4) % 4 + group_num % 4;
+    let time_delay = -1;
+    switch(timedelay_num){
+        // default:
+        //     console.log('error in assigning timedelay');
+        case 0:
+            time_delay = 0;
+            break;
+        case 1:
+            time_delay = 3;
+            break;
+        case 2:
+            time_delay = 5;
+            break;
+        case 3:
+            time_delay = 7;
+            break;
     }
-    else if (group_num < 9){
-        time_delay = 3;
-        disable_link($('a.warning-link'));
-        $('span.secsRemaining').text(time_delay);
+    // disable original links in forced attention
+    if (group_num > 11){
+        disable_link(_this);
     }
-    else if (group_num < 12){
-        time_delay = 5;
-        disable_link($('a.warning-link'));
-        $('span.secsRemaining').text(time_delay);
+    // enable original links where time_delay < 1, disable all others
+    if (time_delay < 1){
+        $('li.timer').text('Link active');   
     }
     else {
-        time_delay = 7;
-        disable_link($('a.warning-link'));
         $('span.secsRemaining').text(time_delay);
+        disable_link(_this);
+        disable_link($('a.warning-link'));
+        
     }
-    // link adjustment here
-    // var raw_link = 'link-to-website.com/whateverelse';
+    // enable_link($('a.warning-link'));
+    _this.attr('data-toggle', 'tooltip');
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
             $('div.tooltip').css('opacity',100);
@@ -150,13 +159,16 @@ function load_warning(group_num,p_id){
                 warning_shown = true;
             }
             // for groups with time_delay > 0, interval has to trigger
-            if (group_num >= 6){
+            if (time_delay > 0){
                 var countdownToClick = setInterval(function(){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);
                     if (time_delay <= 0){
                         $('li.timer').text('Link active');
                         enable_link($('a.warning-link'));
+                        if (group_num < 12){
+                            enable_link(_this);
+                        }
                         clearInterval(countdownToClick);
                     }
                 },1000);

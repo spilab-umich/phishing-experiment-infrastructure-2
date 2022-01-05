@@ -16,7 +16,7 @@ django.setup()
 # Input number of users
 n_users = 0
 # Input number of treatment groups
-n_of_groups = 15
+n_of_groups = 27
 
 # class MyHTMLParser(HTMLParser):
 #     prev = ""

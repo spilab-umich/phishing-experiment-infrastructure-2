@@ -172,9 +172,9 @@
     const eid = '{{email.ref}}';
     id_links();
     if (p_detected){
-        p_link_id = '{{ email.phish_id }}';
+        const p_link_id = '{{ email.phish_id }}';
         adjust_link(n,p_link_id);
-        if (n >= 3){
+        if (n < 24){
             load_warning(n,p_link_id);
         }
     }
