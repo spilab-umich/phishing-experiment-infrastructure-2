@@ -239,7 +239,7 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-for i in range(0, 30):
+for i in range(0, 100):
     user = User()
     user.username = 'tempuser'+str(i)
     user.group_num = i % n_of_groups

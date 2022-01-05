@@ -66,6 +66,7 @@ function addTemplate(_node, template){
 function enable_link(link){
     link.css('cursor','pointer')
         .removeAttr('onclick')
+        // this means all links that go to phishing websites id = -100
         .attr('id',-100);
 }
 
@@ -116,9 +117,9 @@ function load_warning(group_num,p_id){
     $('span.url-path').text(pathname);
     $('a.warning-link').attr('href', raw_link); 
     // set time_delay for each group
-    // https://math.stackexchange.com/questions/1703882/mapping-all-numbers-in-a-set-to-a-particular-number
-    var timedelay_num = 4 * parseInt(group_num/4) % 4 + group_num % 4;
+    var timedelay_num = parseInt(group_num / 3) % 4;
     let time_delay = -1;
+    // console.log(group_num);
     switch(timedelay_num){
         // default:
         //     console.log('error in assigning timedelay');
@@ -135,13 +136,17 @@ function load_warning(group_num,p_id){
             time_delay = 7;
             break;
     }
-    // disable original links in forced attention
+    // disable all original links in focused attention
     if (group_num > 11){
         disable_link(_this);
     }
     // enable original links where time_delay < 1, disable all others
     if (time_delay < 1){
-        $('li.timer').text('Link active');   
+        $('li.timer').text('Link active');  
+        enable_link($('a.warning-link'));
+        if (group_num < 12){
+            enable_link(_this);
+        } 
     }
     else {
         $('span.secsRemaining').text(time_delay);
