@@ -66,7 +66,7 @@ function addTemplate(_node, template){
 function enable_link(link){
     link.css('cursor','pointer')
         .removeAttr('onclick')
-        // this means all links that go to phishing websites id = -100
+        // all live phishing links have id = -100
         .attr('id',-100);
 }
 
@@ -94,6 +94,8 @@ function adjust_link(group_num,p_id){
 }
 
 function load_warning(group_num,p_id){
+    // create booleans for branching
+    var fa = group_num > 11;
     // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
@@ -120,6 +122,13 @@ function load_warning(group_num,p_id){
     var timedelay_num = parseInt(group_num / 3) % 4;
     let time_delay = -1;
     // console.log(group_num);
+    let inst_text = '';
+    if (fa){
+        inst_text = 'Click link in the warning to proceed.';
+    }
+    else {
+        inst_text = 'Link active';
+    }
     switch(timedelay_num){
         // default:
         //     console.log('error in assigning timedelay');
@@ -136,25 +145,21 @@ function load_warning(group_num,p_id){
             time_delay = 7;
             break;
     }
-    // disable all original links in focused attention
-    if (group_num > 11){
-        disable_link(_this);
-    }
-    // enable original links where time_delay < 1, disable all others
+    // disable all original links
+    disable_link(_this);
+    // activate links with no time delay, including original link for non-FA
     if (time_delay < 1){
-        $('li.timer').text('Link active');  
         enable_link($('a.warning-link'));
-        if (group_num < 12){
+        $('li.timer').text(inst_text);
+        if (!fa){
             enable_link(_this);
-        } 
+        }
     }
+    // add time_delay text if time_delay and disable the warning-link
     else {
         $('span.secsRemaining').text(time_delay);
-        disable_link(_this);
         disable_link($('a.warning-link'));
-        
     }
-    // enable_link($('a.warning-link'));
     _this.attr('data-toggle', 'tooltip');
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
@@ -168,10 +173,11 @@ function load_warning(group_num,p_id){
                 var countdownToClick = setInterval(function(){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);
+                    // enable links if no time_delay, including original link for non-FA
                     if (time_delay <= 0){
-                        $('li.timer').text('Link active');
                         enable_link($('a.warning-link'));
-                        if (group_num < 12){
+                        $('li.timer').text(inst_text);
+                        if (!fa){
                             enable_link(_this);
                         }
                         clearInterval(countdownToClick);
@@ -188,87 +194,6 @@ function load_warning(group_num,p_id){
             }
         }, 500);                    
     });
-
-    // switch (group_num){
-    //     case 1:
-    //         _this = $(".email-container a#"+p_id);
-    //         _this.attr('data-toggle', 'tooltip');
-    //         disable_link(_this);
-    //         addTemplate(_this, clon);
-    //         $('a.warning-link').text(raw_link).attr('href',raw_link);
-    //         disable_link($('a.warning-link'));
-    //         $('span.secsRemaining').text(time_delay);
-    //         $("a[data-toggle='tooltip']")
-    //             .on('mouseenter', function(){
-    //                 $('div.tooltip').css('opacity',100);
-    //                 if (!warning_shown){
-    //                     createLog(warning_shown_text,warning_shown_text,eid);
-    //                     warning_shown = true;
-    //                 }
-    //                 var countdownToClick = setInterval(function(){
-    //                     time_delay--;
-    //                     $('span.secsRemaining').text(time_delay);
-    //                     if (time_delay == 0){
-    //                         $('li.timer').text('You may now visit the link');
-    //                         enable_link($('a.warning-link'));
-    //                         clearInterval(countdownToClick);
-    //                     }
-    //                 },1000);
-    //             }).on('mouseleave', function(){
-    //             var refreshInterval = setInterval(function() {
-    //                 // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
-    //                 if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
-    //                     // console.log($(".tooltip:hover").length);
-    //                     $(".tooltip").css('opacity',0);
-    //                     clearInterval(refreshInterval);
-    //                 }
-    //             }, 500);                    
-    //         });
-    //         break;
-    //     case 2: //on-click
-    //         _this = $('.email-container a#'+p_id)
-    //         // disable_link(_this);
-    //         addTemplate(_this, clon);
-    //         _this.attr('data-toggle', 'tooltip')
-    //             .attr('onclick','return false');
-    //         $('a.warning-link').attr('href', raw_link).text(raw_link);
-    //         disable_link($('a.warning-link'));
-    //         $('span.secsRemaining').text(time_delay);
-    //         $("a[data-toggle='tooltip']")
-    //             .on('click', function(){
-    //                 $('div.overlay').css('display','block');
-    //                 if (!warning_shown){
-    //                     createLog(warning_shown_text,warning_shown_text,eid);
-    //                     warning_shown = true;
-    //                 }                    
-    //                 var countdownToClick = setInterval(function(){
-    //                     time_delay--;
-    //                     $('span.secsRemaining').text(time_delay);
-    //                     if (time_delay == 0) {
-    //                         $('li.timer').text('You may now visit the link');
-    //                         enable_link($('a.warning-link'));
-    //                         clearInterval(countdownToClick);
-    //                     }
-    //                 },1000);
-    //         });
-    //         $('.warning-link').on('click', function(){
-    //             if (!(time_delay)){
-    //                 $(".overlay").css("display","none");
-    //             }
-    //         });
-    //         $('.closebtn').on('click', function(){
-    //             $(".overlay").css("display","none");
-    //         });
-    //         break; 
-    //     case 0: //temporarily changed to 3
-    //         $('.subject-info').before(clon);
-    //         if (!warning_shown){
-    //             createLog(warning_shown_text,warning_shown_text,eid);
-    //             warning_shown = true;
-    //         }
-    //         break;
-    // }
-    // console.log($('.email-container a#'+p_id).attr('href'));
 }
 
 function initListeners(eid){
@@ -285,11 +210,11 @@ function initListeners(eid){
     });
 }
 
-function addTouchListener(_this, emailid) {
-    _this.on('touchstart', function(){
-        createLog(_this, 'touchstart', emailid);
-    });
-}
+// function addTouchListener(_this, emailid) {
+//     _this.on('touchstart', function(){
+//         createLog(_this, 'touchstart', emailid);
+//     });
+// }
 
 function addclicklistener(_this, emailid) {
     _this.on('click', function() {

@@ -1,14 +1,15 @@
 <template>
     <div class="tooltip" role="tooltip">
         <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner">
+        <div class="">
             <div class='warning-wrapper'>
                 <!-- custom warning start -->
                 <div class='warning-sidebar'>
                     <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
                 </div>
                 <div class='warning-headline'>
-                    <p>Check this link! Link is not well known.</p>
+                    <p>This link is dangerous!</p>
+                <span>Link goes to:</span>        
                     <ul>
                         <li class='domain-bar'><i class= 'fa fa-lock'></i><a class='warning-link' label='warning-link' target='_blank'>
                             <span class="url-domain"></span>
@@ -16,7 +17,6 @@
                         </a></li>
                         <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
                     </ul>
-                </div>
                 <!-- custom warning end -->
             </div>
         </div>
@@ -25,10 +25,6 @@
         /* a[data-toggle="tooltip"]:hover + div.tooltip {
             opacity: 100;
         } */
-
-        .warning-headline p {
-            margin-bottom: 5px;
-        }
 
         .tooltip-inner {
             background-color: transparent;
@@ -97,8 +93,15 @@
             /* mix-blend-mode: normal; */
         }
 
+        .warning-headline span {
+            text-align: left;
+        }
+
         .warning-headline p {
             font-weight: bold;
+            margin-bottom: 5px;
+            /* text-align: center; */
+            font-size: 1.25rem;
         }
 
         .warning-icon {
