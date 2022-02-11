@@ -181,20 +181,20 @@
     initListeners(eid);
 </script>
 
-<script>
-    // $(function(){
-    //     $(document).swipe({
-    //         swipe:function(event, direction, distance, duration, fingerCount, fingerData){
-    //             var prev_email = ('{{prev_email}}'!='-1');
-    //             var next_email = ('{{next_email}}'!='-1');
-    //             if ((direction=='right')&(prev_email)){
-    //                 location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
-    //             }
-    //             if ((direction=='left')&(next_email)){
-    //                 location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
-    //             }
-    //         }
-    //     });
-    // });
-</script>
+<!-- <script>
+    $(function(){
+        $(document).swipe({
+            swipe:function(event, direction, distance, duration, fingerCount, fingerData){
+                var prev_email = ('{{prev_email}}'!='-1');
+                var next_email = ('{{next_email}}'!='-1');
+                if ((direction=='right')&(prev_email)){
+                    location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
+                }
+                if ((direction=='left')&(next_email)){
+                    location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
+                }
+            }
+        });
+    });
+</script> -->
 {% endblock %}

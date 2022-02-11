@@ -94,8 +94,10 @@ function adjust_link(group_num,p_id){
 }
 
 function load_warning(group_num,p_id){
-    // create booleans for branching
-    var fa = group_num > 11;
+    // adjust group_num for warning assignment
+    var adj_group_num = group_num % 27;
+    // create boolean for branching
+    var fa = adj_group_num > 11;
     // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
@@ -119,7 +121,7 @@ function load_warning(group_num,p_id){
     $('span.url-path').text(pathname);
     $('a.warning-link').attr('href', raw_link); 
     // set time_delay for each group
-    var timedelay_num = parseInt(group_num / 3) % 4;
+    var timedelay_num = adj_group_num % 4;
     let time_delay = -1;
     // console.log(group_num);
     let inst_text = '';
