@@ -212,6 +212,9 @@ for i in range(0, n_users):
         new = Mail()
         new.user = user
         new.sender = email['from'][0]
+        # sender always has an email address and optionally a name
+        # e.g., ["Justin Petelka", "jpetelka@gmail.com"]
+        # OR ["jpetelka@gmail.com"]
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
         # new.preview = email['preview']

@@ -15,8 +15,10 @@
                             <!-- <i class= 'fa fa-lock'></i> -->
                             <a class='warning-link' label='warning-link' target='_blank'>
                             <span class="url-domain"></span>
+                            </a>    
                             <span class="url-path"></span>
-                        </a></li>
+                            <!-- </a> -->
+                        </li>
                         <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
                     </ul>
                 <!-- custom warning end -->
@@ -44,19 +46,18 @@
         .warning-sidebar {
             height: 100%;
             background-color: #b8b8b8;
-            /* opacity: 0.7; */
             padding: 10px;
-            /* float: left; */
             display: table-cell;
             width: 50px;
             vertical-align: middle;
         }
 
         .domain-bar{
+            padding: 0;
+            /* CHANGE THESE FOR NON DOMAIN HIGHLIGHTING
             border-radius: 15px;
-            background-color: #E8E8F0;
+            background-color: #E8E8F0; */
             padding: .2rem 0 .2rem 0;
-            /* color: #B8B8B8; */
         }
 
         .domain-bar i {
@@ -64,9 +65,10 @@
         }
 
         .domain-bar a {
-            /* background-color: #FFFFFF; */
-            /* padding-right: 15px; */
-            padding: 0 .5rem 0 .5rem;
+            border-radius: 15px;
+            background-color: #E8E8F0;
+            /* padding: 0 .5rem 0 .5rem; */
+            padding: .2rem 0 .2rem .5rem;
             text-decoration: underline;
         }
 
