@@ -77,7 +77,7 @@ function adjust_link(group_num,p_id){
     // sort of related domains group_num % 3 == 1
     // brand domains group_num % 3 = 2
     var plinks = [
-        ['https://www.hrzzhfs.xyz/', 'https://dkozzlfods.info/', 'https://etooicdfi.studio/something'],
+        ['https://www.hrzzhfs.xyz/', 'https://dkozzlfods.info/', 'https://etooicdfi.studio/something/'],
         ['https://www.financial-pay.info/global-service/', 'https://www.online-shopping-payment.com/', 'https://www.client-mail-services.com/'],
         ['https://www.westernunion-pay.com/global-service/track-transfer/', 'https://www.walmartpay.com/something','https://mail.google-services.com/'],
     ];
