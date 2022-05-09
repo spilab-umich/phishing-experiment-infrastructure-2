@@ -92,14 +92,16 @@ function load_warning(group_num,p_id){
     var raw_link = _this.attr('href');
     var url = new URL(raw_link);
     // create domain text
-    var hostname = url.host.split('www.');
-    let protocol = url.protocol + '//';
+    var hostname = url.hostname.split('www.');
+    let protocol = url.protocol + '//www.';
+    // console.log(protocol);
+    
     if (hostname.length > 1){
-        hostname = hostname[1];
         protocol += hostname[0];
+        hostname = hostname[1];
     }
     else {
-        hostname = hostname[0];
+        hostname = hostname[0]; // hostname is always an array
     }
     hostname = hostname.split('').join(' '); // separate the characters in the host    
     let pathname = url.pathname;
