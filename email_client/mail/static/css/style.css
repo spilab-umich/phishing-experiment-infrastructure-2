@@ -1,13 +1,19 @@
 /* Base CSS revisions */
 
 /*anchor*/
-a {
+/* a {
     color: #667fa0;
     text-decoration: none;
-}
+}*/
 
+
+/*
 a:hover {
     color: #2A3542;
+} */
+
+.revert {
+    all:revert;
 }
 
 .chk-all:focus {

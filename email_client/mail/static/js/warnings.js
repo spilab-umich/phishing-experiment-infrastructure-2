@@ -70,34 +70,19 @@ function enable_link(link){
         .attr('id',-100);
 }
 
-// changes href of desired link to one of several phishing links
-function adjust_link(group_num,p_id){
+// changes href of desired link to the selected phishing link
+function adjust_link(p_id,p_url){
     var _this = $('.email-container a#'+p_id);
-    // unrelated domains group_num % 3 = 0
-    // sort of related domains group_num % 3 == 1
-    // brand domains group_num % 3 = 2
-    var plinks = [
-        ['https://www.hrzzhfs.xyz/', 'https://dkozzlfods.info/', 'https://etooicdfi.studio/something/'],
-        ['https://www.financial-pay.info/global-service/', 'https://www.online-shopping-payment.com/', 'https://www.client-mail-services.com/'],
-        ['https://www.westernunion-pay.com/global-service/track-transfer/', 'https://www.walmartpay.com/something','https://mail.google-services.com/'],
-    ];
-    if (eid == 3){
-        var raw_link = plinks[group_num % 3][0];
-    }
-    else if (eid == 2){
-        var raw_link = plinks[group_num % 3][1];
-    }
-    else if (eid == 1){
-        var raw_link = plinks[group_num % 3][2]
-    }
+    var raw_link = p_url;
     _this.attr('href', raw_link);
 }
 
 function load_warning(group_num,p_id){
-    // adjust group_num for warning assignment
-    var adj_group_num = group_num % 27;
-    // create boolean for branching
-    var fa = adj_group_num > 11;
+    // adjust group_num to represent the time_delay group 
+    // (0, 2, 4 secs) for groups ([0,3],[1,4],[2,5])
+    let timedelay_num = group_num % 3;
+    // create boolean for focused attention branching (groups 3, 4, 5)
+    var fa = group_num > 2;
     // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
@@ -108,20 +93,24 @@ function load_warning(group_num,p_id){
     var url = new URL(raw_link);
     // create domain text
     var hostname = url.host.split('www.');
+    let protocol = url.protocol + '//';
     if (hostname.length > 1){
-        hostname = hostname[1]
+        hostname = hostname[1];
+        protocol += hostname[0];
     }
     else {
         hostname = hostname[0];
     }
     hostname = hostname.split('').join(' '); // separate the characters in the host    
-    var pathname = url.pathname;
+    let pathname = url.pathname;
+    let search_params = url.search;
     // add domain text to warning
+    $('span.url-protocol').text(protocol);
     $('span.url-domain').text(hostname);
-    $('span.url-path').text(pathname);
+    $('span.url-path').text(pathname + search_params);
+    // console.log(pathname);
     $('a.warning-link').attr('href', raw_link); 
     // set time_delay for each group
-    var timedelay_num = adj_group_num % 4;
     let time_delay = -1;
     // console.log(group_num);
     let inst_text = '';
@@ -138,13 +127,10 @@ function load_warning(group_num,p_id){
             time_delay = 0;
             break;
         case 1:
-            time_delay = 3;
+            time_delay = 2;
             break;
         case 2:
-            time_delay = 5;
-            break;
-        case 3:
-            time_delay = 7;
+            time_delay = 4;
             break;
     }
     // disable all original links
@@ -171,6 +157,8 @@ function load_warning(group_num,p_id){
                 warning_shown = true;
             }
             // for groups with time_delay > 0, interval has to trigger
+
+            // && !countdownToClick
             if (time_delay > 0){
                 var countdownToClick = setInterval(function(){
                     time_delay--;
@@ -207,9 +195,9 @@ function initListeners(eid){
         addHoverListener($(this), eid);
     });
 
-    $('.email-container a').each(function(){
-        addTouchListener($(this), eid);
-    });
+    // $('.email-container a').each(function(){
+    //     addTouchListener($(this), eid);
+    // });
 }
 
 // function addTouchListener(_this, emailid) {

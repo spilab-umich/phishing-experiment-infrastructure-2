@@ -15,8 +15,8 @@ django.setup()
 
 # Input number of users
 n_users = 0
-# Input number of treatment groups
-n_of_groups = 27
+# Input number of groups
+n_of_groups = 7
 
 # class MyHTMLParser(HTMLParser):
 #     prev = ""
@@ -143,9 +143,6 @@ import random as rd
 import string
 from random import shuffle
 
-## Can get rid of this ##
-
-
 
 ## Maybe Keep This ##
 # Load warning metadata
@@ -163,7 +160,30 @@ for item in d['phish_domains']:
 phish_email_ids = [x['email_id'] for x in warning_data]
 # print(phish_email_ids)
 # exit()
+list_of_p_domains = {
+    3:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+    2:['https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
+    'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+    1:['https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/',
+    'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
+    'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+}
 
+# phishing email id : [list_of_domain_manipulations,]
+# list_of_p_domains = {
+#     1:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+#     'https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+#     'https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/'],
+#     2:['https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+#     'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+#     'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+#     3:['https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+#     'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
+#     'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+# }
 
 # These are the dates each email displayed in the inbox
 # time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', 'Dec 17', 'Dec 18', 'Dec 23']
@@ -253,6 +273,8 @@ for i in range(0, 100):
     user.assigned = True
     user.save()
     # j=num_emails-1
+    domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
+    shuffle(domain_manip_available)
     for email in emails_to_add:
         new = Mail()
         new.user = user
@@ -274,6 +296,7 @@ for i in range(0, 100):
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
             # print(new.phish_id)
+            new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
         new.save()
         # j-=1
 exit()
