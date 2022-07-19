@@ -263,6 +263,10 @@ for i in range(0, n_users):
 # Create a user to login into
 # This helps with checking the inbox
 for i in range(0, 100):
+
+    # I added this without testing it! it might not play nice with the new.phish_id line
+    shuffle(emails_to_add)
+    
     user = User()
     user.username = 'tempuser'+str(i)
     user.group_num = i % n_of_groups
