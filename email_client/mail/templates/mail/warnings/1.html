@@ -13,10 +13,11 @@
                     <ul>
                         <li class='domain-bar'>
                             <!-- <i class= 'fa fa-lock'></i> -->
-                            <span class="url-protocol"></span><a class='warning-link' label='warning-link' target='_blank'><span class="url-domain"></span>
-                            </a>    
-                            <span class="url-path"></span>
-                            <!-- </a> -->
+                            <a label="warning-link" class="warning-link">
+                                <!-- <span class="pre-domain"></span>
+                                <span class="main-domain"></span>
+                                <span class="post-domain"></span> -->
+                            </a>                            
                         </li>
                         <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
                     </ul>
@@ -25,6 +26,9 @@
         </div>
     </div>
     <style>
+        iframe {
+            opacity:0;
+        }
         .tooltip-inner {
             background-color: transparent;
             /* max-width: 40%; */
@@ -65,25 +69,37 @@
         }
 
         .domain-bar a {
-            border-radius: 15px;
+            /* border-radius: 15px;
             background-color: #E8E8F0;
-            /* padding: 0 .5rem 0 .5rem; */
-            padding: .2rem .2rem .2rem .5rem;
-            /* text-decoration: underline; */
+            padding: .2rem .2rem .2rem .5rem; */
+            word-break: break-all;
         }
 
+        span.main-domain {
+            color: inherit;
+        }
 
-        .url-domain {
+        /* span.pre-domain, span.post-domain {
+            opacity: 0.5;
+        } */
+
+        /* .url-domain {
             font-weight: bold;
         }
 
         .url-path, .url-protocol {
             opacity: .75;
-        }
+        } */
 
         .warning-link {
             color: #4F4F4F;
             text-decoration: underline;
+        }
+
+        a.warning-link:hover {
+            color: black;
+            opacity: 0.8;
+            text-decoration-color: black;
         }
 
         .warning-headline {

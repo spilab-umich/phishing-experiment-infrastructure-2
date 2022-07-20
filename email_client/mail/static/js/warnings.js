@@ -88,6 +88,16 @@ function load_warning(group_num,p_id){
     var clon = template.content.cloneNode(true);
     var _this = $('.email-container a#'+p_id);
     addTemplate(_this, clon);
+
+
+
+    // TEMPORARY VARIABLE SETTING
+    fa = true;
+    timedelay_num = 0;
+    // END VARIABLE SETTING
+
+
+
     // change href attributes    
     var raw_link = _this.attr('href');
     var url = new URL(raw_link);
@@ -95,7 +105,6 @@ function load_warning(group_num,p_id){
     var hostname = url.hostname.split('www.');
     let protocol = url.protocol + '//www.';
     // console.log(protocol);
-    
     if (hostname.length > 1){
         protocol += hostname[0];
         hostname = hostname[1];
@@ -103,15 +112,58 @@ function load_warning(group_num,p_id){
     else {
         hostname = hostname[0]; // hostname is always an array
     }
-    hostname = hostname.split('').join(' '); // separate the characters in the host    
+
+    // SPACING OUT LINK IS CONDITIONAL FOR TESTING
+    if (group_num % 2 > 0){
+        hostname = hostname.split('').join(' '); // separate the characters in the host  
+    }
+
+    // END TESTING
+
+    // CONSTRUCT LINK TESTING
+    let pre_domain = '<span class="pre-domain"></span>';
+    let main_domain = '<span class="main-domain"></span>';
+    let post_domain = '<span class="post-domain"></span>';
+    if (group_num < 4){
+        $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+    }
+    else {
+        $('a.warning-link').before(pre_domain)
+            .prepend(main_domain)
+            .after(post_domain);
+    }
+    // END TESTING
+
+    // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
+    if (group_num % 4 in [0,1]){
+        $('span.main-domain').css('color','black');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
+    else {
+        $('span.main-domain').css('border-radius','15px')
+            .css('background-color','#E8E8F0')
+            .css('font-weight','bold')
+            .css('padding','.2rem .3rem');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
+    // END TESTING
+
     let pathname = url.pathname;
     let search_params = url.search;
     // add domain text to warning
-    $('span.url-protocol').text(protocol);
-    $('span.url-domain').text(hostname);
-    $('span.url-path').text(pathname + search_params);
-    // console.log(pathname);
+    $('span.pre-domain').text(protocol);
+    $('span.main-domain').text(hostname);
+    $('span.post-domain').text(pathname + search_params);
+    // console.log('test');
     $('a.warning-link').attr('href', raw_link); 
+    $('iframe').on('click', function(){
+        window.open('https://www.google.com/','_blank');
+    });
+
+
+
     // set time_delay for each group
     let time_delay = -1;
     // console.log(group_num);
@@ -151,6 +203,8 @@ function load_warning(group_num,p_id){
         disable_link($('a.warning-link'));
     }
     _this.attr('data-toggle', 'tooltip');
+
+    //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
             $('div.tooltip').css('opacity',100);
