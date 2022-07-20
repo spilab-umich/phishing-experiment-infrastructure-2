@@ -16,7 +16,7 @@ django.setup()
 # Input number of users
 n_users = 0
 # Input number of groups
-n_of_groups = 7
+n_of_groups = 8
 
 # class MyHTMLParser(HTMLParser):
 #     prev = ""
