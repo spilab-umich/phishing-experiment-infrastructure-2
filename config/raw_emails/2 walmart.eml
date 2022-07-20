@@ -1,0 +1,1443 @@
+Delivered-To: psychodoughboy2@gmail.com
+Received: by 2002:a05:6602:1856:0:0:0:0 with SMTP id d22csp2415634ioi;
+        Mon, 1 Nov 2021 03:06:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxUb7r9l26qHupXx3uHifv/g1qq4J+H3y47x+Z4Uz06Y7PNNCeVrsFKO7ShZog60hA1DTz0
+X-Received: by 2002:a05:600c:4982:: with SMTP id h2mr13281770wmp.4.1635761203593;
+        Mon, 01 Nov 2021 03:06:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1635761203; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WjuLScGKjmBnHCTaztN6vaOrNGSbtYyjoqjPG3cOX28Qw/njU5d9umPE4kTGtVJUGl
+         L0exXYFD+kXj+ePjbSgFQDyKjddrkPQwUgiQexfUk/EI1XPdxRCPbQ1w4jTqViUuO6xE
+         rzNDK9QsMm+F1vwvL7qeFSQxetzilNKoxiWCzkIMozSM9QxHaEWTWO10Y7hXmSS6Ysqf
+         fN3GMgm56/JawnNvNA7CZlZ2b11F3lzEMZAA//Hz8SdodgRj0f3adwk5ZwWobJtrqefc
+         fheEc/fpJUyKNvvfDv9MpNn1KwXibubaXnrBdYDw/YG2iedGGTYKxnPwWlumEKmC0Eo7
+         p4ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:feedback-id:date:subject:to:reply-to:from
+         :mime-version:message-id:dkim-signature:dkim-signature;
+        bh=Gj9D/g84o83BWFG42UGZbupZhghPvohYUax2oJaTFQ0=;
+        b=VEg5zNXydsjfu7n0nonXd6I5xLHXy8fcucymAYRcgUjntZPrheEEgbBYAPt3OVXDtU
+         Lm7qVnsMSP9zQbwhSJXt0wtHy6Q6b+oUn034lgF66Q+xat3Y2atH0n8jYjuXubTiHc6T
+         2oQbsSn77H1XkjQgCNWGRb0BckGNLL//fwZYiiFUefJwRVnbfHJwAD8HzBHhYGGVlAnZ
+         Ge58Z0Wf3Vc0nd9BZrEmPnCk8yro+cxCyF2RnM99uc61awU4g1gVdjeZISshuRqloVqV
+         dKw31GElImHKkt2q/HWsSQtTWo02USqCspGrMieKepLov9yvEBF9ac2q3+hHsSulD7pY
+         T6kg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@walmart.com header.s=mailjet header.b=ZP5Fkvym;
+       dkim=pass header.i=@bnc3.mailjet.com header.s=mailjet header.b=ICP40wSs;
+       spf=pass (google.com: domain of 2f707d16.caaaaj3mf54aaaaaaaaaabj4zkcaaaaawg8aaaaaablbkabhf7wy@bnc3.walmart.com designates 185.211.122.7 as permitted sender) smtp.mailfrom=2f707d16.CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy@bnc3.walmart.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=walmart.com
+Return-Path: <2f707d16.CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy@bnc3.walmart.com>
+Received: from o7.p31.mailjet.com (o7.p31.mailjet.com. [185.211.122.7])
+        by mx.google.com with UTF8SMTPS id y143si10456162wmc.77.2021.11.01.03.06.43
+        for <psychodoughboy2@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Nov 2021 03:06:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 2f707d16.caaaaj3mf54aaaaaaaaaabj4zkcaaaaawg8aaaaaablbkabhf7wy@bnc3.walmart.com designates 185.211.122.7 as permitted sender) client-ip=185.211.122.7;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@walmart.com header.s=mailjet header.b=ZP5Fkvym;
+       dkim=pass header.i=@bnc3.mailjet.com header.s=mailjet header.b=ICP40wSs;
+       spf=pass (google.com: domain of 2f707d16.caaaaj3mf54aaaaaaaaaabj4zkcaaaaawg8aaaaaablbkabhf7wy@bnc3.walmart.com designates 185.211.122.7 as permitted sender) smtp.mailfrom=2f707d16.CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy@bnc3.walmart.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=walmart.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=walmart.com; i=help@walmart.com; s=mailjet;
+  h=message-id:mime-version:from:reply-to:to:subject:date:feedback-id:x-clientmsgid:
+  x-csa-complaints:x-mj-mid:x-report-abuse-to:content-type:content-transfer-encoding;
+  bh=v8JRDKVAILSA74hwCS9qopYiTmS30jjtjwh7vu6l3MU=;
+  b=ZP5FkvymplHCv2l2AtMM3s2zleAE8mpltQDxw6B6SUC9L+8zXPKbNgIxu
+ I8mcyvlDm6qb4TG6pCYeERBGuwJdfDDZedji1i6dDCSzso3JnHhPtt+DIHkh
+ sSMbzumintIvf6Xy+Gb7TdEhA15Zts1s30RXQH4oBJjRtxeOJMrWUs=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=bnc3.mailjet.com; s=mailjet;
+  h=message-id:mime-version:from:reply-to:to:subject:date:feedback-id:x-clientmsgid:
+  x-csa-complaints:x-mj-mid:x-report-abuse-to:content-type:content-transfer-encoding;
+  bh=v8JRDKVAILSA74hwCS9qopYiTmS30jjtjwh7vu6l3MU=;
+  b=ICP40wSs2REuLapb+EaDQjRmct0GQ05RGC0186H2vgjgLg1zrDKX85yTc
+ KdZkECLHsCFqqL8XeeLKJGxRtnF4vs1nsfgwnuOvoI4BIV95B+KUCdviYeEb
+ w7KO0TGGYvb3Qy5kjA/fnK7xXeHP/+DcmXjW7QcOS68192WokHaMBI=
+Return-Path:
+	<2f707d16.CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy@bnc3.walmart.com>
+Message-Id: <2f707d16.CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy@mailjet.com>
+MIME-Version: 1.0
+From: "Walmart.com" <help@walmart.com>
+Reply-To: donotreply@walmart.com
+To: psychodoughboy2@gmail.com
+Subject: Welcome to Walmart!
+Date: Mon, 1 Nov 2021 10:06:42 +0000
+Feedback-Id: 1b096d78-681e-337d-8c45-b4de50741c2b.1655080.1265704:MJ
+X-ClientMsgID: 1b5090ab-0e43-4590-81d0-5b908f75ecbb
+X-CSA-Complaints: csa-complaints@eco.de
+X-MJ-Mid:
+	CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy22wznWG_QQ6HGN63AUFn_wATUCg
+X-REPORT-ABUSE-TO: Message sent by Mailjet please report to
+	abuse@mailjet.com with a copy of the message
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Walmart.com</title>
+		<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>
+
+<style type=3D"text/css">
+.icon-img.walmart a img {
+    width: 57px;
+    height: 53px;
+}
+.icon-img.pharmacy a img {
+    width: 57px;
+    height: 57px;
+}
+		.mobile-welcome-banner{
+              display:none;
+              }
+              .desk-banner{
+              display:block;
+              }
+             .desktop-text-align {
+             display:block;
+             }
+             .mobile-text-align{
+             display:none;
+             }
+             td.icon-boxx {
+    		padding-bottom: 40px;
+			}
+			td.icon-box1 {
+    			padding-bottom: 60px;
+			}
+			.icon-box2 {
+    			padding-bottom: 60px;
+			}
+   		 @media only screen and (max-width: 480px){
+           .mobile_view { float: right;}
+   		 }
+
+		@media only screen and (max-width: 480px) {
+		.info-section{
+		width:100%;
+		}
+		.inbox-boxx {
+		    width: 100%;
+		    float: left;
+		    padding-left: 0px !important;
+			}
+		.inbox-box {
+		    float: left;
+		    width: 100%;
+		    margin-bottom: 32px;
+			}
+			td.icon-boxx {
+    		padding-bottom: 0px;
+			}
+			td.icon-box1 {
+    			padding-bottom: 0px;
+			}
+			.icon-box2 {
+    			padding-bottom: 0px;
+			}
+			p.icon-img.pharmacy {
+    			margin-top: 5px;
+    			margin-bottom: 0px;
+			}
+			.block-img {
+    			width: 100%;
+    			text-align: center;
+			}
+			table.block-img td {
+    			text-align: center;
+			}
+			table.block-img p {
+    			text-align: center !important;
+			}
+			table.block-img h4, h3, h2 {
+    			text-align: center !important;
+			}
+			p.item-text {
+    			margin-bottom: 0px;
+    			padding-bottom: 60px;
+			}
+			p.img-text {
+    			margin-bottom: 0px;
+    			padding-bottom: 40px;
+			}
+			.mobile-text-align td p {
+    			text-align: center !important;
+			}
+			.responsive-devicea.socialIcon {
+    			width: 100%;
+			}
+			.responsive-devicea.socialIcon th {
+    			text-align:center;
+			}
+			table.responsive-deviceb {
+    			width: 100%;
+			}
+			body { background-color: #FFFFFF; margin:0px auto; padding:0px; margin-l=
+eft: auto !important; margin-right: auto !important; }
+			table td { border-collapse: collapse; }
+ 			td[class=3DblueLine] { height: 3px !important; }
+			/** global **/
+			[class=3DassetOff] { display: none !important; width: 0px !important; }
+			[class=3DsetDisplayWidth] { width: 303px !important; }
+			[class=3DsetDisplayWidthInner] { width: 360px !important; }
+			[class=3DsetDisplayImage] { width: 280px !important; }
+			[class=3DmakeBlock] { display: block !important; clear: both !important;=
+ }
+			[class=3DmakeInlineBlock] { display: inline-block !important; }
+			[class=3DmoduleBreak] { height: 25px !important; }
+			[class=3DmoduleBreakLine]{width : 290px!important}
+			[class=3DmoduleBreakPOV] { height: 0px !important; }
+			[class=3DmakeOneZeroOne] { width: 101px !important; }
+			[class=3DmakeOneFiftyOne] { width: 151px !important; }
+			[class=3DgreyText]{font-size:13px!important;}
+			[class=3DpinkText]{font-size:13px!important;}
+			[class=3DblackText]{font-size:13px!important;}
+			[class=3DblockHeader]{font-size:25px!important;}
+			[class=3DtitleHeader]{font-size:16px!important;}
+			[class=3DtitleHeaderGrey]{font-size:14px!important;}
+			[class=3DtrackButton]{height:20px!important; width:122px!important;}
+			[class=3DcolumnHeader]{font-size:16px!important;}
+			[class=3DbannerHeader]{font-size:30px!important;}
+			[class=3DheaderSize]{height: 80px !important; background-color:#041e42 !=
+important;}
+			[class=3DresponsiveButton]{width:100%!important}
+			[class=3DheaderImgSpark]{
+					width: 42px!important;
+				  height: 45px!important;
+				  font-family: WalmartNewIcons;
+				  font-size: 57.6px;
+				  text-align: center;
+				  color: #ffc220;
+			}
+			*[class~=3Dhide_on_mobile] { display: none !important;}      =20
+		    *[class~=3Dshow_on_mobile] {
+		        display : block !important;
+		        width : auto !important;
+		        max-height: inherit !important;
+		        overflow : visible !important;
+		        float : none !important;
+		    }
+		    td[class=3DheaderImageSwap] a { display: block !important; width: 303=
+px; height: 43px; }
+			td[class=3DmobileBannerDefault]{
+				width: 100% !important;
+				height: 408px !important;
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-2027/k2=
+-_d7b9324f-a978-4ca2-b4b2-849c352cd118.v1.jpg") !important;=20
+			}
+			td[class=3DmobileBannerDefault] a img { display: none !important; width:=
+ 0px !important; }
+			td[class=3DmobileBannerDefault] a { display: block !important; }
+			td[class=3DmobileBannerLaptop]{
+				width: 100% !important;
+				height: 408px !important;
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-3b28/k2=
+-_26c6ad9f-4c3c-4573-a982-8451f8197a6e.v1.jpg") !important;=20
+			}
+			td[class=3DmobileBannerLaptop] a { display: block !important; }
+			td[class=3DmobileBannerLaptop] a img { display: none !important; width: =
+0px !important; }
+			td[class=3DmobileBannerTv]{
+				width: 100% !important;
+				height: 408px !important;
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-1bf2/k2=
+-_82fd076a-dd0e-459e-8bcd-66dd161c4173.v1.jpg") !important;=20
+			}
+			td[class=3DmobileBannerTv] a { display: block !important; }
+			td[class=3DmobileBannerTv] a img { display: none !important; width: 0px =
+!important; }
+			td[class=3DmobileBannerPhone]{
+				width: 100% !important;
+				height: 408px !important;
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-9e03/k2=
+-_00216837-d7db-424c-a414-ff9d106596b6.v1.jpg") !important;=20
+			}
+			td[class=3DmobileBannerPhone] a { display: block !important; }
+			td[class=3DmobileBannerPhone] a img { display: none !important; width: 0=
+px !important; }
+			td[class=3DmobileBannerTab]{
+				width: 100% !important;
+				height: 408px !important;
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-5dd6/k2=
+-_6b07803a-292c-4774-96a6-00e72f721529.v1.jpg") !important;=20
+			}
+			td[class=3DmobileBannerTab] a { display: block !important; }
+			td[class=3DmobileBannerTab] a img { display: none !important; width: 0px=
+ !important; }
+			img[class=3DupcAsset] { display: block !important; margin: 0px auto !imp=
+ortant; }
+			font[class=3DmoduleHeading] { font-size: 22px !important; font-weight: b=
+old !important; line-height: 22px !important; }
+			font[class=3DmoduleSubHeading] { font-size: 18px !important; font-weight=
+: bold !important; line-height: 18px !important; }
+			td[class=3DwidthToTen] { width: 10px; }
+			font[class=3DcolumnHeading] { font-size: 15px !important; font-weight: b=
+old !important; line-height: 14px !important; }
+
+			/** header **/
+			img[id=3Dlogo] { display: none !important; width: 0px !important; }
+			td[class=3DheaderImageSwap] {=20
+				width: 303px !important;=20
+				height: 43px !important;=20
+				display: block !important;
+				background-repeat:no-repeat;
+				background-position:0 0;
+				background-color:transparent;
+				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-b20d/k2=
+-_316f116a-3b4b-4fbf-9802-09673d39fc4e.v1.jpg") !important;=20
+				}
+			td[class=3DheaderImageSwap] a { display: block !important; width: 303px;=
+ height: 43px; }
+			img[class=3DupcAsset] { display: block !important; margin: 0px auto !imp=
+ortant; }
+			font[class=3DmoduleHeading] { font-size: 22px !important; font-weight: b=
+old !important; line-height: 22px !important; }
+			font[class=3DmoduleSubHeading] { font-size: 20px !important; font-weight=
+: bold !important; line-height: 20px !important; }
+			td[class=3DwidthToTen] { width: 10px; }
+			font[class=3DcolumnHeading] { font-size: 15px !important; font-weight: b=
+old !important; line-height: 14px !important; }
+
+			td[class=3DcolumnWidth01] { width: 70px !important; }
+
+			font[class=3DtopMessage] { font-size: 22px !important; }=20
+			img[class=3DbarCode] { width: 240px; display: block !important; margin: =
+0px auto !important; }
+			font[class=3DreturnCode] { font-size: 16px; line-height: 16px !important=
+; }
+			[class=3DreturnCodeValue] { display: block !important; clear: both !impo=
+rtant; padding: 5px 0 !important; }
+			td[class=3DprimaryNavMobile] { width: 50% !important; }
+			td[class=3DfourUpSecondGroupHeightTop] { height: 0px !important; }
+			[class=3DmakeOneFiftyOneTrans] { width: 151px !important; border-spacing=
+: 0px; }
+			[class=3DfourUpImgContainer] { width: 135px; margin: 0px 0px 11px 11px !=
+important; }
+			[class=3DfourUpImg] { width: 115px; height: 115px; }
+			td[class=3DcolumnBodyDataCell] { line-height: 14px !important; padding-b=
+ottom: 5px; }
+			font[class=3DcolumnBody] { font-size: 13px !important; }
+			img[class=3DimgWidth]{width:100% !important;}
+           .header-text {
+             font-size: 28px !important;
+             font-family: Arial;
+          }
+  =20
+		}
+		.responsiveButton{
+			width : 65%;
+		}
+		.greyText{
+		  height: 16px;
+		  font-family: Arial;
+		  font-size: 14px;
+		  text-align: left;
+		  color: #6d6e71;
+		}
+		.blackText{
+		  height: 16px;
+		  font-family: Arial;
+		  font-size: 14px;
+		  text-align: right;
+		  color: #000000;
+		}
+		.pinkText{
+		  height: 22px;
+		  font-family: Arial;
+		  font-size: 16px;
+		  line-height: 1.38;
+		  text-align: center;
+		  color: #cb2c90;
+		}
+		.setDisplayWidth{
+			width:700px;
+		}
+		.setDisplayWidthInner{
+			width:660px;
+		}
+		.columnWidth01{
+			width : 430px;
+		}
+		.blockHeader{
+			/*width: 346px;
+		 	height: 27px;*/
+			font-family: Arial;
+			font-size: 24px;
+			text-align: left;
+			color: #000000;
+		}
+		.titleHeader{
+			/*width: 159px;
+		  height: 20px;*/
+		  font-family: Arial;
+		  font-size: 18px;
+		  text-align: left;
+		  color: #000000;
+		}
+		.titleHeaderGrey{
+		 width: 197px;
+		  height: 20px;
+		  font-family: Arial;
+		  font-size: 18px;
+		  line-height: 1.11;
+		  text-align: left;
+		  color: #6d6e71;
+		}
+		.columnHeader{
+			 width: 197px;
+		  height: 20px;
+		  font-family: Arial;
+		  font-size: 18px;
+		  line-height: 1.11;
+		  text-align: left;
+		  color: #000000;
+		}
+		.headerSize{
+			background-color:#041e42;
+			height : 100px;
+		}
+		.headerImgSpark{
+		    width: 60px;
+		    height: 68px;
+		    font-family: WalmartNewIcons;
+		    font-size: 72px;
+		    text-align: center;
+		    color: #ffc220;
+		    margin-top: 14px;
+		}
+		.bannerHeader{
+			  height: 72px;
+			  font-family: Arial;
+			  font-size: 32px;
+			  text-align: left;
+			  color: #000000;
+		}
+		.moduleBreakLine{
+			margin-bottom:40px;
+			margin-top:40px;
+			width:660px;
+		}
+   		.shipment-status {
+            width: 100px;
+            height: 20px;
+            font-family: Bogle;
+            font-size: 14px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+            display: inline-block;
+            padding: 10px 12px;
+       }
+  	   .header-text {
+         font-size: 40px;
+         font-family: Arial;
+         margin: 0px;
+		 font-weight: normal;
+  		}
+  		p.icon-img {
+   		 height: 53px;
+		}
+     =20
+		@media only screen and (max-width: 480px) {
+		.desktop-text-align {
+              display:none !important;
+             }
+             .mobile-text-align{
+             display:block !important;
+             }
+		td.box-img {
+    		width: 100% !important;
+    		float: left;
+		}
+		td.subscribe {
+    		width: 100% !important;
+    		float: left;
+    		padding-left: 24px;
+    		padding-right: 0px !important;
+    		padding-bottom: 24px !important;
+		}
+		td.box-txt {
+    		width: 100% !important;
+    		float: left;
+    		padding-left: 0px !important;
+    		    padding-right: 0px;
+		}
+		td.box-img img {
+    		padding-left: 24px;
+    	=09
+		}
+		td.box-txt p {
+    		padding-left: 24px !important;
+    		margin: 0px !important;
+    		padding-top: 16px !important;
+    		padding-right: 24px !important;
+    	=09
+		}
+		.box-txt h5 {
+    		padding-left: 24px !important;
+    		}
+    	.box-img{
+    	padding-left: 0px !important;
+    	}	=09
+		.box-txt .txt1 {
+    		padding-top: 8px !important;
+    		padding-bottom: 16px !important;
+    		padding-right: 24px !important;
+		}
+		.text2 {
+    		padding-left: 24px;
+    		padding-right: 24px;
+    		margin-bottom: 0px;
+    		margin-top: 0px;
+    		padding-top: 8px;
+		}
+		td.icon-box.service .icon-img {
+   			margin-bottom: 0px;
+		}
+		p.icon-img.walmart img {
+    		width: 38px;
+    		height: 28px;
+		}
+		p.icon-img.pharmacy img {
+    		width: 27px;
+    		height: 36px;
+		}
+		td.icon-box.service img {
+    		width: 38px;
+    		height: 28px;
+		}
+		p.icon-img.reg img {
+    		width: 31px;
+    		height: 31px;
+		}
+		p.icon-img.store img {
+    		width: 36px;
+    		height: 27px;
+		}
+		.icon-box p span {
+    		font-size: 14px !important;
+		}
+		.icon-img {
+    		height: auto !important;;
+		}
+		table#icon-section {
+    		padding-top: 10px !important;
+		}
+		.mobile-banner {
+    		display: block !important;
+		}
+		.desk-banner {
+    		display: none !important;
+		}
+		.mobile-welcome-banner {
+    		display: block !important;
+		}
+		}
+				@media only screen and (max-width: 320px) {
+
+			body { background-color: #FFFFFF; margin:0px auto; padding:0px; margin-l=
+eft: auto !important; margin-right: auto !important; }
+			table td { border-collapse: collapse; }
+			[class=3DsetDisplayWidth] { width: 286px !important; }
+			[class=3DsetDisplayWidthInner] { width: 280px !important; }
+			[class=3DsetDisplayImage] { width: 280px !important; }
+		=09
+			.mobile-banner {
+                display:block !important;
+                width:100%;
+                overflow: visible !important;
+                border-bottom: 4px solid #000000 !important;
+    	      }
+              .desk-banner{
+              	display:none !important;
+              }
+              .mobile-welcome-banner{
+               display:block !important;
+               width:100%;
+              }
+              .desktop-text-align{
+               display:none !important;
+              }
+              .mobile-text-align{
+              display:block !important;
+              }
+            =20
+		}
+	</style>
+
+
+
+
+	</head>
+	<body bgcolor=3D"#FFFFFF" align=3D"center" style=3D"margin:0px;padding:0px=
+;-webkit-text-size-adjust: none;">
+      =20
+	<img src=3D"https://rptrcks.walmart.com/comm-smart-app/services/tracking/o=
+penTracker?redirectTo&#x3D;mh75dwx4aoN0OlYcNcGxQOlKkdSgFFmGfEPFa3xC7OATbQq0=
+sze9l5jLCWZEoxRqqmU8aiuGA2QoCdufjdjzsuXC01kxHRwSSP%2BK9DqFFlv3JMm/hCzcsVMl8=
+emZLsJmASymbdk7S4O8CAn4A9M7azLVjgUEOvLu75lChQMP36PNNgxlpT0VEk6K1VClnVi51BXk=
+oRlP9nUd7igLm1GyYqJPd27ijVEEHUFXUCFLLpn9lGPJaimhugYlJppCVpo6pQhVCN2eQ%2B36w=
+umIGMPcxos1A0GCj5Fpe94mIISt1A39yQ2Db1CtsT/ZqoJbSc6fJsV6mkFNCDp/68o0AOFTjdce=
+oJZwkm/0kcpnSUC/UcrnNkIkHx/K8Rnj8jblaGWTjYCTpypqqKYTSEWINkTsdFQsHzoD5D8ipmm=
+KT8NEgtBNRtGNC/igtwOJ9l2u59/5OyJAqq2DrRvroLRJEs1QK13jwJX9d4EZof7m4msXo/pJ8%=
+2B4sRaQUxR%2BGlFv5euZhD5incku9pkMSL2b2hWrF7vOpbXUBNvHzwH/yH7rhK9JpzEkcDXFD4=
+zTmW6w85LrOeGYbft6o2aydRQxRwwIs3ahhxfqmiJ4PkRTeIcodreR9uf1db0x7lXxU5rmSYmnj=
+&amp;meta&#x3D;A6A6bt6w6VP%2FpScIwMmARk9%2B54qu%2FbzAMg2hJMSIXnpujVmsYpx25e=
+Qun3ENVDkma%2F%2FnUFxZKseM9F8XJHMbEuPUe1paIZUgXfSLLtPnSDOn9x3wvGPgyZ7xAQouV=
+9XGrrNsM5Rk%2FmwQXm8ScDpUCPaoxdoDyhcPFsSeYwhJ09TpdipD%2FLI7Nw86Uv6134k09rPz=
+hG8mh03KxhWyCLPkhcC13109bBjexpUzizt0Nqc%3D&amp;iv&#x3D;3La4ZG1XvT1mUj6AhiHy=
+6g%3D%3D" height=3D"1" width=3D"1" alt=3D"" />
+
+	  <div class=3D"header">
+    <table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" width=3D"64=
+0" class=3D"full">
+    	<tbody>
+    		<tr bgcolor=3D"#fff" align=3D"left">
+				<td align=3D"left" valign=3D"middle" style=3D"line-height:11px;">
+                	<div style=3D"display: none; max-height: 0px; overflow: hi=
+dden;">
+						Your new account is ready to use
+					</div>
+					<!-- Insert =E2=80=8C  hack after hidden preview text -->
+					<div style=3D"display: none; max-height: 0px; overflow: hidden;"> &nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;
+                        </div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+   =20
+</div>
+		<table id=3D"wrapper" class=3D"setDisplayWidthInner" width=3D"700" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center">
+
+			<table role=3D"presentation" class=3D"setDisplayWidthInner" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" align=3D"center" height=3D"100">
+				<tr>
+					<td>
+						<table role=3D"presentation" id=3D"header" class=3D"setDisplayWidth" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center">
+							<tr height=3D"80">
+								<td align=3D"center" valign=3D"middle" style=3D"padding-bottom:3px;=
+">
+									<a id=3D"headerLogo" href=3D"https://www.walmart.com">
+										<img src=3D"https://rptrcks.walmart.com/comm-smart-app/services/t=
+racking/clickTracker?redirectTo&#x3D;87KoFOkfQN6b3Sz1qXeziFk0nFmx4K5e8sX3hX=
+g5a202cfYhx6WXES7e%2Bn%2BZUG93A65%2B%2BDEqMQIQKeJyD29DMz6NNnIXc0vbvEiyeX5n6=
+%2B8dM7O%2BrvSXU671vtz15Nj89gCD8%2BV3VPo9rhvxzmcTwmh%2BfdC9SkMS4zZxY0pU9AR5=
+h208AiDAmf5ELvPXqTqX/EoIvb1yiOCCCDBee7NeUsDpHOu9Mhqf1COFxNGVWeLUcQrHl%2B0eV=
+kXamM7ktY%2Bnxdm2MwUKklak2YvAZ1hhSJd%2BOAfL6ZgOxQBDPiXTcBVojeoyS/fgysqcxQ7g=
+LCImB9D7MO1xT2Noy5wDQURIz6ZTzTOC7TfvIkUeMF4%2BuHSxlkyKqgrME0/N8Dm6YUEW6IumQ=
+oC/MzQ6EzSaV6vc7Pdjtgm60X3qaorlNifmqmVLlCKCf8BA9TyeWlEj7vUkfZhDRPUlNgMrMEZh=
+Vsz31mKgAaK7rA6%2BiyhuWiN7weebNkyS9KuSZMN8A3FPwjl5cco1ScA%2BWsK4JYm426LLtIw=
+IO1P2be4bkQxDkEpbK3AF0l/69FYmOD9cNkVndBX0W7Eki08ILDKGgvKKuOqlLTZntFRuMFrvc4=
+n2NPP4T7FqwsskYEE6o1ro%2BLciDzOF1LpYMtgBPeIC4HMKJ%2BBQ7ciY0Kh0TVYGGflrfdmQq=
+4hpUpVOKXUSkUnXS%2BZgFQXhRW0SvpK4RcbqiBTEdyyDfA%3D%3D&amp;meta&#x3D;%2BnTaV=
+g1pnuaLrRy3Ux9G9AlVuIIjqfyaPcPKuLJxJTWeSmVQNoNw2TcapoWQL%2FKFYhHoKenNCYKp8C=
+ND9Zy0BcpYUr9Oy2OFRJ2UJkgeJH0nfNy0mkpU7qiKiOnhBWGNkgNeCljYT9wDDbeMGiogkPolk=
+x6KoLfIDmXIwH2kSYJ0qDqgKCCD7EUupuVObf55ZVxYdeEQ2Aqpi%2BUMrfHZlyruqO%2F7ffJx=
+7k6dcv5J5n0%3D&amp;iv&#x3D;d0c0zFov65Ut%2BfrHvZJwgQ%3D%3D" valign=3D"middle=
+" width=3D"180" height=3D"48" align=3D"center"  alt=3D"Walmart homepage"/>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table class=3D"setDisplayWidthInner" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"background-color: #f8f8f8;width=
+: 636px; ">
+							<tr height=3D"49">
+								<td style=3D"padding-top:16px;padding-bottom:16px;padding-left:16px=
+;padding-right:16px;" align=3D"center">
+									<span style=3D"font-family: Helvetica; font-size: 14px; text-align=
+: center; color: #000000;">
+										<b>COVID-19:</b> How we're prioritizing safety & shopping needs. =
+<a style=3D"color:#000;" href=3D"https://rptrcks.walmart.com/comm-smart-app=
+/services/tracking/clickTracker?redirectTo&#x3D;%2BAZ3Nt6yS7p/BXa9D%2BNPBcH=
+%2B3B0NDEp7wUTYKC1PUJXHwfiDMmrtqA7tCmoBfpgGWcV6BMntpcTGTog2YvyAQJO8JgEZYA1z=
+p2u4vWKFNYEyOZaetiN3Yc8YffWGQiLRDZTJzCdyCgtMUK784sVLxpzoaze3gcEbm3B%2B0BU05=
+7K%2Boi4cbzEEuil2eSvYPO5nnVHaGOUcBytMqIU2eUJb3biOUPrd2uG41rNXgBRJI8ivU6makZ=
+9wEv9EdG0kkZSVxo/sdZNzChShO/GXdKrIMl9A/gQydYcvJHAtyM3h7UfoTdOZ6P9AJLxXO%2B7=
+C2TceUR3khe4HCKqLFYtIaeRHdfwDzsZEEE0ENxcj4rvEsPr4/XfmSRxsTGVkFst1oQGqdRI16k=
+HolwEV3qrj8sgxr3k3UpEOiX%2BBRLvg64hM/q0PDE5OYrSCHQtn%2BclKHLdNIUCg5jEnBleui=
+Elc4Xh68%2B7DZXRzjbBNuWLjGlR3OdDoVUoRwN2rKAduIWRG/3UcZA%2Bb9xcsbg0rnvEdJedm=
+kiRta1tABAKP7Fz8kqvyaL2pqjmGk0aLlrrc7RjAzAZxNLgwFMmemUgzlvDHdrMTNRiWbH0fN1t=
+y8A7XOSk5VwP/senhcW0LkmrzAXg0I7m9qv050NyTiYkR9CZgH2gps1iqhNlNyjKQFqYVQljuan=
+rjAPpJijHfhUoGa/wrQBs5/v3I9mzk4krGZhbij5ygp8vCjU3qcIetuySRnJdIlTQ%3D&amp;me=
+ta&#x3D;XXS0tFg9IfpTRQ2Lu0a8rEkAN%2Fp4q73BTm%2F51fow4cFdanuCV%2FRRwPPQsS5s2=
+ZGvLmsV352A38jFk9ufVX4o0xvxHgr45nRoqOSz4aaz0CNNZnuG4FG5y10UCbV5I3kdegWnfymQ=
+ERASSEqkrhTN2Hst4LN%2BZE6NSfkvmwAv6SRuqaOwwTxaMMI5sA4W3GqlX5635z%2F%2B9%2Fq=
+WCdjHsWcBE5%2FNgm%2FuRQDbHQcMcKE2mN0%3D&amp;iv&#x3D;lKSUq3kerOwZgDBaSnpnqA%=
+3D%3D">Learn more</a>
+									</span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<!-- End Header -->
+			<!-- Begin Banner -->
+			<table class=3D"setDisplayWidthInner" width=3D"636" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" align=3D"center" role=3D"presentation" style=
+=3D"width: 636px;height: 292px;border-radius: 4px;background-color: #e6f1fc=
+;padding-top:16px">
+				<tr>
+					<td align=3D"left">
+						<table class=3D"desk-banner" align=3D"left" role=3D"presentation" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+							<tr>
+								<td align=3D"left" style=3D"padding-left: 8px;padding-right: 16px;l=
+ine-height: 0;">
+									<img height=3D"292" width=3D"195" class=3D"" src=3D"https://i5.wal=
+martimages.com/dfw/4ff9c6c9-4983/k2-_1c0c93e1-6359-428d-bd52-94c27f7298bb.v=
+1.png" alt=3D"Welcome to Walmart" width=3D"100%">
+									</td>
+							=09
+										<td align=3D"center" style=3D"width: 380px;height: 68px;padding-r=
+ight: 29px;padding-left: 25px;">
+											<h1 style=3D"font-weight:normal;font-family: Helvetica;font-size=
+: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align:=
+ left;">
+							Welcome to Walmart!
+				=09
+												</h1>
+												<p style=3D"font-family: Helvetica;font-size: 16px;line-height:=
+ 1.38;letter-spacing: normal;text-align: left; color: #000000;">With everyt=
+hing at your fingertips, it's even easier to save time and money. Shop mill=
+ions of items on Walmart.com, schedule pickup or delivery or use store tool=
+s and services at your local Walmart.=20
+					</p>
+                                       =20
+												<!--[if !mso]>-->
+												<p style=3D"line-height: 1.38;letter-spacing: normal;text-align=
+: left;marging-top:24px;">
+													<span style=3D"padding:10px 23.5px 11px 24.5px;text-align: cen=
+ter;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-=
+block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text=
+-decoration: none;background-color: #0071dc;cursor: pointer;">
+														<a href=3D"https://rptrcks.walmart.com/comm-smart-app/service=
+s/tracking/clickTracker?redirectTo&#x3D;r%2BK5G24NICpfpG%2BiMBPOW1wg/cVWx4y=
+pgkGSd4jXyz/r8r7TQzfxWoh2KD%2BIYegD/8GbgDfWE5XUpHBKlkaDkM%2Bs3ZBkcFSDXOHF0s=
+xhJnvTxFkVSepOkd7/s8%2BkxGhHDWgChvqgms%2BIwht1EACeYnhMK5gcrfv46r%2Benespo5N=
+UItp4uOK4JxmqIgKc/tPG9dNe1W1daIOLXw7HaJU5OmS0sKAXvMW0uPeQ8d0b5/egr2N/fuYGKS=
+VWNzaPtTKV7glRCiRqU352MlvAJO%2B217gJZXOU5Em/2ABcQSE58skb%2B9xFlWICoWttkk/%2=
+B0oqYuygCNqXgFT5%2BiLKC4ivq0R7TKtyRHpNiJ3QlEUUNbohjw%2BBBOScfycpnKgav3wp9ae=
+g4SZPwMDpUq9iLamBUzyl0nbWnrp33DBP2kcIabxgowrDkRbNrkucvLYmhz/CJdoUonLOtTerkj=
+Bk0PU5pqIh52NwbxbKNkwcnHxvMr1E7a5EZMjjwfUzf0uB0BCL3zL6ps9hwOIFDqavvJNTB2Uqm=
+p2/Uc6dDX5VyOnwyJcMFx3BxQR4AqG2SELnjtdqPyAmItuiecNjFNqqxyq9ttmNgAc1VILx06wK=
+fT/qNYgT3HpUBwy8i7Ar074PF9DlU30PIYd2rRFtcRd8fEJpLxiltVthJaecmNMCLUibKSoIBxf=
+5l64CIN99%2B8gTYnv1iMnI/GZpOmMRH7wLrogm7Dw%3D%3D&amp;meta&#x3D;oZHT9T9daN%2=
+B%2F%2FG8G4vrrlwTi7kXkdRq6R4v2%2F%2B68Bl6DZZtiykUI%2B89%2BAUwXkSgU5bmortTER=
+NBb6hdLjPUF7hFj5L%2B2Jn0%2FpLwSpYKLaKi6F7McrqoTj6vBc2yvIAftZQKJaRxS7J0a%2BB=
+iZYFNILL4MaGePd%2B10Vx6%2Bni0CE7we2VsuEfUZ6Mk5eAmxv2l6woBFyz3LQmoK4i%2FOUlx=
+Xgt4%2BwNHh%2FV4RXEHm110c%2F9s%3D&amp;iv&#x3D;U8BkrEx34J4Vu1kX0SmgZQ%3D%3D"=
+ style=3D"text-decoration:none;color: #ffffff;text-align: center;font-famil=
+y: Helvetica;">Start shopping</a>
+													</span>
+												</p>
+                                          <!--[endif]-->
+                                          <!--[if mso]>
+											<p style=3D"line-height: 1.38;letter-spacing: normal;text-align:=
+ left;marging-top:24px;">
+									=09
+									<a href=3D"https://rptrcks.walmart.com/comm-smart-app/services/tra=
+cking/clickTracker?redirectTo&#x3D;OfS2C8RreyCd7udqyMYiK0%2ByVNPFPPNI5JCmYz=
+QSLHinexm7ZAEmipLw19IvLVc26dW5xJdFMjCWKUM4oHB3SLYgemsHWPgFcuvGGLbyFtaKP/e2u=
+%2BgbosqWrruDzilIWnYMRE8zCPWZcKsFy15K23xowzoXl329mq/jFeVQO7e4xV6ftXFcX59bts=
+CQ9zrpzL8cdp2FIZCfpKSoK6m4OWlVbEaQvGpb2q%2BErc3Kr9/nLRwqgTUtiOSICXh792/xJ6m=
+V7Vj6q5vFnVSBTLXgrbJDaTrxco4V8S7DzS2VW2q5%2B1otcytYHg3cKLYRzxQaCnp8TVxFhZ1d=
+PQPLJyOI%2BAwC96cZVIurQ8ak8aV2wz%2BkxH7l1ZAh52OgdTur2yE7bDoFSe%2BrzNlUjDgkl=
+nGUPp81qYssBZ%2B/s147hXPt4idHTrakP4aUFJp/CxSabogIgIPctCpAxSua60RYuOjq2tqnyI=
+5jYEG1IZtg42RG/SShye2ePfsgoDV0RGFDmnM6p7FPr%2BgYatseYS%2BwtgtLulC7qkyVOqZhr=
+B47jW6TlvDBEIKFmxy2SKbKgPUt5PrK//odBemL3RT5GQ4fcJhaX3rE5Hs4ivByxViR7UVVatk5=
+Sa/sLYlsDf%2BC65PK8rWIl%2BakqZ2LQZTg%2BeT%2BsU/JzxDbWsGCOtSgoSSGMsXTMquwInA=
+xUMj4pZ976ZZUYhi/RYKeQ/ZLqaloNCwgXWfJtA%3D%3D&amp;meta&#x3D;ZGkhxd34la5iFtI=
+NFXx51GgydgQqmhTkG0JwshSFJCz8mYFsmLS7O0S3rOd9SlQzEV%2B8SoAW%2BOJylhKlxQWA5%=
+2FTmeJuxdFkK4bVUey5NHJPzaZPCIjBGGKyhle8kwN2%2Bp5fBmLI9JyXIyQxx5Jrf%2BJiJW9Y=
+rwZzQgSL1AnXA3nY7eZqsJ3Bf5mUgY6pzviHUZGJFawBkrcaFqt6hQIHn48g6%2BeT7PTuzK0QM=
+sbnpIno%3D&amp;iv&#x3D;rVnRfpRk0PP%2FJa3c96jVmA%3D%3D" style=3D"text-decora=
+tion:none;color: #ffffff;text-align: center;font-family: Helvetica;padding:=
+10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;bor=
+der: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: b=
+old;width:161px;border-radius:20px;text-decoration: none;background-color: =
+#0071dc;cursor: pointer;">Start shopping</a>
+												=09
+											</p>
+											<![endif]-->
+                                        =20
+											</td>
+										</tr>
+							</table>
+							<table class=3D"mobile-welcome-banner" align=3D"left" role=3D"presen=
+tation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"display:n=
+one;width:640;" >
+								<tr>
+									<td align=3D"left" style=3D"line-height: 0;min-width:640px;" >
+										<img height=3D"280" width=3D"640" class=3D"" alt=3D"Welcome to Wa=
+lmart" src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-5c67/k2-_2e477e2c-6=
+cf3-4e80-86d9-e25e63506ffd.v1.png" width=3D"100%">
+										</td>
+									</tr>
+									<tr>
+											<td align=3D"center" style=3D"height: 68px;padding-right: 24px;p=
+adding-left: 24px;min-width:480px;">
+												<h1 style=3D"font-weight:normal;font-family: Helvetica;font-siz=
+e: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align=
+: left;">
+							Welcome to Walmart!
+				=09
+													</h1>
+													<p style=3D"font-family: Helvetica;font-size: 16px;line-height=
+: 1.38;letter-spacing: normal;text-align: left; color: #000000;">With every=
+thing at your fingertips, it's even easier to save time and money. Shop mil=
+lions of items on Walmart.com, schedule pickup or delivery or use store too=
+ls and services at your local Walmart.=20
+					</p>
+													<p style=3D"line-height: 1.38;letter-spacing: normal;text-alig=
+n: left;marging-top:24px;padding-bottom: 32px;margin-bottom: 0px;">
+														<span style=3D"padding:10px 23.5px 11px 24.5px;text-align: ce=
+nter;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline=
+-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;tex=
+t-decoration: none;background-color: #0071dc;cursor: pointer;">
+															<a href=3D"https://rptrcks.walmart.com/comm-smart-app/servic=
+es/tracking/clickTracker?redirectTo&#x3D;BvsTAZSoHClX5ZwCQhnF5V60eoeERE0iQy=
+32ykjvasN1dvxnBpURRbMMXA91BCIi%2BKSjzWPaSn6OT2m3Ro52cOUCOnPwzDE7kWmsFaXG4hH=
+dGg5rFsobrbcFAmLHDGiO1My0MIbNFLbC6wFATteZuicqCj/vg59sBHI8TnI2k4YftqlY6kLe2r=
+/3mF7KtmusnySV1mWPEowbYn3/uHRK1o%2BpmtQkB4HtCGTcBVbfktBwhaYXTKikrCzqTL31px3=
+Q%2BclVO1Fxp/O//47IQJ45LAnWAORgWiHl7cUURxVqrTcN8ZyZdbO7xGgmx2T6R6zn4IUaknsw=
+9x/ByHFgAVsrTw0y%2BJo8UkqAxDN4gHeJhN57eB%2BtGbtDeAxOw5OxaHcvAdZi1zRTttaGg69=
+KAw5XIyeX62BLvtj0QpwUSNXrceKak96ChNF1HPnNUUpVrcxhHiU2dZ2/6e4hFzuJYNHpgGtVil=
+oS19VLJSWn7MFEv5PhjpNyWeDLzc/AYD4EVokvGdo0%2BQ2AdArHtlHq41q6OzEfDR9iUpMK2Vd=
+AAONIMG8/8xnq9/E8xKLEjvylLB7%2BkZXewSYjn%2BaA6N8gOdTONdH5yD1tUFIuvqVx/fyLq%=
+2BntnCJ3KJDymY0bGxCdCnew7AbU8ZACTSOv35uLRAZ9L5YQ/Ioj2TfNEBDM2VlbWX5UiqeXqB0=
+1ygfYwZmtQjjiAp2AzZjDIhVQc3oxOjtMYg%3D%3D&amp;meta&#x3D;4SXrvsK08OsKXn5dqwG=
+zT28MMewVDBR33zNDY6XNt1iCQ4grVnQLhOqo7ZKrNPM8oi208F1KlCR976LvJD0pju0Yk2%2F%=
+2FUO8AEHz0cgoGUwWq6ocq1GqZ1Rf0ixEABGHuhRucRSPhZjXhu8dxchxWZF2foQ%2FdypbVxuF=
+G1%2F9AnuArT%2BGQCQCzNUMWdyEmhoBtHd%2F86DPUw4dSw1ELq%2BTFOXsDBZKLBOKu3MtcRV=
+bpu8U%3D&amp;iv&#x3D;WkgMCDK%2FLP4bvt5nvGn1jA%3D%3D" style=3D"text-decorati=
+on:none;color: #ffffff;text-align: center;font-family: Helvetica;">Start sh=
+opping</a>
+														</span>
+													</p>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							=09
+							<!-- End Banner -->
+							<!-- Begin Container1 -->
+							<table class=3D"setDisplayWidthInner" width=3D"636" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" align=3D"center" role=3D"presentation">
+								<tr>
+									<td align=3D"left" class=3D"icon-boxx" style=3D"padding-top:32px;"=
+>
+										<table align=3D"left" role=3D"presentation" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" class=3D"block-img">
+											<tr>
+												<td align=3D"left" style=3D"padding-left: 8px;padding-right: 16=
+px;line-height: 0;">
+													<img height=3D"180" width=3D"195" class=3D"" alt=3D"Let us do =
+the shopping" src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-4768/k2-_1e4=
+12c94-108d-42b5-bd9e-21c6f99befb4.v1.png" width=3D"100%">
+													</td>
+												</tr>
+											</table>
+											<table align=3D"right" role=3D"presentation" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" class=3D"block-img">
+												<tr>
+													<td align=3D"left" style=3D"width:408px;height: 180px;">
+														<h2 style=3D"font-weight:normal;font-family: Helvetica;font-s=
+ize: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-alig=
+n: left;">
+							Let us do the shopping
+							</h2>
+														<p style=3D"font-family: Helvetica;font-size: 16px;line-heigh=
+t: 1.38;letter-spacing: normal;text-align: left; color: #515357;" class=3D"=
+img-text">Our associates are trained to be picky! Order your grocery favori=
+tes and more, and we'll have your items ready for curbside pickup or delive=
+ry to your door.=20
+						</p>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<!-- End Container1 -->
+								<!-- Begin Container2 -->
+								<table class=3D"setDisplayWidthInner" width=3D"636" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" align=3D"center" role=3D"presentation" st=
+yle=3D"">
+									<tr>
+										<td align=3D"left" class=3D"icon-box1">
+											<table align=3D"left" role=3D"presentation" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" class=3D"block-img">
+												<tr>
+													<td align=3D"left" style=3D"padding-left: 8px;padding-right: 1=
+6px;line-height: 0;">
+														<img height=3D"180" width=3D"195" class=3D"" alt=3D"Browse mi=
+llions of items" src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-8c33/k2-_=
+bb51e2f1-73c5-4c21-82f9-839f9e9efa5e.v1.png" width=3D"100%">
+														</td>
+													</tr>
+												</table>
+												<table align=3D"right" role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" class=3D"block-img">
+													<tr>
+														<td align=3D"left" style=3D"width:408px;height: 180px;">
+															<h3 style=3D"font-weight:normal;font-family: Helvetica;font-=
+size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-ali=
+gn: left;">
+							Browse millions of items
+							</h3>
+															<p style=3D"font-family: Helvetica;font-size: 16px;line-heig=
+ht: 1.38;letter-spacing: normal;text-align: left; color: #515357;" class=3D=
+"item-text">Shop trusted brands in electronics, fashion, decor and so much =
+more - get fast, free shipping on orders over $35.=20
+						</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+									<!-- End Container2 -->
+									<!-- Begin Container3 -->
+									<table class=3D"setDisplayWidthInner" width=3D"636" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" align=3D"center" role=3D"presentation" s=
+tyle=3D"">
+										<tr>
+											<td align=3D"left" class=3D"icon-box2">
+												<table align=3D"left" role=3D"presentation" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" class=3D"block-img">
+													<tr>
+														<td align=3D"left" style=3D"padding-left: 8px;padding-right: =
+16px;line-height: 0;">
+															<img height=3D"180" width=3D"195" class=3D"" alt=3D"Save tim=
+e =E2=80=93 stay safe" src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-ba4=
+3/k2-_8e4d80c7-9785-4c94-9bec-efb4c083b50b.v1.png" width=3D"100%">
+															</td>
+														</tr>
+													</table>
+													<table align=3D"right" role=3D"presentation" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" class=3D"block-img">
+														<tr>
+															<td align=3D"left" style=3D"width:408px;height: 180px;">
+																<h4 style=3D"font-weight:normal;font-family: Helvetica;font=
+-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-al=
+ign: left;margin-bottom: 0px;margin-top: 0px">
+							Save time - stay safe</h4>
+																<p style=3D"font-family: Helvetica;font-size: 16px;line-hei=
+ght: 1.38;letter-spacing: normal;text-align: left; color: #515357;" class=
+=3D"img-text">Schedule a no-contact pickup or delivery, or if you're in sto=
+re, use maps and make touch-free payments.=20
+						</p>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+										<!-- End Container3 -->
+										<!-- Begin Inbox container -->
+										<table role=3D"presentation" class=3D"setDisplayWidthInner" width=
+=3D"636" align=3D"center" style=3D"border-radius: 4px;border: solid 1px #e6=
+e7e8;background-color: #ffffff;" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" height=3D"124">
+											<tr>
+											<td align=3D"left" valign=3D"top" class=3D"box-img" style=3D"wid=
+th: 48px;width: 48px;padding-left: 24px;padding-top: 24px;">
+												<img height=3D"33" width=3D"48" alt=3D"Fresh ideas in your inbo=
+x" src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-b680/k2-_1a788f85-783a-=
+4e5c-86f1-e78634f02af8.v1.png" width=3D"100%">
+											</td>
+											<td align=3D"left" class=3D"box-txt" style=3D"width: 394px;width=
+: 394px;padding-left: 16px;padding-right: 38px;padding-bottom: 24px;">
+												<h5 style=3D"font-weight:normal;font-family: Helvetica;font-siz=
+e: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align:=
+ left;margin-bottom: 0px;padding-top: 24px;margin-top: 0px">
+							Fresh ideas in your inbox
+							</h5>
+												<p class=3D"txt1" style=3D"margin-bottom: 0px;padding-right: 38=
+px;font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing:=
+ normal;text-align: left; color: #515357;margin-top: 8px;">Get the weekly s=
+coop on hot items, great savings, and more.
+			</p>
+											</td>
+											<td align=3D"left" class=3D"subscribe" style=3D"width: 128px;hei=
+ght: 40px;padding-right: 24px;">
+												<span style=3D"padding:10px 23.5px 11px 24.5px;text-align: cent=
+er;background-repeat: no-repeat;border: 1px solid #000000;display: inline-b=
+lock;font-size: 16px;font-weight: bold;border-radius:20px;text-decoration: =
+none;cursor: pointer;">
+													<a href=3D"https://rptrcks.walmart.com/comm-smart-app/services=
+/tracking/clickTracker?redirectTo&#x3D;SSLTNiHq07GrGN/SXupMNEHFSbSGiLzEv4xl=
+c/vEOYPzgnYjPUGvhMdjHwg607YOgreV/MDFjaNQa1H5oumuKHjSdzZ4OXyBgbt3xp/HJmCkCML=
+wUSMu8NWWDVCWMgb4C6CD84IRVIFECWtuEyFNmZLusbpXA0kLaS9FUSCZnGrsAymLhEz43AynFe=
+qHQeC947fjKluKTKNnTLY7nWo5pdw%2BAvSlwtt1Xxju5N4AqRGthIzs4/i2u1PDK43g/cIbnuW=
+o9krjNvDL35aQ8VugDjf1V29Ql9KIQmaTGkMLp13rbdMdJjq/iUedJ2dizbJLc%2B1a86GjxQXM=
+yAN2K1lu5IfLxZscKgQouQWNl8%2Bn4dahZi88u3QIAZk/5NckbJXz6SBhYlBjDlTV2RSWpZ5Ay=
+1oHzxYa5yVbBJq2PYlfa2NQ6S%2BHs0nNMAi7vLtLwjtjbt8b3xFnE1w3U5sHibbkdhOQKOpshO=
+tIvDf0wRVt8LdI/llPF6TTz0jTGd5WrnMyrOzEPS1bEkI867HbV6zU9WSnH6IfNLUGbpFLmmFUV=
+sTxkzvBlCYMrFL44rELlvnDLxkwmv3HlR7es/Cf6M9H9cXIUOWPZEr/qTdb3CYz4iJfS35CDE2/=
+HKDK/17Uk02OS5m/1f72ovh6ukuXvcNKx/vUjNV37bVz1FOyXw3PKCbCM487l42zJuNCpZIbeJe=
+LygzJqSbZI%2BapkGr3ZNGicuF7IMmKcDPmswaK2nZgvzo8f7GLOK0DsxH7A6R8ENCI&amp;met=
+a&#x3D;e0ck2whAX2h8eJx7Ww5hMrr1tiXHA9NKstfcK0b7OfGAevzK0bbr2g4YPEcKwVWOTW4R=
+itELLaDaM8p3sKbLxqqlSx1W1FM6DbbQtZwraHzH29n0wZBkKM3qU7R6sjOP46mzSiIWFsZODK%=
+2FtmtCbBA6JaXcVBu32HCPxCe%2FM3CqnTu%2F0wY3xHyNIb6%2FhHfHN5BuroJg76S8KkzAOw6=
+zpKGjSFsz6Q9J3Pgb6DKy8LqE%3D&amp;iv&#x3D;HAOWbSvEqaGuZdeCZz%2BP9w%3D%3D" st=
+yle=3D"text-decoration:none;color: #000000;text-align: center;font-family: =
+Helvetica;">Subscribe</a>
+												</span>
+											</td>
+											</tr>
+										</table>
+											<!-- End Inbox container -->=09
+											<!-- Begin services container -->
+											<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" align=3D"center" style=3D"padding-top:40px;">
+												<tr>
+													<td align=3D"center" style=3D"width: 360px;height: 68px;">
+														<h6 style=3D"font-weight:normal;font-family: Helvetica;font-s=
+ize: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-alig=
+n: center;margin: 0px;">
+							We're here to help!
+							</h6>
+														<p class=3D"text2" style=3D"font-family: Helvetica;font-size:=
+ 16px;line-height: 1.38;letter-spacing: normal;text-align: center; color: #=
+515357;margin-top: 8px;">Use the app to access these popular services
+			</p>
+													</td>
+												</tr>
+											</table>
+											<table role=3D"presentation" class=3D"setDisplayWidthInner" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center"  style=3D"pad=
+ding-top:40px;" id=3D"icon-section">
+												<tr>
+													<td align=3D"center" style=3D"width:92px;" class=3D"icon-box">
+													<p class=3D"icon-img walmart">
+													=09
+															<img width=3D"57px" height=3D"43px" src=3D"https://i5.walmar=
+timages.com/dfw/4ff9c6c9-5190/k2-_b5e61bc6-4223-48f2-9b31-55ad88845be7.v1.p=
+ng" alt=3D"Walmart pay"/>
+													=09
+													</p>
+													<p>
+												=09
+															<span style=3D"font-family: Helvetica;font-size: 16px;line-h=
+eight: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Walma=
+rt pay</span>
+												=09
+													</p>	=09
+													</td>
+													<td align=3D"center" style=3D"width:92px;" class=3D"icon-box">
+													<p class=3D"icon-img pharmacy">
+													=09
+															<img width=3D"43px" height=3D"57px" src=3D"https://i5.walmar=
+timages.com/dfw/4ff9c6c9-43c3/k2-_a7536411-f109-4fe2-8d4c-c503c89dcb6b.v1.p=
+ng" alt=3D"Pharmacy"/>
+													=09
+													</p>
+													<p>
+												=09
+															<span style=3D"font-family: Helvetica;font-size: 16px;line-h=
+eight: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Pharm=
+acy</span>
+											=09
+													</p>	=09
+													</td>
+													<td align=3D"center" style=3D"width:92px;" class=3D"icon-box s=
+ervice">
+													<p class=3D"icon-img">
+													=09
+															<img width=3D"57px" height=3D"57px" src=3D"https://i5.walmar=
+timages.com/dfw/4ff9c6c9-5712/k2-_b7be24dd-dcce-4110-a9e4-63d5fa87abb0.v1.p=
+ng" alt=3D"Money services"/>
+													=09
+													</p>
+													<p>
+												=09
+															<span style=3D"font-family: Helvetica;font-size: 16px;line-h=
+eight: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Money=
+ services</span>
+												=09
+													</p>=09
+													</td>
+													<td align=3D"center" style=3D"width:92px;" class=3D"icon-box">
+													<p class=3D"icon-img reg">
+													=09
+															<img width=3D"50px" height=3D"50px" src=3D"https://i5.walmar=
+timages.com/dfw/4ff9c6c9-3708/k2-_cb08fbab-2fb7-4456-933d-ba5eaefdc30b.v1.p=
+ng" alt=3D"Baby registry"/>
+													=09
+													</p>
+													<p>
+												=09
+															<span style=3D"font-family: Helvetica;font-size: 16px;line-h=
+eight: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Baby =
+registry</span>
+											=09
+													</p>	=09
+													</td>
+													<td align=3D"center" style=3D"width:92px;" class=3D"icon-box">
+													<p class=3D"icon-img store">
+													=09
+															<img width=3D"57px" height=3D"57px" src=3D"https://i5.walmar=
+timages.com/dfw/4ff9c6c9-4757/k2-_b4f9e235-853a-4b37-ae8e-15b0d35b78ce.v1.p=
+ng" alt=3D"Store finder"/>
+												=09
+													</p>
+													<p>
+												=09
+															<span style=3D"font-family: Helvetica;font-size: 16px;line-h=
+eight: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Store=
+ finder</span>
+											=09
+													</p>	=09
+													</td>
+												</tr>
+											=09
+											</table>
+											<!-- End services container -->
+											<!-- Begin app banner -->
+											<!-- desktop view -->
+											<table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" styl=
+e=3D"order-spacing: 0px;" width=3D"700" class=3D"wrapper desk-banner">
+												<tbody>
+													<tr>
+														<td width=3D"700" style=3D"border-spacing: 0px; padding: 0px;=
+padding-top:40px;border-bottom: 4px solid #000000;">
+															<a href=3D"https://rptrcks.walmart.com/comm-smart-app/servic=
+es/tracking/clickTracker?redirectTo&#x3D;l1qPVVMv29MIrrmQj5IWxyPT2Tm56x%2Bv=
+VkXsroA5I7WQhh7Sy0S2JfO2/PMK1XXpEwZ5lQcMOGlsmRX2wNEOx7mgql7%2BCrxTcDzmkhhuW=
+1lXINxA3gqzsyfl7QfqXqP2qV4Ay2vSLCfNytG6uhBNaZfmREJkMp7ZAI59TUx6gHHraoCYjyXj=
+3I0kY8r6TCCU5iiBcOo%2B2frVPoMZvw5UZR1k2w1RdQ1ea6Jb26VWPaBUkhpxQb9dPgKKFK9u2=
+yeSAVuCroZFMUr3TCKisEWphwt7%2BeJoDjuVJx1xGp6BiolaZksgwNBxIBivFM%2B4H4uv5r0m=
+HNJ86Zrv2V8%2BhPREZTC8MsB3VA0W72zBb4MiKddaPrxdR0Th5txiYpGUtxQcjiJs2ZAo%2BH7=
+q0ndU1CZ/05eXdR84dzPSKM%2BBPVKyS/iBMc5R8GksjDFcOTWctaArnssDoN/M7IkUDdBfHaXv=
+g8oN4Dfdwi9ycgsHI0P73BCPBlLHvQ2l0k8VC9Q41OyUMPUC4HoO5pOOz9EpCRIZBWHaiyBfWXa=
+HNSZqAZaEBSzfC713RXOuGGH6LsOKenFJRnWKMmeatXnY9XveQPiejncZMdCPvQ53nPf9MXJd8J=
+bPICH1oiTmg2KStqy2AYiR9GzfP8K08dFX52SZIUXsk8Vms4Uu3k0s8qN19GAo4ZDOEwFq1o994=
+O72DElUA%2BZJKEaGpK1/GcqtIl7VTHHU%2BvhMlT3aLUNKEesjzNjzNix2NNzmOtaUw%2BeKYu=
+I7p5STKcfRJA2g3sLcrwD%2BtIAsv6vGfqqWSRB8QYRInrOTDowwiSg5IGiRtroq2Nio5/It746=
+VQFYZKVajXF70GkRi9g%3D%3D&amp;meta&#x3D;labzVZw5B4KlHBGUiNgUFhcdPoSi7rAjspM=
+vJzP8DFND9b0VnseMw9dBswqAYVMZsX3LB0iU8%2Bxco05o%2FqELSGuJxJV9TK59kXev9t5HKv=
+NU5ixiQGMKmjNp2f1qvqbT2Nd5r%2FJwRcErDTxcUUB9xgiYfjFK%2BhHdgQOxzWSKH7T4w8lZT=
+cx%2BYlXzZ3E6v7VKZ3yN6DUsSdpjI9S2P8Vq96XRcMWMH2uaCvSNwEEscEI%3D&amp;iv&#x3D=
+;p4RK31pJacqFKc1nsXJSGA%3D%3D" target=3D"_blank" style=3D"text-decoration: =
+none;color: #000000;text-decoration: none;"><img src=3D"https://i5.walmarti=
+mages.com/dfw/4ff9c6c9-a061/k2-_fd17eb4d-9f4d-4a53-857c-a3e0c77868d1.v1.jpg=
+" width=3D"700" style=3D"max-width:100%;width:100%;display:block;"/> </a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<!-- desktop view end-->
+											<!-- mobile view -->
+											<table cellpadding=3D"0" cellspacing=3D"0" align=3D"center" styl=
+e=3D"width: 100% !important;max-width:100% !important; display: none;border=
+-spacing: 0px;border-top: 1px solid #fff;border-bottom: 1px solid #fff;" wi=
+dth=3D"700" class=3D"wrapper mobile-banner">
+												<tbody>
+													<tr>
+														<td width=3D"700" style=3D"border-spacing: 0px; padding: 0px;=
+padding-top:30px;">
+															<a href=3D"https://rptrcks.walmart.com/comm-smart-app/servic=
+es/tracking/clickTracker?redirectTo&#x3D;DVoVltd7dsAUXDoWTNzcyi6yld1TLeWzG8=
+1fE6AQqDVuMEuWu6mpjZkgvtNSQinCrb9Q4ojmUOvffsthLhUg41kjzpjVw3HVO7YgMFp3G0YTz=
+2N21dzIJpIgsfgCTtHx%2BFSRUvXVk106iPPVf5K/QWBNQc/ZZa2JXmneHmG4jePO5FZmixDbVW=
+IC6D0vE6rf56HBsfI%2BlCnh%2B1vP%2BgJl6Y7YU8dMG7crjG5xlO31TuXYDSCJM7mfhoc3CoH=
+93wxeMI4CN4LZ13kBmhsI%2Bk0bIHAtLoT4Vd2jY2KWSq9GMI%2Bq%2B%2B3jxij4sX0OCQE9ER=
+pZ1hn6atrsjk3ffHUTVyCC3pdHYJK%2BqySdBewR%2Bwx7ckjQXKRQx6xXhFiZg3U0q0zcPnz0b=
+XlIDZQk2NE//VOmt7w1xi%2BrqF8%2BQ3kUlX9UN%2Bp5ouH1Tkhhoa4GaAZ%2BBi3djv057Anf=
+6EhALc03AnyXRIcgK2V0CX3iJrYL6%2BBY4SKPQKZlKbssNQzeyd69uX3yWRgmALioHBsJn/noR=
+OgbkmyRoU749SeHlVQCjowLWwnNW9%2BS4Nh5a8psHdZ4QP46xuDZxAh9TBG/MZRpazvSM7PQJv=
+d%2B47Km5Vuu2l%2Bn3KC%2BLK5GUKWR%2BwlKeHzL8jHNj6afWX1dQwtqYZCBISbDb10X4CtVK=
+XUnPBNQ/4MaT5WVVfmhIg1WRC8wTvxTUtRsAF9zbZwAGeIkqUj6p1PC8r5OxFk4Mrjxuwn%2BAr=
+UitkhDzcftNjgnYQI7cSGu9yqUzSA/DBCic6Za7vt//3Irod0T1B9X0qOt5Wh69At1NIDtiGYHU=
+uESqRTEd%2BekSx9zD1gVgB3qKboEmbAF6JDx0w%3D%3D&amp;meta&#x3D;9vz1HCvxRBz5ImY=
+%2BxgXyo3CxSm%2FurVrRSwxv%2FLYDsp47AA41aaR6MTw%2FnBMVyiUoWeBeLhzNGi%2Bn5tFU=
+iQQL111TO%2BjkL9e8RkXG1W1UgvgntaWs0yJF%2F6cWyleUNLwzj9JzmiDsjBizeK1qokpOx3G=
+7QBfmfZEm887%2BHkt%2Fqzw9vL8vqPoJ1dejtjA2eQcjddZiehbEvEgGMLM0BWdCopOlcsxtX8=
+A8tJPhNj7XTmk%3D&amp;iv&#x3D;Ibpm%2FNHIx9s9whLNDJEfGg%3D%3D" target=3D"_bla=
+nk" style=3D"text-decoration: none;color: #000000;text-decoration: none;"><=
+img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-5da3/k2-_4f167f9a-e21a=
+-48ed-9843-3500440ee5b2.v1.jpg" style=3D"max-width:100%;width:100%;display:=
+block;"/></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<!-- mobile view end-->
+											<!-- End app banner -->
+											<!-- Begin footer -->
+											<table class=3D"setDisplayWidthInner" width=3D"700" border=3D"0"=
+ cellpadding=3D"10" cellspacing=3D"0" align=3D"center" role=3D"presentation=
+">
+												<tr>
+													<th align=3D"left" class=3D"footerSection padd-bottom" style=
+=3D"padding-left: 16px;padding-right: 16px;padding-bottom:32px;padding-top:=
+0px;line-height: 0;">
+														<table class=3D"responsive-devicea socialIcon" align=3D"left"=
+ role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"padding-top:32px;">
+															<tr>
+																<th align=3D"left" style=3D"padding-left: 10px;line-height:=
+ 0;font-family: Arial;font-size: 14px;font-weight: normal;font-stretch: nor=
+mal;font-style: normal;line-height: normal;letter-spacing: normal;color: #0=
+00000;">
+																	<b>Questions?</b> Visit our =20
+																		<a data-automation-id=3D"helpCenterFooterLink " href=3D"h=
+ttps://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?re=
+directTo&#x3D;hEr6xtZlor2MquPHy5n/CIbg1dWt7J5bjuy1gtHsA67VrPCsa5bnBOETz9s9t=
+aNkhsgRUcUXIKu8cY9G8wDt9MKvEFykrDHlLouCFbH0lHmVKfyONdu0gt/uPMOqFXLrsA6zwWsp=
+XtH8/bvMgLzJy%2B/VLQEWvTgtw5QUBQlaPR27nF2dUBtbvnQwqG%2B2SEdKFGuc2GVJM2l12bR=
+Nn3krcrKUf%2BbZ4nxSgMjjJSrCLKUGPijOPoKLHzN5vAT8JLpZcKZsNYBMxU8scwGol7ua7/Ar=
+0BvZLfa0hQDCEzZIkVNfvt50Cz3Rft9tGbEriNLxFoHOCKwyyuDD/pvUAnh4iqPeWyWYi4hSZWB=
+o8XfqRaati2HmYzGAyteOdCH09v4wjVqhZg28dgMQwLUteMJsWaZ0hfm%2BYtuc9ujbAiyR8Fyo=
+hUIiEMb8JCNkyB/H8B8fvfZx9N/JOnH2vserrOe/oQ21gKb7lldgfZUR3g9mEwtjzdm36i8K3Yh=
+HG02%2BQF44N/zOd/pmhUM86ZwMo1OMRSxaSKi%2Bk/60S74uW6/AqvoWlaccOOR8kAqDprLrS2=
+O/WL2EQMwo1l%2B0UEVcRZ3jk8HAYOEgyKwacv%2BiHkOdPj3PtfEdAmNuXRXQ/fEjidXjy8dgb=
+IQf6UoA9N7UKyBnPZdB%2BFvtTA2oQDnpcFFhpun/zh2IwXmo0oZa3/E2s76zstbvpkHpDJ0N1g=
+lZEI2img%3D%3D&amp;meta&#x3D;08gAXO9XrQluaEcj5Iq2dVPhmsVov0XLnozWvzHsDbGpc6=
+89MpskGhqypslWSNzCI%2BYOpoc6KGVLHWeySwbIpeWy2iybThrBXssyYSRRAIw1CT3kLPFzQC2=
+0Q9tGZsNZoJV35W2nH6DPbLMHkmEBsvOwwL8maWiqQHcHwEzM%2FDZhJ9m%2BD4eix8%2FQnAD4=
+Q1VMJUbjDKyB5W3ejw%2FJhQU%2FwT6eIhjw%2FZzdfk8kolyTjJQ%3D&amp;iv&#x3D;8VhUYk=
+LUstdh9UWzFyaIjA%3D%3D" target=3D"_blank" style=3D"text-decoration: underli=
+ne;color:#000000">Help Center</a>
+																=09
+																</th>
+															</tr>
+														</table>
+														<table class=3D"responsive-deviceb socialIcon full-width-mobi=
+le-view" align=3D"right" role=3D"presentation" border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"padding-top:32px;">
+															<tr>
+																<th align=3D"left" style=3D"width:66px;">
+																	<a data-automation-id=3D"smTwitterImg" href=3D"https://rpt=
+rcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo&#=
+x3D;UtjLl%2Bfg5YABVR6ndUZq4jmFbBHInFZkPFtcB9%2BPxTJbi17yx4FQgl2N0KvawelyaBX=
+Y9ZMgC%2BkD7qJXhz9G/wZ67fSb8fpanMGLYf08SjbaByM16m0Yyk729PWPYKbHChwh5MxWGdPX=
+YalQp9MjfOwnALvirygWtuqGuWLTxlvWFWN6Tf64MiWw9Xxb4rqHjgkF2ZlXwTxfzcnyozeXxqy=
+peZmsYv9I3U21%2BAKCJhaIRjRR8c1zy//RuDnYQmOslJ0LqLgaIItq0Bse4zysf/U6XfcgPPb3=
+OsLPAlz912WSFbU0NrGqAnRDQhS0jPBU1TUuOJzOQtk3TyAKbFmt8PHGHDfplhxdbZ2sCox5O3U=
+8jVi9f8VZP1yKjdi5mJHTiqYvt4%2BrXyqf7efHOafUZtLbni2f42EX3QCX7H7EnDjln34q4e%2=
+Bn4sNCFvUSEmmWF/uIsAyXTzyPywLQNgvxCSshM4gcVxASBnlQsa%2BvHHGdUm9wGr%2BYR7q2V=
+LSM8PKdEVBSxtul5sC1fyQltF94oU0zJU6cY7yapp0uFZ7WuVydqkWsk9QnKf/ZrtCRIYKqcbCF=
+VhBo2Sukxg8aiDQuEa4rS/1J7V9gfaxyyHxF4GNeye8t7Il/Tzc2BTpjeGpA&amp;meta&#x3D;=
+%2FsmvmkiQ0t7hYX81Z70VUL3LQw3qg3vYxXAjFHRyHj9QNCSLnZYrzXrhF41uFQx3xIcJezb%2=
+BsAH0VM4QSxcfo%2BZkTNt6VoUGYPe6PYpiR5zyzSu8dNI2k%2B3JXQK7cPoQ9ODITk5CDFOzr0=
+M3CN3l7XE00h%2FcqnUmiYezg4gKAOHaJrd6OqFqFZsYZtkL6z6q3ISjjB%2Flt81qrZdLjnlm1=
+DprfeClEEdaRZOKiDLsEnY%3D&amp;iv&#x3D;Tv%2BJ2o1busWCC%2BWmYHI54w%3D%3D" tar=
+get=3D"_blank" style=3D"line-height: 0;">
+																		<img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-eeb=
+8/k2-_5d328594-7d7b-4fd2-af81-6325c88d2bc0.v1.png" alt=3D"Twitter"/>
+																	</a>
+																</th>
+																<th align=3D"left" style=3D"width:66px;">
+																	<a data-automation-id=3D"smPinInterestImg" href=3D"https:/=
+/rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirect=
+To&#x3D;It/2JgrNp5AaZ2IfhwOzEhNZTmQVXoL1djL9DWvDpKPUdGbt7DlH3f8CJrwdSEE81HH=
+4%2B4XJ1rHI0yUzrX2q6bsfOXGi3W971MQyjHv8atZoyqfVySNKvkZSmxoisO2CY/AGiqP5fUcy=
+yOfXkC6G52cVMN7blpEVvpv9umXJyzFyDccdQq48rfvub%2BInDoVxLJEtge9hjUZGG2aAuWPfK=
+DUOQZj%2B5npCL/EjabrepyWGRn2CmoSp5gfQsQmRoMQSPU/meiqBOTbvNuFe52te6lvinhikna=
+oHoDsEy%2BhsiXITpvhFQtBNyevjHCinCanlVDltlBgHbpxtQFW5aI5XsIBTi2ruCVN36Zg%2Bt=
+FAIFIJe2t5b8CX0WU3owLzLRPsbt8B8CLCiAJHGg0PjrezNQLJdInx45ws3STYYo0vlNO532Zzq=
+vArWNk/l0R9USsb5UArddPlbScGjOKJ3gEagQtvOIUSAeEDUtJz1zdmSk3wDi2A%2BR5yGvVBJ1=
+qsdy7NDDTYZQ70GSZu0sAlI38KVUW6FewdparBjXNu8tIbKp7d/ht1Vsjhy1KjpO3aIvJKCdHLU=
+9Z%2BwyYdFnMkV8lv0TBdIN1ZCtkzPc3sFNfSP2yn5f4Qgc6%2BZHHBrqFjWxFz6&amp;meta&#=
+x3D;%2F8GQ3k%2B%2BTwgOWWrILGquTr5CEyFclQvzQea9MMXg%2BfKdwzSsugzUQrGsJf3CADF=
+z5a9AmKYzvUmlURpkpgPjaQmOdO7htyp7f14OWWnWSRh%2FfM2cdF3RwTNWFgx5lUQ8nJLN3dRH=
+vlZ1kqdx%2BGs%2FsjfhuxILgqXqg7uKN2MtVU%2F5L1f%2BqyrElpKH3utDusux%2FhoGVpIK2=
+k1vMuK6A7dIrwzkJCfLymCTsF5aIAvBfug%3D&amp;iv&#x3D;utGsDw8QN0A%2FkiEePwbhBA%=
+3D%3D" target=3D"_blank" style=3D"line-height: 0;">
+																		<img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-a44=
+c/k2-_de5fada7-d832-4a53-a9c3-bc27b6e68aab.v1.png" alt=3D"Pinterest"/>
+																	</a>
+																</th>
+																<th align=3D"left" style=3D"width:66px;">
+																	<a href=3D"https://rptrcks.walmart.com/comm-smart-app/serv=
+ices/tracking/clickTracker?redirectTo&#x3D;Y1BVMubOKH9CfFzKN88xPA5/WjU3cS6Q=
+8Q0gjNJRcqNPwRkFa1beZBe5zSpG917taaVQH8r9lWpicGzHi3fP/QQYD%2BYT/5uLiiEP8%2BT=
+3pvpaQ/POnfpjP292Ceh25I974IVp5ZCNcJPVFWTg5hkngMqlhBH8kMaeQD8T/MCwyPmQSAISqM=
+FrD1DCGpxkXgVjZrvTdux9spU2uRINQ/7mampcitHJN5jqKla9KlrAVxMObHKGEPymPHzhNumT/=
+6xEXOazEd2jbDPK6GP%2B5qFugjt1smGaqSG9cf3Oeb7ghJWdY8gn8zjLNOIOv7weNqJ45UqLLV=
+aqe%2BbUfMeKzabOjQyrxwXpd2%2B6Zk4MBlE9NSaDeOoUmCtV9kIv7tCfk7jgHhPYbPaj0QLVn=
+6TJCxzyiFM97oZ5v9SvqfYUp4hzZ5FYd8Wo/OEEFfUcJIdF5ebGdwXIMnMkRPVxsdgzsBiRPJXC=
+QKkKBP/MZGEkWWfV0s7%2BiP0Ywq6GkU3BXqjph2oSFjno54XUrPjSQyiPgCWrwfXLFno%2BWir=
+GUZypX1LQ8AHskV98KMi3xcWh6MmpVodUpRtdirdOYwLiKkheEvpaSu/4tO6LoJkw5ALI6Gvcsr=
+tf3ki2srzmLhQWU73xbpJM&amp;meta&#x3D;HnJwe57%2B6jAetHqGouiwNc9Jqs8JMSZKtAGo=
+sMs1tCrcwgGGh7oBDJhWSzO9qkEcy1N%2B%2BakWbryyqNhiflvcBtBJclB%2BfK%2FelSEPvvg=
+EmXzNV51uwIf2Lfb0LGPry1EObys7bDG%2Fm2cW8IP8lrr6hKPEZIVkRB7Sc2Qot8JNOYoUatCZ=
+Sdg2jlJevu8lFN41Qw6oNPtW%2FDHmnNBiwst182oewJ5FJRjBt3kkjEpYzws%3D&amp;iv&#x3=
+D;SvcioZHTKqgQXr5a4B4hVg%3D%3D" target=3D"_blank" style=3D"line-height: 0;"=
+>
+																		<img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-3c9=
+f/k2-_d6dfcf7d-f784-45c6-8c53-279daf5e1802.v1.png" alt=3D"Facebook"/>
+																	</a>
+																</th>
+																<th align=3D"left" style=3D"width:66px;">
+																	<a data-automation-id=3D"smYouTubeImg" href=3D"https://rpt=
+rcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo&#=
+x3D;sQT0ulkxjdJxXs/p616PHsIEeqeBfKZQZdlO7cUIp9CxC74ho9BLPmKkfEwQHEVLcxgK5F5=
+i2CsYrATHF0n5GZD9s8X/tx0cSO5JT9eAD0EzWDN1WwBH8ChW5/lFL8OWpts8A5y3X3EOhwEH/J=
+z%2Bxxs4XNZ3WOB9%2BKy3frB8%2B0kak76ARdDev1C7lqsM0x/mX10bHtpdqrkWibhgQRL1MBE=
+B%2BgfXXbSP96CIDHA4Mx3VkAPEwvnwO2d4XcDZRVfN0VpJZ8BFX%2B7jWlOgL2Ht5pNc/evoux=
+3aM92D5QVyK1LkMWtZTdZV3oJTBp4265Te80sJ%2Bq7k1TObb90C3khMPz09syPLzrGLakW8FyP=
+ahqNvQdDuIvjn5Hr3f6Rdkc3IVs1HhjevJQZBbJFmOCMjbEfinAgqkcuja%2BDejtDdXJYXGbbJ=
+gbphQdJ%2Bg5xmn45DM0w4GfsjrR5KsRWmOznaro5rPGW6ca42pZkJ5BSucuxCUKOWwSFMifSWb=
+DtbJ6FRHZkBMdbadnYg3nkrfKQCFofMsLhmQ5LJGAVIBj8KltqvMclJHXGBJbV0REAX1%2Bldab=
+DP6XcPwY7P1pv989MOE5ycbdTcfEEcRcnU59N6bfVgd5Dr8d05PBrEHEz%2BTB62&amp;meta&#=
+x3D;kzPfsYxM1ZrqyvsRq1VolkNSsIrE0tINsanAIm0ITG9iPnhC7IreppIgGO6DEpPpEQXQePs=
+jLeaUINih3KQ6wdTdYG8HfqvhEbPkvx%2FO5OAJMhiLyXkxUQO82q%2B1tJG6bKiwqjNKkL%2FC=
+Hjv13U3dkIEvvDzsydfyLoHamSVcfuUGYD%2BtWAq%2B4on1dBajmPLvRZ5up7TNTwe8JqO9oIL=
+aiaOE4869sp6s9hNYOLV1%2BUk%3D&amp;iv&#x3D;uBjM1n58FmJBBeXF%2FROD0A%3D%3D" t=
+arget=3D"_blank" style=3D"line-height: 0;">
+																		<img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-b83=
+b/k2-_b952cc0d-7c07-4b9d-a2c0-6a177d3c388b.v1.png" alt=3D"Youtube"/>
+																	</a>
+																</th>
+																<th align=3D"left" style=3D"width:22px !important;">
+																	<a data-automation-id=3D"smInstagramImg" href=3D"https://r=
+ptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=
+&#x3D;CXO/G7Qs9c/SLoeRNHi/hR5SM5khvvS0tTeUmDr5X4DlgL4zwyKL9/Iq8%2BuEAiBdaHf=
+hwsFHLCGD57filED9tg2CjJLh54rH1KRf7A3W9fF1fN//aw1UmYUNtkFqFqp3dwUy2Bhs7WMxDx=
+noe%2BKLgtX48LEAtll/34TucSl172JBukNmqV984GxhKa8boxPJEi4yVk61tlVODvSKsZ5yjiB=
+m3Xti6hXqiEZ/oBLHMlS8TagGcbBQx41%2BgXt6pTgTyT4sls4e2o/RFq5ELt7JA3eQGKQW2gKT=
+4is2kOpq5AqioN8nCJfBDdksIAYVPavUEjiIcCtIfN/TzZQjJi8Q0pdbj9sr14Yh6KVLVGFlGwz=
+An4yqUJ6qNv%2B9KOHrL3P8lQUsm7C8CEAByfgmquhKvhGkS53rJaFkNfGIVbhiTxNFFA2bK5hC=
+Zg4kQ/UX9LVKz0k8AzxtKPZlUpk4qJYYYbsKL%2BGjDaZ35X9y7hbhXxGPOey5OMn%2BWiuPLlj=
+%2BSoD7YIiWbbxzz8n%2BDSZO9g5G%2BvpYWFTd9qrUP9KECj8UiGAwlUMHsrbdQH94cXKRZm1q=
+Ey7nKBXpNq/djlRJa1gJkpim44yGtTHQDC%2BH8Ut3tr0qqwqBsbnmSS84YDmVLaGX&amp;meta=
+&#x3D;kg5PFMc8iW5PQQpQAWImh03eRmElzFYltHSg8QvimtbC1lSt%2F0h5Q3qnTNaeYTCSKmE=
+Geu%2BgizlJDr5sisOHrYblg19pB7nE8GSNbvR4uI7gW0bYG6VnOViBjNHxzaXrI5ikRgGfAXHo=
+u1m1Ao%2F%2B%2Fqo5GWgwrwP1WhqMfctQsqevyr32vZhxF0P0iUXwRHGDC6ar7Nn%2F6V0OxhX=
+xt1tSqLEOXw5E3IS4fjeKQ8J740w%3D&amp;iv&#x3D;rEoHnvSL9Yz9IrtprmXfRA%3D%3D" t=
+arget=3D"_blank" style=3D"line-height: 0;">
+																		<img src=3D"https://i5.walmartimages.com/dfw/4ff9c6c9-768=
+a/k2-_41f595ca-b56c-4ee2-9257-6c41fda1ab0a.v1.png" alt=3D"Instagram"/>
+																	</a>
+																</th>
+															</tr>
+														</table>
+													</th>
+												</tr>
+												<tr>
+													<td data-automation-id=3D"footerTxt" class=3D"blockSection" al=
+ign=3D"left" role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" colspan=3D"2" style=3D"padding-left: 16px;padding-right: 16px;padd=
+ing-top: 0px;padding-bottom: 32px;">
+														<p style=3D"font-family: 'Arial',Sans-serif;  font-size: 14px=
+; font-weight: normal; text-align: left;  color: #6d6e71;margin: 0px;" data=
+-automation-id=3D"FooterBodyTxt">
+                        Walmart protects your security and privacy. We will=
+ never ask for personal information (such as passwords or credit card numbe=
+rs) in an email. If you receive such a request, please do not respond.
+                        =20
+															<a data-automation-id=3D"learnMoreFooterLink" href=3D"https:=
+//rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirec=
+tTo&#x3D;WRQUGyJQEpems6mRnLrWokg0Ptc11Eo5p9WHDadhAYFbMj1tBZOV0zqOKjvr8I4dHD=
+ogaPLtzo%2BC9Zmmzp4se/jggQjJa%2BXPJwFxaz3cvYZUxM2JH5bfroGQQiBXbXXVPLLoZPku7=
+3ow9NO6iWLW3xf1h1AvG6ni1TxKutZjvCpusfycct4kzre5lQk4FvOmycsGkSF%2BiOPRRywHt5=
+Ixgzg8MM1oFs0EXx2XoUqGNNz0o8%2BpfiSAqvpiQP%2BjhfNcgnIyplrdX/VH9Hz%2Bi%2BwPY=
+DzMUHqsLGKA84A04CCGjYXsFSYwtfZC0yla6MtDX62ejnsABqX3iQHoUma6FqaOOmiS8NcxbgCn=
+yhsyUC7%2BCmN7SXTV1ODMh7z1mm8jZgdCyNn/qL%2BjYpmll3UeKsnn0f41mhBlkKTXwWT%2BM=
+FNqFeLeTnrMjb3X%2BJOQY/iMCJvxJ3nJ91mJ2xLk%2BK/gtc5MBlKm1EZtr6Pi9NnB4WYFBKD2=
+m5YHAmxeGqbBtf4v%2Bumk5RCIZACg2zi0rhol60lD84m/RTR7aBKVNuZ%2Bkg1QoGg/zThWiHj=
+hDoHExVdxmaQ9N/9RACcuXqGFLuECa5jXsIe0fj4wyZEgymIEg4vaZ56BsspLsXsJFcJIRTiYtC=
+Gc%2BAKVpvdd6aqNQwag7vWBQI9o7jNCdZ7QMX0ICmdwYRyixwdnqND5N6hTaIIxvRrPivYt7IJ=
+Phc/K%2B%2BGyUWHhAPxaMKmZccZgMT1Bc%2B6Yo3gf%2B25WmvTSUXiDbYfH53Ze&amp;meta&=
+#x3D;RuYSqG9aNOsVpOaHCnW3xO7Cp3QuTaopIXf7O8JGervjDALqCcCQZpMVuZsg6T2MG9xpYf=
+1YFkzuh9md5RTgYSVRB7TE5kVo5Gp9aD5eUNQa8CQCPIZ5hY%2FMXGEDb4okn2mOm4SIX6Ckr3b=
+NdSgE5H0s%2FmsbCI6JF3FGbvxxZ50AbYryzC5AynZjOrFltXa9EAjXqbczsFwrOeqUtkHYjACV=
+1tody64gLSfhkDsZiIc%3D&amp;iv&#x3D;SeBGj57qwQMArjeEYu%2BNYQ%3D%3D" target=
+=3D"_blank" style=3D"color: black;text-decoration:underline;" aria-label=3D=
+"Learn more about Online Shopping Safety Tips">Learn more</a>
+                         about online safety and see our=20
+															<a data-automation-id=3D"privacyPolicyFooterLink" href=3D"ht=
+tps://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?red=
+irectTo&#x3D;h8ViGlNHk1caDvN9U9lXEjtalnUbC5EC2I07A5v%2BUzKuIF9MOn7%2BQj1q84=
+2YFogV3VVeF/RcuKkH/eTHuSfRl9jrVJKiyKHBXGzWgZFVwrAjOCIRr%2BPYBECNgS7%2BiiAbp=
+9Z%2BK2EWG5mLU3a4k4UJDUyJpKnsv6oWTaUvy5Bu%2BdUANzmFKUuJDo7yhwJQuVAm81RWifJ1=
+F0Kp8QbvG2b4khVfIfb6iYSU9YZCO6ZthVeQ23LeHPdz/SF7FWqWemLm1TI85paskcndtyxZKhs=
+JkNVUoCEKoAocaiPMQmlRt6hrtlAHb%2BSaxqrJsPFh04sZSPQf6CLkgnZ72GC74h3zu6KF4sB5=
+csMLatI8TxjCPUYwGONanAJS%2BghwgWMdqSId6NR%2BxjFuM6ljrCkzJJ0Tl3E%2BCFPEc%2BS=
+EmCe8WqVj61mYnm%2BIIompfp9NxEkIvSZOlXLNIcAXfG7c8KNJqyLrwyjlDNG8idJxm5XNK%2B=
+kxfyOO5lTsRcjaNYEImlgFGIX5cONt2cNDtGZBMsavSGCh8vNSzuTPRe4BJVpEC%2Bb60YpXviJ=
+61vpOLQrBfFlrZ7n6YyS/m2lE%2BgmrV8jARk00ndh8qmaIKox6yPeUWFi5wv1W2EpFM3MUYF1r=
+LiZV3g52hHVNOdbHuS3hVap2MILWhAtalQ9TDnXPuBAblvFovX9SFmYj29mizsZhzOy%2BRujdQ=
+Lmy2sotTWKDdLgRCSBWyQOVtLT1dM4nwxSyf5tJ4qwK/CucKQ1ccx%2Bm8dtzrFpDdd4hHhNaHE=
+hz9cRgzD53NA%3D%3D&amp;meta&#x3D;u%2FKUkflNV3a0%2BD5C%2BvjSOUgZo%2B7shIBW0j=
+wFy99rHFmTeSu2M%2Fctc9JzzrTYUW1ITXvFV%2BvBkqqLPn64IaViK5kPA%2Fpu7IhLZKMNRX%=
+2F6N7XOVJlge%2FGtmVR%2BvpkgxTPGbOrq0iPZF8h8efJwZvg4KdvSR5buB1I7%2FvXApT8A3b=
+QCPGOWwW2j3byGyHicnV%2BcjZnYOB6ugOdCMq7%2F6SsBBM6C5JeQ1npAjvnL%2B%2FsfD8E%3=
+D&amp;iv&#x3D;dCxCvfvEhzBDQUdECYqYaA%3D%3D" target=3D"_blank" style=3D"text=
+-decoration: underline;color:#000000">Privacy Policy</a>.
+														</p>
+														<p style=3D"font-family: 'Arial',Sans-serif;  font-size: 14px=
+; font-weight: normal; text-align: left;  color: #6d6e71;padding:16px 0px 1=
+6px 0px;margin:0;" data-automation-id=3D"FooterBodyTxt">Please do not reply=
+ to this email. This mailbox is not monitored.</p>
+														<p  style=3D"font-family: 'Arial',Sans-serif;  font-size: 14p=
+x; font-weight: normal;color: #6D6E71;margin: 0px;"data-automation-id=3D"Fo=
+oterBodyTxt">&copy; 2020 Walmart. All rights reserved.</p>
+													</td>
+												</tr>
+											</table>
+											<!-- End footer -->
+      									</table>
+									=09
+<br/><img src=3D"https://0xp94.mjt.lu/oo/CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg=
+8AAAAAABlBKABhf7wy22wznWG_QQ6HGN63AUFn_wATUCg/d77b1488/e.gif" height=3D"1" =
+width=3D"1" alt=3D"" border=3D"0" style=3D"height:1px;width:1px;border:0;"/=
+>
+</body>
+									</html>=

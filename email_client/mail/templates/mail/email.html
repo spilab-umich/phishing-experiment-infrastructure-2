@@ -75,7 +75,7 @@
                         <span class="visually-hidden">Email sender:</span>
                         <strong>{{ email.sender }}</strong>
                         <span class="visually-hidden">Sender's email address:</span>
-                        <span class='sender-address'>&nbsp;&lt;{{ email.sender_address }}&gt;</span>
+                        <span class='sender-address'>&nbsp;{{ email.sender_address }}</span>
                     </div>
                 <!-- <div class="col text-end"> {{email.time_sent}}
                 </div> -->
@@ -132,7 +132,9 @@
     <!-- end mobile email header -->
     <div class="row email-container">
         <div class='col'>
-            {% include email_fname %}
+            <div class="revert">
+                {% include email_fname %}
+            </div>
         </div>
     </div>
     <div class="email-footer" aria-hidden='true'>
@@ -142,35 +144,63 @@
         <a title="trash" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></a>
     </div>
 </div>
+    <!-- <div class="warning-template row justify-content-left align-items-center" style= "display: inline-block; border: 2px solid #767676; border-radius: 15px; margin: 15px; padding: 10px;">
+        <div class="warning-sidebar col-auto" style="">
+            <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
+        </div>
+        <div class="warning-inner col-auto">
+            <div>
+                <p class="header-text" style="padding: 5px;">Check this link! Link is not well known.</p>
+                <div>
+                    <div class="warning-domain row" style="padding: 5px; background-color: #DADADF; border-radius: 15px">
+                        <i class="fa fa-lock"  style='padding: 5px;'><span class = "" style="border: 2px solid #DADADF; border-radius: 0px 15px 15px 0px; background-color: #DADADF;">
+                            link-to-website.com/whateverelse
+                        </span></i>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div></div> -->
+
 {% include warning_fname %}
 <script src="{% static 'js/warnings.js' %}"></script>
-<script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script>
+<!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
+
 <script>
-    // Do we want this here or in the bottom of base.html?
-    // determine if email is a phish
     const n = parseInt('{{ user.group_num }}');
     const p_detected = ('{{ email.is_phish }}' == 'True');
     const eid = '{{email.ref}}';
+    id_links();
     if (p_detected){
-        p_link_id = '{{ email.phish_id }}';
+        const p_link_id = '{{ email.phish_id }}';
+        const p_url = '{{email.p_url}}';
+        adjust_link(p_link_id,p_url);
+        // if (n < 6){
+        //     load_warning(n,p_link_id);
+        // }
         load_warning(n,p_link_id);
+        // alert('{{email.p_url}}');
     }
+        
     initListeners(eid);
 </script>
-<script>    
-    // $(function(){
-    //     $(document).swipe({
-    //         swipe:function(event, direction, distance, duration, fingerCount, fingerData){
-    //             var prev_email = ('{{prev_email}}'!='-1');
-    //             var next_email = ('{{next_email}}'!='-1');
-    //             if ((direction=='right')&(prev_email)){
-    //                 location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
-    //             }
-    //             if ((direction=='left')&(next_email)){
-    //                 location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
-    //             }
-    //         }
-    //     });
-    // });
-</script>
+
+// <!-- <script>
+//     $(function(){
+//         $(document).swipe({
+//             swipe:function(event, direction, distance, duration, fingerCount, fingerData){
+//                 var prev_email = ('{{prev_email}}'!='-1');
+//                 var next_email = ('{{next_email}}'!='-1');
+//                 if ((direction=='right')&(prev_email)){
+//                     location = '{% url "mail:inbox" %}'+'/'+'{{prev_email}}';
+//                 }
+//                 if ((direction=='left')&(next_email)){
+//                     location = '{% url "mail:inbox" %}'+'/'+'{{next_email}}';
+//                 }
+//             }
+//         });
+//     });
+// </script> -->
 {% endblock %}

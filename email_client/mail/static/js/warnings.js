@@ -1,8 +1,17 @@
 let hover_time_limit = 0;
 // let rows = [];
-let time_delay = 5;
+// let time_delay = 5;
 let warning_shown = false;
 let warning_shown_text = 'warning-shown';
+
+// automatically assign id attributes to all links in an email
+function id_links(){
+    var i = 1;
+    $('.email-container a').each(function(){
+        $(this).attr('id', i);
+        i++;
+    });
+}
 
 function createLog(link, action, emailid, hover_time){
     var link_id = 0, link_url;
@@ -44,6 +53,7 @@ function send_data(d){
     });
 }
 
+// disables clicking on a phishing link
 function disable_link(link){
     link.attr('onclick', 'return false')
         .css('cursor','not-allowed');
@@ -56,94 +66,180 @@ function addTemplate(_node, template){
 function enable_link(link){
     link.css('cursor','pointer')
         .removeAttr('onclick')
+        // all live phishing links have id = -100
         .attr('id',-100);
 }
 
-function load_warning(group_num, p_id){
-    // On-hover, forced choice
+// changes href of desired link to the selected phishing link
+function adjust_link(p_id,p_url){
+    var _this = $('.email-container a#'+p_id);
+    var raw_link = p_url;
+    _this.attr('href', raw_link);
+}
+
+function load_warning(group_num,p_id){
+    // adjust group_num to represent the time_delay group 
+    // (0, 2, 4 secs) for groups ([0,3],[1,4],[2,5])
+    let timedelay_num = group_num % 3;
+    // create boolean for focused attention branching (groups 3, 4, 5)
+    var fa = group_num > 2;
+    // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
-    var raw_link = $('.email-container a#'+p_id).attr('href');
-    switch (group_num){
-        case 1:
-            _this = $(".email-container a#"+p_id);
-            _this.attr('data-toggle', 'tooltip');
-            disable_link(_this);
-            addTemplate(_this, clon);
-            $('a.warning-link').text(raw_link).attr('href',raw_link);
-            disable_link($('a.warning-link'));
-            $('span.secsRemaining').text(time_delay);
-            $("a[data-toggle='tooltip']")
-                .on('mouseenter', function(){
-                    $('div.tooltip').css('opacity',100);
-                    if (!warning_shown){
-                        createLog(warning_shown_text,warning_shown_text,eid);
-                        warning_shown = true;
-                    }
-                    var countdownToClick = setInterval(function(){
-                        time_delay--;
-                        $('span.secsRemaining').text(time_delay);
-                        if (time_delay == 0){
-                            $('li.timer').text('You may now visit the link');
-                            enable_link($('a.warning-link'));
-                            clearInterval(countdownToClick);
-                        }
-                    },1000);
-                }).on('mouseleave', function(){
-                var refreshInterval = setInterval(function() {
-                    // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
-                    if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
-                        // console.log($(".tooltip:hover").length);
-                        $(".tooltip").css('opacity',0);
-                        clearInterval(refreshInterval);
-                    }
-                }, 500);                    
-            });
+    var _this = $('.email-container a#'+p_id);
+    addTemplate(_this, clon);
+
+
+
+    // TEMPORARY VARIABLE SETTING
+    fa = true;
+    timedelay_num = 0;
+    // END VARIABLE SETTING
+
+
+
+    // change href attributes    
+    var raw_link = _this.attr('href');
+    var url = new URL(raw_link);
+    // create domain text
+    var hostname = url.hostname.split('www.');
+    let protocol = url.protocol + '//www.';
+    // console.log(protocol);
+    if (hostname.length > 1){
+        protocol += hostname[0];
+        hostname = hostname[1];
+    }
+    else {
+        hostname = hostname[0]; // hostname is always an array
+    }
+
+    // SPACING OUT LINK IS CONDITIONAL FOR TESTING
+    if (group_num % 2 > 0){
+        hostname = hostname.split('').join(' '); // separate the characters in the host  
+    }
+
+    // END TESTING
+
+    // CONSTRUCT LINK TESTING
+    let pre_domain = '<span class="pre-domain"></span>';
+    let main_domain = '<span class="main-domain"></span>';
+    let post_domain = '<span class="post-domain"></span>';
+    if (group_num < 4){
+        $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+    }
+    else {
+        $('a.warning-link').before(pre_domain)
+            .prepend(main_domain)
+            .after(post_domain);
+    }
+    // END TESTING
+
+    // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
+    if (group_num % 4 in [0,1]){
+        $('span.main-domain').css('color','black');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
+    else {
+        $('span.main-domain').css('border-radius','15px')
+            .css('background-color','#E8E8F0')
+            .css('font-weight','bold')
+            .css('padding','.2rem .3rem');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
+    // END TESTING
+
+    let pathname = url.pathname;
+    let search_params = url.search;
+    // add domain text to warning
+    $('span.pre-domain').text(protocol);
+    $('span.main-domain').text(hostname);
+    $('span.post-domain').text(pathname + search_params);
+    // console.log('test');
+    $('a.warning-link').attr('href', raw_link); 
+    $('iframe').on('click', function(){
+        window.open('https://www.google.com/','_blank');
+    });
+
+
+
+    // set time_delay for each group
+    let time_delay = -1;
+    // console.log(group_num);
+    let inst_text = '';
+    if (fa){
+        inst_text = 'Click link in the warning to proceed.';
+    }
+    else {
+        inst_text = 'Link active';
+    }
+    switch(timedelay_num){
+        // default:
+        //     console.log('error in assigning timedelay');
+        case 0:
+            time_delay = 0;
             break;
-        case 2: //on-click
-            _this = $('.email-container a#'+p_id)
-            // disable_link(_this);
-            addTemplate(_this, clon);
-            _this.attr('data-toggle', 'tooltip')
-                .attr('onclick','return false');
-            $('a.warning-link').attr('href', raw_link).text(raw_link);
-            disable_link($('a.warning-link'));
-            $('span.secsRemaining').text(time_delay);
-            $("a[data-toggle='tooltip']")
-                .on('click', function(){
-                    $('div.overlay').css('display','block');
-                    if (!warning_shown){
-                        createLog(warning_shown_text,warning_shown_text,eid);
-                        warning_shown = true;
-                    }                    
-                    var countdownToClick = setInterval(function(){
-                        time_delay--;
-                        $('span.secsRemaining').text(time_delay);
-                        if (time_delay == 0) {
-                            $('li.timer').text('You may now visit the link');
-                            enable_link($('a.warning-link'));
-                            clearInterval(countdownToClick);
-                        }
-                    },1000);
-            });
-            $('.warning-link').on('click', function(){
-                if (!(time_delay)){
-                    $(".overlay").css("display","none");
-                }
-            });
-            $('.closebtn').on('click', function(){
-                $(".overlay").css("display","none");
-            });
-            break; 
-        case 0: //temporarily changed to 3
-            $('.subject-info').before(clon);
+        case 1:
+            time_delay = 2;
+            break;
+        case 2:
+            time_delay = 4;
+            break;
+    }
+    // disable all original links
+    disable_link(_this);
+    // activate links with no time delay, including original link for non-FA
+    if (time_delay < 1){
+        enable_link($('a.warning-link'));
+        $('li.timer').text(inst_text);
+        if (!fa){
+            enable_link(_this);
+        }
+    }
+    // add time_delay text if time_delay and disable the warning-link
+    else {
+        $('span.secsRemaining').text(time_delay);
+        disable_link($('a.warning-link'));
+    }
+    _this.attr('data-toggle', 'tooltip');
+
+    //initialize on-hover interactivity
+    $("a[data-toggle='tooltip']")
+        .on('mouseenter', function(){
+            $('div.tooltip').css('opacity',100);
             if (!warning_shown){
                 createLog(warning_shown_text,warning_shown_text,eid);
                 warning_shown = true;
             }
-            break;
-    }
-    // console.log($('.email-container a#'+p_id).attr('href'));
+            // for groups with time_delay > 0, interval has to trigger
+
+            // && !countdownToClick
+            if (time_delay > 0){
+                var countdownToClick = setInterval(function(){
+                    time_delay--;
+                    $('span.secsRemaining').text(time_delay);
+                    // enable links if no time_delay, including original link for non-FA
+                    if (time_delay <= 0){
+                        enable_link($('a.warning-link'));
+                        $('li.timer').text(inst_text);
+                        if (!fa){
+                            enable_link(_this);
+                        }
+                        clearInterval(countdownToClick);
+                    }
+                },1000);
+            }
+        }).on('mouseleave', function(){
+        var refreshInterval = setInterval(function() {
+            // if the tooltip or link are not hovered over, clear the interval check and dismiss the tooltip
+            if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
+                // console.log($(".tooltip:hover").length);
+                $(".tooltip").css('opacity',0);
+                clearInterval(refreshInterval);
+            }
+        }, 500);                    
+    });
 }
 
 function initListeners(eid){
@@ -155,16 +251,16 @@ function initListeners(eid){
         addHoverListener($(this), eid);
     });
 
-    $('.email-container a').each(function(){
-        addTouchListener($(this), eid);
-    });
+    // $('.email-container a').each(function(){
+    //     addTouchListener($(this), eid);
+    // });
 }
 
-function addTouchListener(_this, emailid) {
-    _this.on('touchstart', function(){
-        createLog(_this, 'touchstart', emailid);
-    });
-}
+// function addTouchListener(_this, emailid) {
+//     _this.on('touchstart', function(){
+//         createLog(_this, 'touchstart', emailid);
+//     });
+// }
 
 function addclicklistener(_this, emailid) {
     _this.on('click', function() {

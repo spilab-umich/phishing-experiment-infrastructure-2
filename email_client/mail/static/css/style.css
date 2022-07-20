@@ -1,13 +1,19 @@
 /* Base CSS revisions */
 
 /*anchor*/
-a {
+/* a {
     color: #667fa0;
     text-decoration: none;
-}
+}*/
 
+
+/*
 a:hover {
     color: #2A3542;
+} */
+
+.revert {
+    all:revert;
 }
 
 .chk-all:focus {
@@ -644,4 +650,10 @@ a.btn.trash-icon:hover, a.btn.trash-icon:focus {
 a.btn.flag-icon:hover, a.btn.flag-icon:focus {
     background-color: #f0d7a9;
     color: #fff;
+}
+
+/* warning styles */
+
+.warning-template {
+    border: 2px solid #767676;
 }
