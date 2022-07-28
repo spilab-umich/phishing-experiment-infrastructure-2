@@ -92,8 +92,8 @@ function load_warning(group_num,p_id){
 
 
     // TEMPORARY VARIABLE SETTING
-    fa = true;
-    timedelay_num = 0;
+    // fa = true;
+    // timedelay_num = 0;
     // END VARIABLE SETTING
 
 
@@ -124,12 +124,16 @@ function load_warning(group_num,p_id){
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
+    let iframe = '<iframe></iframe>';
     if (group_num < 4){
         $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+            // .prepend(iframe);
+        // console.log('iframe prepended!');
     }
     else {
         $('a.warning-link').before(pre_domain)
             .prepend(main_domain)
+            // .prepend(iframe)
             .after(post_domain);
     }
     // END TESTING
@@ -158,9 +162,11 @@ function load_warning(group_num,p_id){
     $('span.post-domain').text(pathname + search_params);
     // console.log('test');
     $('a.warning-link').attr('href', raw_link); 
-    $('iframe').on('click', function(){
-        window.open('https://www.google.com/','_blank');
-    });
+
+    // how to do iframe; set hight and width to a.warning-link.height and .length
+    // $('iframe').on('click', function(){
+    //     window.open('https://www.google.com/','_blank');
+    // });
 
 
 
@@ -172,7 +178,7 @@ function load_warning(group_num,p_id){
         inst_text = 'Click link in the warning to proceed.';
     }
     else {
-        inst_text = 'Link active';
+        inst_text = 'The link is now active.';
     }
     switch(timedelay_num){
         // default:
