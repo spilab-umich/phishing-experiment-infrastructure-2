@@ -82,7 +82,7 @@ function load_warning(group_num,p_id){
     // (0, 2, 4 secs) for groups ([0,3],[1,4],[2,5])
     let timedelay_num = group_num % 3;
     // create boolean for focused attention branching (groups 3, 4, 5)
-    var fa = group_num > 2;
+    var fa = (group_num % 6) < 3;
     // import the template
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
@@ -115,9 +115,9 @@ function load_warning(group_num,p_id){
     }
 
     // SPACING OUT LINK IS CONDITIONAL FOR TESTING
-    if (group_num % 2 > 0){
-        hostname = hostname.split('').join(' '); // separate the characters in the host  
-    }
+    // if (group_num % 2 > 0){
+    //     hostname = hostname.split('').join(' '); // separate the characters in the host  
+    // }
 
     // END TESTING
 
@@ -181,13 +181,13 @@ function load_warning(group_num,p_id){
 
     // set initial time_delay
     let time_delay = -1;
-    // set the text in the bottom right corner
+    // set the text in the subheader
     let inst_text = '';
     if (fa){
-        inst_text = 'The link in the warning is now active.';
+        inst_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
     }
     else {
-        inst_text = 'The link is now active.';
+        inst_text = 'Please check the link carefully before proceeding. The link is now active.';
     }
     switch(timedelay_num){
         // default:
@@ -199,12 +199,12 @@ function load_warning(group_num,p_id){
             time_delay = 2;
             break;
         case 2:
-            time_delay = 4;
+            time_delay = 3;
             break;
     }
-    // disable all original links
+    // disable original email link
     disable_link(_this);
-    // activate links with no time delay, including original link for non-FA
+    // activate warning link if no time delay, include email link for non-FA
     if (time_delay < 1){
         enable_link($('a.warning-link'));
         $('span.timer').text(inst_text);
@@ -239,7 +239,7 @@ function load_warning(group_num,p_id){
                     // enable links if no time_delay, including original link for non-FA
                     if (time_delay <= 0){
                         enable_link($('a.warning-link'));
-                        $('li.timer').text(inst_text);
+                        $('span.timer').text(inst_text);
                         if (!fa){
                             enable_link(_this);
                         }
