@@ -9,7 +9,8 @@
                 </div>
                 <div class='warning-headline'>
                     <p>This link might be dangerous!</p>
-                <span>Please check the link carefully before proceeding.</span>        
+                <!-- <span>Please check the link carefully before proceeding.</span> -->
+                <span class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</span>
                     <ul>
                         <li class='domain-bar'>
                             <!-- <i class= 'fa fa-lock'></i> -->
@@ -19,7 +20,7 @@
                                 <span class="post-domain"></span> -->
                             </a>                            
                         </li>
-                        <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li>
+                        <!-- <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li> -->
                     </ul>
                 <!-- custom warning end -->
             </div>
@@ -142,9 +143,9 @@
             vertical-align: middle;
         }
 
-        .timer {
+        /* .timer {
             float: right;
             margin-top: 5px;
-        }
+        } */
     </style>
 </template>

@@ -87,6 +87,7 @@ function load_warning(group_num,p_id){
     var template = document.getElementsByTagName("template")[0];
     var clon = template.content.cloneNode(true);
     var _this = $('.email-container a#'+p_id);
+    let link_hovered = false;
     addTemplate(_this, clon);
 
 
@@ -120,38 +121,45 @@ function load_warning(group_num,p_id){
 
     // END TESTING
 
-    // CONSTRUCT LINK TESTING
+    // DOMAIN ONLY AND WHOLE LINK CLICKABLE
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
     let iframe = '<iframe></iframe>';
-    if (group_num < 4){
-        $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
-            // .prepend(iframe);
-        // console.log('iframe prepended!');
-    }
-    else {
-        $('a.warning-link').before(pre_domain)
-            .prepend(main_domain)
-            // .prepend(iframe)
-            .after(post_domain);
-    }
+    // if (group_num < 4){
+    //     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+    //         // .prepend(iframe);
+    // }
+    // else {
+    //     $('a.warning-link').before(pre_domain)
+    //         .prepend(main_domain)
+    //         // .prepend(iframe)
+    //         .after(post_domain);
+    // }
     // END TESTING
 
+    // make whole link clickable
+    $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+
+    // apply browser style highlighting
+    $('span.main-domain').css('color','black');
+    $('span.post-domain').css('opacity',.6);
+    $('span.pre-domain').css('opacity',.6);
+
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
-    if (group_num % 4 in [0,1]){
-        $('span.main-domain').css('color','black');
-        $('span.post-domain').css('opacity',.6);
-        $('span.pre-domain').css('opacity',.6);
-    }
-    else {
-        $('span.main-domain').css('border-radius','15px')
-            .css('background-color','#E8E8F0')
-            .css('font-weight','bold')
-            .css('padding','.2rem .3rem');
-        $('span.post-domain').css('opacity',.6);
-        $('span.pre-domain').css('opacity',.6);
-    }
+    // if (group_num % 4 in [0,1]){
+    //     $('span.main-domain').css('color','black');
+    //     $('span.post-domain').css('opacity',.6);
+    //     $('span.pre-domain').css('opacity',.6);
+    // }
+    // else {
+    //     $('span.main-domain').css('border-radius','15px')
+    //         .css('background-color','#E8E8F0')
+    //         .css('font-weight','bold')
+    //         .css('padding','.2rem .3rem');
+    //     $('span.post-domain').css('opacity',.6);
+    //     $('span.pre-domain').css('opacity',.6);
+    // }
     // END TESTING
 
     let pathname = url.pathname;
@@ -161,21 +169,22 @@ function load_warning(group_num,p_id){
     $('span.main-domain').text(hostname);
     $('span.post-domain').text(pathname + search_params);
     // console.log('test');
-    $('a.warning-link').attr('href', raw_link); 
-
-    // how to do iframe; set hight and width to a.warning-link.height and .length
+    $('a.warning-link').attr('href', raw_link);
+    
+    // how to do iframe; set height and width to a.warning-link.height() and .length()
+    // console.log($('a.warning-link').height());
     // $('iframe').on('click', function(){
     //     window.open('https://www.google.com/','_blank');
     // });
 
 
 
-    // set time_delay for each group
+    // set initial time_delay
     let time_delay = -1;
-    // console.log(group_num);
+    // set the text in the bottom right corner
     let inst_text = '';
     if (fa){
-        inst_text = 'Click link in the warning to proceed.';
+        inst_text = 'The link in the warning is now active.';
     }
     else {
         inst_text = 'The link is now active.';
@@ -198,7 +207,7 @@ function load_warning(group_num,p_id){
     // activate links with no time delay, including original link for non-FA
     if (time_delay < 1){
         enable_link($('a.warning-link'));
-        $('li.timer').text(inst_text);
+        $('span.timer').text(inst_text);
         if (!fa){
             enable_link(_this);
         }
@@ -221,7 +230,9 @@ function load_warning(group_num,p_id){
             // for groups with time_delay > 0, interval has to trigger
 
             // && !countdownToClick
-            if (time_delay > 0){
+            if (time_delay > 0 && !link_hovered){
+                // if this is the first time a link has been hovered, don't trigger this again on mouseenter
+                link_hovered = true;
                 var countdownToClick = setInterval(function(){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);
