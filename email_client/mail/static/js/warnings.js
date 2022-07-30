@@ -125,7 +125,7 @@ function load_warning(group_num,p_id){
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
-    let iframe = '<iframe></iframe>';
+    let iframe = '<iframe src="https://www.google.com/" id="added"></iframe>';
     // if (group_num < 4){
     //     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
     //         // .prepend(iframe);
@@ -171,13 +171,20 @@ function load_warning(group_num,p_id){
     // console.log('test');
     $('a.warning-link').attr('href', raw_link);
     
+    // DO IFRAME CLICKJACKING STUFF 
     // how to do iframe; set height and width to a.warning-link.height() and .length()
-    // console.log($('a.warning-link').height());
-    // $('iframe').on('click', function(){
-    //     window.open('https://www.google.com/','_blank');
+    let height = $('a.warning-link').height;
+    let length = $('a.warning-link').length;
+    $('a.warning-link').after(iframe)
+        .css('position','relative')
+        .css('z-index',1);
+    // $('iframe#added').css({
+    //     height: height,
+    //     length: length,
+    //     zIndex: 2,
+    //     opacity: 0
     // });
-
-
+    // console.log($('a.warning-link').height());
 
     // set initial time_delay
     let time_delay = -1;
@@ -257,6 +264,9 @@ function load_warning(group_num,p_id){
             }
         }, 500);                    
     });
+
+
+    ($)
 }
 
 function initListeners(eid){
