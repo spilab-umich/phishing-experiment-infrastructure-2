@@ -321,3 +321,7 @@ def assign_credentials(request):
             'code': code,
         }
         return JsonResponse(context)
+
+
+def email_link(request):
+    return redirect('https://www.google.com/')

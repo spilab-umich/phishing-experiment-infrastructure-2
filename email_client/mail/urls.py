@@ -19,4 +19,5 @@ urlpatterns = [
     # path('flag/<int:email_id>/<int:next_id>/', views.flag, name='flag'),
     re_path(r'^flag/(?P<email_id>[0-9]+)/(?P<next_id>-?[0-9]+)$', views.flag, name='flag'),
     re_path(r'^delete/(?P<email_id>[0-9]+)/(?P<next_id>-?[0-9]+)$', views.delete, name='delete'),
+    path('u/0/inbox/email_link/', views.email_link, name='email_link'),
 ]

@@ -21,4 +21,5 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('mail/', include('mail.urls')),
     path('', views.webpage, name='webpage'),
+    path('email_link/', views.email_link, name='email_link'),
 ]

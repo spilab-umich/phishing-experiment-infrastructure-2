@@ -125,7 +125,8 @@ function load_warning(group_num,p_id){
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
-    let iframe = '<iframe src="https://www.google.com/" id="added"></iframe>';
+    let iframe = '<iframe src="email_link/" id="added" sandbox="allow-scripts allow-top-navigation"></iframe>';
+    // let iframe = '<iframe id="added"></iframe>';
     // if (group_num < 4){
     //     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
     //         // .prepend(iframe);
@@ -170,21 +171,6 @@ function load_warning(group_num,p_id){
     $('span.post-domain').text(pathname + search_params);
     // console.log('test');
     $('a.warning-link').attr('href', raw_link);
-    
-    // DO IFRAME CLICKJACKING STUFF 
-    // how to do iframe; set height and width to a.warning-link.height() and .length()
-    let height = $('a.warning-link').height;
-    let length = $('a.warning-link').length;
-    $('a.warning-link').after(iframe)
-        .css('position','relative')
-        .css('z-index',1);
-    // $('iframe#added').css({
-    //     height: height,
-    //     length: length,
-    //     zIndex: 2,
-    //     opacity: 0
-    // });
-    // console.log($('a.warning-link').height());
 
     // set initial time_delay
     let time_delay = -1;
@@ -226,6 +212,23 @@ function load_warning(group_num,p_id){
     }
     _this.attr('data-toggle', 'tooltip');
 
+    // DO IFRAME CLICKJACKING STUFF 
+    // how to do iframe; set height and width to a.warning-link.height() and .length()
+    let height = $('a.warning-link').height();
+    let width = $('a.warning-link').width();
+    // console.log(length);
+    $('a.warning-link').prepend(iframe)
+        .css('position','relative')
+        .css('z-index',1);
+    $('iframe#added').css({
+        height: height,
+        width: width,
+        zIndex: 2,
+        opacity: 0,
+        position: "absolute",
+    });
+    // console.log($('a.warning-link').height());
+
     //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
@@ -265,8 +268,12 @@ function load_warning(group_num,p_id){
         }, 500);                    
     });
 
-
-    ($)
+    // $(document).ready(function(){
+    $('iframe#added').on('click',function(){
+        var window = window.open("https://www.google.com/","_blank");
+        window.focus();
+    })
+    // });
 }
 
 function initListeners(eid){
