@@ -652,6 +652,11 @@ a.btn.flag-icon:hover, a.btn.flag-icon:focus {
     color: #fff;
 }
 
+a.btn.approved-icon:hover, a.btn.approved-icon:focus {
+    background-color: #8ae68a;
+    color: #fff;
+}
+
 /* warning styles */
 
 .warning-template {
