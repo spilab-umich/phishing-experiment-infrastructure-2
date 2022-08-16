@@ -6,6 +6,7 @@ from .models import Mail, User
 from datetime import datetime, timezone
 from django.core import serializers
 from django.db import connection, connections
+from django.views.decorators.clickjacking import xframe_options_exempt
 import threading, time, logging, sys, string, random as rd
 
 # Set client ajax logger
@@ -322,6 +323,6 @@ def assign_credentials(request):
         }
         return JsonResponse(context)
 
-
+@xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request):
     return redirect('https://www.google.com/')
