@@ -8,7 +8,12 @@
     <div class= "heading-inbox row">
         <div class="col-md-8 email-icons" aria-hidden='true'>
             <a title="" data-placement="top" data-original-title="Back to Inbox" class="btn btn-sm" href="{% url 'mail:inbox' %}"><i class="fa fa-arrow-left"></i></a>
-            <a title="" data-placement="top" data-original-title="Approve" class="btn btn-sm approved-icon" ><i class="fa fa-check"></i></a>
+            {% if email.is_approved %}
+            <a title="" href="{% url 'mail:approve' email.ref next_email %}" data-placement="top" data-original-title="Approve" class="btn btn-sm approved-icon" style="background-color: #8ae68a;; color: #fff;"><i class="fa fa-check"></i></a>
+            {% else %}
+            <a title="" href="{% url 'mail:approve' email.ref next_email %}" data-placement="top" data-original-title="Approve" class="btn btn-sm approved-icon" ><i class="fa fa-check"></i></a>
+            {% endif %}
+            
             {% if email.is_deleted %}
             <a title="" href="{% url 'mail:delete' email.ref next_email %}" data-placement="top" data-original-title="Trash" class="btn btn-sm trash-icon" style="background-color: #f5675c; color: #fff;"><i class="fa fa-trash-o"></i></a>
             {% else %}

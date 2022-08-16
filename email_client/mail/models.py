@@ -26,6 +26,7 @@ class Mail(models.Model):
     p_url = models.CharField(default='', max_length=500) # The exact URL of the phishing URL
     is_flagged = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.ref) + ' - ' + self.sender

@@ -44,6 +44,7 @@ def index(request):
     #if the request is not POST, return the index(login) page
     return render(request, 'mail/index.html')
 
+# These functions runturn the appropriate inbox view (inbox, flagged, approved, trash)
 #~mail/flagged
 def flagged(request):
     if not request.user.is_authenticated:
@@ -74,6 +75,21 @@ def trash(request):
         }
         return render(request, 'mail/inbox.html', context)
 
+#~mail/approved
+def approved(request):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        user = request.user
+        collect_log(request)
+        emails = Mail.objects.filter(user=user,is_approved=True).values()
+        context = {
+            'user': user,
+            'emails': emails,
+            'page': 'approve', # shortcut for if deleted emails are shown
+        }
+        return render(request, 'mail/inbox.html', context)
+
 def inbox(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -88,6 +104,7 @@ def inbox(request):
         }
         return render(request, 'mail/inbox.html', context)
 
+# These three functions handle when a user approves, flags, or delets an email
 def flag(request, email_id, next_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -118,6 +135,22 @@ def delete(request, email_id, next_id):
             return redirect('mail:trash')
         return redirect('mail:trashed_email', email_id=next_id)
 
+def approve(request, email_id, next_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        collect_log(request)
+        user=request.user
+        Mail.objects.filter(user=user, ref=email_id).update(is_approved=Case(
+            When(is_approved=True, then=Value(False)),
+            When(is_approved=False, then=Value(True))))
+        if int(next_id) < 1:
+            # if "inbox" in request.META['HTTP_REFERER']:
+            #     return redirect('mail:inbox')
+            return redirect('mail:approved')
+        return redirect('mail:approved_email', email_id=next_id)
+
+# This function collects the appropriate emails (flagged, approved, deleted) to display in an inbox page view
 def return_emails(request, email_id):
         #log the request on the server side
         collect_log(request)
@@ -128,6 +161,9 @@ def return_emails(request, email_id):
         if (email.is_deleted):
             emails = Mail.objects.filter(user=user, is_deleted=True).values()
             page = 'trash'
+        elif (email.is_approved):
+            emails = Mail.objects.filter(user=user, is_approved=True).values()
+            page = 'approve' # If the email is flagged, this is the Flagged folder page
         elif (email.is_flagged):
             emails = Mail.objects.filter(user=user, is_flagged=True).values()
             page = 'flag' # If the email is flagged, this is the Flagged folder page
@@ -181,6 +217,7 @@ def return_emails(request, email_id):
         return context
 
 
+#these functions display individual emails in the different pages
 def flagged_email(request, email_id):
     #bounce the request if the user is not authenticated
     if not request.user.is_authenticated:
@@ -190,6 +227,13 @@ def flagged_email(request, email_id):
     return render(request, 'mail/email.html', context)
 
 def trashed_email(request, email_id):
+    if not request.user.is_authenticated:
+        return redirect('mail:index')
+    else:
+        context = return_emails(request, email_id)
+    return render(request, 'mail/email.html', context)
+
+def approved_email(request, email_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
