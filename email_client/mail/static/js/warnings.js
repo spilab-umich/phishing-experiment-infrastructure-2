@@ -243,32 +243,34 @@ function load_warning(group_num,p_id,for_link){
         $(_this).prepend(email_div)
             // .css('position','relative')
             .css('z-index',1);
+        $('span#em-added').css({
+            height: _this.height(),
+            width: _this.width(),
+            zIndex: 2,
+            opacity: 0,
+            position: "absolute",
+        }).on('click',function(){
+            let win = window.open(for_link,"_blank");
+            win.focus();
+        });
+        if (for_link.slice(-1) == "1"){
+            let offset = _this.offset();
+            // let offset2 = $('span#em-added').offset();
+            // console.log(offset);
+            // console.log(offset2);
+            // console.log(offset.left-offset2.left);
+            $('span#em-added').css({
+                left: offset.left,
+            });
+        }
     }
-
-    $('span#em-added').css({
-        height: _this.height(),
-        width: _this.width(),
-        zIndex: 2,
-        opacity: 0,
-        position: "absolute",
-    }).on('click',function(){
-        // let win = window.open("/email_link/"+"{{email.ref}}","_blank");
-        // console.log("mail/email_link/"+email_id)
-        let win = window.open(for_link,"_blank");
-        win.focus();
-    });
-
-
-    // prevent pages from opening on click here
-    $('a.warning-link').on('click', function(){
-        return false;
-    });
-    // console.log($('a.warning-link').height());
 
     //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
-            $('div.tooltip').css('opacity',100);
+            $('div.tooltip').css({
+                'opacity':100,
+                'display':'block'});
             if (!warning_shown){
                 createLog(warning_shown_text,warning_shown_text,eid);
                 warning_shown = true;
@@ -297,7 +299,9 @@ function load_warning(group_num,p_id,for_link){
         let refreshInterval = setInterval(function() {
             // if both the tooltip and the link are not hovered over, clear the interval check and dismiss the tooltip
             if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
-                $(".tooltip").css('opacity',0);
+                $(".tooltip").css({
+                    'opacity':0,
+                    'display':'none'});
                 clearInterval(refreshInterval);
             }
         }, 500);                    
