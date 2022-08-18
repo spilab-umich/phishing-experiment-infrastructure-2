@@ -9,6 +9,13 @@ from django.db import connection, connections
 from django.views.decorators.clickjacking import xframe_options_exempt
 import threading, time, logging, sys, string, random as rd
 
+redirect_cases = {
+    1: 'https://www.sprint.com/',
+    2: 'https://www.walmart.com/',
+    3: 'https://www.westernunion.com/',
+    4: 'https://www.delta.com/',
+}
+
 # Set client ajax logger
 client_logger = logging.getLogger('mail.client')
 client_logger.setLevel(logging.INFO)
@@ -44,7 +51,7 @@ def index(request):
     #if the request is not POST, return the index(login) page
     return render(request, 'mail/index.html')
 
-# These functions runturn the appropriate inbox view (inbox, flagged, approved, trash)
+# These functions return the appropriate inbox view (inbox, flagged, approved, trash)
 #~mail/flagged
 def flagged(request):
     if not request.user.is_authenticated:
@@ -90,13 +97,14 @@ def approved(request):
         }
         return render(request, 'mail/inbox.html', context)
 
+#~/mail/inbox (not deleted, not flagged, not approved)
 def inbox(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
         user = request.user
         collect_log(request)
-        emails = Mail.objects.filter(user=user, is_flagged=False, is_deleted=False).values()
+        emails = Mail.objects.filter(user=user, is_flagged=False, is_deleted=False, is_approved=False).values()
         context = {
             'user': user,
             'emails': emails,
@@ -368,5 +376,7 @@ def assign_credentials(request):
         return JsonResponse(context)
 
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
-def email_link(request):
-    return redirect('https://www.google.com/')
+def email_link(request, email_id):
+    collect_log(request)
+    result = redirect_cases.get(int(email_id), 'https://www.google.com/')
+    return redirect(result)
