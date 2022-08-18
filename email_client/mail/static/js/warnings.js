@@ -243,28 +243,34 @@ function load_warning(group_num,p_id,for_link){
         $(_this).prepend(email_div)
             // .css('position','relative')
             .css('z-index',1);
-        $('span#em-added').css({
-            height: _this.height(),
-            width: _this.width(),
-            zIndex: 2,
-            opacity: 0,
-            position: "absolute",
-        }).on('click',function(){
-            let win = window.open(for_link,"_blank");
-            win.focus();
+        $(document).ready(function(){
+            $('span#em-added').css({
+                height: _this.height(),
+                width: _this.width(),
+                zIndex: 2,
+                opacity: 0,
+                position: "absolute",
+            }).on('click',function(){
+                let win = window.open(for_link,"_blank");
+                win.focus();
+            });
         });
+    
+        // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
+        // to place a span over this link, you have to place the span after the image has loaded (on document ready)
         if (for_link.slice(-1) == "1"){
             let offset = _this.offset();
             // let offset2 = $('span#em-added').offset();
             // console.log(offset);
             // console.log(offset2);
             // console.log(offset.left-offset2.left);
-            $('span#em-added').css({
-                left: offset.left,
+            $(document).ready(function(){
+                $('span#em-added').css({
+                    left: offset.left,
+                });
             });
         }
     }
-
     //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
@@ -306,7 +312,6 @@ function load_warning(group_num,p_id,for_link){
             }
         }, 500);                    
     });
-
 }
 
 function initListeners(eid){
@@ -346,4 +351,3 @@ function addHoverListener(_this, emailid) {
         }
     });
 }
-
