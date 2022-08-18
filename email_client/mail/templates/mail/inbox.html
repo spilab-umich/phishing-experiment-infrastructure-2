@@ -65,6 +65,8 @@
             </div>
             {% if page == "inbox" %}
             <a href='{% url "mail:inbox_email" email.ref %}'>
+            {% elif page == "approve" %}
+            <a href='{% url "mail:approved_email" email.ref %}'>
             {% elif page == "trash" %}
             <a href='{% url "mail:trashed_email" email.ref %}'>
             {% elif page == "flag" %}

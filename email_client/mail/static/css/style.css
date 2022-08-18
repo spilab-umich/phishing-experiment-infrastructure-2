@@ -222,6 +222,7 @@ ul.side-panel-nav li a {
     line-height: 45px;
     padding: 0 20px;
     width: 100%;
+    text-decoration: none;
 }
 
 ul.side-panel-nav li.inbox.active a, ul.side-panel-nav li.inbox.active a i, ul.side-panel-nav li.inbox a:hover, ul.side-panel-nav li.inbox a:focus, ul.side-panel-nav li.inbox a:hover i, ul.side-panel-nav li.inbox a:focus i {
@@ -246,8 +247,6 @@ ul.side-panel-nav li a:hover, ul.side-panel-nav li a:focus, ul.side-panel-nav li
 }
 
 /* , ul.side-panel-nav li.active a, ul.side-panel-nav li a:focus { */ 
-
-
 
 ul.side-panel-nav li a i {
     color: #6a6a6a;
@@ -649,6 +648,11 @@ a.btn.trash-icon:hover, a.btn.trash-icon:focus {
 
 a.btn.flag-icon:hover, a.btn.flag-icon:focus {
     background-color: #f0d7a9;
+    color: #fff;
+}
+
+a.btn.approved-icon:hover, a.btn.approved-icon:focus {
+    background-color: #8ae68a;
     color: #fff;
 }
 

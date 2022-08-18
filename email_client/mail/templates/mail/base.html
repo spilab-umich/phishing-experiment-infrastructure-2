@@ -66,6 +66,15 @@
                             <li>
                                 <a class="disabled" aria-hidden='true'><i class=" fa fa-external-link"></i>Drafts</a>
                             </li>
+
+                            {% if page == 'approve' %}
+                            <li class='active'>
+                            {% else %}
+                            <li>
+                            {% endif %}
+                                <a class="" href='{% url "mail:approved" %}'><i class="fa fa-check"></i>Approved</a>
+                            </li>
+
                             {% if page == 'flag' %}
                             <li class='active'>
                             {% else %}
@@ -73,13 +82,14 @@
                             {% endif %}
                                 <a class="" href='{% url "mail:flagged" %}'><i class="fa fa-flag-o"></i>Flagged</a>
                             </li>
+                            
                             {% if page == 'trash' %}
                             <li class='active'>
                             {% else %}
                             <li>
                             {% endif %}
                                 <a class="" href='{% url "mail:trash" %}'><i class="fa fa-trash-o"></i>Trash</a>
-                            </li>
+                            </li>                            
                         </ul> 
                     </aside>                    
                     <aside class='inbox-right'>
