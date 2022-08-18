@@ -243,7 +243,7 @@ function load_warning(group_num,p_id,for_link){
         $(_this).prepend(email_div)
             // .css('position','relative')
             .css('z-index',1);
-        $(document).ready(function(){
+        $(window).on("load",function(){
             $('span#em-added').css({
                 height: _this.height(),
                 width: _this.width(),
@@ -264,7 +264,7 @@ function load_warning(group_num,p_id,for_link){
             // console.log(offset);
             // console.log(offset2);
             // console.log(offset.left-offset2.left);
-            $(document).ready(function(){
+            $(window).on("load", function(){
                 $('span#em-added').css({
                     left: offset.left,
                 });
