@@ -240,10 +240,10 @@ function load_warning(group_num,p_id,for_link){
 
     // add a div to the email link if not FA
     if (!fa){
-        $(_this).prepend(email_div)
-            // .css('position','relative')
-            .css('z-index',1);
         $(window).on("load",function(){
+            $(_this).prepend(email_div)
+                // .css('position','relative')
+                .css('z-index',1);
             $('span#em-added').css({
                 height: _this.height(),
                 width: _this.width(),
