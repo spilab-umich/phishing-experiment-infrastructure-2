@@ -173,8 +173,8 @@ function load_warning(group_num,p_id,for_link){
     $('span.post-domain').text(pathname + search_params);
     // console.log('test');
     $('a.warning-link').attr('href', raw_link)
-        .attr('target','_blank');
-        // .attr('onclick','return false');
+        .attr('target','_blank')
+        .attr('onclick','return false');
 
     // set initial time_delay
     let time_delay = -1;
