@@ -104,7 +104,7 @@ def inbox(request):
     else:
         user = request.user
         collect_log(request)
-        emails = Mail.objects.filter(user=user, is_flagged=False, is_deleted=False, is_approved=False).values()
+        emails = Mail.objects.filter(user=user).values()
         context = {
             'user': user,
             'emails': emails,
@@ -158,7 +158,7 @@ def approve(request, email_id, next_id):
             return redirect('mail:approved')
         return redirect('mail:approved_email', email_id=next_id)
 
-# This function collects the appropriate emails (flagged, approved, deleted) to display in an inbox page view
+# This function collects the appropriate email (flagged, approved, deleted) to display in an inbox page view
 def return_emails(request, email_id):
         #log the request on the server side
         collect_log(request)
