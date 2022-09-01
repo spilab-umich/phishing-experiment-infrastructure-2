@@ -144,25 +144,24 @@ function load_warning(group_num,p_id,for_link){
     // make whole link clickable
     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
 
-    // apply browser style highlighting
-    $('span.main-domain').css('color','black');
-    $('span.post-domain').css('opacity',.6);
-    $('span.pre-domain').css('opacity',.6);
-
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
-    // if (group_num % 4 in [0,1]){
-    //     $('span.main-domain').css('color','black');
-    //     $('span.post-domain').css('opacity',.6);
-    //     $('span.pre-domain').css('opacity',.6);
-    // }
-    // else {
-    //     $('span.main-domain').css('border-radius','15px')
-    //         .css('background-color','#E8E8F0')
-    //         .css('font-weight','bold')
-    //         .css('padding','.2rem .3rem');
-    //     $('span.post-domain').css('opacity',.6);
-    //     $('span.pre-domain').css('opacity',.6);
-    // }
+    if (group_num % 4 in [0,1]){
+        // apply browser style highlighting
+        console.log("no button");
+        $('span.main-domain').css('color','#4F4F4F');
+        // $('span.main-domain').css('color','black');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
+    else {
+        console.log("button");
+        $('span.main-domain').css('border-radius','15px')
+            .css('background-color','#E8E8F0')
+            .css('font-weight','bold')
+            .css('padding','.2rem .3rem');
+        $('span.post-domain').css('opacity',.6);
+        $('span.pre-domain').css('opacity',.6);
+    }
     // END TESTING
 
     let pathname = url.pathname;

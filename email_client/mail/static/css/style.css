@@ -444,9 +444,9 @@ a.mobile-table-inbox div{
     font-weight: 600;
 }
 
-.table-inbox .text-center input, .table-inbox .text-center i {
+/* .table-inbox .text-center input, .table-inbox .text-center i {
     padding: 0 10px;
-}
+} */
 
 
 ul.inbox-pagination {
@@ -663,3 +663,6 @@ a.btn.approved-icon:hover, a.btn.approved-icon:focus {
 }
 
 /* add i.trash icon */
+.col-1 i.fa {
+    padding: .25rem;
+}

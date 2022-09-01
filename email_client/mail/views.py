@@ -97,7 +97,7 @@ def approved(request):
         }
         return render(request, 'mail/inbox.html', context)
 
-#~/mail/inbox (not deleted, not flagged, not approved)
+#~/mail/inbox 
 def inbox(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -125,7 +125,7 @@ def flag(request, email_id, next_id):
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
-            return redirect('mail:flagged')
+            return redirect('mail:inbox')
         return redirect('mail:flagged_email', email_id=next_id)
 
 def delete(request, email_id, next_id):
@@ -140,7 +140,7 @@ def delete(request, email_id, next_id):
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
-            return redirect('mail:trash')
+            return redirect('mail:inbox')
         return redirect('mail:trashed_email', email_id=next_id)
 
 def approve(request, email_id, next_id):
@@ -155,7 +155,7 @@ def approve(request, email_id, next_id):
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
-            return redirect('mail:approved')
+            return redirect('mail:inbox')
         return redirect('mail:approved_email', email_id=next_id)
 
 # This function collects the appropriate email (flagged, approved, deleted) to display in an inbox page view
@@ -345,7 +345,7 @@ def assign_credentials(request):
         # This avoids multiple db calls
         len_users = len(users)
         if len_users < 1:
-            username = 'Available user names depleted. Please contact the research team.'
+            username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
             password = ''
         else:
             # Choose a random available username
@@ -374,6 +374,10 @@ def assign_credentials(request):
             'code': code,
         }
         return JsonResponse(context)
+
+def unread_check(request):
+    unread_count = 1
+    return JsonResponse(unread_count)
 
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request, email_id):
