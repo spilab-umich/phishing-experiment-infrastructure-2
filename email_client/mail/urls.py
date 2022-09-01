@@ -17,6 +17,7 @@ urlpatterns = [
     path('logout_user', views.logout_user, name='logout_user'),
     path('ajax', views.ajax, name='ajax'),
     path('api', views.assign_credentials, name='api'),
+    path('check', views.unread_check, name='check'),
     # path('delete/<int:email_id>/<int:next_id>/', views.delete, name='delete'),
     # path('flag/<int:email_id>/<int:next_id>/', views.flag, name='flag'),
     re_path(r'^flag/(?P<email_id>[0-9]+)/(?P<next_id>-?[0-9]+)$', views.flag, name='flag'),

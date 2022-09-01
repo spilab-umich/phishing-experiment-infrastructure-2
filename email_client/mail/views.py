@@ -264,7 +264,9 @@ def ajax(request):
 
 def collect_ajax(res):
     try:    
-        username = res.user.username
+        # username = res.user.username
+        # this is recommended instead of accessing attribute directly
+        username = res.user.get_username()
         email_ref = res.POST['ref']
         link = res.POST['link']
         link_id = res.POST['link_id']
@@ -299,7 +301,9 @@ def collect_ajax(res):
 
 def collect_log(request):
     try:
-        username = request.user.username
+        # username = request.user.username
+        # this is recommended instead of accessing attribute directly
+        username = request.user.get_username()
         link = request.path
         link_id = -1
         server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
@@ -376,8 +380,16 @@ def assign_credentials(request):
         return JsonResponse(context)
 
 def unread_check(request):
-    unread_count = 1
-    return JsonResponse(unread_count)
+    if request.method == 'GET':
+        username = request.username
+        # unread_count = User.objects.filter(username=username).unread_count
+        # get is preferred since only one object will reeturn
+        # get works in manage.py shell/ so does .unread_count
+        unread_count = User.objects.get(username=username).unread_count
+        context = {
+            'unread_count': unread_count
+        }
+        return JsonResponse(context)
 
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request, email_id):
