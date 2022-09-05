@@ -53,7 +53,7 @@ def index(request):
 
 # These functions return the appropriate inbox view (inbox, flagged, approved, trash)
 #~mail/flagged
-def flagged(request):
+def flagged_emails(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -68,7 +68,7 @@ def flagged(request):
         return render(request, 'mail/inbox.html', context)
 
 #~mail/trash
-def trash(request):
+def trash_emails(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -83,7 +83,7 @@ def trash(request):
         return render(request, 'mail/inbox.html', context)
 
 #~mail/approved
-def approved(request):
+def approved_emails(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -119,9 +119,12 @@ def flag(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
-        Mail.objects.filter(user=user, ref=email_id).update(is_flagged=Case(
-            When(is_flagged=True, then=Value(False)),
-            When(is_flagged=False, then=Value(True))))
+        Mail.objects.filter(user=user, ref=email_id).update(
+            is_flagged=Case(
+                When(is_flagged=True, then=Value(False)),
+                When(is_flagged=False, then=Value(True))),
+            is_deleted=False,
+            is_approved=False)
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
@@ -134,9 +137,12 @@ def delete(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
-        Mail.objects.filter(user=user, ref=email_id).update(is_deleted=Case(
-            When(is_deleted=True, then=Value(False)),
-            When(is_deleted=False, then=Value(True))))
+        Mail.objects.filter(user=user, ref=email_id).update(
+            is_deleted=Case(
+                When(is_deleted=True, then=Value(False)),
+                When(is_deleted=False, then=Value(True))),
+            is_flagged=False,
+            is_approved=False)
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
@@ -149,9 +155,12 @@ def approve(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
-        Mail.objects.filter(user=user, ref=email_id).update(is_approved=Case(
-            When(is_approved=True, then=Value(False)),
-            When(is_approved=False, then=Value(True))))
+        Mail.objects.filter(user=user, ref=email_id).update(
+            is_approved=Case(
+                When(is_approved=True, then=Value(False)),
+                When(is_approved=False, then=Value(True))),
+            is_deleted=False,
+            is_flagged=False)
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
