@@ -53,7 +53,7 @@ def index(request):
 
 # These functions return the appropriate inbox view (inbox, flagged, approved, trash)
 #~mail/flagged
-def flagged_emails(request):
+def flagged_folder(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -68,7 +68,7 @@ def flagged_emails(request):
         return render(request, 'mail/inbox.html', context)
 
 #~mail/trash
-def trash_emails(request):
+def trash_folder(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -83,7 +83,7 @@ def trash_emails(request):
         return render(request, 'mail/inbox.html', context)
 
 #~mail/approved
-def approved_emails(request):
+def approved_folder(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
@@ -168,25 +168,24 @@ def approve(request, email_id, next_id):
         return redirect('mail:approved_email', email_id=next_id)
 
 # This function collects the appropriate email (flagged, approved, deleted) to display in an inbox page view
-def return_emails(request, email_id):
+def return_emails(request, email_id, page="inbox"):
         #log the request on the server side
         collect_log(request)
         user = request.user
         # Get a dictionary list of mail objects belonging to this user
         email = Mail.objects.get(user=user, ref=email_id)
-        page = "NA"
-        if (email.is_deleted):
-            emails = Mail.objects.filter(user=user, is_deleted=True).values()
-            page = 'trash'
-        elif (email.is_approved):
+        # page = "NA"
+        if (page == 'inbox'):
+            emails = Mail.objects.filter(user=user).values()
+        elif (page == 'trash'):
+            emails = Mail.objects.filter(user=user, is_deleted=True).values() 
+        elif (page == 'approve'):
             emails = Mail.objects.filter(user=user, is_approved=True).values()
-            page = 'approve' # If the email is flagged, this is the Flagged folder page
-        elif (email.is_flagged):
+        elif (page == 'flag'):
             emails = Mail.objects.filter(user=user, is_flagged=True).values()
-            page = 'flag' # If the email is flagged, this is the Flagged folder page
         else:
-            emails = Mail.objects.filter(user=user, is_deleted=False, is_flagged=False).values()
-            page = 'inbox'
+            # Return inbox view if something goes wrong
+            emails = Mail.objects.filter(user=user).values()
         
         # Evaluate the query set (hits the database)
         len_emails = len(emails)
