@@ -120,7 +120,7 @@ def flag(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
-        tstart = time.perf_counter()
+        # tstart = time.perf_counter()
         Mail.objects.filter(user=user, ref=email_id).update(
             is_flagged=Case(
                 When(is_flagged=True, then=Value(False)),
@@ -131,9 +131,9 @@ def flag(request, email_id, next_id):
             is_approved=Case(
                 When(is_approved=True, then=Value(False)),
                 When(is_approved=False, then=Value(False))))
-        tend = time.perf_counter()
-        time_taken = tend - tstart
-        print(f"{time_taken} seconds to FLAG")
+        # tend = time.perf_counter()
+        # time_taken = tend - tstart
+        # print(f"{time_taken} seconds to FLAG")
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
@@ -146,20 +146,16 @@ def delete(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
-        tstart = time.perf_counter()
-
-        '''Initial tests say delete is faster than flag (i.e.
-        checking is most costly than just setting
-        '''
+        # tstart = time.perf_counter()
         Mail.objects.filter(user=user, ref=email_id).update(
             is_deleted=Case(
                 When(is_deleted=True, then=Value(False)),
                 When(is_deleted=False, then=Value(True))),
             is_flagged=False,
             is_approved=False)
-        tend = time.perf_counter()
-        time_taken = tend - tstart
-        print(f"{time_taken} seconds to DELETE")
+        # tend = time.perf_counter()
+        # time_taken = tend - tstart
+        # print(f"{time_taken} seconds to DELETE")
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')

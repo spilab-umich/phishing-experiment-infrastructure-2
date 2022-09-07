@@ -15,8 +15,10 @@ django.setup()
 
 # Input number of users
 n_users = 0
+
+n_test_users = 3000
 # Input number of groups
-n_of_groups = 6
+n_of_groups = 7
 
 # class MyHTMLParser(HTMLParser):
 #     prev = ""
@@ -262,7 +264,7 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-for i in range(0, 100):
+for i in range(0, n_test_users):
 
     # I added this without testing it! it might not play nice with the new.phish_id line
     shuffle(emails_to_add)
