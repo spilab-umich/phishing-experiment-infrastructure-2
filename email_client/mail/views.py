@@ -188,7 +188,9 @@ def return_emails(request, email_id, page="inbox"):
             emails = Mail.objects.filter(user=user).values()
         
         # Evaluate the query set (hits the database)
-        len_emails = len(emails)
+        # len_emails = len(emails)
+        # using count() does not hit the database
+        len_emails = emails.count()
         read_status = email.read
         this_id = email.pk
         prev_email = -1
