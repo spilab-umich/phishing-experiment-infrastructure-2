@@ -9,6 +9,7 @@ from django.db import connection, connections
 from django.views.decorators.clickjacking import xframe_options_exempt
 import threading, time, logging, sys, string, random as rd
 
+
 redirect_cases = {
     1: 'https://www.sprint.com/',
     2: 'https://www.walmart.com/',
@@ -119,12 +120,20 @@ def flag(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
+        tstart = time.perf_counter()
         Mail.objects.filter(user=user, ref=email_id).update(
             is_flagged=Case(
                 When(is_flagged=True, then=Value(False)),
                 When(is_flagged=False, then=Value(True))),
-            is_deleted=False,
-            is_approved=False)
+            is_deleted=Case(
+                When(is_deleted=True, then=Value(False)),
+                When(is_deleted=False, then=Value(False))),
+            is_approved=Case(
+                When(is_approved=True, then=Value(False)),
+                When(is_approved=False, then=Value(False))))
+        tend = time.perf_counter()
+        time_taken = tend - tstart
+        print(f"{time_taken} seconds to FLAG")
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
@@ -137,12 +146,20 @@ def delete(request, email_id, next_id):
     else:
         collect_log(request)
         user=request.user
+        tstart = time.perf_counter()
+
+        '''Initial tests say delete is faster than flag (i.e.
+        checking is most costly than just setting
+        '''
         Mail.objects.filter(user=user, ref=email_id).update(
             is_deleted=Case(
                 When(is_deleted=True, then=Value(False)),
                 When(is_deleted=False, then=Value(True))),
             is_flagged=False,
             is_approved=False)
+        tend = time.perf_counter()
+        time_taken = tend - tstart
+        print(f"{time_taken} seconds to DELETE")
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
