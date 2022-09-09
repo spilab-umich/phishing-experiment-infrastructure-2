@@ -10,6 +10,7 @@ function id_links(){
     $('.email-container a').each(function(){
         $(this).attr('id', i);
         i++;
+        // open all email links in a new window
         $(this).attr('target',  '_blank');
     });
 }
@@ -27,7 +28,7 @@ function createLog(link, action, emailid, hover_time){
     else link_url = 'NaN'; 
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
     // consider changing to Date().toUTCString();
-    let timestamp = new Date($.now()).toUTCString();
+    let timestamp = new Date($.now()).toUTCString().replace(',','');
     let d = {
         'ref': emailid,
         'link': link_url,
@@ -75,36 +76,36 @@ function add_warning_link_span(){
     let warn_span = '<span id="wa-added"></span>';
 
     //place cj span around warning link
-    _this.prepend(warn_span)
-        .css('position','relative')
-        .css('z-index',1);
-    $('div#wa-added').css({
-        height: _this.height(),
-        width: _this.width(),
-        zIndex: 2,
-        opacity: 0,
-        position: "absolute",
-    });
+    // _this.prepend(warn_span)
+    //     .css('position','relative')
+    //     .css('z-index',1);
+    // $('div#wa-added').css({
+    //     height: _this.height(),
+    //     width: _this.width(),
+    //     zIndex: 2,
+    //     opacity: 0,
+    //     position: "absolute",
+    // });
 }
 
 function add_email_link_span(email_link){
-    let email_span = '<span id="em-added"></span>';
+    // let email_span = '<span id="em-added"></span>';
     let _this = $('.email-container a#'+email_link);
     _this.addClass('email-link');
 
     // place cj span around email-link
-    $(window).on("load",function(){
-        $(_this).prepend(email_span)
-            // .css('position','relative')
-            .css('z-index',1);
-        $('span#em-added').css({
-            height: _this.height(),
-            width: _this.width(),
-            zIndex: 2,
-            opacity: 0,
-            position: "absolute",
-        });
-    });
+    // $(window).on("load",function(){
+    //     $(_this).prepend(email_span)
+    //         // .css('position','relative')
+    //         .css('z-index',1);
+    //     $('span#em-added').css({
+    //         height: _this.height(),
+    //         width: _this.width(),
+    //         zIndex: 2,
+    //         opacity: 0,
+    //         position: "absolute",
+    //     });
+    // });
 }
 
 // add click listener to cj span on warning link
