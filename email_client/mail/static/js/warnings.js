@@ -169,53 +169,45 @@ function load_warning(group_num,p_id,for_link){
     // console.log('test');
     $('a.warning-link').attr('href', raw_link)
         .attr('target','_blank')
-        .attr('onclick','return false');
+        .attr('onclick','return false'); // disable the warning-link by default
 
-    // disable original email link
+    // disable original email link for all conditions
     disable_link(_this);
     
 
-    // set initial time_delay
+    // initialize time_delay
     let time_delay = -1;
     // set the text in the subheader
-    let inst_text = '';
-    // create boolean for focused attention branching (groups 3, 4, 5)
+    let subhead_text = '';
+    // create boolean for focused attention branching (groups 1, 2, 3)
     let fa = (group_num % 6) < 3;
-    // assign time_delay values
+    // handle warnings with no time delay
     if (group_num in [1,4]){
         time_delay = 0;
-    }
-    else if (group_num in [2,5]){
-        time_delay = 2
-    }
-    else {
-        time_delay = 3;
-    }
-    
-    // assign sub-header text as appropriate
-    if (time_delay == 0) {
-        inst_text = 'Please check the link carefully before proceeding.';
-    }
-    else if (fa){
-        inst_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
-    }
-    else {
-        // if not time_delay and not focused attention
-        inst_text = 'Please check the link carefully before proceeding. The link is now active.';
-    }
-    // activate warning link if no time delay, include email link for non-FA
-    if (time_delay < 1){
+        subhead_text = 'Please check the link carefully before proceeding.';
+        // enable original link in focused attention
         enable_link($('a.warning-link'));
-        $('span.timer').text(inst_text);
         if (!fa){
             enable_link(_this);
-        }
+        }        
     }
-    // add time_delay text if time_delay and disable the warning-link
+    // handle warnings with time delay
     else {
         $('span.secsRemaining').text(time_delay);
-        disable_link($('a.warning-link'));
+        if (!fa){
+            subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
+        }
+        else {
+            subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
+        }
+        if (group_num in [2,5]){
+            time_delay = 2
+        }
+        else {
+            time_delay = 3;
+        }
     }
+    $('span.timer').text(subhead_text);
     _this.attr('data-toggle', 'tooltip');
 
     // DO IFRAME CLICKJACKING STUFF 
@@ -284,10 +276,8 @@ function load_warning(group_num,p_id,for_link){
                 warning_shown = true;
             }
             // for groups with time_delay > 0, interval has to trigger
-
-            // && !countdownToClick
+            // trigger this countdown only if it is the first time the link has been hovered
             if (time_delay > 0 && !link_hovered){
-                // if this is the first time a link has been hovered, don't trigger this again on mouseenter
                 link_hovered = true;
                 let countdownToClick = setInterval(function(){
                     time_delay--;
@@ -295,7 +285,7 @@ function load_warning(group_num,p_id,for_link){
                     // enable links if no time_delay, including original link for non-FA
                     if (time_delay <= 0){
                         enable_link($('a.warning-link'));
-                        $('span.timer').text(inst_text);
+                        $('span.timer').text(subhead_text);
                         if (!fa){
                             enable_link(_this);
                         }
