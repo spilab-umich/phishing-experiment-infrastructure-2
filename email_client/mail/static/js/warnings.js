@@ -214,17 +214,15 @@ function load_warning(group_num,p_id,for_link){
     // create boolean for focused attention branching (groups 1, 2, 3)
     let fa = (group_num % 7) < 4;
      // handle warnings with no time delay
-    if (fa){
-        final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
-    }
-    else {
-        final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
-    }
     if ([1,4].includes(group_num)){
         time_delay = 0;
         if (!fa) {
             make_email_link_clickable(for_link);
             enable_link(_this);
+            final_subhead_text = 'Please check the link carefully before proceeding.';
+        }
+        else {
+            final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
         }
         // enable original link in focused attention
         make_warning_link_clickable(for_link);
@@ -242,6 +240,12 @@ function load_warning(group_num,p_id,for_link){
         }
         disable_link($('a.warning-link'));
         $('span.secsRemaining').text(time_delay);
+        if (fa){
+            final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
+        }
+        else {
+            final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
+        }
     }
 
     _this.attr('data-toggle', 'tooltip');
@@ -311,8 +315,8 @@ function load_warning(group_num,p_id,for_link){
         }).on('mouseleave', function(){
         let refreshInterval = setInterval(function() {
             // if both the tooltip and the link are not hovered over, clear the interval check and dismiss the tooltip
-            if (!$(".tooltip:hover").length && !$("[data-toggle='tooltip']:hover").length) {
-                $(".tooltip").css({
+            if (!$('.tooltip:hover').length && !$("[data-toggle='tooltip']:hover").length) {
+                $('.tooltip').css({
                     'opacity':0,
                     'display':'none'});
                 clearInterval(refreshInterval);
