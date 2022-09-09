@@ -66,7 +66,6 @@ function addTemplate(_node, template){
 
 function enable_link(link){
     link.css('cursor','pointer')
-        // .removeAttr('onclick')
         // all live phishing links have id = -100
         .attr('id',-100);
 }
@@ -75,7 +74,7 @@ function add_warning_link_span(){
     let _this = $('a.warning-link');
     let warn_span = '<span id="wa-added"></span>';
 
-    //place cj span around warning link if not focused attention
+    //place cj span around warning link
     _this.prepend(warn_span)
         .css('position','relative')
         .css('z-index',1);
@@ -92,6 +91,8 @@ function add_email_link_span(email_link){
     let email_span = '<span id="em-added"></span>';
     let _this = $('.email-container a#'+email_link);
     _this.addClass('email-link');
+
+    // place cj span around email-link
     $(window).on("load",function(){
         $(_this).prepend(email_span)
             // .css('position','relative')
@@ -106,19 +107,22 @@ function add_email_link_span(email_link){
     });
 }
 
+// add click listener to cj span on warning link
 function make_warning_link_clickable(for_link){
     $('a.warning-link').on('click',function(){
         let win = window.open(for_link,"_blank");
-        win.focus();
+        // win.focus();
     });
 }
 
+// add click listener to cj span on email link
 function make_email_link_clickable(for_link){
     $('a.email-link').on('click',function(){
         let win = window.open(for_link,"_blank");
-        win.focus();
+        // win.focus();
     });
 }
+
 // changes href of desired link to the selected phishing link
 function adjust_link(p_id,p_url){
     let _this = $('.email-container a#'+p_id);
@@ -163,30 +167,30 @@ function load_warning(group_num,p_id,for_link){
     // END TESTING
 
     // DOMAIN ONLY AND WHOLE LINK CLICKABLE
-    // create spans for plink components
+    // create spans for URL components
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
     
-    // populate plink with spans
+    // populate plink with spans for URL components
     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
 
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
     // apply browser style highlighting
-    if ([1,2,3].includes(group_num)){
-        $('span.main-domain').css('color','#4F4F4F');
-        $('span.post-domain').css('opacity',.6);
-        $('span.pre-domain').css('opacity',.6);
-    }
-    // apply button style highlighting
-    else {
-        $('span.main-domain').css('border-radius','15px')
-            .css('background-color','#E8E8F0')
-            .css('font-weight','bold')
-            .css('padding','.2rem .3rem');
-        $('span.post-domain').css('opacity',.6);
-        $('span.pre-domain').css('opacity',.6);
-    }
+    // if ([1,2,3].includes(group_num)){
+    //     $('span.main-domain').css('color','#4F4F4F');
+    //     $('span.post-domain').css('opacity',.6);
+    //     $('span.pre-domain').css('opacity',.6);
+    // }
+    // // apply button style highlighting
+    // else {
+    //     $('span.main-domain').css('border-radius','15px')
+    //         .css('background-color','#E8E8F0')
+    //         .css('font-weight','bold')
+    //         .css('padding','.2rem .3rem');
+    //     $('span.post-domain').css('opacity',.6);
+    //     $('span.pre-domain').css('opacity',.6);
+    // }
     // END TESTING
 
     // populate spans with text from plink components
@@ -205,15 +209,15 @@ function load_warning(group_num,p_id,for_link){
     // initialize time_delay
     let time_delay = -1;
     // set the text in the subheader
-    let subhead_text = '';
+    let final_subhead_text = '';
     // create boolean for focused attention branching (groups 1, 2, 3)
     let fa = (group_num % 7) < 4;
      // handle warnings with no time delay
     if (fa){
-        subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
+        final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
     }
     else {
-        subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
+        final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
     }
     if ([1,4].includes(group_num)){
         time_delay = 0;
@@ -224,7 +228,7 @@ function load_warning(group_num,p_id,for_link){
         // enable original link in focused attention
         make_warning_link_clickable(for_link);
         enable_link($('a.warning-link'));
-        $('span.timer').text(subhead_text);
+        $('span.timer').text(final_subhead_text);
            // add on-click listener to warning link cj span for no FA groups
     }
     // handle warnings with time delay
@@ -290,7 +294,7 @@ function load_warning(group_num,p_id,for_link){
                 let countdownToClick = setInterval(function(){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);
-                    // enable links if no time_delay, including original link for non-FA
+                    // enable warning link after time delay, including email link for non-FA
                     if (time_delay <= 0){                       
                         if (!fa){
                             make_email_link_clickable(for_link);
@@ -298,7 +302,7 @@ function load_warning(group_num,p_id,for_link){
                         }
                         make_warning_link_clickable(for_link);
                         enable_link($('a.warning-link'));
-                        $('span.timer').text(subhead_text);
+                        $('span.timer').text(final_subhead_text);
                         clearInterval(countdownToClick);
                     }
                 },1000);
