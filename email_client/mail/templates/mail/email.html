@@ -186,6 +186,10 @@
         if (n > 0){
             load_warning(n,p_link_id,link);
         }
+        else {
+            add_email_link_span(p_link_id);
+            make_email_link_clickable(link);
+        }
         // alert('{{email.p_url}}');
     }
         

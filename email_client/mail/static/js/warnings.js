@@ -10,6 +10,7 @@ function id_links(){
     $('.email-container a').each(function(){
         $(this).attr('id', i);
         i++;
+        $(this).attr('target',  '_blank');
     });
 }
 
@@ -70,40 +71,82 @@ function enable_link(link){
         .attr('id',-100);
 }
 
+function add_warning_link_span(){
+    let _this = $('a.warning-link');
+    let warn_span = '<span id="wa-added"></span>';
+
+    //place cj span around warning link if not focused attention
+    _this.prepend(warn_span)
+        .css('position','relative')
+        .css('z-index',1);
+    $('div#wa-added').css({
+        height: _this.height(),
+        width: _this.width(),
+        zIndex: 2,
+        opacity: 0,
+        position: "absolute",
+    });
+}
+
+function add_email_link_span(email_link){
+    let email_span = '<span id="em-added"></span>';
+    let _this = $('.email-container a#'+email_link);
+    _this.addClass('email-link');
+    $(window).on("load",function(){
+        $(_this).prepend(email_span)
+            // .css('position','relative')
+            .css('z-index',1);
+        $('span#em-added').css({
+            height: _this.height(),
+            width: _this.width(),
+            zIndex: 2,
+            opacity: 0,
+            position: "absolute",
+        });
+    });
+}
+
+function make_warning_link_clickable(for_link){
+    $('a.warning-link').on('click',function(){
+        let win = window.open(for_link,"_blank");
+        win.focus();
+    });
+}
+
+function make_email_link_clickable(for_link){
+    $('a.email-link').on('click',function(){
+        let win = window.open(for_link,"_blank");
+        win.focus();
+    });
+}
 // changes href of desired link to the selected phishing link
 function adjust_link(p_id,p_url){
     let _this = $('.email-container a#'+p_id);
     let raw_link = p_url;
-    _this.attr('href', raw_link);
-}
+    _this.attr('href', raw_link)
+        .attr('onclick', 'return false');
+    // add cj span over all plink for all groups
+    }
 
 function load_warning(group_num,p_id,for_link){
-    // adjust group_num to represent the time_delay group 
-    // (0, 2, 4 secs) for groups ([0,3],[1,4],[2,5])
-    // let timedelay_num = group_num % 7;
+    // copy plink
+    let _this = $('.email-container a#'+p_id);
+    add_email_link_span(p_id);
     // import the template
     let template = document.getElementsByTagName("template")[0];
     let clon = template.content.cloneNode(true);
-    let _this = $('.email-container a#'+p_id);
-    let link_hovered = false;
     addTemplate(_this, clon);
 
-
-
-    // TEMPORARY VARIABLE SETTING
-    // fa = true;
-    // timedelay_num = 0;
-    // END VARIABLE SETTING
-
-
-
-    // change href attributes    
+    // adjust plink
+    let link_hovered = false;
     let raw_link = _this.attr('href');
+    
+    // disable original email link for all conditions
+    disable_link(_this);
+    // parse out plink components
     let url = new URL(raw_link);
-    // create domain text
     let hostname = url.hostname.split('www.');
     let protocol = url.protocol + '//www.';
-    // console.log(protocol);
     if (hostname.length > 1){
         protocol += hostname[0];
         hostname = hostname[1];
@@ -120,36 +163,22 @@ function load_warning(group_num,p_id,for_link){
     // END TESTING
 
     // DOMAIN ONLY AND WHOLE LINK CLICKABLE
+    // create spans for plink components
     let pre_domain = '<span class="pre-domain"></span>';
     let main_domain = '<span class="main-domain"></span>';
     let post_domain = '<span class="post-domain"></span>';
-    // let iframe = '<iframe src="email_link/" id="added" sandbox="allow-scripts allow-top-navigation"></iframe>';
-    let warn_div = '<div id="wa-added"></div>';
-    let email_div = '<span id="em-added"></span>';
-    // let iframe = '<iframe id="added"></iframe>';
-    // if (group_num < 4){
-    //     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
-    //         // .prepend(iframe);
-    // }
-    // else {
-    //     $('a.warning-link').before(pre_domain)
-    //         .prepend(main_domain)
-    //         // .prepend(iframe)
-    //         .after(post_domain);
-    // }
-    // END TESTING
-
-    // make whole link clickable
+    
+    // populate plink with spans
     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
 
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
-    if (group_num in [1,2,3]){
-        // apply browser style highlighting
+    // apply browser style highlighting
+    if ([1,2,3].includes(group_num)){
         $('span.main-domain').css('color','#4F4F4F');
-        // $('span.main-domain').css('color','black');
         $('span.post-domain').css('opacity',.6);
         $('span.pre-domain').css('opacity',.6);
     }
+    // apply button style highlighting
     else {
         $('span.main-domain').css('border-radius','15px')
             .css('background-color','#E8E8F0')
@@ -160,111 +189,90 @@ function load_warning(group_num,p_id,for_link){
     }
     // END TESTING
 
+    // populate spans with text from plink components
     let pathname = url.pathname;
     let search_params = url.search;
-    // add domain text to warning
     $('span.pre-domain').text(protocol);
     $('span.main-domain').text(hostname);
     $('span.post-domain').text(pathname + search_params);
-    // console.log('test');
     $('a.warning-link').attr('href', raw_link)
         .attr('target','_blank')
         .attr('onclick','return false'); // disable the warning-link by default
 
-    // disable original email link for all conditions
-    disable_link(_this);
+    add_warning_link_span();
     
-
+    // START WARNING DEPLOYMENT
     // initialize time_delay
     let time_delay = -1;
     // set the text in the subheader
     let subhead_text = '';
     // create boolean for focused attention branching (groups 1, 2, 3)
-    let fa = (group_num % 6) < 3;
-    // handle warnings with no time delay
-    if (group_num in [1,4]){
+    let fa = (group_num % 7) < 4;
+     // handle warnings with no time delay
+    if (fa){
+        subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
+    }
+    else {
+        subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
+    }
+    if ([1,4].includes(group_num)){
         time_delay = 0;
-        subhead_text = 'Please check the link carefully before proceeding.';
-        // enable original link in focused attention
-        enable_link($('a.warning-link'));
-        if (!fa){
+        if (!fa) {
+            make_email_link_clickable(for_link);
             enable_link(_this);
-        }        
+        }
+        // enable original link in focused attention
+        make_warning_link_clickable(for_link);
+        enable_link($('a.warning-link'));
+        $('span.timer').text(subhead_text);
+           // add on-click listener to warning link cj span for no FA groups
     }
     // handle warnings with time delay
     else {
-        $('span.secsRemaining').text(time_delay);
-        if (!fa){
-            subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
-        }
-        else {
-            subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
-        }
-        if (group_num in [2,5]){
+        if ([2,5].includes(group_num)){
             time_delay = 2
         }
         else {
             time_delay = 3;
         }
+        disable_link($('a.warning-link'));
+        $('span.secsRemaining').text(time_delay);
     }
-    $('span.timer').text(subhead_text);
-    _this.attr('data-toggle', 'tooltip');
 
+    _this.attr('data-toggle', 'tooltip');
     // DO IFRAME CLICKJACKING STUFF 
     // how to do iframe; set height and width to a.warning-link.height() and .length()
-    let height = $('a.warning-link').height();
-    let width = $('a.warning-link').width();
 
-    //place div around email link if not focused attention
-    $('a.warning-link').prepend(warn_div)
-        .css('position','relative')
-        .css('z-index',1);
-    $('div#wa-added').css({
-        height: height,
-        width: width,
-        zIndex: 2,
-        opacity: 0,
-        position: "absolute",
-    }).on('click',function(){
-        // let win = window.open("/email_link/"+"{{email.ref}}","_blank");
-        // console.log("mail/email_link/"+email_id)
-        let win = window.open(for_link,"_blank");
-        win.focus();
-    });
+    // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
+    // to place a span over this link, you have to place the span after the image has loaded (on document ready)
+    // if (for_link.slice(-1) == "1"){
+    //     let offset = _this.offset();
+    //     // let offset2 = $('span#em-added').offset();
+    //     // console.log(offset);
+    //     // console.log(offset2);
+    //     // console.log(offset.left-offset2.left);
+    //     $(window).on("load", function(){
+    //         $('span#em-added').css({
+    //             left: offset.left,
+    //         });
+    //     });
+    // }
 
-    // add a div to the email link if not FA
-    if (!fa){
-        $(window).on("load",function(){
-            $(_this).prepend(email_div)
-                // .css('position','relative')
-                .css('z-index',1);
-            $('span#em-added').css({
-                height: _this.height(),
-                width: _this.width(),
-                zIndex: 2,
-                opacity: 0,
-                position: "absolute",
-            }).on('click',function(){
-                let win = window.open(for_link,"_blank");
-                win.focus();
-            });
-        });
-    
-        // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
-        // to place a span over this link, you have to place the span after the image has loaded (on document ready)
-        if (for_link.slice(-1) == "1"){
-            let offset = _this.offset();
-            // let offset2 = $('span#em-added').offset();
-            // console.log(offset);
-            // console.log(offset2);
-            // console.log(offset.left-offset2.left);
-            $(window).on("load", function(){
-                $('span#em-added').css({
-                    left: offset.left,
-                });
-            });
-        }
-    }
+    //     // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
+    //     // to place a span over this link, you have to place the span after the image has loaded (on document ready)
+    //     if (for_link.slice(-1) == "1"){
+    //         let offset = _this.offset();
+    //         // let offset2 = $('span#em-added').offset();
+    //         // console.log(offset);
+    //         // console.log(offset2);
+    //         // console.log(offset.left-offset2.left);
+    //         $(window).on("load", function(){
+    //             $('span#em-added').css({
+    //                 left: offset.left,
+    //             });
+    //         });
+    //     }
+    // }
     //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
@@ -283,12 +291,14 @@ function load_warning(group_num,p_id,for_link){
                     time_delay--;
                     $('span.secsRemaining').text(time_delay);
                     // enable links if no time_delay, including original link for non-FA
-                    if (time_delay <= 0){
-                        enable_link($('a.warning-link'));
-                        $('span.timer').text(subhead_text);
+                    if (time_delay <= 0){                       
                         if (!fa){
+                            make_email_link_clickable(for_link);
                             enable_link(_this);
                         }
+                        make_warning_link_clickable(for_link);
+                        enable_link($('a.warning-link'));
+                        $('span.timer').text(subhead_text);
                         clearInterval(countdownToClick);
                     }
                 },1000);
