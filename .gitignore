@@ -6,3 +6,4 @@ env/
 **/manage.py
 **/settings.py
 **.log
+web-conf/

@@ -183,10 +183,9 @@
         const p_link_id = '{{ email.phish_id }}';
         const p_url = '{{email.p_url}}';
         adjust_link(p_link_id,p_url);
-        // if (n < 6){
-        //     load_warning(n,p_link_id);
-        // }
-        load_warning(n,p_link_id, link);
+        if (n > 0){
+            load_warning(n,p_link_id);
+        }
         // alert('{{email.p_url}}');
     }
         

@@ -80,9 +80,7 @@ function adjust_link(p_id,p_url){
 function load_warning(group_num,p_id,for_link){
     // adjust group_num to represent the time_delay group 
     // (0, 2, 4 secs) for groups ([0,3],[1,4],[2,5])
-    let timedelay_num = group_num % 3;
-    // create boolean for focused attention branching (groups 3, 4, 5)
-    let fa = (group_num % 6) < 3;
+    // let timedelay_num = group_num % 7;
     // import the template
     let template = document.getElementsByTagName("template")[0];
     let clon = template.content.cloneNode(true);
@@ -145,16 +143,14 @@ function load_warning(group_num,p_id,for_link){
     $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
 
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
-    if (group_num % 4 in [0,1]){
+    if (group_num in [1,2,3]){
         // apply browser style highlighting
-        console.log("no button");
         $('span.main-domain').css('color','#4F4F4F');
         // $('span.main-domain').css('color','black');
         $('span.post-domain').css('opacity',.6);
         $('span.pre-domain').css('opacity',.6);
     }
     else {
-        console.log("button");
         $('span.main-domain').css('border-radius','15px')
             .css('background-color','#E8E8F0')
             .css('font-weight','bold')
@@ -175,31 +171,38 @@ function load_warning(group_num,p_id,for_link){
         .attr('target','_blank')
         .attr('onclick','return false');
 
+    // disable original email link
+    disable_link(_this);
+    
+
     // set initial time_delay
     let time_delay = -1;
     // set the text in the subheader
     let inst_text = '';
-    if (fa){
+    // create boolean for focused attention branching (groups 3, 4, 5)
+    let fa = (group_num % 6) < 3;
+    // assign time_delay values
+    if (group_num in [1,4]){
+        time_delay = 0;
+    }
+    else if (group_num in [2,5]){
+        time_delay = 2
+    }
+    else {
+        time_delay = 3;
+    }
+    
+    // assign sub-header text as appropriate
+    if (time_delay == 0) {
+        inst_text = 'Please check the link carefully before proceeding.';
+    }
+    else if (fa){
         inst_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
     }
     else {
+        // if not time_delay and not focused attention
         inst_text = 'Please check the link carefully before proceeding. The link is now active.';
     }
-    switch(timedelay_num){
-        // default:
-        //     console.log('error in assigning timedelay');
-        case 0:
-            time_delay = 0;
-            break;
-        case 1:
-            time_delay = 2;
-            break;
-        case 2:
-            time_delay = 3;
-            break;
-    }
-    // disable original email link
-    disable_link(_this);
     // activate warning link if no time delay, include email link for non-FA
     if (time_delay < 1){
         enable_link($('a.warning-link'));
