@@ -7,10 +7,10 @@
         {"domain_URL": "https://sprint.co.us/something",
             "pruned_domain_name": "sprint.com",
             "link_id": 3,
-            "email_id": 1},
-        {"domain_URL": "https://walmart.co.us/something",
-            "pruned_domain_name": "walmart.com",
-            "link_id": 5,
-            "email_id": 2}
+            "email_id": 1}
+        // {"domain_URL": "https://walmart.co.us/something",
+        //     "pruned_domain_name": "walmart.com",
+        //     "link_id": 5,
+        //     "email_id": 2}
     ]
 }

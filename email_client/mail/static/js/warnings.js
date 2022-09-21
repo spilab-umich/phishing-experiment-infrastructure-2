@@ -65,32 +65,18 @@ function addTemplate(_node, template){
     _node.after(template);
 }
 
-function enable_link(link){
+// adjusts the cursor, changes the ID
+// takes an anchor tag object and two integer IDs
+function enable_link(link){ // , link_id, p_id){
     link.css('cursor','pointer')
         // all live phishing links have id = -100
-        .attr('id',-100);
+        .attr('id',-100); // , email_id+p_id);
 }
 
-function add_warning_link_span(){
-    let _this = $('a.warning-link');
-    let warn_span = '<span id="wa-added"></span>';
-
-    //place cj span around warning link
-    // _this.prepend(warn_span)
-    //     .css('position','relative')
-    //     .css('z-index',1);
-    // $('div#wa-added').css({
-    //     height: _this.height(),
-    //     width: _this.width(),
-    //     zIndex: 2,
-    //     opacity: 0,
-    //     position: "absolute",
-    // });
-}
-
-function add_email_link_span(email_link){
+// takes a string anchor tag ID
+function add_email_link_class(email_link_id){
     // let email_span = '<span id="em-added"></span>';
-    let _this = $('.email-container a#'+email_link);
+    let _this = $('.email-container a#'+email_link_id);
     _this.addClass('email-link');
 
     // place cj span around email-link
@@ -114,6 +100,7 @@ function make_warning_link_clickable(for_link){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
+    enable_link($('a.warning-link'));
 }
 
 // add click listener to cj span on email link
@@ -122,9 +109,10 @@ function make_email_link_clickable(for_link){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
+    enable_link($('a.email-link'));
 }
 
-// changes href of desired link to the selected phishing link
+// changes href of desired link to the selected phishing link and disable the link
 function adjust_link(p_id,p_url){
     let _this = $('.email-container a#'+p_id);
     let raw_link = p_url;
@@ -136,7 +124,6 @@ function adjust_link(p_id,p_url){
 function load_warning(group_num,p_id,for_link){
     // copy plink
     let _this = $('.email-container a#'+p_id);
-    add_email_link_span(p_id);
     // import the template
     let template = document.getElementsByTagName("template")[0];
     let clon = template.content.cloneNode(true);
@@ -145,9 +132,7 @@ function load_warning(group_num,p_id,for_link){
     // adjust plink
     let link_hovered = false;
     let raw_link = _this.attr('href');
-    
-    // disable original email link for all conditions
-    disable_link(_this);
+
     // parse out plink components
     let url = new URL(raw_link);
     let hostname = url.hostname.split('www.');
@@ -203,9 +188,6 @@ function load_warning(group_num,p_id,for_link){
     $('a.warning-link').attr('href', raw_link)
         .attr('target','_blank')
         .attr('onclick','return false'); // disable the warning-link by default
-
-    add_warning_link_span();
-    
     // START WARNING DEPLOYMENT
     // initialize time_delay
     let time_delay = -1;
@@ -213,12 +195,11 @@ function load_warning(group_num,p_id,for_link){
     let final_subhead_text = '';
     // create boolean for focused attention branching (groups 1, 2, 3)
     let fa = (group_num % 7) < 4;
-     // handle warnings with no time delay
+     // enable links for warnings with no time delay
     if ([1,4].includes(group_num)){
         time_delay = 0;
         if (!fa) {
             make_email_link_clickable(for_link);
-            enable_link(_this);
             final_subhead_text = 'Please check the link carefully before proceeding.';
         }
         else {
@@ -226,19 +207,20 @@ function load_warning(group_num,p_id,for_link){
         }
         // enable original link in focused attention
         make_warning_link_clickable(for_link);
-        enable_link($('a.warning-link'));
         $('span.timer').text(final_subhead_text);
            // add on-click listener to warning link cj span for no FA groups
     }
     // handle warnings with time delay
     else {
+        disable_link($('a.warning-link')); //this adds the no cursor and changes the link ID
+        disable_link($('a.email-link'));
         if ([2,5].includes(group_num)){
             time_delay = 2
         }
         else {
             time_delay = 3;
         }
-        disable_link($('a.warning-link'));
+        //parseInt(p_id);
         $('span.secsRemaining').text(time_delay);
         if (fa){
             final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
@@ -303,10 +285,8 @@ function load_warning(group_num,p_id,for_link){
                     if (time_delay <= 0){                       
                         if (!fa){
                             make_email_link_clickable(for_link);
-                            enable_link(_this);
                         }
                         make_warning_link_clickable(for_link);
-                        enable_link($('a.warning-link'));
                         $('span.timer').text(final_subhead_text);
                         clearInterval(countdownToClick);
                     }

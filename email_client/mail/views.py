@@ -31,6 +31,12 @@ server_fh = logging.FileHandler('server_logs.log')
 server_fh.setLevel(logging.INFO)
 server_logger.addHandler(server_fh)
 
+# Set request error logger
+error_logger = logging.getLogger('mail.error')
+error_logger.setLevel(logging.INFO)
+error_fh = logging.FileHandler('error_logs.log')
+error_logger.addHandler(error_fh)
+
 # Bring up the login page
 def index(request):
     #if the request is POST, authenticate the user's credentials
@@ -319,7 +325,7 @@ def collect_ajax(res):
             })
         # print('client log saved')
     except Exception as e:
-        client_logger.info(e)
+        error_logger.info(username+',' + e)
     return
 
 def collect_log(request):
@@ -346,7 +352,7 @@ def collect_log(request):
                 'session_id':session_id
             })
     except Exception as e:
-        server_logger.info(e)
+        error_logger.info(username+',' + e)
     # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
@@ -384,8 +390,8 @@ def assign_credentials(request):
                 user_index = rd.randint(0,len_users-1)
                 user = users[user_index]
             # Save the response_id from Qualtrics
-            if (request.META.get("PROLIFIC_PID")):
-                user.response_id = request.META.get("PROLIFIC_PID")
+            if (request.META.get("RESPONSE_ID")):
+                user.response_id = request.META.get("RESPONSE_ID")
             username = user.username
             password = assign_password()
             # Mark the username as 'assigned'
@@ -394,17 +400,21 @@ def assign_credentials(request):
             user.save()
             group_num = user.group_num
             code = user.code
+            session_id = request.session.session_key
         context = {
             'username': username,
             'password': password,
             'group_num': group_num,
             'code': code,
+            'session_id':session_id,
         }
         return JsonResponse(context)
 
 def unread_check(request):
     if request.method == 'GET':
-        username = request.username
+        # username = request.user.get_username()
+        ## OR
+        username = request.META.get('username')
         # unread_count = User.objects.filter(username=username).unread_count
         # get is preferred since only one object will reeturn
         # get works in manage.py shell/ so does .unread_count

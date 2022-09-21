@@ -29,6 +29,7 @@ class Mail(models.Model):
     is_flagged = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    # is_fp = models.BooleanField(default=False) # Is this email a false positive
 
     def __str__(self):
         return str(self.ref) + ' - ' + self.sender

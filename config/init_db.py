@@ -47,7 +47,39 @@ for item in d["emails"]:
     email_data.append(item)
 
 num_emails = len(email_data)
-    
+
+from mail.models import User, Mail
+import random as rd
+import string
+from random import shuffle
+
+## Maybe Keep This ##
+# Load warning metadata
+warning_json_fname = 'phish_domains.json'
+# warning_json_path = Path('config/') config_path
+open_warning_json_file = config_path / warning_json_fname
+
+with open(open_warning_json_file) as f:
+    d = json.load(f)
+
+warning_data = []
+for item in d['phish_domains']:
+    warning_data.append(item)
+
+phish_email_ids = [x['email_id'] for x in warning_data]
+# print(phish_email_ids)
+# exit()
+list_of_p_domains = {
+    3:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+    2:['https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
+    'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
+    'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+    1:['https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/',
+    'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
+    'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+}
 
 # Read emails in folder, save to models in database
 def read_emails():
@@ -91,7 +123,7 @@ def read_emails():
             # print(part.get_content_maintype())
 
             # email.iterators._structure(msg)
-
+            ''' Write emails to HTML file '''
             for part in msg.walk():
                 if part.get_content_maintype() == 'multipart':
                     continue
@@ -136,43 +168,29 @@ def read_emails():
             results.append(email_to_add)
             i+=1
     return results
-emails_to_add = read_emails()
+all_emails = read_emails()
 # print(emails_to_add)
 # exit()
 
-from mail.models import User, Mail
-import random as rd
-import string
-from random import shuffle
+def order_emails(emails):
+    ''' Order the emails so that:
+            - The emails appear in random order
+            - All 3 phishing warnings appear in the first n-2 emails
+            - The last 2 emails are benign '''
+
+    phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
+    benign_emails = shuffle([x for x in all_emails if x['email_id'] not in phish_email_ids])
+    first_emails = shuffle(phishing_emails + benign_emails[:-2])
+    last emails = benign_emails[-2:]
+    return first_emails+last_emails
 
 
-## Maybe Keep This ##
-# Load warning metadata
-warning_json_fname = 'phish_domains.json'
-# warning_json_path = Path('config/') config_path
-open_warning_json_file = config_path / warning_json_fname
 
-with open(open_warning_json_file) as f:
-    d = json.load(f)
 
-warning_data = []
-for item in d['phish_domains']:
-    warning_data.append(item)
 
-phish_email_ids = [x['email_id'] for x in warning_data]
-# print(phish_email_ids)
-# exit()
-list_of_p_domains = {
-    3:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-    2:['https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
-    'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-    1:['https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/',
-    'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
-    'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-}
+emails_to_add = order_emails(all_emails)
+
+
 
 # phishing email id : [list_of_domain_manipulations,]
 # list_of_p_domains = {
@@ -215,7 +233,7 @@ usernameNumbers = rd.sample(range(0,9999), n_users)
 
 #initialize users
 for i in range(0, n_users):
-    shuffle(emails_to_add)
+    # shuffle(emails_to_add)
     user = User()
     # Initialize the numbers as usernameXXXX
     user.username = 'username{}'.format(usernameNumbers[i])
@@ -231,6 +249,7 @@ for i in range(0, n_users):
     # First email should have the last time_sent
     # j=9 
     for email in emails_to_add:
+        j = 1
         new = Mail()
         new.user = user
         new.sender = email['from'][0]
@@ -257,7 +276,10 @@ for i in range(0, n_users):
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
             # print(new.phish_id)
+        else if num_emails - 2 == j:
+            new.is_fp = True
         new.save()
+        j += 1
         # j-=1
 
 # exit()
@@ -265,9 +287,7 @@ for i in range(0, n_users):
 # Create a user to login into
 # This helps with checking the inbox
 for i in range(0, n_test_users):
-
-    # I added this without testing it! it might not play nice with the new.phish_id line
-    shuffle(emails_to_add)
+    # shuffle(emails_to_add)
     
     user = User()
     user.username = 'tempuser'+str(i)
@@ -276,7 +296,7 @@ for i in range(0, n_test_users):
     user.code = '432dsa4f'
     ### Set this password ###
     user.set_password('TestPassword')
-    user.assigned = True
+    user.assigned = False
     user.save()
     # j=num_emails-1
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement

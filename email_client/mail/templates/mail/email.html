@@ -19,11 +19,11 @@
             {% else %}
             <a title="" href="{% url 'mail:delete' email.ref next_email %}" data-placement="top" data-original-title="Trash" class="btn btn-sm trash-icon" ><i class="fa fa-trash-o"></i> TRASH</a>
             {% endif %}
-            {% if email.is_flagged %}
-            <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" style="background-color: #f0d7a9; color: #fff;"><i class="fa fa-flag-o"></i> FLAGGED</a>
-            {% else %}
-            <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" ><i class="fa fa-flag-o"></i> FLAG</a>
-            {% endif %}
+            <!-- {% if email.is_flagged %} -->
+            <!-- <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" style="background-color: #f0d7a9; color: #fff;"><i class="fa fa-flag-o"></i> FLAGGED</a> -->
+            <!-- {% else %} -->
+            <!-- <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" ><i class="fa fa-flag-o"></i> FLAG</a> -->
+            <!-- {% endif %} -->
             <!-- <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a> -->
         </div>
             <ul class="unstyled inbox-pagination" role='navigation' aria-label='Email Navigation'>
@@ -183,14 +183,13 @@
         const p_link_id = '{{ email.phish_id }}';
         const p_url = '{{email.p_url}}';
         adjust_link(p_link_id,p_url);
+        add_email_link_class(p_link_id);
         if (n > 0){
             load_warning(n,p_link_id,link);
         }
         else {
-            add_email_link_span(p_link_id);
             make_email_link_clickable(link);
         }
-        // alert('{{email.p_url}}');
     }
         
     initListeners(eid);
