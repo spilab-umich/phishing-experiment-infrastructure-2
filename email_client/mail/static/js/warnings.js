@@ -8,7 +8,7 @@ let warning_shown_text = 'warning-shown';
 function id_links(){
     let i = 1;
     $('.email-container a').each(function(){
-        $(this).attr('id', i);
+        $(this).attr('id', i*10);
         i++;
         // open all email links in a new window
         $(this).attr('target',  '_blank');
@@ -67,10 +67,10 @@ function addTemplate(_node, template){
 
 // adjusts the cursor, changes the ID
 // takes an anchor tag object and two integer IDs
-function enable_link(link){ // , link_id, p_id){
+function enable_link(link, link_id, p_loc){ // 
     link.css('cursor','pointer')
         // all live phishing links have id = -100
-        .attr('id',-100); // , email_id+p_id);
+        .attr('id', link_id + p_loc); // , email_id+p_id);
 }
 
 // takes a string anchor tag ID
@@ -95,28 +95,27 @@ function add_email_link_class(email_link_id){
 }
 
 // add click listener to cj span on warning link
-function make_warning_link_clickable(for_link){
+function make_warning_link_clickable(for_link, p_id){
     $('a.warning-link').on('click',function(){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
-    enable_link($('a.warning-link'));
+    enable_link($('a.warning-link'),parseInt(p_id),2);
 }
 
 // add click listener to cj span on email link
-function make_email_link_clickable(for_link){
+function make_email_link_clickable(for_link, p_id){
     $('a.email-link').on('click',function(){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
-    enable_link($('a.email-link'));
+    enable_link($('a.email-link'),parseInt(p_id),1);
 }
 
 // changes href of desired link to the selected phishing link and disable the link
 function adjust_link(p_id,p_url){
     let _this = $('.email-container a#'+p_id);
-    let raw_link = p_url;
-    _this.attr('href', raw_link)
+    _this.attr('href', p_url)
         .attr('onclick', 'return false');
     // add cj span over all plink for all groups
     }
@@ -199,14 +198,14 @@ function load_warning(group_num,p_id,for_link){
     if ([1,4].includes(group_num)){
         time_delay = 0;
         if (!fa) {
-            make_email_link_clickable(for_link);
+            make_email_link_clickable(for_link,p_id);
             final_subhead_text = 'Please check the link carefully before proceeding.';
         }
         else {
             final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
         }
         // enable original link in focused attention
-        make_warning_link_clickable(for_link);
+        make_warning_link_clickable(for_link,p_id);
         $('span.timer').text(final_subhead_text);
            // add on-click listener to warning link cj span for no FA groups
     }
@@ -284,9 +283,9 @@ function load_warning(group_num,p_id,for_link){
                     // enable warning link after time delay, including email link for non-FA
                     if (time_delay <= 0){                       
                         if (!fa){
-                            make_email_link_clickable(for_link);
+                            make_email_link_clickable(for_link,p_id);
                         }
-                        make_warning_link_clickable(for_link);
+                        make_warning_link_clickable(for_link,p_id);
                         $('span.timer').text(final_subhead_text);
                         clearInterval(countdownToClick);
                     }
