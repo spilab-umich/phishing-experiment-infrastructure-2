@@ -1,0 +1,471 @@
+Delivered-To: jpetelka@gmail.com
+Received: by 2002:ac4:b1d3:0:b0:569:4bf9:1abf with SMTP id o19csp476962pid;
+        Thu, 1 Sep 2022 16:10:30 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4U0aEGmnT+GR+vfoRXXdGVN+1uhuB4sZbJMQL4G+55O0DVw/Yup9SUELVp7fe0jElQVDch
+X-Received: by 2002:a17:907:97c3:b0:741:7fa3:6dc6 with SMTP id js3-20020a17090797c300b007417fa36dc6mr15034326ejc.418.1662073829968;
+        Thu, 01 Sep 2022 16:10:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1662073829; cv=none;
+        d=google.com; s=arc-20160816;
+        b=D+WaC+VlCpDX6awcBTARDFeC9zKsI+81IsL6h2+qhfZGs9tDU+uUIM9GIDSbFOsnZ2
+         t+wmuOh45coFHFPas9JTnlr2NiwKazV0ZOLBfRJctciVTGJ5pEcENEF0puGGO/E/lYqb
+         nO4YiG6F1rrv73JU653PV682AsNql93l+cHwe/ArMEYyYRyEyEFlDPKuX2OPDWM6DGuF
+         vEMdbp1WBbtmsuU+xKqOwZsLhsojwR9BwqEyDv7IAl/bKqWJujUhv67m/clkG6M5SJGg
+         8hVaSSG67Cf/+QJoDBOH/yH9oIIZ2Psixm784hBrIiBfgAAsZMKyVqunnTq6A0ur7mQY
+         w+eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=subject:date:reply-to:to:from:mime-version:list-unsubscribe
+         :message-id:errors-to:dkim-signature;
+        bh=7GHU2HfWDDtVzzEr5IP7UseY+s66fjcOzP9eXMyPY9M=;
+        b=h1djHL6LCQMkmXw/SJdGTtsP/FMV4QKmHZG+09Cmo8gIaU2MkiD6EqqZgSQE4CPGHO
+         sAE2jEDDzsoi/7g5tO5KugmG8HUoaXKWnMsZRy1U4D8/e6d9O8j3T0RnypP66ICgbjZ+
+         4G6PxSbW8KzszZ+NiMslrHzhFnrJbSTlnk/epk7lcNIOg3MgZT7qrk96siwWNxLWQTob
+         MK8VLGbrs9hslFlAY8Of/ndV5MKNQD2Qrdc58ydYeTM0F2oPJzVHKizHDMT00Io6PmUN
+         Ijq3rICqoL3PC+Zola+i2IdKKXRJV1G9xkRIzZy/Bu4Mm3D+ODOpGyXGonyCfgLhgUNO
+         gSUA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@service01.email-allstate.com header.s=0 header.b=mLz7BrBS;
+       spf=pass (google.com: domain of allstate@service01.email-allstate.com designates 173.213.2.225 as permitted sender) smtp.mailfrom=allstate@service01.email-allstate.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=service01.email-allstate.com
+Return-Path: <allstate@service01.email-allstate.com>
+Received: from p1-002225.service01.email-allstate.com (p1-002225.service01.email-allstate.com. [173.213.2.225])
+        by mx.google.com with ESMTPS id eb8-20020a0564020d0800b00442edebe687si384681edb.633.2022.09.01.16.10.29
+        for <jpetelka@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 16:10:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of allstate@service01.email-allstate.com designates 173.213.2.225 as permitted sender) client-ip=173.213.2.225;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@service01.email-allstate.com header.s=0 header.b=mLz7BrBS;
+       spf=pass (google.com: domain of allstate@service01.email-allstate.com designates 173.213.2.225 as permitted sender) smtp.mailfrom=allstate@service01.email-allstate.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=service01.email-allstate.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=0; d=service01.email-allstate.com;
+ h=Message-ID:List-Unsubscribe:MIME-Version:From:To:Reply-To:Date:Subject:
+ Content-Type; i=allstate@service01.email-allstate.com;
+ bh=7GHU2HfWDDtVzzEr5IP7UseY+s66fjcOzP9eXMyPY9M=;
+ b=mLz7BrBSPE+DPNXt1OKTC8Zi3UIylhcmJzko3vRc8X/zRSisDqEoyQQpRMA0VBrQMkoRy1pyTM24
+   6mcKQ9f8AhRjpV8lws6YLzI71XcZX4WBiLvVTMqC9O9leR+HzZ+Cj8Uy8dj828LuhutDZ13hER6y
+   2fK0hEbndUNX/43Kj/c=
+Received: from NY5PAPI04 (10.24.71.37) by p1-002225.service01.email-allstate.com id h24tu82o8is0 for <jpetelka@gmail.com>; Thu, 1 Sep 2022 19:10:28 -0400 (envelope-from <allstate@service01.email-allstate.com>)
+Errors-to: allstate@service01.email-allstate.com
+Return-Path: allstate@service01.email-allstate.com<rp-6a82772119bdd5dc1a06d919e9bb9cc2ae94cd9dd935fa79c878184994bfa821@service01.email-allstate.com>
+Message-ID: <622.2450167758.202209012310289809835.0000167123@service01.email-allstate.com>
+List-Unsubscribe: <mailto:unsubscribe-6a82772119bdd5dc1a06d919e9bb9cc2ae94cd9dd935fa79c878184994bfa821@service01.email-allstate.com?subject=Unsubscribe>
+X-Mailer: XyzMailer
+X-Xyz-cr: 622
+X-Xyz-cn: 138327
+X-Xyz-bcn: 138326
+X-Xyz-md: 100
+X-Xyz-mg: 2450167758
+X-Xyz-et: 116
+X-Xyz-pk: 161748056
+X-Xyz-ct: 3756683
+X-Xyz-bct: 3756682
+X-Xyz-inst: true
+MIME-Version: 1.0
+From: "Allstate My Account" <allstate@service01.email-allstate.com>
+To: "jpetelka@gmail.com" <jpetelka@gmail.com>
+Reply-To: do_not_reply@allstate.com
+Date: 1 Sep 2022 23:10:28 +0000
+Subject: Allstate: Password reset request
+Content-Type: multipart/alternative;
+ boundary=--boundary_167122_81a3c316-00b0-4567-b18b-0156b19062cd
+
+
+----boundary_167122_81a3c316-00b0-4567-b18b-0156b19062cd
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Allstate=0A=0A96=0A=0AJUSTIN,=0APlease click on the button below =
+to reset the password for your account. The link will expire in 1=
+20&nbsp;minutes.=0A=0AIf you didn=E2=80=99t request this change, =
+or encounter an issue with your request, (http://l.service01.emai=
+l-allstate.com/rts/go2.aspx?t=3D708643&tp=3Di-16D9-A2-Zz5-2foeYo-=
+1s-Awg3c-1c-l7wHg9zFW7-1E69fm)" style=3D"color:#1666af; font-fami=
+ly:Arial, Helvetica, sans-serif; font-size:18px; line-height:22px=
+; text-decoration:underline; please chat with us.=0A=0A=0A=0A=0A=0A=
+=0A=0A=0A=0A
+----boundary_167122_81a3c316-00b0-4567-b18b-0156b19062cd
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://=
+www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">=0A<html xmlns=3D"htt=
+p://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microsoft-com:v=
+ml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" lang=3D"e=
+n" xml:lang=3D"en" style=3D"width: 100%;">=0A=0A<head></head>=0A<=
+head>=0A<meta http-equiv=3D"Content-Type" content=3D"text/html; c=
+harset=3Dutf-8">=0A<meta http-equiv=3D"X-UA-Compatible" content=3D=
+"IE=3Dedge />=0A<!--[if !mso><!-- -->=0A<meta http-equiv=3D"X-UA-=
+Compatible" content=3D"IE=3Dedge" />=0A<!--<![endif-->=0A<meta co=
+ntent=3D"width=3Ddevice-width; initial-scale=3D1.0; maximum-scale=
+=3D1.0; user-scalable=3Dno;" name=3D"viewport">=0A<meta name=3D"v=
+iewport" content=3D"width=3Ddevice-width">=0A<META NAME=3D"ROBOTS=
+" CONTENT=3D"NOINDEX, NOFOLLOW">=0A<meta name=3D"x-apple-disable-=
+message-reformatting">=0A=0A<title>Allstate</title>=0A=0A<style t=
+ype=3D"text/css">=0A.ExternalClass { width:100%; }=0A.ExternalCla=
+ss, .ExternalClass p, .ExternalClass span, .ExternalClass font, .=
+ExternalClass td, .ExternalClass div { line-height: 100%; }=0Atab=
+le td { border-collapse: collapse; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; }=0Ah1, h2, h3, h4, h5, h6 { font-size: inherit; =
+padding: 0; margin: 0; color: black; line-height: 100%; }=0A.appl=
+elinks a { text-decoration: none; color: inherit !important; }=0A=
+a { color: black; text-decoration: none; }=0Aa, a:link, a:visited=
+ { color: inherit; text-decoration: none; }=0Aspan.MsoHyperlink {=
+ mso-style-priority: 99; color: inherit; }=0Aspan.MsoHyperlinkFol=
+lowed { mso-style-priority: 99; color: inherit; }=0A.outlook div =
+{ font-size: 0px !important; display: block !important; }=0A=0Abo=
+dy {=0Afont-family: Segoe UI, Arial, sans-serif;=0Afont-size: 14p=
+x;=0A-webkit-text-size-adjust: none;=0A-ms-text-size-adjust: none=
+;=0A-webkit-font-smoothing: antialiased;=0Amargin: 0;=0Apadding: =
+0;=0Awidth: 100% !important;=0A}=0A=0Asup { line-height: .8em; }=0A=
+=0A.opacity:hover { opacity: 0.8 !important; }=0A.buttongreenbord=
+er:hover { background-color: #94D600 !important; }=0A=0A=0A@media=
+ all {=0A*[class~=3Dow100] { width: 100% !important; }=0A*[class~=
+=3Dbrush] { font-family: 'Brush Script MT', Arial, sans-serif !im=
+portant; font-size: 32px !important;}=0A}=0A=0A@media only screen=
+ and (max-width: 480px) {=0A.w100m, .column50, .column33, .column=
+25, .column75, .column66 { width: 100% !important; }=0A.w90m { wi=
+dth: 90% !important;}=0A.expandm { width: 100% !important; displa=
+y: block !important; }=0A.resizem { width: 100% !important; heigh=
+t: auto !important; }=0A.hidem { display: none !important; }=0A.h=
+1m { font-size: 30px !important;}=0A.h2m { font-size: 16px !impor=
+tant;}=0A.h3m { font-size: 13px !important;}=0A.sigtitle {font-si=
+ze: 22px !important;}=0A.tcenterm { text-align: center !important=
+; }=0A.tleftm { text-align: left !important; }=0A.trightm { text-=
+align: right !important; }=0A.height0m { height: 0 !important; }=0A=
+=0A.showm { display: block !important; max-height: 1000px !import=
+ant; width: 100% !important; overflow: visible !important; align:=
+ center !important; }=0A=0A.logo { width: 150px !important; heigh=
+t: auto !important; }=0A*[class~=3Dbrush] { font-family: 'Brush S=
+cript MT', Arial, sans-serif !important; font-size: 24px !importa=
+nt;}=0A.pad0m { padding: 0px !important; }=0A.padt0m { padding-to=
+p: 0px !important; }=0A.padt5m { padding-top: 5px !important; }=0A=
+.padt10m { padding-top: 10px !important; }=0A.padt20m { padding-t=
+op: 20px !important; }=0A.padt30m { padding-top: 30px !important;=
+ }=0A.padb0m { padding-bottom: 0px !important;}=0A.padb5m { paddi=
+ng-bottom: 5px !important;}=0A.padb10m { padding-bottom: 10px !im=
+portant;}=0A.padb20m { padding-bottom: 20px !important;}=0A.padb3=
+0m { padding-bottom: 30px !important;}=0A}=0A=0A@media only scree=
+n and (max-width: 640px) {=0A.ow100 { width: 100% !important; }=0A=
+.w100 { width: 100% !important; }=0A.w90 { width: 90% !important;=
+ }=0A.hide { display: none !important; }=0A.resize { width: 100% =
+!important; height: auto !important; }=0A.resize img { max-width:=
+ 100% !important; height: auto !important; }=0A.resize a { width:=
+ auto !important; height: auto !important; }=0A.expand { width: 1=
+00% !important; display: block !important; }=0A.height0 { height:=
+ 0 !important; }=0A.column50 { width: 50%; }=0A.column50a { width=
+: 50%; }=0A.column33 { width: 33.33%; }=0A.column25 { width: 25%;=
+ }=0A.column75 { width: 75%; }=0A.column66 { width: 66%; }=0A.tce=
+nter { text-align: center !important; }=0A=0A.pad0 { padding: 0px=
+ !important; }=0A.padt0 { padding-top: 0px !important; }=0A.padt5=
+ { padding-top: 5px !important; }=0A.padt10 { padding-top: 10px !=
+important; }=0A.padt20 { padding-top: 20px !important; }=0A.padt3=
+0 { padding-top: 30px !important; }=0A.padb0 { padding-bottom: 0p=
+x !important; }=0A.padb5 { padding-bottom: 5px !important; }=0A.p=
+adb10 { padding-bottom: 10px !important; }=0A.padb20 { padding-bo=
+ttom: 20px !important; }=0A.padb30 { padding-bottom: 30px !import=
+ant; }=0A}=0A</style>=0A=0A<!--[if mso>=0A<style type=3D"text/css=
+">=0Abody {=0Amargin: 0 !important;=0A  padding: 0 !important;=0A=
+  font-family: Segoe UI, Arial, sans-serif;=0A}=0A=0Atable, td, d=
+iv, p {=0Afont-family: Segoe UI, Arial, sans-serif;=0A  line-heig=
+ht: normal;=0A}=0A</style>=0A<xml>=0A<o:OfficeDocumentSettings>=0A=
+<o:AllowPNG/>=0A<o:PixelsPerInch>96</o:PixelsPerInch>=0A</o:Offic=
+eDocumentSettings>=0A</xml>=0A<![endif-->=0A=0A</head>=0A=0A<body=
+ class=3D"tli" style=3D"-webkit-text-size-adjust: none;-ms-text-s=
+ize-adjust: none; padding: 0; margin: 0; background-color: white;=
+"><img src=3D"http://l.service01.email-allstate.com/rts/open.aspx=
+?tp=3Di-16D9-A2-Zz5-2foeYo-1s-Awg3c-1c-l7wHg9zFW7-1E69fm" height=3D=
+"1" width=3D"1" style=3D"display:none">=0A=0A<!-- HIDDEN PREHEADE=
+R START -->=0A<!--[if !mso]><!-- -->=0A<div style=3D"display: non=
+e; font-size: 0; max-height: 0;width: 0; mso-hide: all; overflow:=
+ hidden; visibility: hidden;">Your information has been updated.=0A=
+<span style=3D"display: none; font-size: 0; max-height: 0;width: =
+0; mso-hide: all; overflow: hidden; visibility: hidden;">&zwnj;&n=
+bsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp=
+;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&z=
+wnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj=
+;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&n=
+bsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp=
+;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&z=
+wnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj=
+;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&n=
+bsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp=
+;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&z=
+wnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</span>=0A</div>=0A<!--<=
+![endif]-->=0A<!-- HIDDEN PREHEADER END -->=0A=0A=0A<table width=3D=
+"100%" border=3D"0" align=3D"center" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"width: 100%;">=0A<tr>=0A<td align=3D"center" sty=
+le=3D"background-color: white;">=0A=0A=0A<table width=3D"100%" bo=
+rder=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A=
+<tr>=0A<!-- header bar here if applicable -->=0A</tr>=0A</table>=0A=
+=0A=0A=0A<!-- ||| BODY START -->=0A<table width=3D"100%" border=3D=
+"0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A=
+  <td align=3D"center" style=3D"padding-bottom: 40px;">=0A<table =
+class=3D"w100" width=3D"640" border=3D"0" align=3D"center" cellpa=
+dding=3D"0" cellspacing=3D"0">=0A=0A<tr>=0A<td>=0A<table width=3D=
+"90%" border=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=
+=3D"0">=0A<tr>=0A<td align=3D"center" style=3D"padding-top: 20px;=
+">=0A<table width=3D"100%" border=3D"0" align=3D"center" cellpadd=
+ing=3D"0" cellspacing=3D"0">=0A=0A=0A=0A=0A=0A<tr>=0A            =
+            <td align=3D"center" style=3D"padding-top: 20px;">=0A=
+                           <table width=3D"90%" border=3D"0" alig=
+n=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A             =
+                 <tr>=0A                                 <!-- LOG=
+O START -->=0A                                 <td align=3D"cente=
+r"><a href=3D"http://l.service01.email-allstate.com/rts/go2.aspx?=
+h=3D708635&tp=3Di-16EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHg-l7wHg9zFW7-=
+wI0Ts&x=3D%7cP_MYACCOUNT_0168_FORGOTPASSWORD_T%7c20220201%7c"><im=
+g src=3D"http://i.marketing01.email-allstate.com/wpm/622/ContentU=
+ploads/_CLAIMS/MODULES/M_BEACON_400X303_ALLSTATEBEACON_081018.png=
+" width=3D"75" alt=3D"Allstate" style=3D"display: block; border: =
+0; font-size: 35px; font-family: sans-serif; font-weight: bold; c=
+olor: #0033a0;"/></a></td>=0A                                 <!-=
+- LOGO END -->=0A                              </tr>=0A          =
+                 </table>=0A                        </td>=0A     =
+                </tr>=0A=0A</table>=0A</td>=0A</tr>=0A<!-- ALLSTA=
+TE BEACON + ESPANOL END -->=0A=0A=0A=0A<tr>=0A=0A<!-- HEADLINE ST=
+ART -->=0A<td style=3D"padding-top: 40px; color: #4e5969; font-si=
+ze: 28px; text-align: center; font-family: Arial, sans-serif; lin=
+e-height: 32px;">Your password reset&nbsp;request.</td>=0A<!-- HE=
+ADLINE END -->=0A=0A</tr>=0A=0A=0A<tr>=0A=0A<!-- COPY START -->=0A=
+=0A<td style=3D"padding-top: 40px; color: #4e5969; font-size: 16p=
+x; text-align: left; font-family: Arial, sans-serif; line-height:=
+ 22px;"><b>JUSTIN</b>, <br />=0APlease click on the button below =
+to reset the password for your account. The link will expire in 1=
+20&nbsp;minutes.</td>=0A<!-- COPY END -->=0A=0A</tr>=0A=0A=0A=0A=0A=
+=0A<!-- ///CTA START -->=0A<tr>=0A<td align=3D"center" style=3D"p=
+adding-top: 30px;">=0A<table width=3D"250" border=3D"0" align=3D"=
+center" cellpadding=3D"0" cellspacing=3D"0">=0A<tr>=0A<td style=3D=
+"background-color: #0033a0; overflow: hidden; -webkit-border-radi=
+us: 50px; -moz-border-radius: 50px; border-radius: 50px;">=0A<tab=
+le width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" class=3D"button">=0A<tr>=0A<td width=3D"1" align=3D"left" valig=
+n=3D"top" style=3D"line-height: 0px;"><a href=3D"http://l.service=
+01.email-allstate.com/rts/go2.aspx?h=3D708642&tp=3Di-16D9-A2-Zz5-=
+2foeYo-1s-Awg3c-1c-l7wHg9zFW7-1E69fm&x=3Dmyaccountrwd.allstate.co=
+m%2fanon%2factivity-handler%3fpl%3dQUNUSU9OPU1ZQVBSfFBBUlRZPUlqay=
+9PeUpEc1ZxYmtJYUwzbitIc3NKMmwvWUVIUktTQnlMQnFISjBVMW89fEVNQUlMPXx=
+VSUQ9Y28xd2pnc04ycUFOMDBuTHNNV2xwOWJwWSsxSE1wcjd4VG9UWkRXaVFVSWVv=
+RWdyMi92VEMySVFLZGpveTVSanxMT0dJTj18UEFTPStTZmVlOTZyYmVJc1lXejlXR=
+2hjWnZra0NNOGJjZS9kQnBSVXovWUNXeW1DeXhnbzhMZHpCTmtMQmxxMXptN0UvZW=
+5HWGdxRCtldmEKRTQ0MktXVjY5WG9paWh1dk5GZnFvWFg0STRsdVNXbnBDYUF5N0F=
+vZWcwWHdReS9sRUdiRndxS0piaTVPTGx0cXM3RjFaWnNXNWZGawpOTjdmdzd6dGRY=
+MllpTFpGa3RvOUljbzBQMHNHU0VmLy9hTVYxS0pMaE9WZ1RyeDFuQk9BaEtheUM3R=
+E0yZz09fFBYRD0yMDIyLTA5LTAxVDE4OjEwOjI4LjE0LTA1OjAw%26hh%3d9gZPh9=
+w7Mk9bcPYLj7Q3Ncip33uXBzoH6xMQZZ7fkYAUmnLwg45o9A2A3hIWlgIZAKZOLmV=
+jj0SpxZPGd7tyWg%253D%253D%26ec%3dj2UqQMVRCSGuBGYGQpSC01sFBgCx2Vp8=
+ZG7TFpCqCxtCtj%252BoNBIG2%252FdSXrf98xLj%26APP%3dMYA"><img src=3D=
+"http://i.marketing01.email-allstate.com/wpm/622/ContentUploads/_=
+CLAIMS/MODULES/M_IMAGE_26X48_BUTTONCUTOUTLEFT_081018.png" width=3D=
+"26" height=3D"48" style=3D"display: block; border: 0;"/></a></td=
+>=0A<td align=3D"center">=0A<table align=3D"center" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0">=0A<tr>=0A<!-- COPY START -->=
+=0A<td align=3D"center" style=3D"padding-left: 10px; padding-righ=
+t: 10px; font-size: 16px; color: #ffffff; font-family: Arial, san=
+s-serif; text-align: center; font-weight: none;"><a href=3D"http:=
+//l.service01.email-allstate.com/rts/go2.aspx?h=3D708642&tp=3Di-1=
+6D9-A2-Zz5-2foeYo-1s-Awg3c-1c-l7wHg9zFW7-1E69fm&x=3Dmyaccountrwd.=
+allstate.com%2fanon%2factivity-handler%3fpl%3dQUNUSU9OPU1ZQVBSfFB=
+BUlRZPUlqay9PeUpEc1ZxYmtJYUwzbitIc3NKMmwvWUVIUktTQnlMQnFISjBVMW89=
+fEVNQUlMPXxVSUQ9Y28xd2pnc04ycUFOMDBuTHNNV2xwOWJwWSsxSE1wcjd4VG9UW=
+kRXaVFVSWVvRWdyMi92VEMySVFLZGpveTVSanxMT0dJTj18UEFTPStTZmVlOTZyYm=
+VJc1lXejlXR2hjWnZra0NNOGJjZS9kQnBSVXovWUNXeW1DeXhnbzhMZHpCTmtMQmx=
+xMXptN0UvZW5HWGdxRCtldmEKRTQ0MktXVjY5WG9paWh1dk5GZnFvWFg0STRsdVNX=
+bnBDYUF5N0FvZWcwWHdReS9sRUdiRndxS0piaTVPTGx0cXM3RjFaWnNXNWZGawpOT=
+jdmdzd6dGRYMllpTFpGa3RvOUljbzBQMHNHU0VmLy9hTVYxS0pMaE9WZ1RyeDFuQk=
+9BaEtheUM3RE0yZz09fFBYRD0yMDIyLTA5LTAxVDE4OjEwOjI4LjE0LTA1OjAw%26=
+hh%3d9gZPh9w7Mk9bcPYLj7Q3Ncip33uXBzoH6xMQZZ7fkYAUmnLwg45o9A2A3hIW=
+lgIZAKZOLmVjj0SpxZPGd7tyWg%253D%253D%26ec%3dj2UqQMVRCSGuBGYGQpSC0=
+1sFBgCx2Vp8ZG7TFpCqCxtCtj%252BoNBIG2%252FdSXrf98xLj%26APP%3dMYA" =
+style=3D"display: block; width: 100%; color: #ffffff; text-decora=
+tion: none;">Reset Your Password</a></td>=0A<!-- COPY END -->=0A<=
+!-- ARROW START -->=0A<td width=3D"1" style=3D"line-height: 0px; =
+padding-left: 5px;"><a href=3D"http://l.service01.email-allstate.=
+com/rts/go2.aspx?h=3D708642&tp=3Di-16D9-A2-Zz5-2foeYo-1s-Awg3c-1c=
+-l7wHg9zFW7-1E69fm&x=3Dmyaccountrwd.allstate.com%2fanon%2factivit=
+y-handler%3fpl%3dQUNUSU9OPU1ZQVBSfFBBUlRZPUlqay9PeUpEc1ZxYmtJYUwz=
+bitIc3NKMmwvWUVIUktTQnlMQnFISjBVMW89fEVNQUlMPXxVSUQ9Y28xd2pnc04yc=
+UFOMDBuTHNNV2xwOWJwWSsxSE1wcjd4VG9UWkRXaVFVSWVvRWdyMi92VEMySVFLZG=
+pveTVSanxMT0dJTj18UEFTPStTZmVlOTZyYmVJc1lXejlXR2hjWnZra0NNOGJjZS9=
+kQnBSVXovWUNXeW1DeXhnbzhMZHpCTmtMQmxxMXptN0UvZW5HWGdxRCtldmEKRTQ0=
+MktXVjY5WG9paWh1dk5GZnFvWFg0STRsdVNXbnBDYUF5N0FvZWcwWHdReS9sRUdiR=
+ndxS0piaTVPTGx0cXM3RjFaWnNXNWZGawpOTjdmdzd6dGRYMllpTFpGa3RvOUljbz=
+BQMHNHU0VmLy9hTVYxS0pMaE9WZ1RyeDFuQk9BaEtheUM3RE0yZz09fFBYRD0yMDI=
+yLTA5LTAxVDE4OjEwOjI4LjE0LTA1OjAw%26hh%3d9gZPh9w7Mk9bcPYLj7Q3Ncip=
+33uXBzoH6xMQZZ7fkYAUmnLwg45o9A2A3hIWlgIZAKZOLmVjj0SpxZPGd7tyWg%25=
+3D%253D%26ec%3dj2UqQMVRCSGuBGYGQpSC01sFBgCx2Vp8ZG7TFpCqCxtCtj%252=
+BoNBIG2%252FdSXrf98xLj%26APP%3dMYA"><img src=3D"http://i.marketin=
+g01.email-allstate.com/wpm/622/ContentUploads/_CLAIMS/MODULES/M_I=
+CON_50X86_ARROWWHITE_081018.png" width=3D"7" style=3D"display: bl=
+ock; border: 0;"/></a></td>=0A<!-- ARROW END -->=0A</tr>=0A</tabl=
+e>=0A</td>=0A<td width=3D"1" align=3D"left" valign=3D"top" style=3D=
+"line-height: 0px;"><a href=3D"http://l.service01.email-allstate.=
+com/rts/go2.aspx?h=3D708642&tp=3Di-16D9-A2-Zz5-2foeYo-1s-Awg3c-1c=
+-l7wHg9zFW7-1E69fm&x=3Dmyaccountrwd.allstate.com%2fanon%2factivit=
+y-handler%3fpl%3dQUNUSU9OPU1ZQVBSfFBBUlRZPUlqay9PeUpEc1ZxYmtJYUwz=
+bitIc3NKMmwvWUVIUktTQnlMQnFISjBVMW89fEVNQUlMPXxVSUQ9Y28xd2pnc04yc=
+UFOMDBuTHNNV2xwOWJwWSsxSE1wcjd4VG9UWkRXaVFVSWVvRWdyMi92VEMySVFLZG=
+pveTVSanxMT0dJTj18UEFTPStTZmVlOTZyYmVJc1lXejlXR2hjWnZra0NNOGJjZS9=
+kQnBSVXovWUNXeW1DeXhnbzhMZHpCTmtMQmxxMXptN0UvZW5HWGdxRCtldmEKRTQ0=
+MktXVjY5WG9paWh1dk5GZnFvWFg0STRsdVNXbnBDYUF5N0FvZWcwWHdReS9sRUdiR=
+ndxS0piaTVPTGx0cXM3RjFaWnNXNWZGawpOTjdmdzd6dGRYMllpTFpGa3RvOUljbz=
+BQMHNHU0VmLy9hTVYxS0pMaE9WZ1RyeDFuQk9BaEtheUM3RE0yZz09fFBYRD0yMDI=
+yLTA5LTAxVDE4OjEwOjI4LjE0LTA1OjAw%26hh%3d9gZPh9w7Mk9bcPYLj7Q3Ncip=
+33uXBzoH6xMQZZ7fkYAUmnLwg45o9A2A3hIWlgIZAKZOLmVjj0SpxZPGd7tyWg%25=
+3D%253D%26ec%3dj2UqQMVRCSGuBGYGQpSC01sFBgCx2Vp8ZG7TFpCqCxtCtj%252=
+BoNBIG2%252FdSXrf98xLj%26APP%3dMYA"><img src=3D"http://i.marketin=
+g01.email-allstate.com/wpm/622/ContentUploads/_CLAIMS/MODULES/M_I=
+MAGE_26X48_BUTTONCUTOUTRIGHT_081018.png" width=3D"26" height=3D"4=
+8" style=3D"display: block; border: 0;"/></a></td>=0A</tr>=0A</ta=
+ble>=0A</td>=0A</tr>=0A</table>=0A</td>=0A</tr>=0A<!-- CTA END //=
+/ -->=0A=0A=0A<tr>=0A<!-- COPY START -->=0A=0A<td style=3D"paddin=
+g-top: 40px; color: #4e5969; font-size: 16px; text-align: left; f=
+ont-family: Arial, sans-serif; line-height: 22px;">Your password =
+helps to ensure your information remains secure. Thanks for being=
+ an Allstate customer. We appreciate the opportunity to help prot=
+ect what matters&nbsp;most.<br /><br />If you didn=E2=80=99t requ=
+est this change, or encounter an issue with your request, <a href=
+=3D"http://l.service01.email-allstate.com/rts/go2.aspx?h=3D708643=
+&tp=3Di-16D9-A2-Zz5-2foeYo-1s-Awg3c-1c-l7wHg9zFW7-1E69fm" style=3D=
+"color:#1666af; font-family:Arial, Helvetica, sans-serif; font-si=
+ze:18px; line-height:22px; text-decoration:underline;"> please ch=
+at with us</a>.</met></td>=0A<!-- COPY END -->=0A=0A</tr>=0A=0A=0A=
+=0A=0A=0A=0A</table>=0A=0A</td>=0A</tr>=0A=0A=0A</table>=0A  </td=
+>=0A</tr>=0A</table>=0A<!-- BODY START ||| -->=0A=0A=0A=0A=0A=0A=0A=
+<!-- ||| FOOTER START -->=0A<table width=3D"100%" border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0">=0A<tr>=0A<td align=3D"center" =
+style=3D"background-color: #f8f8f8; padding-top: 40px; padding-bo=
+ttom: 30px;">=0A <table class=3D"w100" width=3D"640" border=3D"0"=
+ align=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A <tr>=0A=
+<td align=3D"center">=0A <table width=3D"90%" border=3D"0" align=3D=
+"center" cellpadding=3D"0" cellspacing=3D"0">=0A=0A <!-- USEFUL M=
+ODULE START -->=0A=0A <tr>=0A                                 <td=
+ align=3D"center">=0A                                    <table w=
+idth=3D"100%" border=3D"0" align=3D"center" cellpadding=3D"0" cel=
+lspacing=3D"0">=0A                                       <tr>=0A =
+                                         <!-- COPY START -->=0A  =
+                                        <td style=3D"color: #0033=
+a0; font-size: 18px; text-align: center; font-family: Arial, sans=
+-serif; line-height: 22px;">Did you find this email&nbsp;useful?<=
+/td>=0A                                          <!-- COPY END --=
+>=0A                                       </tr>=0A              =
+                       =20 <tr>=0A                               =
+           <td align=3D"center" style=3D"padding-top: 15px;">=0A =
+                                            <table border=3D"0" a=
+lign=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A          =
+                                      <tr>=0A                    =
+                               <!-- IMAGE START -->=0A           =
+                                        <td width=3D"50%" align=3D=
+"left" valign=3D"top" style=3D"padding-right: 10px;"><a href=3D"h=
+ttp://l.service01.email-allstate.com/rts/go2.aspx?h=3D708636&tp=3D=
+i-16EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHh-l7wHg9zFW7-2BNG0n"><img src=
+=3D"http://i.marketing01.email-allstate.com/wpm/622/ContentUpload=
+s/_CLAIMS/MODULES/M_ICON_100X100_THUMBSUP_081018.png" width=3D"50=
+" style=3D"display: block; border: 0;" class=3D"opacity"/></a></t=
+d>=0A                                                   <!-- IMAG=
+E END -->=0A                                                   <!=
+-- IMAGE START -->=0A                                            =
+       <td width=3D"50%" align=3D"right" valign=3D"top" style=3D"=
+padding-left: 10px;"><a href=3D"http://l.service01.email-allstate=
+.com/rts/go2.aspx?h=3D708637&tp=3Di-16EB-A2-Zz5-2foeYo-1s-Awg3c-1=
+c-FlHh-l7wHg9zFW7-2BNG0n"><img src=3D"http://i.marketing01.email-=
+allstate.com/wpm/622/ContentUploads/_CLAIMS/MODULES/M_ICON_100X10=
+0_THUMBSDOWN_081018.png" width=3D"50" style=3D"display: block; bo=
+rder: 0;" class=3D"opacity"/></a></td>=0A                        =
+                           <!-- IMAGE END -->=0A                 =
+                               </tr>=0A                          =
+                   </table>=0A                                   =
+       </td>=0A                                       </tr>=0A   =
+                                 </table>=0A                     =
+            </td>=0A                              </tr>=0A=0A <!-=
+- USEFUL MODULE END -->=0A=0A=0A <tr>=0A=0A<!-- IMAGE START -->=0A=
+=0A<td align=3D"center" style=3D"padding-top: 40px;"><a href=3D"h=
+ttp://l.service01.email-allstate.com/rts/go2.aspx?h=3D708635&tp=3D=
+i-16EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHi-l7wHg9zFW7-1Aer2v&x=3D%7cP_=
+MYACCOUNT_0168_FORGOTPASSWORD_T%7c20220201%7c"><img src=3D"http:/=
+/i.marketing01.email-allstate.com/wpm/622/ContentUploads/_CLAIMS/=
+MODULES/M_LOGO_500X109_ALLSTATELOGO_081018.png" width=3D"140" alt=
+=3D"Allstate" style=3D"display: block; border: 0; font-size: 40px=
+; font-family: sans-serif; font-weight: bold; color: #0033a0; max=
+-width: 100%;"/></a></td>=0A=0A<!-- IMAGE END -->=0A=0A </tr>=0A<=
+tr>=0A=0A <!-- COPY START -->=0A <td class=3D"padt20m" style=3D"p=
+adding-top: 30px; color: #0033a0; font-size: 13px; text-align: ce=
+nter; font-family: Arial, sans-serif; line-height: 22px;"><a clas=
+s=3D"opacity" href=3D"http://l.service01.email-allstate.com/rts/g=
+o2.aspx?h=3D708638&tp=3Di-16EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHj-l7w=
+Hg9zFW7-nI0w0&x=3D%7cP_MYACCOUNT_0168_FORGOTPASSWORD_T%7c20220201=
+%7c" style=3D"color: #0033a0; text-decoration: none;">My Account<=
+/a> &nbsp;&nbsp;|&nbsp;&nbsp; <a class=3D"opacity" href=3D"http:/=
+/l.service01.email-allstate.com/rts/go2.aspx?h=3D708639&tp=3Di-16=
+EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHj-l7wHg9zFW7-nI0w0&x=3D%7cP_MYACC=
+OUNT_0168_FORGOTPASSWORD_T%7c20220201%7c" style=3D"color: #0033a0=
+; text-decoration: none;">Tools&nbsp;&amp;&nbsp;Resources</a> &nb=
+sp;&nbsp;|&nbsp;&nbsp; <a class=3D"opacity" href=3D"http://l.serv=
+ice01.email-allstate.com/rts/go2.aspx?h=3D708635&tp=3Di-16EB-A2-Z=
+z5-2foeYo-1s-Awg3c-1c-FlHj-l7wHg9zFW7-nI0w0&x=3D%7cP_MYACCOUNT_01=
+68_FORGOTPASSWORD_T%7c20220201%7c" style=3D"color: #0033a0; text-=
+decoration: none;">Allstate<span></span>.com</a></td>=0A=0A <!-- =
+COPY END -->=0A=0A </tr>=0A<tr>=0A<td class=3D"padt20m" style=3D"=
+padding-top: 10px; color: #4e5969; font-size: 10px; text-align: c=
+enter; font-family: Arial, sans-serif; line-height: 14px;">This e=
+mail was sent to jpetelka@gmail.com.=0A</td>=0A <!-- COPY END -->=
+=0A</tr>=0A                              <tr>=0A                 =
+                <!-- COPY START -->=0A                           =
+      <td class=3D"padt20m" style=3D"padding-top: 15px; color: #4=
+e5969; font-size: 10px; text-align: center; font-family: Arial, s=
+ans-serif; line-height: 14px;">&copy;2022 Allstate Insurance Comp=
+any. All rights reserved.&nbsp; <a href=3D"http://l.service01.ema=
+il-allstate.com/rts/go2.aspx?h=3D708640&tp=3Di-16EB-A2-Zz5-2foeYo=
+-1s-Awg3c-1c-FlHk-l7wHg9zFW7-26GXVN&x=3D%7cP_MYACCOUNT_0168_FORGO=
+TPASSWORD_T%7c20220201%7c"><span style=3D"text-decoration: underl=
+ine; color: #4e5969;">Privacy&nbsp;Statement</span></a>&nbsp;&nbs=
+p;|&nbsp;&nbsp;<a href=3D"http://l.service01.email-allstate.com/r=
+ts/go2.aspx?h=3D708641&tp=3Di-16EB-A2-Zz5-2foeYo-1s-Awg3c-1c-FlHk=
+-l7wHg9zFW7-26GXVN&x=3D%7cP_MYACCOUNT_0168_FORGOTPASSWORD_T%7c202=
+20201%7c"><span style=3D"text-decoration: underline; color: #4e59=
+69;">Contact Us</span></a></td>=0A                               =
+  <!-- COPY END -->=0A                              </tr>=0A     =
+                         <tr>=0A                                 =
+<!-- COPY START -->=0A                                 <td style=3D=
+"padding-top: 15px; color: #4e5969; font-size: 10px; text-align: =
+center; font-family: Arial, sans-serif; line-height: 14px;">Allst=
+ate Insurance Company, 2775 Sanders Road, Northbrook, IL 60062</t=
+d>=0A                                 <!-- COPY END -->=0A       =
+                       </tr>=0A                              <tr>=
+=0A                                 <!-- COPY START -->=0A       =
+                          <td class=3D"padt10m" style=3D"padding-=
+top: 15px; color: #6f7e94; font-size: 8px; text-align: center; fo=
+nt-family: Arial, sans-serif; line-height: 10px;">P_MYACCOUNT_016=
+8_FORGOTPASSWORD_T</td>=0A                                 <!-- C=
+OPY END -->=0A                              </tr>=0A             =
+                 <tr>=0A                                 <!-- COP=
+Y START -->=0A                                 <td style=3D"color=
+: #6f7e94; font-size: 5px; text-align: center; font-weight: light=
+er; color: #666666; font-family: Arial, sans-serif; line-height: =
+8px;">EMAIL_TO:do_not_reply@allstate.com:</td>=0A=0A </tr>=0A </t=
+able>=0A</td>=0A </tr>=0A </table>=0A</td>=0A</tr>=0A</table>=0A<=
+!-- FOOTER END ||| -->=0A</td>=0A</tr>=0A</table>=0A</body>=0A=0A=
+  =0A</html>=0A
+----boundary_167122_81a3c316-00b0-4567-b18b-0156b19062cd--
+
+

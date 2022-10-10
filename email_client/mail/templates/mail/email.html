@@ -175,23 +175,31 @@
 
 <script>
     const p_detected = ('{{ email.is_phish }}' == 'True');
+    const fp_detected = ('{{ email.is_fp }}' == 'True')
     const eid = '{{email.ref}}';
+    const n = parseInt('{{ user.group_num }}');
     id_links();
     if (p_detected){
-        const link = '{% url "mail:email_link" email.ref %}'
-        const p_link_id = '{{ email.phish_id }}';
+        const cj_link = '{% url "mail:email_link" email.ref %}';
+        const p_link_id = parseInt('{{ email.phish_id }}') * 10; //CHANGE THIS LATER
         const p_url = '{{email.p_url}}';
-        const n = parseInt('{{ user.group_num }}');
         adjust_link(p_link_id,p_url);
+        disable_link($('.email-container a#'+p_link_id));
         add_email_link_class(p_link_id);
         if (n > 0){
-            load_warning(n,p_link_id,link);
+            load_warning(n,p_link_id,cj_link);
         }
         else {
             make_email_link_clickable(link,p_link_id);
         }
     }
-        
+    else if (fp_detected && n > 0){
+        const link_id = '{{ email.phish_id }}';
+        const link_url = $('a[id='+link_id+']').attr('href');
+        disable_link(link_id);
+        add_email_link_class(link_id);
+        load_warning(n,link_id,link_url);
+    }
     initListeners(eid);
 </script>
 

@@ -32,7 +32,6 @@ function createLog(link, action, emailid, hover_time){
     let d = {
         'ref': emailid,
         'link': link_url,
-        'action': action,
         'hover_time': hover_time,
         'action': action,
         'link_id': link_id,
@@ -115,10 +114,8 @@ function make_email_link_clickable(for_link, p_id){
 // changes href of desired link to the selected phishing link and disable the link
 function adjust_link(p_id,p_url){
     let _this = $('.email-container a#'+p_id);
-    _this.attr('href', p_url)
-        .attr('onclick', 'return false');
-    // add cj span over all plink for all groups
-    }
+    _this.attr('href', p_url);
+}
 
 function load_warning(group_num,p_id,for_link){
     // copy plink
@@ -131,7 +128,6 @@ function load_warning(group_num,p_id,for_link){
     // adjust plink
     let link_hovered = false;
     let raw_link = _this.attr('href');
-
     // parse out plink components
     let url = new URL(raw_link);
     let hostname = url.hostname.split('www.');

@@ -2,15 +2,15 @@
     [
         {"domain_URL": "https://westernunion.co.us/something",
         "pruned_domain_name": "westernunion.com",
-        "link_id": 4,
+        "link_id": 40,
         "email_id": 3},
         {"domain_URL": "https://sprint.co.us/something",
             "pruned_domain_name": "sprint.com",
-            "link_id": 3,
-            "email_id": 1}
-        // {"domain_URL": "https://walmart.co.us/something",
-        //     "pruned_domain_name": "walmart.com",
-        //     "link_id": 5,
-        //     "email_id": 2}
+            "link_id": 30,
+            "email_id": 1},
+        {"domain_URL": "https://walmart.co.us/something",
+            "pruned_domain_name": "walmart.com",
+            "link_id": 50,
+            "email_id": 2}
     ]
 }

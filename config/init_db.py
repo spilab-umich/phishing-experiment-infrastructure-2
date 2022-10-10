@@ -178,11 +178,12 @@ def order_emails(emails):
             - All 3 phishing warnings appear in the first n-2 emails
             - The last 2 emails are benign '''
 
-    phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
-    benign_emails = shuffle([x for x in all_emails if x['email_id'] not in phish_email_ids])
-    first_emails = shuffle(phishing_emails + benign_emails[:-2])
-    last emails = benign_emails[-2:]
-    return first_emails+last_emails
+    # phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
+    # benign_emails = shuffle([x for x in all_emails if x['email_id'] not in phish_email_ids])
+    # first_emails = shuffle(phishing_emails + benign_emails[:-2])
+    # last emails = benign_emails[-2:]
+    # return first_emails+last_emails
+    return shuffle(emails)
 
 
 
@@ -275,9 +276,10 @@ for i in range(0, n_users):
         if email['email_id'] in phish_email_ids:
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
-            # print(new.phish_id)
+            
         else if num_emails - 2 == j:
             new.is_fp = True
+            ## NEED TO ASSIGN LINK FOR FP 
         new.save()
         j += 1
         # j-=1
