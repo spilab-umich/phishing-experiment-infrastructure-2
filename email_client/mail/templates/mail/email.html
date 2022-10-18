@@ -168,8 +168,11 @@
         </div>
 </div>
 <div></div> -->
-
+<!-- {% if is_phish %} -->
+{% block warning %}
+{% end block %}
 {% include warning_fname %}
+<!-- {% endif %} -->
 <script src="{% static 'js/warnings.js' %}"></script>
 <!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
 

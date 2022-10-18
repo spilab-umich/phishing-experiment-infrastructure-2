@@ -132,6 +132,11 @@ def read_emails():
                 if part.get_content_maintype() == 'text':
                     with open(Path('email_client/mail/templates/mail/emails') / Path(str(i)+'.html'), 'wb') as fol:
                         payload = part.get_payload(decode=True)
+
+                        #DO HTML-REQUESTS STUFF HERE
+
+                        ## ADD IDS
+
                         fol.write(payload)
                         
                         ### I LEFT OFF USING LXML LIBRARY TO PARSE OUT A TEXT PREVIEW ###

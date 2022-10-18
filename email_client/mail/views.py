@@ -240,6 +240,7 @@ def return_emails(request, email_id, page="inbox"):
             user.unread_count -= 1
         # hard-coded for now
         warning_fname = 'mail/warnings/' + str(1) + '.html'
+        
         context = {
             'email': email,
             'user': user,
@@ -248,6 +249,7 @@ def return_emails(request, email_id, page="inbox"):
             'prev_email': prev_email,  ## Ref num of the previous email if available
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
             'warning_fname': warning_fname, ## Warning number is needed to include warning html as django template
+            ## ADD TARGET LINK BEFORE THIS
             'num_emails': len_emails,
             'page': page,
         }
