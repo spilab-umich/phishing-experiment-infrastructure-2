@@ -210,7 +210,7 @@ def return_emails(request, email_id, page="inbox"):
         # len_emails = len(emails)
         # using count() does not hit the database
         len_emails = emails.count()
-        read_status = email.read
+        read_status = bool(email.read)
         this_id = email.pk
         prev_email = -1
         next_email = -1
@@ -234,8 +234,8 @@ def return_emails(request, email_id, page="inbox"):
         email_fname = 'mail/emails/' + str(email_id) + '.html'
 
         # If unread, change to read, decrement unread_count. 
-        if read_status == "unread":
-            Mail.objects.filter(user=user, ref=email_id).update(read="read")
+        if read_status:
+            Mail.objects.filter(user=user, ref=email_id).update(read=True)
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
             user.unread_count -= 1
         # hard-coded for now

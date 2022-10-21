@@ -1,4 +1,3 @@
-Delivered-To: jpetelka@gmail.com
 Received: by 2002:ac4:b1d3:0:b0:569:4bf9:1abf with SMTP id o19csp476962pid;
         Thu, 1 Sep 2022 16:10:30 -0700 (PDT)
 X-Google-Smtp-Source: AA6agR4U0aEGmnT+GR+vfoRXXdGVN+1uhuB4sZbJMQL4G+55O0DVw/Yup9SUELVp7fe0jElQVDch
@@ -29,7 +28,7 @@ ARC-Authentication-Results: i=1; mx.google.com;
 Return-Path: <allstate@service01.email-allstate.com>
 Received: from p1-002225.service01.email-allstate.com (p1-002225.service01.email-allstate.com. [173.213.2.225])
         by mx.google.com with ESMTPS id eb8-20020a0564020d0800b00442edebe687si384681edb.633.2022.09.01.16.10.29
-        for <jpetelka@gmail.com>
+        for <>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 01 Sep 2022 16:10:29 -0700 (PDT)
 Received-SPF: pass (google.com: domain of allstate@service01.email-allstate.com designates 173.213.2.225 as permitted sender) client-ip=173.213.2.225;
@@ -44,7 +43,7 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=0; d=service01.email-all
  b=mLz7BrBSPE+DPNXt1OKTC8Zi3UIylhcmJzko3vRc8X/zRSisDqEoyQQpRMA0VBrQMkoRy1pyTM24
    6mcKQ9f8AhRjpV8lws6YLzI71XcZX4WBiLvVTMqC9O9leR+HzZ+Cj8Uy8dj828LuhutDZ13hER6y
    2fK0hEbndUNX/43Kj/c=
-Received: from NY5PAPI04 (10.24.71.37) by p1-002225.service01.email-allstate.com id h24tu82o8is0 for <jpetelka@gmail.com>; Thu, 1 Sep 2022 19:10:28 -0400 (envelope-from <allstate@service01.email-allstate.com>)
+Received: from NY5PAPI04 (10.24.71.37) by p1-002225.service01.email-allstate.com id h24tu82o8is0 for <>; Thu, 1 Sep 2022 19:10:28 -0400 (envelope-from <allstate@service01.email-allstate.com>)
 Errors-to: allstate@service01.email-allstate.com
 Return-Path: allstate@service01.email-allstate.com<rp-6a82772119bdd5dc1a06d919e9bb9cc2ae94cd9dd935fa79c878184994bfa821@service01.email-allstate.com>
 Message-ID: <622.2450167758.202209012310289809835.0000167123@service01.email-allstate.com>
@@ -62,7 +61,6 @@ X-Xyz-bct: 3756682
 X-Xyz-inst: true
 MIME-Version: 1.0
 From: "Allstate My Account" <allstate@service01.email-allstate.com>
-To: "jpetelka@gmail.com" <jpetelka@gmail.com>
 Reply-To: do_not_reply@allstate.com
 Date: 1 Sep 2022 23:10:28 +0000
 Subject: Allstate: Password reset request
@@ -428,7 +426,7 @@ decoration: none;">Allstate<span></span>.com</a></td>=0A=0A <!-- =
 COPY END -->=0A=0A </tr>=0A<tr>=0A<td class=3D"padt20m" style=3D"=
 padding-top: 10px; color: #4e5969; font-size: 10px; text-align: c=
 enter; font-family: Arial, sans-serif; line-height: 14px;">This e=
-mail was sent to jpetelka@gmail.com.=0A</td>=0A <!-- COPY END -->=
+mail was sent to @gmail.com.=0A</td>=0A <!-- COPY END -->=
 =0A</tr>=0A                              <tr>=0A                 =
                 <!-- COPY START -->=0A                           =
       <td class=3D"padt20m" style=3D"padding-top: 15px; color: #4=

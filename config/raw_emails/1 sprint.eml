@@ -1,4 +1,3 @@
-Delivered-To: jpetelka@gmail.com
 Received: by 2002:ac9:4818:0:0:0:0:0 with SMTP id f24csp827798oci;
         Wed, 27 Oct 2021 10:19:30 -0700 (PDT)
 X-Google-Smtp-Source: ABdhPJycequOXvG5B+L+QYvmt/zor45Cd7wCEFApbgWqepX8PEkT8HxHadBhSpfhHNqeTyXibClt
@@ -57,7 +56,6 @@ Received: from [192.168.138.173] ([192.168.138.173:57211] helo=fcvm25a2.dc1.prod
 Date: Wed, 27 Oct 2021 10:19:30 -0700 (PDT)
 From: Sprint <ebill@SprintCustServ.com>
 Reply-to: ebill@SprintCustServ.com
-To: jpetelka@gmail.com
 Message-ID: <15623872508.1635355170029@dc1.prod>
 Subject: Your Sprint bill is now available online
 Errors-to: ebill@SprintCustServ.com

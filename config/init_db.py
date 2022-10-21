@@ -2,7 +2,7 @@ import os, django, sys, json, datetime, email, mimetypes, re
 # from email.parser import Parser, BytesParser
 # from email import policy
 from html.parser import HTMLParser 
-import lxml.html
+# import lxml.html
 from pathlib import Path
 # from bs4 import BeautifulSoup
 # import eml_parser
@@ -16,7 +16,7 @@ django.setup()
 # Input number of users
 n_users = 0
 
-n_test_users = 3000
+n_test_users = 30
 # Input number of groups
 n_of_groups = 7
 
@@ -46,8 +46,6 @@ email_data = []
 for item in d["emails"]:
     email_data.append(item)
 
-num_emails = len(email_data)
-
 from mail.models import User, Mail
 import random as rd
 import string
@@ -56,7 +54,6 @@ from random import shuffle
 ## Maybe Keep This ##
 # Load warning metadata
 warning_json_fname = 'phish_domains.json'
-# warning_json_path = Path('config/') config_path
 open_warning_json_file = config_path / warning_json_fname
 
 with open(open_warning_json_file) as f:
@@ -161,20 +158,28 @@ def read_emails():
                             # print(payload)
                         # exit()
                         # preview = h.handle
-
-                email_to_add = {
-                    # 'from' item needs to be split into sender and sender address
-                    'from': sender,
-                    'subject': msg['subject'],
-                    'date': msg['date'],
-                    'email_id': i,
-                    # 'preview': preview,
-                }
+            ## Matches the .eml file to the correct email metadata
+            ## Search email_data for the key value pair that matches current email_id
+            email_metadata = next( item for item in email_data if item['email_id'] == i)
+            email_to_add = {
+                # 'from' item needs to be split into sender and sender address
+                'from': sender,
+                'subject': msg['subject'],
+                'date': msg['date'],
+                'email_id': i,
+                'num_links': email_metadata['num_links'],
+                'phish_id': email_metadata['link_id'],
+                'preview': email_metadata['preview'],
+            }
             results.append(email_to_add)
             i+=1
     return results
+
 all_emails = read_emails()
-# print(emails_to_add)
+
+num_emails = len(all_emails)
+# print(all_emails)
+# print('Number of emails: {}'.format(len(all_emails)))
 # exit()
 
 def order_emails(emails):
@@ -183,33 +188,20 @@ def order_emails(emails):
             - All 3 phishing warnings appear in the first n-2 emails
             - The last 2 emails are benign '''
 
-    # phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
-    # benign_emails = shuffle([x for x in all_emails if x['email_id'] not in phish_email_ids])
-    # first_emails = shuffle(phishing_emails + benign_emails[:-2])
-    # last emails = benign_emails[-2:]
-    # return first_emails+last_emails
-    return shuffle(emails)
+    phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
+    benign_emails = [x for x in all_emails if x['email_id'] not in phish_email_ids]
+    shuffle(benign_emails)    
+    first_emails = phishing_emails + benign_emails[:-2]
+    shuffle(first_emails)
+    last_emails = benign_emails[-2:]
+    return first_emails+last_emails
+    # return shuffle(emails)
 
 
 
 
 
 emails_to_add = order_emails(all_emails)
-
-
-
-# phishing email id : [list_of_domain_manipulations,]
-# list_of_p_domains = {
-#     1:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-#     'https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-#     'https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/'],
-#     2:['https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-#     'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-#     'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-#     3:['https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-#     'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
-#     'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-# }
 
 # These are the dates each email displayed in the inbox
 # time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', 'Dec 17', 'Dec 18', 'Dec 23']
@@ -281,21 +273,18 @@ for i in range(0, n_users):
         if email['email_id'] in phish_email_ids:
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
-            
-        else if num_emails - 2 == j:
+        elif ((num_emails - 2) == j):
             new.is_fp = True
             ## NEED TO ASSIGN LINK FOR FP 
         new.save()
         j += 1
         # j-=1
 
-# exit()
-
 # Create a user to login into
 # This helps with checking the inbox
+email_counter = 1
 for i in range(0, n_test_users):
     # shuffle(emails_to_add)
-    
     user = User()
     user.username = 'tempuser'+str(i)
     user.group_num = i % n_of_groups
@@ -305,7 +294,6 @@ for i in range(0, n_test_users):
     user.set_password('TestPassword')
     user.assigned = False
     user.save()
-    # j=num_emails-1
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
     for email in emails_to_add:
@@ -315,21 +303,21 @@ for i in range(0, n_test_users):
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
         # new.preview = email['preview']
-        new.preview = "Test preview for now"
-        #Adjust date
+        new.preview = email['preview']
+        #Adjust date for readability
         UTCdate = datetime.datetime.strptime(email['date'], '%a, %d %b %Y %H:%M:%S %z')
         readible_date = datetime.datetime.strftime(UTCdate, '%m/%d/%y')
-        # print(readible_date)
         new.time_sent = readible_date
         new.subject = email['subject']
-        new.read = "unread"
         new.ref = email['email_id']
-        # new.num_links = email['num_links']
+        new.phish_id = email['phish_id']
+        new.num_links = email['num_links']
         if email['email_id'] in phish_email_ids:
             new.is_phish = True 
-            new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
             # print(new.phish_id)
             new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
+        elif (num_emails - 1) == email_counter:
+            new.is_fp = True
         new.save()
-        # j-=1
+        email_counter+=1
 exit()

@@ -1,4 +1,3 @@
-Delivered-To: jpetelka@gmail.com
 Received: by 2002:ac4:b1d3:0:b0:569:4bf9:1abf with SMTP id o19csp1243677pid;
         Fri, 2 Sep 2022 22:08:23 -0700 (PDT)
 X-Google-Smtp-Source: AA6agR4IXVtRPoeeBsWPapinCLUudbXZhgOUzEFv4fkZ5h8IAMcvVR8CnYbiUZJ9C1XN6cb6OBc9
@@ -29,7 +28,7 @@ ARC-Authentication-Results: i=1; mx.google.com;
 Return-Path: <noreply@steampowered.com>
 Received: from smtp-03-tuk1.steampowered.com (smtp-03-tuk1.steampowered.com. [208.64.202.39])
         by mx.google.com with ESMTPS id i4-20020a635404000000b0042a020bd06bsi3799967pgb.781.2022.09.02.22.08.23
-        for <jpetelka@gmail.com>
+        for <@gmail.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
         Fri, 02 Sep 2022 22:08:23 -0700 (PDT)
 Received-SPF: pass (google.com: domain of noreply@steampowered.com designates 208.64.202.39 as permitted sender) client-ip=208.64.202.39;
@@ -50,8 +49,7 @@ Received: from [208.78.165.150] (helo=valvesoftware.com)
 	by smtp-03-tuk1.steampowered.com with smtp (Exim 4.90_1)
 	(envelope-from <noreply@steampowered.com>)
 	id 1oULOJ-00081D-Jd
-	for jpetelka@gmail.com; Fri, 02 Sep 2022 22:08:23 -0700
-To: jpetelka@gmail.com
+	for @gmail.com; Fri, 02 Sep 2022 22:08:23 -0700
 From: "Steam Support" <noreply@steampowered.com>
 Reply-To: <noreply@steampowered.com>
 Errors-To: <noreply@steampowered.com>
@@ -69,9 +67,9 @@ Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 
-Hello croswenthy
+Hello 
 
-[BDMZ] Aroorasaurus has accepted your gift
+Someone has accepted your gift
 
     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
@@ -377,7 +375,7 @@ this table column -->
 =09=09=09=09=09<td class=3D"title-36 pb-30 c-grey6 fw-b" style=3D"font-size=
 :36px; line-height:42px; font-family:Arial, sans-serif, 'Motiva Sans'; text=
 -align:left; padding-bottom: 30px; color:#bfbfbf; font-weight:bold;">Hello =
-croswenthy</td>
+</td>
 =09=09=09=09</tr>
 =09=09=09</table>
 =09=09=09<!-- End Welcome -->
@@ -389,7 +387,7 @@ adding=3D"0">
 =09=09=09=09=09<td class=3D"title-28 c-white pb-30" style=3D"font-size:28px=
 ; line-height:36px; font-family:Arial, sans-serif, 'Motiva Sans'; text-alig=
 n:left; color:#ffffff; padding-bottom: 30px;">
-=09=09=09=09=09=09<strong>[BDMZ] Aroorasaurus has accepted your gift</stron=
+=09=09=09=09=09=09<strong>Someone has accepted your gift</stron=
 g>
 =09=09=09=09=09</td>
 =09=09=09=09</tr>

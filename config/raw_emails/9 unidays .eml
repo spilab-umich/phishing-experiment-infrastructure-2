@@ -1,4 +1,3 @@
-Delivered-To: psychodoughboy2@gmail.com
 Received: by 2002:a05:7010:7249:b0:305:725d:40b8 with SMTP id m9csp1295432mde;
         Wed, 5 Oct 2022 18:00:46 -0700 (PDT)
 X-Google-Smtp-Source: AMsMyM4G2th6QChoXtvMYCNttKayINeZ7eaHvKD+JAJaUB6Ytgi4cMNkAU4IKumJJk2CfABwsp6y
@@ -29,7 +28,7 @@ ARC-Authentication-Results: i=1; mx.google.com;
 Return-Path: <msprvs1=192780g321DzS=bounces-264390@bounces.m.myunidays.com>
 Received: from mta-216-226.sparkpostmail.com (mta-216-226.sparkpostmail.com. [147.253.216.226])
         by mx.google.com with ESMTPS id bd32-20020a056a0027a000b0055fa098c388si15163291pfb.259.2022.10.05.18.00.45
-        for <psychodoughboy2@gmail.com>
+        for <@gmail.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
         Wed, 05 Oct 2022 18:00:46 -0700 (PDT)
 Received-SPF: pass (google.com: domain of msprvs1=192780g321dzs=bounces-264390@bounces.m.myunidays.com designates 147.253.216.226 as permitted sender) client-ip=147.253.216.226;
@@ -49,7 +48,6 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=m.myunidays.com;
 	b=i+gmPAR33Q3nHYCUaAi466KhbUD4lEy8UJHa5B4zI7tlILtpf7wQR8ZgTMaqLkP8i
 	 O350tlXVnKlJiqnzO/wyjGeDk7bsAHAq0Dwvj0wJ/e/0Jh/xEAmOBOdSWpQaWGe+Co
 	 hDh2bCu8fsHzHosPjSq7pEtI03PDera8GgE4Vs5Y=
-To: psychodoughboy2@gmail.com
 Message-ID: <AC.4D.46676.CB82E336@hq.mta1vrest.cc.prd.sparkpost>
 Date: Thu, 06 Oct 2022 01:00:44 +0000
 Content-Type: multipart/alternative; boundary="_----UMsM/XY6HU6iARy2E3h1OQ===_2C/4D-46676-CB82E336"

@@ -4,25 +4,72 @@
         "sender": "Sprint",
         "preview":"Important information on your bill",
         "email_id": 1,
-        "num_links": 3
+        "num_links": 3,
+        "link_id": 10
         },
         {
         "sender": "Walmart",
         "preview":"Your new account is ready to use",
         "email_id": 2,
-        "num_links": 3
+        "num_links": 3,
+        "link_id": 30
         },
         {
         "sender": "Western Union",
         "preview": "Welcome to Western Union. Now you can send money online anytime, from anywhere. Your final receiver can pick up the money at a convenient Western Union agent location, or get it sent directly to their bank account or mobile wallet.",
         "email_id": 3,
-        "num_links": 3
+        "num_links": 3,
+        "link_id": 20
         },
         {
         "sender": "Delta",
         "preview": "As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our &quot;new normal&quot; looks like.",
         "email_id": 4,
-        "num_links": 3
+        "num_links": 3,
+        "link_id": 20
+        },
+        {
+        "sender": "Allstate",
+        "preview":"Please click on the button below to reset the password for your account. The link will expire in 120 minutes.",
+        "email_id": 5,
+        "num_links": 3,
+        "link_id": 50
+        },
+        {
+        "sender": "Coursera",
+        "preview":"Short and popular courses, just for you.",
+        "email_id": 6,
+        "num_links": 3,
+        "link_id": 30
+        },
+        {
+        "sender": "Google",
+        "preview": "Thanks for signing into Gogle on your Windows device. Please confirm your Google Account settings are still right for you.",
+        "email_id": 7,
+        "num_links": 3,
+        "link_id": 20
+        },
+        {
+        "sender": "Steam",
+        "preview": "Someone has accepted your gift. You can see all of your sent and unredeemed gifts on your Gift Inventory page.",
+        "email_id": 8,
+        "num_links": 3,
+        "link_id": 10
+        },
+        {
+        "sender": "Unidays",
+        "preview": "TIME'S RUNNING OUT. Renew now for 12 more months of student deals, exclusive opportunities and UNiDAYS FUTURES.",
+        "email_id": 9,
+        "num_links": 3,
+        "link_id": 30
+        },
+        {
+        "sender": "Paypal",
+        "preview": "Enjoy auto-login for faster checkout. You’ve chosen to skip login with PayPal One Touch™. From now on you won’t be asked for your email or password when paying with PayPal on this device: Desktop Firefox Windows 10 NT 10.0.",
+        "email_id": 10,
+        "num_links": 3,
+        "link_id": 20
         }
+        
     ]
 }

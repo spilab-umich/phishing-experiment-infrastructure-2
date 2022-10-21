@@ -20,16 +20,16 @@ class Mail(models.Model):
     sender_address = models.CharField(max_length = 50) # The address of the Mail's sender
     # Change this to Boolean on next DB refresh
     # read = models.BooleanField(default=False)
-    read = models.CharField(max_length = 20, default='unread') # Indicator for whether a User has read the Mail object
+    read = models.BooleanField(default=False) # Indicator for whether a User has read the Mail object
     ref = models.IntegerField(default=-1) # The reference number of the Mail object
     num_links = models.IntegerField(default=-1) # The number of links in a Mail object
     is_phish = models.BooleanField(default=False) 
     phish_id = models.IntegerField(default=-1) # The link #id for the phishing URL
     p_url = models.CharField(default='', max_length=500) # The exact URL of the phishing URL
-    is_flagged = models.BooleanField(default=False)
+    # is_flagged = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
-    # is_fp = models.BooleanField(default=False) # Is this email a false positive
+    is_fp = models.BooleanField(default=False) # Is this email a false positive
 
     def __str__(self):
         return str(self.ref) + ' - ' + self.sender
