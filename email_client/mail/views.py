@@ -240,7 +240,16 @@ def return_emails(request, email_id, page="inbox"):
             user.unread_count -= 1
         # hard-coded for now
         warning_fname = 'mail/warnings/' + str(1) + '.html'
-        
+
+        warning = { }
+
+        '''Provide warning paramters if phish or false positive based on group num
+        - focused attention
+        - time delay
+        - initial warning subtext
+        - phishing url
+        - phishing ID
+        '''
         context = {
             'email': email,
             'user': user,
@@ -248,12 +257,16 @@ def return_emails(request, email_id, page="inbox"):
             'next_email': next_email, ## Ref num of the next email if available
             'prev_email': prev_email,  ## Ref num of the previous email if available
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
-            'warning_fname': warning_fname, ## Warning number is needed to include warning html as django template
             ## ADD TARGET LINK BEFORE THIS
             'num_emails': len_emails,
             'page': page,
+            'fname': warning_fname,
         }
         return context
+
+def build_warning_paramters(group_num):
+    if group_num == 0:
+
 
 
 #these functions display individual emails in the different pages

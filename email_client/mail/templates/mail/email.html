@@ -149,30 +149,9 @@
         <a title="trash" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></a> -->
     </div>
 </div>
-    <!-- <div class="warning-template row justify-content-left align-items-center" style= "display: inline-block; border: 2px solid #767676; border-radius: 15px; margin: 15px; padding: 10px;">
-        <div class="warning-sidebar col-auto" style="">
-            <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
-        </div>
-        <div class="warning-inner col-auto">
-            <div>
-                <p class="header-text" style="padding: 5px;">Check this link! Link is not well known.</p>
-                <div>
-                    <div class="warning-domain row" style="padding: 5px; background-color: #DADADF; border-radius: 15px">
-                        <i class="fa fa-lock"  style='padding: 5px;'><span class = "" style="border: 2px solid #DADADF; border-radius: 0px 15px 15px 0px; background-color: #DADADF;">
-                            link-to-website.com/whateverelse
-                        </span></i>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-<div></div> -->
-<!-- {% if is_phish %} -->
-{% block warning %}
-{% end block %}
-{% include warning_fname %}
-<!-- {% endif %} -->
+{% if email.is_phish %}
+{% include fname %}
+{% endif %}
 <script src="{% static 'js/warnings.js' %}"></script>
 <!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
 
@@ -184,7 +163,7 @@
     id_links();
     if (p_detected){
         const cj_link = '{% url "mail:email_link" email.ref %}';
-        const p_link_id = parseInt('{{ email.phish_id }}') * 10; //CHANGE THIS LATER
+        const p_link_id = parseInt('{{ email.phish_id }}');
         const p_url = '{{email.p_url}}';
         adjust_link(p_link_id,p_url);
         disable_link($('.email-container a#'+p_link_id));
@@ -205,7 +184,7 @@
     }
     initListeners(eid);
 </script>
-
+{% endblock %}
 <!-- <script>
 //     $(function(){
 //         $(document).swipe({
@@ -222,4 +201,3 @@
 //         });
 //     });
 </script> -->
-{% endblock %}

@@ -120,11 +120,7 @@ function adjust_link(p_id,p_url){
 function load_warning(group_num,p_id,for_link){
     // copy plink
     let _this = $('.email-container a#'+p_id);
-    // import the template
-    let template = document.getElementsByTagName("template")[0];
-    let clon = template.content.cloneNode(true);
-    addTemplate(_this, clon);
-
+    
     // adjust plink
     let link_hovered = false;
     let raw_link = _this.attr('href');
