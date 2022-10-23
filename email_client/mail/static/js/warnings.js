@@ -347,14 +347,14 @@ window.onload = function(){
     let wWidth = $('.tooltip').outerWidth();
     var top = offset.top;
     var right = offset.left;
-    console.log(offset);
+    // console.log(offset);
     // $('.tooltip').css({
     //     // 'position': 'absolute',
     //     'right': offset.left,
     //     'top': offset.top,
     // });
     let pos = document.getElementsByClassName('email-link')[0].getBoundingClientRect();
-    console.log(pos);
+    // console.log(pos);
     $('.tooltip').css({
         // 'position': 'absolute',
         'top': pos.bottom,
