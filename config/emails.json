@@ -37,7 +37,7 @@
         "preview":"Please click on the button below to reset the password for your account. The link will expire in 120 minutes.",
         "email_id": 5,
         "num_links": 3,
-        "link_id": 50,
+        "link_id": 30,
         "is_phish": false
         },
         {

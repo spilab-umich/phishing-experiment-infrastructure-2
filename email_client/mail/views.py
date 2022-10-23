@@ -211,7 +211,6 @@ def return_emails(request, email_id, page="inbox"):
         # using count() does not hit the database
         len_emails = emails.count()
         read_status = email.read
-        print(read_status)
         this_id = email.pk
         prev_email = -1
         next_email = -1

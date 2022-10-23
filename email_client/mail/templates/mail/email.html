@@ -152,8 +152,6 @@
 {% if email.is_phish or email.is_fp %}
 {% include fname %}
 {% endif %}
-
-{{ email.is_fp }}
 <script src="{% static 'js/warnings.js' %}"></script>
 <!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
 
@@ -182,7 +180,7 @@
         const link_url = $('a[id='+link_id+']').attr('href');
         disable_link(link_id);
         add_email_link_class(link_id);
-        load_warning(n,link_id,link_url);
+        load_warning(n,link_id,link_url,fa,td);
     }
     initListeners(eid);
 </script>

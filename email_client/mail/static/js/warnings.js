@@ -123,18 +123,18 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
     
     // adjust plink
     let link_hovered = false;
-    let raw_link = _this.attr('href');
-    // parse out plink components
-    let url = new URL(raw_link);
-    let hostname = url.hostname.split('www.');
-    let protocol = url.protocol + '//www.';
-    if (hostname.length > 1){
-        protocol += hostname[0];
-        hostname = hostname[1];
-    }
-    else {
-        hostname = hostname[0]; // hostname is always an array
-    }
+    // let raw_link = _this.attr('href');
+    // // parse out plink components
+    // let url = new URL(raw_link);
+    // let hostname = url.hostname.split('www.');
+    // let protocol = url.protocol + '//www.';
+    // if (hostname.length > 1){
+    //     protocol += hostname[0];
+    //     hostname = hostname[1];
+    // }
+    // else {
+    //     hostname = hostname[0]; // hostname is always an array
+    // }
 
     // SPACING OUT LINK IS CONDITIONAL FOR TESTING
     // if (group_num % 2 > 0){
@@ -145,12 +145,12 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
 
     // DOMAIN ONLY AND WHOLE LINK CLICKABLE
     // create spans for URL components
-    let pre_domain = '<span class="pre-domain"></span>';
-    let main_domain = '<span class="main-domain"></span>';
-    let post_domain = '<span class="post-domain"></span>';
+    // let pre_domain = '<span class="pre-domain"></span>';
+    // let main_domain = '<span class="main-domain"></span>';
+    // let post_domain = '<span class="post-domain"></span>';
     
     // populate plink with spans for URL components
-    $('a.warning-link').html(pre_domain+main_domain+post_domain);
+    // $('a.warning-link').html(pre_domain+main_domain+post_domain);
 
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
     // apply browser style highlighting
@@ -171,12 +171,12 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
     // END TESTING
 
     // populate spans with text from plink components
-    let pathname = url.pathname;
-    let search_params = url.search;
-    $('span.pre-domain').text(protocol);
-    $('span.main-domain').text(hostname);
-    $('span.post-domain').text(pathname + search_params);
-    $('a.warning-link').attr('href', raw_link)
+    // let pathname = url.pathname;
+    // let search_params = url.search;
+    // $('span.pre-domain').text(protocol);
+    // $('span.main-domain').text(hostname);
+    // $('span.post-domain').text(pathname + search_params);
+    $('a.warning-link')
         .attr('target','_blank')
         .attr('onclick','return false'); // disable the warning-link by default
     // START WARNING DEPLOYMENT
@@ -212,7 +212,7 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
         //     time_delay = 3;
         // }
         //parseInt(p_id);
-        $('span.secsRemaining').text(time_delay);
+        $('span.secsRemaining').text(String(time_delay) );
         if (fa){
             final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
         }
@@ -220,6 +220,10 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
             final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
         }
     }
+    // let rect = $('a.email-link').getBoundingClientRect();
+    // var x = rect.left;
+    // var y = rect.top;
+    // console.log(rect);
 
     _this.attr('data-toggle', 'tooltip');
     // DO IFRAME CLICKJACKING STUFF 
@@ -331,5 +335,29 @@ function addHoverListener(_this, emailid) {
         if (time >= hover_time_limit) {
           createLog(_this, 'hover', emailid, time);
         }
+    });
+}
+
+
+// position tooltip once everything loads
+window.onload = function(){
+    let offset = $('a.email-link').position();
+    let height = $('a.email-link').outerHeight();
+    let width = $('a.email-link').outerWidth();
+    let wWidth = $('.tooltip').outerWidth();
+    var top = offset.top;
+    var right = offset.left;
+    console.log(offset);
+    // $('.tooltip').css({
+    //     // 'position': 'absolute',
+    //     'right': offset.left,
+    //     'top': offset.top,
+    // });
+    let pos = document.getElementsByClassName('email-link')[0].getBoundingClientRect();
+    console.log(pos);
+    $('.tooltip').css({
+        // 'position': 'absolute',
+        'top': pos.bottom,
+        'left': pos.left - 0.5 * (wWidth - width),
     });
 }
