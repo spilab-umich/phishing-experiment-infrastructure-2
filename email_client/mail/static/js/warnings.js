@@ -117,7 +117,7 @@ function adjust_link(p_id,p_url){
     _this.attr('href', p_url);
 }
 
-function load_warning(group_num,p_id,for_link){
+function load_warning(group_num,p_id,for_link,fa,time_delay){
     // copy plink
     let _this = $('.email-container a#'+p_id);
     
@@ -150,7 +150,7 @@ function load_warning(group_num,p_id,for_link){
     let post_domain = '<span class="post-domain"></span>';
     
     // populate plink with spans for URL components
-    $('a.warning-link').prepend(pre_domain,main_domain,post_domain);
+    $('a.warning-link').html(pre_domain+main_domain+post_domain);
 
     // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
     // apply browser style highlighting
@@ -181,36 +181,36 @@ function load_warning(group_num,p_id,for_link){
         .attr('onclick','return false'); // disable the warning-link by default
     // START WARNING DEPLOYMENT
     // initialize time_delay
-    let time_delay = -1;
+    // let time_delay = -1;
     // set the text in the subheader
     let final_subhead_text = '';
     // create boolean for focused attention branching (groups 1, 2, 3)
-    let fa = (group_num % 7) < 4;
+    // let fa = (group_num % 7) < 4;
      // enable links for warnings with no time delay
     if ([1,4].includes(group_num)){
-        time_delay = 0;
+        // time_delay = 0;
         if (!fa) {
             make_email_link_clickable(for_link,p_id);
-            final_subhead_text = 'Please check the link carefully before proceeding.';
+            // final_subhead_text = 'Please check the link carefully before proceeding.';
         }
         else {
-            final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
+            // final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
         }
         // enable original link in focused attention
         make_warning_link_clickable(for_link,p_id);
-        $('span.timer').text(final_subhead_text);
+        // $('span.timer').text(final_subhead_text);
            // add on-click listener to warning link cj span for no FA groups
     }
     // handle warnings with time delay
     else {
         disable_link($('a.warning-link')); //this adds the no cursor and changes the link ID
         disable_link($('a.email-link'));
-        if ([2,5].includes(group_num)){
-            time_delay = 2
-        }
-        else {
-            time_delay = 3;
-        }
+        // if ([2,5].includes(group_num)){
+        //     time_delay = 2
+        // }
+        // else {
+        //     time_delay = 3;
+        // }
         //parseInt(p_id);
         $('span.secsRemaining').text(time_delay);
         if (fa){

@@ -210,7 +210,8 @@ def return_emails(request, email_id, page="inbox"):
         # len_emails = len(emails)
         # using count() does not hit the database
         len_emails = emails.count()
-        read_status = bool(email.read)
+        read_status = email.read
+        print(read_status)
         this_id = email.pk
         prev_email = -1
         next_email = -1
@@ -234,22 +235,11 @@ def return_emails(request, email_id, page="inbox"):
         email_fname = 'mail/emails/' + str(email_id) + '.html'
 
         # If unread, change to read, decrement unread_count. 
-        if read_status:
+        if not read_status:
             Mail.objects.filter(user=user, ref=email_id).update(read=True)
             User.objects.filter(username=user.username).update(unread_count=F("unread_count")-1)
             user.unread_count -= 1
-        # hard-coded for now
-        warning_fname = 'mail/warnings/' + str(1) + '.html'
 
-        warning = { }
-
-        '''Provide warning paramters if phish or false positive based on group num
-        - focused attention
-        - time delay
-        - initial warning subtext
-        - phishing url
-        - phishing ID
-        '''
         context = {
             'email': email,
             'user': user,
@@ -257,16 +247,47 @@ def return_emails(request, email_id, page="inbox"):
             'next_email': next_email, ## Ref num of the next email if available
             'prev_email': prev_email,  ## Ref num of the previous email if available
             'order_num': this_index+1,  ## This indicates an email is "N of 10",
-            ## ADD TARGET LINK BEFORE THIS
             'num_emails': len_emails,
             'page': page,
-            'fname': warning_fname,
         }
+        # Add warning info to context if a warning should be displayed
+        if (email.is_phish | email.is_fp) & (user.group_num > 0):
+            context['warning'] = build_warning_paramters(user.group_num)
+            context ['fname'] = 'mail/warnings/' + str(1) + '.html'
         return context
 
 def build_warning_paramters(group_num):
-    if group_num == 0:
-
+    '''Provide warning paramters if phish or false positive based on group num
+        - focused attention
+        - time delay
+        - initial warning subtext
+    '''
+    if (group_num in [1,4]):
+        time_delay = 0
+    else:
+        if (group_num in [2,5]):
+            time_delay = 1
+        elif (group_num in [3,6]):
+            time_delay = 2
+        else:
+            time_delay = -100
+        subtext = 'Please check the link carefully before proceeding. Link active in <span class="secsRemaining">'+str(time_delay)+'</span> sec(s)'
+    
+    if (group_num < 3):
+        focused_attention = False
+        if not time_delay:
+            subtext = 'Please check the link carefully before proceeding.'
+    else:
+        focused_attention = True
+        if not time_delay:
+            subtext = 'Please check the link carefully before proceeding. The link in the warning is active.'
+    warning_context = {
+        'time_delay': time_delay,
+        'subtext': subtext,
+        'focused_attention': focused_attention,
+    }
+    return warning_context
+    
 
 
 #these functions display individual emails in the different pages

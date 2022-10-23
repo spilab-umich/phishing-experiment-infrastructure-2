@@ -1,4 +1,5 @@
 import os, django, sys, json, datetime, email, mimetypes, re
+from bs4 import BeautifulSoup
 # from email.parser import Parser, BytesParser
 # from email import policy
 from html.parser import HTMLParser 
@@ -7,7 +8,7 @@ from pathlib import Path
 # from bs4 import BeautifulSoup
 # import eml_parser
 config_path = Path("config/") # Before we append the file path, grab the path to the config file
-email_folder = config_path / Path("raw_emails/")
+email_folder = config_path / Path("raw_eml/")
 
 sys.path.append('email_client/') # Change path so email_client.settings will work below
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
@@ -37,7 +38,7 @@ n_of_groups = 7
 # Load email metadata
 ## MOST RECENT EMAILS SHOULD GO FIRST
 json_fname = "emails.json"
-open_json_file = config_path / Path("emails.json")
+open_json_file = config_path / Path(json_fname)
 
 with open(open_json_file) as f:
     d = json.load(f)
@@ -53,17 +54,17 @@ from random import shuffle
 
 ## Maybe Keep This ##
 # Load warning metadata
-warning_json_fname = 'phish_domains.json'
-open_warning_json_file = config_path / warning_json_fname
+# warning_json_fname = 'phish_domains.json'
+# open_warning_json_file = config_path / warning_json_fname
 
-with open(open_warning_json_file) as f:
-    d = json.load(f)
+# with open(open_warning_json_file) as f:
+#     d = json.load(f)
 
-warning_data = []
-for item in d['phish_domains']:
-    warning_data.append(item)
+# warning_data = []
+# for item in d['phish_domains']:
+#     warning_data.append(item)
 
-phish_email_ids = [x['email_id'] for x in warning_data]
+# phish_email_ids = [x['email_id'] for x in warning_data]
 # print(phish_email_ids)
 # exit()
 list_of_p_domains = {
@@ -84,7 +85,7 @@ def read_emails():
     
     if emails is None:
         # Make sure adjustments have been made to emails, e.g., link ids, phishing URLs, etc
-        print("No emails found. Please place .eml files into the config/raw_emails folder")
+        print("No emails found. Please place .eml files into the config/raw_eml folder")
         exit()
     # Create an empty list to store email objects
     results = []
@@ -119,45 +120,6 @@ def read_emails():
             # Useful lines
             # print(part.get_content_maintype())
 
-            # email.iterators._structure(msg)
-            ''' Write emails to HTML file '''
-            for part in msg.walk():
-                if part.get_content_maintype() == 'multipart':
-                    continue
-                if part.get_content_subtype() != 'html':
-                    continue
-                if part.get_content_maintype() == 'text':
-                    with open(Path('email_client/mail/templates/mail/emails') / Path(str(i)+'.html'), 'wb') as fol:
-                        payload = part.get_payload(decode=True)
-
-                        #DO HTML-REQUESTS STUFF HERE
-
-                        ## ADD IDS
-
-                        fol.write(payload)
-                        
-                        ### I LEFT OFF USING LXML LIBRARY TO PARSE OUT A TEXT PREVIEW ###
-                        
-                        # parser = lxml.etree.HTMLParser()
-                        # tree = lxml.etree.parse(payload, parser)
-                        # result = etree.tostring(tree.getroot(), pretty_print=True, method="html")
-                        # print(result)
-                        # exit()
-                        # page = lxml.html.document_fromstring(str(payload)).text_content()
-                        # print(page)
-
-
-                        # parser = MyHTMLParser()
-                        # parser.feed(str(payload))
-                        # preview = parser.get_preview()                        
-                        # test = preview.replace("<[^>]*>","")
-                        # print(test[:150])
-                        # exit()
-                            # print("parsing failed")
-                            # print(type(test)) # comes back as bytes
-                            # print(payload)
-                        # exit()
-                        # preview = h.handle
             ## Matches the .eml file to the correct email metadata
             ## Search email_data for the key value pair that matches current email_id
             email_metadata = next( item for item in email_data if item['email_id'] == i)
@@ -170,10 +132,42 @@ def read_emails():
                 'num_links': email_metadata['num_links'],
                 'phish_id': email_metadata['link_id'],
                 'preview': email_metadata['preview'],
+                'is_phish': email_metadata['is_phish']
             }
             results.append(email_to_add)
+
+            # email.iterators._structure(msg)
+            ''' Write emails to HTML file '''
+            for part in msg.walk():
+                if part.get_content_maintype() == 'multipart':
+                    continue
+                if part.get_content_subtype() != 'html':
+                    continue
+                if part.get_content_maintype() == 'text':
+                    with open(config_path / Path('raw_html') / Path(str(i)+'.html'), 'w', encoding='utf-8') as fol:
+                        payload = part.get_payload(decode=True)
+
+                        # Add ids to links and change the phishing url
+                        rev_payload = revise_html(payload, email_to_add)
+                        fol.write(str(rev_payload))
             i+=1
     return results
+
+def revise_html(html, email):
+    email_id = email['email_id']
+    p_link = email['phish_id']
+    is_phish = email['is_phish']
+    # domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
+    # shuffle(domain_manip_available)
+    soup = BeautifulSoup(html, 'html.parser')
+    for num, tag in enumerate(soup.find_all('a')):
+        tag['id'] = (num+1) * 10
+        # check if the current link id  matches the phish_id of the email
+        if ((p_link == tag['id']) & is_phish):
+        #     # pick a shuffled domain manipulation wrt the email_id
+            tag['href'] = '{{email.p_url}}'
+    return soup
+
 
 all_emails = read_emails()
 
@@ -188,8 +182,8 @@ def order_emails(emails):
             - All 3 phishing warnings appear in the first n-2 emails
             - The last 2 emails are benign '''
 
-    phishing_emails = [x for x in all_emails if x['email_id'] in phish_email_ids]
-    benign_emails = [x for x in all_emails if x['email_id'] not in phish_email_ids]
+    phishing_emails = [x for x in all_emails if x['is_phish']]
+    benign_emails = [x for x in all_emails if not x['is_phish']]
     shuffle(benign_emails)    
     first_emails = phishing_emails + benign_emails[:-2]
     shuffle(first_emails)
@@ -198,10 +192,10 @@ def order_emails(emails):
     # return shuffle(emails)
 
 
+# exit()
 
 
-
-emails_to_add = order_emails(all_emails)
+# emails_to_add = order_emails(all_emails)
 
 # These are the dates each email displayed in the inbox
 # time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', 'Dec 17', 'Dec 18', 'Dec 23']
@@ -228,7 +222,6 @@ usernameNumbers = rd.sample(range(0,9999), n_users)
 
 # def initialize_warnings(group_num):
 
-
 #initialize users
 for i in range(0, n_users):
     # shuffle(emails_to_add)
@@ -246,6 +239,20 @@ for i in range(0, n_users):
     # This loop decrements so the dates append in the proper order
     # First email should have the last time_sent
     # j=9 
+    dates = [
+        'Wed, 24 Oct 2021 10:19:30 -0700 (PDT)',
+        'Wed, 25 Oct 2021 7:19:30 -0700 (PDT)',
+        'Wed, 25 Oct 2021 8:19:30 -0700 (PDT)',
+        'Wed, 25 Oct 2021 9:19:30 -0700 (PDT)',
+        'Wed, 26 Oct 2021 10:19:30 -0700 (PDT)',
+        'Wed, 26 Oct 2021 7:19:30 -0700 (PDT)',
+        'Wed, 26 Oct 2021 9:19:30 -0700 (PDT)',
+        'Wed, 26 Oct 2021 8:19:30 -0700 (PDT)',
+        'Wed, 26 Oct 2021 10:19:30 -0700 (PDT)',
+        'Wed, 27 Oct 2021 1:19:30 -0700 (PDT)',
+        'Wed, 27 Oct 2021 2:19:30 -0700 (PDT)',
+        'Wed, 27 Oct 2021 10:19:30 -0700 (PDT)',
+    ]
     for email in emails_to_add:
         j = 1
         new = Mail()
@@ -259,7 +266,7 @@ for i in range(0, n_users):
         # new.preview = email['preview']
         new.preview = "Test preview for now"
         #Adjust date
-        UTCdate = datetime.datetime.strptime(email['date'], '%a, %d %b %Y %H:%M:%S %z')
+        UTCdate = datetime.datetime.strptime(dates.pop(), '%a, %d %b %Y %H:%M:%S %z')
         readible_date = datetime.datetime.strftime(UTCdate, '%m/%d/%y')
         # print(readible_date)
         new.time_sent = readible_date
@@ -270,7 +277,7 @@ for i in range(0, n_users):
         new.ref = email['email_id']
         # new.num_links = email['num_links']
         # print(email['ref'])
-        if email['email_id'] in phish_email_ids:
+        if email['is_phish']:
             new.is_phish = True 
             new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
         elif ((num_emails - 2) == j):
@@ -282,7 +289,6 @@ for i in range(0, n_users):
 
 # Create a user to login into
 # This helps with checking the inbox
-email_counter = 1
 for i in range(0, n_test_users):
     # shuffle(emails_to_add)
     user = User()
@@ -296,7 +302,22 @@ for i in range(0, n_test_users):
     user.save()
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
-    for email in emails_to_add:
+    dates = [
+        'Wed, 24 Oct 2021 10:19:30 -0700',
+        'Wed, 25 Oct 2021 7:19:30 -0700',
+        'Wed, 25 Oct 2021 8:19:30 -0700',
+        'Wed, 25 Oct 2021 9:19:30 -0700',
+        'Wed, 26 Oct 2021 10:19:30 -0700',
+        'Wed, 26 Oct 2021 7:19:30 -0700',
+        'Wed, 26 Oct 2021 9:19:30 -0700',
+        'Wed, 26 Oct 2021 8:19:30 -0700',
+        'Wed, 26 Oct 2021 10:19:30 -0700',
+        'Wed, 27 Oct 2021 1:19:30 -0700',
+        'Wed, 27 Oct 2021 2:19:30 -0700',
+        'Wed, 27 Oct 2021 10:19:30 -0700',
+    ]
+    email_counter = 1
+    for email in order_emails(all_emails):
         new = Mail()
         new.user = user
         new.sender = email['from'][0]
@@ -305,18 +326,19 @@ for i in range(0, n_test_users):
         # new.preview = email['preview']
         new.preview = email['preview']
         #Adjust date for readability
-        UTCdate = datetime.datetime.strptime(email['date'], '%a, %d %b %Y %H:%M:%S %z')
+        UTCdate = datetime.datetime.strptime(dates.pop(), '%a, %d %b %Y %H:%M:%S %z')
         readible_date = datetime.datetime.strftime(UTCdate, '%m/%d/%y')
         new.time_sent = readible_date
         new.subject = email['subject']
         new.ref = email['email_id']
         new.phish_id = email['phish_id']
         new.num_links = email['num_links']
-        if email['email_id'] in phish_email_ids:
+        new.phish_id = email['phish_id']
+        if email['is_phish']:
             new.is_phish = True 
             # print(new.phish_id)
             new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
-        elif (num_emails - 1) == email_counter:
+        if (num_emails - 1) == email_counter:
             new.is_fp = True
         new.save()
         email_counter+=1

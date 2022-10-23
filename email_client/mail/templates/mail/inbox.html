@@ -57,7 +57,11 @@
     <div class='container-fluid'>
      {% for email in emails %}
         <!-- <div class="{{email.read}} row table-inbox justify-content-between d-none d-sm-none d-md-none d-lg-flex"> -->
-        <div class="{{email.read}} row table-inbox justify-content-between">
+        {% if email.read %}
+            <div class="read row table-inbox justify-content-between">
+        {% else %}
+            <div class="unread row table-inbox justify-content-between">
+        {% endif %}
             <div class="col-1 text-left">
                     <input type="checkbox" class="mail-checkbox" disabled> 
                     <i class="fa fa-star"></i>
