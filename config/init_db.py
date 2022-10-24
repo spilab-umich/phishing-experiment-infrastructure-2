@@ -127,7 +127,7 @@ def read_emails():
                 # 'from' item needs to be split into sender and sender address
                 'from': sender,
                 'subject': msg['subject'],
-                'date': msg['date'],
+                # 'date': msg['date'],
                 'email_id': i,
                 'num_links': email_metadata['num_links'],
                 'phish_id': email_metadata['link_id'],
@@ -303,18 +303,18 @@ for i in range(0, n_test_users):
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
     dates = [
-        'Wed, 24 Oct 2021 10:19:30 -0700',
-        'Wed, 25 Oct 2021 7:19:30 -0700',
-        'Wed, 25 Oct 2021 8:19:30 -0700',
-        'Wed, 25 Oct 2021 9:19:30 -0700',
-        'Wed, 26 Oct 2021 10:19:30 -0700',
-        'Wed, 26 Oct 2021 7:19:30 -0700',
-        'Wed, 26 Oct 2021 9:19:30 -0700',
-        'Wed, 26 Oct 2021 8:19:30 -0700',
-        'Wed, 26 Oct 2021 10:19:30 -0700',
-        'Wed, 27 Oct 2021 1:19:30 -0700',
-        'Wed, 27 Oct 2021 2:19:30 -0700',
-        'Wed, 27 Oct 2021 10:19:30 -0700',
+        'Wed, 24 Oct 2022 10:19:30 -0700',
+        'Wed, 25 Oct 2022 7:19:30 -0700',
+        'Wed, 25 Oct 2022 8:19:30 -0700',
+        'Wed, 25 Oct 2022 9:19:30 -0700',
+        'Wed, 26 Oct 2022 10:19:30 -0700',
+        'Wed, 26 Oct 2022 7:19:30 -0700',
+        'Wed, 26 Oct 2022 9:19:30 -0700',
+        'Wed, 26 Oct 2022 8:19:30 -0700',
+        'Wed, 26 Oct 2022 10:19:30 -0700',
+        'Wed, 27 Oct 2022 1:19:30 -0700',
+        'Wed, 27 Oct 2022 2:19:30 -0700',
+        'Wed, 27 Oct 2022 10:19:30 -0700',
     ]
     email_counter = 1
     for email in order_emails(all_emails):

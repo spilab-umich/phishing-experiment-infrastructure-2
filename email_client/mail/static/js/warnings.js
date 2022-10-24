@@ -4,17 +4,6 @@ let hover_time_limit = 0;
 let warning_shown = false;
 let warning_shown_text = 'warning-shown';
 
-// automatically assign id attributes to all links in an email
-function id_links(){
-    let i = 1;
-    $('.email-container a').each(function(){
-        $(this).attr('id', i*10);
-        i++;
-        // open all email links in a new window
-        $(this).attr('target',  '_blank');
-    });
-}
-
 function createLog(link, action, emailid, hover_time){
     let link_id = 0, link_url;
     if (hover_time==undefined) hover_time= -1;
@@ -60,16 +49,11 @@ function disable_link(link){
         .css('cursor','not-allowed');
 }
 
-function addTemplate(_node, template){
-    _node.after(template);
-}
-
 // adjusts the cursor, changes the ID
-// takes an anchor tag object and two integer IDs
-function enable_link(link, link_id, p_loc){ // 
+// takes an anchor tag object and an integer link ID
+function enable_link(link){ // 
     link.css('cursor','pointer')
-        // all live phishing links have id = -100
-        .attr('id', link_id + p_loc); // , email_id+p_id);
+        .attr('id', parseInt(link.attr('id')) + 1); // , email_id+p_id);
 }
 
 // takes a string anchor tag ID
@@ -77,108 +61,38 @@ function add_email_link_class(email_link_id){
     // let email_span = '<span id="em-added"></span>';
     let _this = $('.email-container a#'+email_link_id);
     _this.addClass('email-link');
-
-    // place cj span around email-link
-    // $(window).on("load",function(){
-    //     $(_this).prepend(email_span)
-    //         // .css('position','relative')
-    //         .css('z-index',1);
-    //     $('span#em-added').css({
-    //         height: _this.height(),
-    //         width: _this.width(),
-    //         zIndex: 2,
-    //         opacity: 0,
-    //         position: "absolute",
-    //     });
-    // });
 }
 
 // add click listener to cj span on warning link
-function make_warning_link_clickable(for_link, p_id){
+function make_warning_link_clickable(for_link){
     $('a.warning-link').on('click',function(){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
-    enable_link($('a.warning-link'),parseInt(p_id),2);
+    enable_link($('a.warning-link'));
+    console.log('warning link clickable');
 }
 
 // add click listener to cj span on email link
-function make_email_link_clickable(for_link, p_id){
+function make_email_link_clickable(for_link){
     $('a.email-link').on('click',function(){
         let win = window.open(for_link,"_blank");
         // win.focus();
     });
-    enable_link($('a.email-link'),parseInt(p_id),1);
+    enable_link($('a.email-link'));
+    console.log('email link clickable');
 }
 
-// changes href of desired link to the selected phishing link and disable the link
-function adjust_link(p_id,p_url){
-    let _this = $('.email-container a#'+p_id);
-    _this.attr('href', p_url);
-}
-
-function load_warning(group_num,p_id,for_link,fa,time_delay){
+function load_warning(p_id,for_link,fa,time_delay){
     // copy plink
     let _this = $('.email-container a#'+p_id);
     
     // adjust plink
     let link_hovered = false;
-    // let raw_link = _this.attr('href');
-    // // parse out plink components
-    // let url = new URL(raw_link);
-    // let hostname = url.hostname.split('www.');
-    // let protocol = url.protocol + '//www.';
-    // if (hostname.length > 1){
-    //     protocol += hostname[0];
-    //     hostname = hostname[1];
-    // }
-    // else {
-    //     hostname = hostname[0]; // hostname is always an array
-    // }
-
-    // SPACING OUT LINK IS CONDITIONAL FOR TESTING
-    // if (group_num % 2 > 0){
-    //     hostname = hostname.split('').join(' '); // separate the characters in the host  
-    // }
-
-    // END TESTING
-
-    // DOMAIN ONLY AND WHOLE LINK CLICKABLE
-    // create spans for URL components
-    // let pre_domain = '<span class="pre-domain"></span>';
-    // let main_domain = '<span class="main-domain"></span>';
-    // let post_domain = '<span class="post-domain"></span>';
-    
-    // populate plink with spans for URL components
-    // $('a.warning-link').html(pre_domain+main_domain+post_domain);
-
-    // BROWSER AND BUTTON STYLE HIGHLIGHTING FOR TESTING
-    // apply browser style highlighting
-    // if ([1,2,3].includes(group_num)){
-    //     $('span.main-domain').css('color','#4F4F4F');
-    //     $('span.post-domain').css('opacity',.6);
-    //     $('span.pre-domain').css('opacity',.6);
-    // }
-    // // apply button style highlighting
-    // else {
-    //     $('span.main-domain').css('border-radius','15px')
-    //         .css('background-color','#E8E8F0')
-    //         .css('font-weight','bold')
-    //         .css('padding','.2rem .3rem');
-    //     $('span.post-domain').css('opacity',.6);
-    //     $('span.pre-domain').css('opacity',.6);
-    // }
-    // END TESTING
-
-    // populate spans with text from plink components
-    // let pathname = url.pathname;
-    // let search_params = url.search;
-    // $('span.pre-domain').text(protocol);
-    // $('span.main-domain').text(hostname);
-    // $('span.post-domain').text(pathname + search_params);
     $('a.warning-link')
         .attr('target','_blank')
-        .attr('onclick','return false'); // disable the warning-link by default
+        .attr('onclick','return false')
+        .attr('id',parseInt(p_id)+4); // disable the warning-link by default
     // START WARNING DEPLOYMENT
     // initialize time_delay
     // let time_delay = -1;
@@ -187,17 +101,18 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
     // create boolean for focused attention branching (groups 1, 2, 3)
     // let fa = (group_num % 7) < 4;
      // enable links for warnings with no time delay
-    if ([1,4].includes(group_num)){
+     if (td <= 0){
+        console.log('time delay more than zero!')        
         // time_delay = 0;
         if (!fa) {
-            make_email_link_clickable(for_link,p_id);
+            make_email_link_clickable(for_link);
             // final_subhead_text = 'Please check the link carefully before proceeding.';
         }
         else {
             // final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
         }
         // enable original link in focused attention
-        make_warning_link_clickable(for_link,p_id);
+        make_warning_link_clickable(for_link);
         // $('span.timer').text(final_subhead_text);
            // add on-click listener to warning link cj span for no FA groups
     }
@@ -205,60 +120,12 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
     else {
         disable_link($('a.warning-link')); //this adds the no cursor and changes the link ID
         disable_link($('a.email-link'));
-        // if ([2,5].includes(group_num)){
-        //     time_delay = 2
-        // }
-        // else {
-        //     time_delay = 3;
-        // }
-        //parseInt(p_id);
         $('span.secsRemaining').text(String(time_delay) );
-        if (fa){
-            final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
-        }
-        else {
-            final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
-        }
     }
-    // let rect = $('a.email-link').getBoundingClientRect();
-    // var x = rect.left;
-    // var y = rect.top;
-    // console.log(rect);
+
 
     _this.attr('data-toggle', 'tooltip');
-    // DO IFRAME CLICKJACKING STUFF 
-    // how to do iframe; set height and width to a.warning-link.height() and .length()
 
-    // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
-    // to place a span over this link, you have to place the span after the image has loaded (on document ready)
-    // if (for_link.slice(-1) == "1"){
-    //     let offset = _this.offset();
-    //     // let offset2 = $('span#em-added').offset();
-    //     // console.log(offset);
-    //     // console.log(offset2);
-    //     // console.log(offset.left-offset2.left);
-    //     $(window).on("load", function(){
-    //         $('span#em-added').css({
-    //             left: offset.left,
-    //         });
-    //     });
-    // }
-
-    //     // in Sprint's email, the dimensions of the anchor tag are dynamic based on the size of the image
-    //     // to place a span over this link, you have to place the span after the image has loaded (on document ready)
-    //     if (for_link.slice(-1) == "1"){
-    //         let offset = _this.offset();
-    //         // let offset2 = $('span#em-added').offset();
-    //         // console.log(offset);
-    //         // console.log(offset2);
-    //         // console.log(offset.left-offset2.left);
-    //         $(window).on("load", function(){
-    //             $('span#em-added').css({
-    //                 left: offset.left,
-    //             });
-    //         });
-    //     }
-    // }
     //initialize on-hover interactivity
     $("a[data-toggle='tooltip']")
         .on('mouseenter', function(){
@@ -279,9 +146,13 @@ function load_warning(group_num,p_id,for_link,fa,time_delay){
                     // enable warning link after time delay, including email link for non-FA
                     if (time_delay <= 0){                       
                         if (!fa){
-                            make_email_link_clickable(for_link,p_id);
+                            final_subhead_text = 'Please check the link carefully before proceeding. The link is now active.';
+                            make_email_link_clickable(for_link);
                         }
-                        make_warning_link_clickable(for_link,p_id);
+                        else {
+                            final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is now active.';
+                        }
+                        make_warning_link_clickable(for_link);
                         $('span.timer').text(final_subhead_text);
                         clearInterval(countdownToClick);
                     }

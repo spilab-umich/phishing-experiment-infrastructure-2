@@ -261,18 +261,18 @@ def build_warning_paramters(group_num):
         - time delay
         - initial warning subtext
     '''
+    subtext = ''
     if (group_num in [1,4]):
         time_delay = 0
     else:
         if (group_num in [2,5]):
-            time_delay = 1
-        elif (group_num in [3,6]):
             time_delay = 2
+        elif (group_num in [3,6]):
+            time_delay = 3
         else:
             time_delay = -100
-        subtext = 'Please check the link carefully before proceeding. Link active in <span class="secsRemaining">'+str(time_delay)+'</span> sec(s)'
     
-    if (group_num < 3):
+    if (group_num < 4):
         focused_attention = False
         if not time_delay:
             subtext = 'Please check the link carefully before proceeding.'
