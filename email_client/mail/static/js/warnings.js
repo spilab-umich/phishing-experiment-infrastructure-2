@@ -70,7 +70,6 @@ function make_warning_link_clickable(for_link){
         // win.focus();
     });
     enable_link($('a.warning-link'));
-    console.log('warning link clickable');
 }
 
 // add click listener to cj span on email link
@@ -80,19 +79,22 @@ function make_email_link_clickable(for_link){
         // win.focus();
     });
     enable_link($('a.email-link'));
-    console.log('email link clickable');
 }
 
-function load_warning(p_id,for_link,fa,time_delay){
+function load_warning(p_id,for_link,fa,time_delay,fp){
     // copy plink
     let _this = $('.email-container a#'+p_id);
-    
     // adjust plink
     let link_hovered = false;
     $('a.warning-link')
         .attr('target','_blank')
         .attr('onclick','return false')
         .attr('id',parseInt(p_id)+4); // disable the warning-link by default
+    if (fp){
+        let fp_link = document.getElementsByClassName('warning-link')[0];
+        fp_link.innerHTML = _this.attr('href');
+        fp_link.href = _this.attr('href');
+    }
     // START WARNING DEPLOYMENT
     // initialize time_delay
     // let time_delay = -1;
@@ -101,8 +103,7 @@ function load_warning(p_id,for_link,fa,time_delay){
     // create boolean for focused attention branching (groups 1, 2, 3)
     // let fa = (group_num % 7) < 4;
      // enable links for warnings with no time delay
-     if (td <= 0){
-        console.log('time delay more than zero!')        
+     if (td <= 0){     
         // time_delay = 0;
         if (!fa) {
             make_email_link_clickable(for_link);
