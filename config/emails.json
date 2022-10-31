@@ -29,7 +29,7 @@
         "preview": "As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our &quot;new normal&quot; looks like.",
         "email_id": 4,
         "num_links": 3,
-        "link_id": 20,
+        "link_id": 70,
         "is_phish": false
         },
         {
@@ -45,12 +45,12 @@
         "preview":"Short and popular courses, just for you.",
         "email_id": 6,
         "num_links": 3,
-        "link_id": 30,
+        "link_id": 130,
         "is_phish": false
         },
         {
         "sender": "Google",
-        "preview": "Thanks for signing into Gogle on your Windows device. Please confirm your Google Account settings are still right for you.",
+        "preview": "Thanks for signing into Google on your Windows device. Please confirm your Google Account settings are still right for you.",
         "email_id": 7,
         "num_links": 3,
         "link_id": 20,
@@ -61,7 +61,7 @@
         "preview": "Someone has accepted your gift. You can see all of your sent and unredeemed gifts on your Gift Inventory page.",
         "email_id": 8,
         "num_links": 3,
-        "link_id": 10,
+        "link_id": 20,
         "is_phish": false
         },
         {
@@ -69,7 +69,7 @@
         "preview": "TIME'S RUNNING OUT. Renew now for 12 more months of student deals, exclusive opportunities and UNiDAYS FUTURES.",
         "email_id": 9,
         "num_links": 3,
-        "link_id": 30,
+        "link_id": 20,
         "is_phish": false
         },
         {
