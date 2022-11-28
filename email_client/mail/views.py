@@ -7,8 +7,12 @@ from datetime import datetime, timezone
 from django.core import serializers
 from django.db import connection, connections
 from django.views.decorators.clickjacking import xframe_options_exempt
-import threading, time, logging, sys, string, random as rd
+import threading, time, logging, sys, string, os, random as rd
 
+here = os.path.dirname(__file__)
+client_path = os.path.join(here, 'client_logs.log')
+server_path = os.path.join(here, 'server_logs.log')
+error_path = os.path.join(here, 'error_logs.log')
 
 redirect_cases = {
     1: 'https://www.sprint.com/',
@@ -20,21 +24,21 @@ redirect_cases = {
 # Set client ajax logger
 client_logger = logging.getLogger('mail.client')
 client_logger.setLevel(logging.INFO)
-client_fh = logging.FileHandler('client_logs.log')
+client_fh = logging.FileHandler(client_path)
 client_fh.setLevel(logging.INFO)
 client_logger.addHandler(client_fh)
 
 # Set server request logger
 server_logger = logging.getLogger('mail.server')
 server_logger.setLevel(logging.INFO)
-server_fh = logging.FileHandler('server_logs.log')
+server_fh = logging.FileHandler(server_path)
 server_fh.setLevel(logging.INFO)
 server_logger.addHandler(server_fh)
 
 # Set request error logger
 error_logger = logging.getLogger('mail.error')
 error_logger.setLevel(logging.INFO)
-error_fh = logging.FileHandler('error_logs.log')
+error_fh = logging.FileHandler(error_path)
 error_logger.addHandler(error_fh)
 
 # Bring up the login page
