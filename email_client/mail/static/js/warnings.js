@@ -89,8 +89,10 @@ function load_warning(p_id,for_link,fa,time_delay,fp){
     $('a.warning-link')
         .attr('target','_blank')
         .attr('onclick','return false')
-        .attr('id',parseInt(p_id)+4); // disable the warning-link by default
+        .attr('id',parseInt(p_id)+4) // disable the warning-link by default
+        .attr('href', _this.attr('href'));
     if (fp){
+        // add fp link to warning-link
         let fp_link = document.getElementsByClassName('warning-link')[0];
         fp_link.innerHTML = _this.attr('href');
         fp_link.href = _this.attr('href');
