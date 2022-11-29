@@ -154,6 +154,7 @@ def read_emails():
     return results
 
 def revise_html(html, email):
+    """Add Ids (#) to the selected links in each HTML file"""
     email_id = email['email_id']
     p_link = email['phish_id']
     is_phish = email['is_phish']

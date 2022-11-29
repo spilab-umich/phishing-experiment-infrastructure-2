@@ -213,12 +213,12 @@ function addHoverListener(_this, emailid) {
 
 // position tooltip once everything loads
 window.onload = function(){
-    let offset = $('a.email-link').position();
-    let height = $('a.email-link').outerHeight();
+    // let offset = $('a.email-link').position();
+    // let height = $('a.email-link').outerHeight();
     let width = $('a.email-link').outerWidth();
     let wWidth = $('.tooltip').outerWidth();
-    var top = offset.top;
-    var right = offset.left;
+    // var top = offset.top;
+    // var right = offset.left;
     // console.log(offset);
     // $('.tooltip').css({
     //     // 'position': 'absolute',
