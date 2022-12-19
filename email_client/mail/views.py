@@ -64,19 +64,19 @@ def index(request):
 
 # These functions return the appropriate inbox view (inbox, flagged, approved, trash)
 #~mail/flagged
-def flagged_folder(request):
-    if not request.user.is_authenticated:
-        return redirect('mail:index')
-    else:
-        user = request.user
-        collect_log(request)
-        emails = Mail.objects.filter(user=user,is_flagged=True).values()
-        context = {
-            'user': user,
-            'emails': emails,
-            'page': 'flag',
-        }
-        return render(request, 'mail/inbox.html', context)
+# def flagged_folder(request):
+#     if not request.user.is_authenticated:
+#         return redirect('mail:index')
+#     else:
+#         user = request.user
+#         collect_log(request)
+#         emails = Mail.objects.filter(user=user,is_flagged=True).values()
+#         context = {
+#             'user': user,
+#             'emails': emails,
+#             'page': 'flag',
+#         }
+#         return render(request, 'mail/inbox.html', context)
 
 #~mail/trash
 def trash_folder(request):
@@ -124,31 +124,31 @@ def inbox(request):
         return render(request, 'mail/inbox.html', context)
 
 # These three functions handle when a user approves, flags, or delets an email
-def flag(request, email_id, next_id):
-    if not request.user.is_authenticated:
-        return redirect('mail:index')
-    else:
-        collect_log(request)
-        user=request.user
-        # tstart = time.perf_counter()
-        Mail.objects.filter(user=user, ref=email_id).update(
-            is_flagged=Case(
-                When(is_flagged=True, then=Value(False)),
-                When(is_flagged=False, then=Value(True))),
-            is_deleted=Case(
-                When(is_deleted=True, then=Value(False)),
-                When(is_deleted=False, then=Value(False))),
-            is_approved=Case(
-                When(is_approved=True, then=Value(False)),
-                When(is_approved=False, then=Value(False))))
-        # tend = time.perf_counter()
-        # time_taken = tend - tstart
-        # print(f"{time_taken} seconds to FLAG")
-        if int(next_id) < 1:
-            # if "inbox" in request.META['HTTP_REFERER']:
-            #     return redirect('mail:inbox')
-            return redirect('mail:inbox')
-        return redirect('mail:flagged_email', email_id=next_id)
+# def flag(request, email_id, next_id):
+#     if not request.user.is_authenticated:
+#         return redirect('mail:index')
+#     else:
+#         collect_log(request)
+#         user=request.user
+#         # tstart = time.perf_counter()
+#         Mail.objects.filter(user=user, ref=email_id).update(
+#             # is_flagged=Case(
+#             #     When(is_flagged=True, then=Value(False)),
+#             #     When(is_flagged=False, then=Value(True))),
+#             is_deleted=Case(
+#                 When(is_deleted=True, then=Value(False)),
+#                 When(is_deleted=False, then=Value(False))),
+#             is_approved=Case(
+#                 When(is_approved=True, then=Value(False)),
+#                 When(is_approved=False, then=Value(False))))
+#         # tend = time.perf_counter()
+#         # time_taken = tend - tstart
+#         # print(f"{time_taken} seconds to FLAG")
+#         if int(next_id) < 1:
+#             # if "inbox" in request.META['HTTP_REFERER']:
+#             #     return redirect('mail:inbox')
+#             return redirect('mail:inbox')
+#         return redirect('mail:flagged_email', email_id=next_id)
 
 def delete(request, email_id, next_id):
     if not request.user.is_authenticated:
@@ -161,7 +161,6 @@ def delete(request, email_id, next_id):
             is_deleted=Case(
                 When(is_deleted=True, then=Value(False)),
                 When(is_deleted=False, then=Value(True))),
-            is_flagged=False,
             is_approved=False)
         # tend = time.perf_counter()
         # time_taken = tend - tstart
@@ -182,8 +181,7 @@ def approve(request, email_id, next_id):
             is_approved=Case(
                 When(is_approved=True, then=Value(False)),
                 When(is_approved=False, then=Value(True))),
-            is_deleted=False,
-            is_flagged=False)
+            is_deleted=False)
         if int(next_id) < 1:
             # if "inbox" in request.META['HTTP_REFERER']:
             #     return redirect('mail:inbox')
@@ -204,8 +202,6 @@ def return_emails(request, email_id, page="inbox"):
             emails = Mail.objects.filter(user=user, is_deleted=True).values() 
         elif (page == 'approve'):
             emails = Mail.objects.filter(user=user, is_approved=True).values()
-        elif (page == 'flag'):
-            emails = Mail.objects.filter(user=user, is_flagged=True).values()
         else:
             # Return inbox view if something goes wrong
             emails = Mail.objects.filter(user=user).values()
@@ -294,13 +290,13 @@ def build_warning_paramters(group_num):
 
 
 #these functions display individual emails in the different pages
-def flagged_email(request, email_id):
-    #bounce the request if the user is not authenticated
-    if not request.user.is_authenticated:
-        return redirect('mail:index')
-    else:
-        context = return_emails(request, email_id)
-    return render(request, 'mail/email.html', context)
+# def flagged_email(request, email_id):
+#     #bounce the request if the user is not authenticated
+#     if not request.user.is_authenticated:
+#         return redirect('mail:index')
+#     else:
+#         context = return_emails(request, email_id)
+#     return render(request, 'mail/email.html', context)
 
 def trashed_email(request, email_id):
     if not request.user.is_authenticated:

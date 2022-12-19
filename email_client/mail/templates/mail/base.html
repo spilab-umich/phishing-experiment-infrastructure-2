@@ -75,13 +75,6 @@
                                 <a class="" href='{% url "mail:approved" %}'><i class="fa fa-check"></i>Approved</a>
                             </li>
 
-                            {% if page == 'flag' %}
-                            <li class='active'>
-                            {% else %}
-                            <li>
-                            {% endif %}
-                                <a class="" href='{% url "mail:flagged" %}'><i class="fa fa-flag-o"></i>Flagged</a>
-                            </li>
                             
                             {% if page == 'trash' %}
                             <li class='active'>

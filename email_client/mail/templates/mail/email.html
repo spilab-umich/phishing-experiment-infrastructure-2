@@ -19,12 +19,6 @@
             {% else %}
             <a title="" href="{% url 'mail:delete' email.ref next_email %}" data-placement="top" data-original-title="Trash" class="btn btn-sm trash-icon" ><i class="fa fa-trash-o"></i> TRASH</a>
             {% endif %}
-            <!-- {% if email.is_flagged %} -->
-            <!-- <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" style="background-color: #f0d7a9; color: #fff;"><i class="fa fa-flag-o"></i> FLAGGED</a> -->
-            <!-- {% else %} -->
-            <!-- <a title="" href="{% url 'mail:flag' email.ref next_email %}" data-placement="top" data-original-title="Report" class="btn btn-sm flag-icon" ><i class="fa fa-flag-o"></i> FLAG</a> -->
-            <!-- {% endif %} -->
-            <!-- <a title="" data-placement="top" data-original-title="Print" class="btn btn-sm disabled" ><i class="fa fa-print"></i> </a> -->
         </div>
             <ul class="unstyled inbox-pagination" role='navigation' aria-label='Email Navigation'>
                 <li><span>{{ order_num }}-{{num_emails}} of {{num_emails}}</span></li>
@@ -32,8 +26,6 @@
                     {% if prev_email > 0 %}
                         {% if email.is_deleted %}
                     <a class="np-btn" href="{% url 'mail:trashed_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
-                        {% elif email.is_flagged %}
-                    <a class="np-btn" href="{% url 'mail:flagged_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
                         {% else %}
                     <a class="np-btn" href="{% url 'mail:inbox_email' prev_email %}" aria-label="Previous Email"><i class="fa fa-angle-left pagination-left"></i></a>
                         {% endif %}
@@ -45,8 +37,6 @@
                     {% if next_email > 0 %}
                         {% if email.is_deleted %}
                     <a class="np-btn" href="{% url 'mail:trashed_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>                    
-                        {% elif email.is_flagged %}
-                    <a class="np-btn" href="{% url 'mail:flagged_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
                         {% else %}
                     <a class="np-btn" href="{% url 'mail:inbox_email' next_email %}" aria-label="Next Email"><i class="fa fa-angle-right pagination-right"></i></a>
                         {% endif %}
