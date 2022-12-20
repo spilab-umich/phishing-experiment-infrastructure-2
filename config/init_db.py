@@ -17,7 +17,7 @@ django.setup()
 # Input number of users
 n_users = 0
 
-n_test_users = 30
+n_test_users = 80
 # Input number of groups
 n_of_groups = 7
 
@@ -134,6 +134,8 @@ def read_emails():
                 'preview': email_metadata['preview'],
                 'is_phish': email_metadata['is_phish']
             }
+            # print(email_to_add)
+            # print("{}".format(sender))
             results.append(email_to_add)
 
             # email.iterators._structure(msg)
@@ -163,6 +165,7 @@ def revise_html(html, email):
     soup = BeautifulSoup(html, 'html.parser')
     for num, tag in enumerate(soup.find_all('a')):
         tag['id'] = (num+1) * 10
+        # print(tag['id'])
         # check if the current link id  matches the phish_id of the email
         if ((p_link == tag['id']) & is_phish):
         #     # pick a shuffled domain manipulation wrt the email_id
@@ -193,7 +196,7 @@ def order_emails(emails):
     # return shuffle(emails)
 
 
-# exit()
+exit()
 
 
 # emails_to_add = order_emails(all_emails)
@@ -304,19 +307,26 @@ for i in range(0, n_test_users):
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
     dates = [
-        'Wed, 24 Oct 2022 10:19:30 -0700',
-        'Wed, 25 Oct 2022 7:19:30 -0700',
-        'Wed, 25 Oct 2022 8:19:30 -0700',
-        'Wed, 25 Oct 2022 9:19:30 -0700',
-        'Wed, 26 Oct 2022 10:19:30 -0700',
-        'Wed, 26 Oct 2022 7:19:30 -0700',
-        'Wed, 26 Oct 2022 9:19:30 -0700',
-        'Wed, 26 Oct 2022 8:19:30 -0700',
-        'Wed, 26 Oct 2022 10:19:30 -0700',
-        'Wed, 27 Oct 2022 1:19:30 -0700',
-        'Wed, 27 Oct 2022 2:19:30 -0700',
-        'Wed, 27 Oct 2022 10:19:30 -0700',
+        # 'Wed, 24 Oct 2022 10:19:30 -0700',
+        # 'Mon, 31 Oct 2022 7:19:30 -0700',
+        'Fri, 4 Nov 2022 8:19:30 -0700',
+        'Tue, 8 Nov 2022 9:19:30 -0700',
+        'Sun, 13 Nov 2022 10:19:30 -0700',
+        'Thu, 17 Nov 2022 7:19:30 -0700',
+        'Thu, 17 Nov 2022 7:19:30 -0700',
+        'Sat, 19 Nov 2022 9:19:30 -0700',
+        'Mon, 21 Nov 2022 8:19:30 -0700',
+        'Tue, 22 Nov 2022 9:19:30 -0700',
+        'Fri, 25 Nov 2022 8:19:30 -0700',
+        'Sun, 27 Nov 2022 10:19:30 -0700',
+        'Wed, 30 Nov 2022 10:19:30 -0700',
+        'Sat, 3 Dec 2022 1:19:30 -0700',
+        'Sun, 4 Dec 2022 2:19:30 -0700',
+        'Thu, 8 Dec 2022 2:19:30 -0700',
+        'Sat, 10 Dec 2022 1:19:30 -0700',
+        'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
+    dates.reverse()
     email_counter = 1
     for email in order_emails(all_emails):
         new = Mail()

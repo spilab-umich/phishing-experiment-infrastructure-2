@@ -1,0 +1,825 @@
+Delivered-To: psychodoughboy2@gmail.com
+Received: by 2002:a05:7010:d34a:b0:319:bfcc:e162 with SMTP id ko10csp899110mdb;
+        Sun, 11 Dec 2022 11:35:03 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf641Ajyrl1U1xzZtR56Al5tOO/w6L34yY4nmqs2UCIWvXo/f3PDvity6MYI1FQvNFkWafNQ
+X-Received: by 2002:ad4:5004:0:b0:4c7:990:6006 with SMTP id s4-20020ad45004000000b004c709906006mr18693092qvo.9.1670787302794;
+        Sun, 11 Dec 2022 11:35:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670787302; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Wui+AmZsZnEEpbizHt3KrT97qP5J8089uTBXtAdYT+Yg227oFh5bSEEhLnq75rrlnr
+         MHNudDDGND1IUjUz9zrqIaPgHugMFOQpez3rSlfAugIxRPQXmPz0VrHNkqLKHmo0HtKn
+         I7JCSiBoFF6xRxaMfSdx8pLD0ba+UPI7k93WmLWHqPO/rGBBbxDDgxdpT6lnk2tROm5J
+         iYk2FqanZ14eYueKNjxj01DlzFM15bovSrvBdjUMY+dcjxQH+oyGf3xlNVIh8HqUTUNE
+         TU6mxe7Ex4sdl24IxnG9oBS/LlfSodpL6cCLDWYCFCIeRELgmxmOT0Yjp/Evuldnc2Y5
+         uHUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe-post:list-unsubscribe:mime-version:subject:to
+         :reply-to:from:date:message-id:dkim-signature;
+        bh=U1TR2MhcLDNFZNSG4UfKfo+ktFWbykgxOtWStHCJobA=;
+        b=My9Qhq2TlPlmqcaB5bPtYnhd35R6fqNA7tFwDr5QbOmONLu7JpZ7546pkQ0MklDtAF
+         +ohSAU4GifECkwgmQUiCdH26NVtrW7BmbrAQzwH6AksLu+oDMsjUce10qrnSxZOFzfgD
+         +Pz8mmsZP3GUo7tMZxn3NMxtisKToQ+EDxtWGAoDLGl0RrDR9T4t4MevnfeXMcamJEHu
+         ZAWZTHFfdv5xQHxd0KcOjny0LQrp9TVP/fyHNxgCLUSPjhTPYuoiOMn2pkUB0GMPQF3J
+         QOi6HbihCVnI2OuFrMjSKD8HRiapjIdqE88Ajk6CZv2tvIl6Bdv1OIHHFFC07wPLlMqh
+         4H/A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@auth.ccsend.com header.s=1000073432 header.b=J1cy0rbp;
+       spf=pass (google.com: domain of a1bukulh0taame0vd2acn4g==_1108917025159_ppdrxvjkeeyjw/owpilhpa==@in.constantcontact.com designates 208.75.123.140 as permitted sender) smtp.mailfrom="A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com"
+Return-Path: <A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com>
+Received: from ccm140.constantcontact.com (ccm140.constantcontact.com. [208.75.123.140])
+        by mx.google.com with ESMTPS id h11-20020a0562140dab00b004bb83a1b2d4si4229559qvh.263.2022.12.11.11.35.02
+        for <psychodoughboy2@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 11 Dec 2022 11:35:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of a1bukulh0taame0vd2acn4g==_1108917025159_ppdrxvjkeeyjw/owpilhpa==@in.constantcontact.com designates 208.75.123.140 as permitted sender) client-ip=208.75.123.140;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@auth.ccsend.com header.s=1000073432 header.b=J1cy0rbp;
+       spf=pass (google.com: domain of a1bukulh0taame0vd2acn4g==_1108917025159_ppdrxvjkeeyjw/owpilhpa==@in.constantcontact.com designates 208.75.123.140 as permitted sender) smtp.mailfrom="A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com"
+Return-Path: <A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com>
+Received: from [10.252.0.91] ([10.252.0.91:40534] helo=p2-jbemailsyndicator15.ctct.net)
+	by 10.249.226.20 (envelope-from <A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com>)
+	(ecelerity 4.3.1.999 r(:)) with ESMTP
+	id E9/09-12888-6E036936; Sun, 11 Dec 2022 14:35:02 -0500
+DKIM-Signature: v=1; q=dns/txt; a=rsa-sha256; c=relaxed/relaxed; s=1000073432; d=auth.ccsend.com; h=date:mime-version:subject:X-Feedback-ID:X-250ok-CID:message-id:from:reply-to:list-unsubscribe:list-unsubscribe-post:to; bh=U1TR2MhcLDNFZNSG4UfKfo+ktFWbykgxOtWStHCJobA=; b=J1cy0rbpu+tc4iEH2I2ELOPtF+1Ghp+rJlG1rYqE7Ey6Zp5mbMfC4SVjp0d1OzzRZ+8IYxBcKov651WxByfXuHBZbX8jC7XpGaEIqjk0e8de2bODDaOvvbR1/Yy4Pu7p5mSrIwZJG1JS7L7aC1N5kiQCtDZ84jY17c3J7ieF7ik=
+Message-ID: <1139605310375.1108917025159.1802990717.0.441431JL.2002@scheduler.constantcontact.com>
+Date: Sun, 11 Dec 2022 14:35:02 -0500 (EST)
+From: Half Price Drapes <customerservice@halfpricedrapes.com>
+Reply-To: customerservice@halfpricedrapes.com
+To: psychodoughboy2@gmail.com
+Subject: Don't Miss Out On Our Holiday Sale- Up To 70% Off
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_176852816_1439510759.1670787302419"
+List-Unsubscribe: <https://visitor.constantcontact.com/do?p=un&m=001jJA5Q5cGEW2ifnEicrNPsA%3D%3D&se=001oUNUctyfX4gDV3GcFatWzg%3D%3D&t=001EkZLEx15CcE%3D&llr=hm5vjyiab>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Campaign-Activity-ID: d5b52450-b1f4-4da6-8c7b-4bddd9a70de2
+X-250ok-CID: d5b52450-b1f4-4da6-8c7b-4bddd9a70de2
+X-Channel-ID: a6976b5e-f8ca-11ec-a35b-fa163e22e13c
+X-Return-Path-Hint: A1bUkULH0TaaMe0vd2acN4g==_1108917025159_ppdrXvjKEeyjW/oWPiLhPA==@in.constantcontact.com
+X-Roving-Campaignid: 1139605310375
+X-Roving-Id: 1108917025159.1802990717
+X-Feedback-ID: a6976b5e-f8ca-11ec-a35b-fa163e22e13c:d5b52450-b1f4-4da6-8c7b-4bddd9a70de2:1108917025159:CTCT
+X-CTCT-ID: a67519d2-f8ca-11ec-a35b-fa163e22e13c
+
+------=_Part_176852816_1439510759.1670787302419
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Our Favorite Colors For Fall & Holiday BLACKOUT CURTAINS CUSTOM CURTAINS WI=
+NDOW SHADES =E2=80=8A =E2=80=8A Onyx Black & Off White Horizontal Striped P=
+rinted Cotton Curtain Solarium Yellow Room  =EF=BB=BFDarkening Curtain Ice =
+Vintage Textured Faux =EF=BB=BFDupioni Silk Blackout Curtain Tea Time Coppe=
+r Brown =EF=BB=BFRoom Darkening Curtain =E2=80=8A =E2=80=8A =E2=80=8A Mecca=
+ Brown Printed Cotton =EF=BB=BFTie-Up Window Shade Martinique Yellow Printe=
+d Cotton Apron Metal Ball Nickel Extendable =EF=BB=BFMetal Rod Set Castlefo=
+rd Striped Designer Silk Cushion Covers - Pair =E2=80=8A     Follow us on I=
+nstagram @halfpricedrapes.com Exclusive Fabrics & Furnishings, LLC | 440 Bo=
+ulder Court, Ste 100, Pleasanton, CA 94566 Unsubscribe psychodoughboy2@gmai=
+l.com Update Profile | Our Privacy Policy | Constant Contact Data Notice Se=
+nt by customerservice@halfpricedrapes.com in collaboration with Try email m=
+arketing for free today!
+------=_Part_176852816_1439510759.1670787302419
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML>
+<html lang=3D"en-US"> <head>  <meta http-equiv=3D"Content-Type" content=3D"=
+text/html; charset=3Dutf-8"> <meta name=3D"viewport" content=3D"width=3Ddev=
+ice-width, initial-scale=3D1, maximum-scale=3D1">   <style type=3D"text/css=
+" data-premailer=3D"ignore">=20
+@media only screen and (max-width:480px) { .footer-main-width { width: 100%=
+ !important; }  .footer-mobile-hidden { display: none !important; }  .foote=
+r-mobile-hidden { display: none !important; }  .footer-column { display: bl=
+ock !important; }  .footer-mobile-stack { display: block !important; }  .fo=
+oter-mobile-stack-padding { padding-top: 3px; } }=20
+/* IE: correctly scale images with w/h attbs */ img { -ms-interpolation-mod=
+e: bicubic; }=20
+.layout { min-width: 100%; }=20
+table { table-layout: fixed; } .shell_outer-row { table-layout: auto; }=20
+/* Gmail/Web viewport fix */ u + .body .shell_outer-row { width: 700px; }=
+=20
+@media screen {  @font-face { font-family: 'Open Sans'; font-style: normal;=
+ font-weight: 400; src: local('Open Sans Regular'), local('OpenSans-Regular=
+'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0bf8=
+pkAg.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-015=
+3, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }  =
+}  /* LIST AND p STYLE OVERRIDES */ .text .text_content-cell p { margin: 0;=
+ padding: 0; margin-bottom: 0; } .text .text_content-cell ul, .text .text_c=
+ontent-cell ol { padding: 0; margin: 0 0 0 40px; } .text .text_content-cell=
+ li { padding: 0; margin: 0; /* line-height: 1.2; Remove after testing */ }=
+ /* Text Link Style Reset */ a { text-decoration: underline; } /* iOS: Auto=
+link styles inherited */ a[x-apple-data-detectors] { text-decoration: under=
+line !important; font-size: inherit !important; font-family: inherit !impor=
+tant; font-weight: inherit !important; line-height: inherit !important; col=
+or: inherit !important; } /* FF/Chrome: Smooth font rendering */ .text .tex=
+t_content-cell { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothi=
+ng: grayscale; }=20
+</style> <!--[if gte mso 9]> <style id=3D"ol-styles">=20
+/* OUTLOOK-SPECIFIC STYLES */ li { text-indent: -1em; padding: 0; margin: 0=
+; /* line-height: 1.2; Remove after testing */ } ul, ol { padding: 0; margi=
+n: 0 0 0 40px; } p { margin: 0; padding: 0; margin-bottom: 0; }=20
+</style> <![endif]-->  <style>@media only screen and (max-width:480px) {
+.button_content-cell {
+padding-top: 10px !important; padding-right: 20px !important; padding-botto=
+m: 10px !important; padding-left: 20px !important;
+}
+.button_border-row .button_content-cell {
+padding-top: 10px !important; padding-right: 20px !important; padding-botto=
+m: 10px !important; padding-left: 20px !important;
+}
+.column .content-padding-horizontal {
+padding-left: 20px !important; padding-right: 20px !important;
+}
+.layout .column .content-padding-horizontal .content-padding-horizontal {
+padding-left: 0px !important; padding-right: 0px !important;
+}
+.layout .column .content-padding-horizontal .block-wrapper_border-row .cont=
+ent-padding-horizontal {
+padding-left: 20px !important; padding-right: 20px !important;
+}
+.dataTable {
+overflow: auto !important;
+}
+.dataTable .dataTable_content {
+width: auto !important;
+}
+.image--mobile-scale .image_container img {
+width: auto !important;
+}
+.image--mobile-center .image_container img {
+margin-left: auto !important; margin-right: auto !important;
+}
+.layout-margin .layout-margin_cell {
+padding: 0px 20px !important;
+}
+.layout-margin--uniform .layout-margin_cell {
+padding: 20px 20px !important;
+}
+.scale {
+width: 100% !important; height: auto !important;
+}
+.stack {
+display: block !important; box-sizing: border-box;
+}
+.hide {
+display: none !important;
+}
+u + .body .shell_outer-row {
+width: 100% !important;
+}
+.socialFollow_container {
+text-align: center !important;
+}
+.text .text_content-cell {
+font-size: 16px !important;
+}
+.text .text_content-cell h1 {
+font-size: 24px !important;
+}
+.text .text_content-cell h2 {
+font-size: 20px !important;
+}
+.text .text_content-cell h3 {
+font-size: 20px !important;
+}
+.text--sectionHeading .text_content-cell {
+font-size: 24px !important;
+}
+.text--heading .text_content-cell {
+font-size: 24px !important;
+}
+.text--dataTable .text_content-cell .dataTable .dataTable_content-cell {
+font-size: 14px !important;
+}
+.text--dataTable .text_content-cell .dataTable th.dataTable_content-cell {
+font-size: px !important;
+}
+}
+</style>
+</head> <body class=3D"body template template--en-US" data-template-version=
+=3D"1.19.0" data-canonical-name=3D"CPE-PT17831" align=3D"center" style=3D"-=
+ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; min-width: 100%;=
+ width: 100%; margin: 0px; padding: 0px;"> <div id=3D"preheader" style=3D"c=
+olor: transparent; display: none; font-size: 1px; line-height: 1px; max-hei=
+ght: 0px; max-width: 0px; opacity: 0; overflow: hidden;"><span data-entity-=
+ref=3D"preheader">Our Favorite Colors For Fall &amp; Holiday</span></div> <=
+div id=3D"tracking-image" style=3D"color: transparent; display: none; font-=
+size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; o=
+verflow: hidden;"><img src=3D"https://r20.rs6.net/on.jsp?ca=3Dd5b52450-b1f4=
+-4da6-8c7b-4bddd9a70de2&a=3D1108917025159&c=3Da67519d2-f8ca-11ec-a35b-fa163=
+e22e13c&ch=3Da6976b5e-f8ca-11ec-a35b-fa163e22e13c" / alt=3D""></div> <div c=
+lass=3D"shell" lang=3D"en-US" style=3D"background-color: #ffffff;">  <table=
+ class=3D"shell_panel-row" width=3D"100%" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"background-color: #ffffff;" bgcolor=3D"#ffffff"> <=
+tr> <td class=3D"shell_panel-cell" style=3D"" align=3D"center" valign=3D"to=
+p"> <table class=3D"shell_width-row scale" style=3D"width: 700px;" align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=
+=3D"shell_width-cell" style=3D"padding: 15px 10px;" align=3D"center" valign=
+=3D"top"> <table class=3D"shell_content-row" width=3D"100%" align=3D"center=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"shell=
+_content-cell" style=3D"background-color: #FFFFFF; padding: 0; border: 0px =
+solid #3e3e3e;" align=3D"center" valign=3D"top" bgcolor=3D"#FFFFFF"> <table=
+ class=3D"layout layout--1-column" style=3D"table-layout: fixed;" width=3D"=
+100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"c=
+olumn column--1 scale stack" style=3D"width: 100%;" align=3D"center" valign=
+=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container" align=3D"center" valign=3D"top" style=
+=3D"padding-top: 10px; padding-bottom: 10px;"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb3VE3d=
+DdEfnMQv5p9sboI5ZPc3cX4B9E3n4fWdA9DwoGMees0QN7vXQzC_nFp7rDFQB7IWbA3aCoJPUsP=
+eoVUpjCqOodZbYpnl5vf9sJw6yb&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_W=
+nEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6b=
+Xw=3D=3D" data-trackable=3D"true"><img data-image-content class=3D"image_co=
+ntent" width=3D"680" src=3D"https://files.constantcontact.com/789fa903201/e=
+3fe3e7f-670b-47b8-a6f2-7d62487a3220.png" alt=3D"" style=3D"display: block; =
+height: auto; max-width: 100%;"></a> </td> </tr> </table> </td> </tr> </tab=
+le> <table class=3D"layout layout--3-column" style=3D"table-layout: fixed;"=
+ width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td =
+class=3D"column column--1 scale stack" style=3D"width: 33%;" align=3D"cente=
+r" valign=3D"top"> <table class=3D"button button--padding-vertical" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"table-l=
+ayout: fixed;"> <tr> <td class=3D"button_container content-padding-horizont=
+al" align=3D"center" style=3D"padding: 10px 0px 10px 40px;">    <table clas=
+s=3D"button_content-row" style=3D"border-radius: 0px; background-color: #ff=
+ffff; width: inherit; border-spacing: 0; border: none;" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff"> <tr> <td class=3D"button=
+_content-cell" style=3D"padding: 10px 15px;" align=3D"center"> <a class=3D"=
+button_link" href=3D"https://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8=
+xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb8sre1Nut82SBsFHIDD1GABWj8KwnsdVk7JR2WMNPoE=
+hLGUeSXE_x-pp4vNHYE8aK5rB5RtEnrq5-Lfg1r-cu6jkguyr5LPxveu8xhJaLXXaBp6Yw6hEct=
+nlGDu0kw14YMk3eFudqgM4&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-k=
+kPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=
+=3D" data-trackable=3D"true" style=3D"font-size: 14px; color: #000000; font=
+-family: Arial,Verdana,Helvetica,sans-serif; word-wrap: break-word; font-we=
+ight: bold; text-decoration: none;">BLACKOUT CURTAINS</a> </td> </tr> </tab=
+le>    </td> </tr> </table>   </td>  <td class=3D"column column--2 scale st=
+ack" style=3D"width: 33%;" align=3D"center" valign=3D"top"> <table class=3D=
+"button button--padding-vertical" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"=
+button_container content-padding-horizontal" align=3D"center" style=3D"padd=
+ing: 10px 20px;">    <table class=3D"button_content-row" style=3D"border-ra=
+dius: 0px; background-color: #ffffff; width: inherit; border-spacing: 0; bo=
+rder: none;" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#f=
+fffff"> <tr> <td class=3D"button_content-cell" style=3D"padding: 10px 15px;=
+" align=3D"center"> <a class=3D"button_link" href=3D"https://r20.rs6.net/tn=
+.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb5Ox7CnkWPU=
+stKssNtha-jUtCVRbmIvlcaasL9zeH6ldyHO1zD3-t_we-ivL9d_KNQ7sEC7aBChGp10VaC0gc3=
+szqMtkx5B2u3vZ1AQk7yx5nsprHN-FO3k6GKoBw7FG-lrMS3XOvfJr&c=3DGPzhGrZye3HoYyaA=
+P_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA=
+1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true" style=3D"font-=
+size: 14px; color: #000000; font-family: Arial,Verdana,Helvetica,sans-serif=
+; word-wrap: break-word; font-weight: bold; text-decoration: none;">CUSTOM =
+CURTAINS</a> </td> </tr> </table>    </td> </tr> </table>   </td>  <td clas=
+s=3D"column column--3 scale stack" style=3D"width: 33%;" align=3D"center" v=
+align=3D"top"> <table class=3D"button button--padding-vertical" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"table-layout:=
+ fixed;"> <tr> <td class=3D"button_container content-padding-horizontal" al=
+ign=3D"center" style=3D"padding: 10px 40px 10px 0px;">    <table class=3D"b=
+utton_content-row" style=3D"border-radius: 0px; background-color: #ffffff; =
+width: inherit; border-spacing: 0; border: none;" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff"> <tr> <td class=3D"button_cont=
+ent-cell" style=3D"padding: 10px 15px;" align=3D"center"> <a class=3D"butto=
+n_link" href=3D"https://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0v=
+oNCf8z4D2lzyV0Vx15mrnL3iT4Nb_CaL4OfxYp1NgrrDktryuMzOofgjh0V5Tz5hfkB5p7Qo38L=
+zuMOG_LWwIDnETGbKJVwgrKuCgTwVMmfcZrID7wLWgkd69khX05d_IXVRpzdp-cWEwHn2IE=3D&=
+c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtb=
+U_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"=
+true" style=3D"font-size: 14px; color: #000000; font-family: Arial,Verdana,=
+Helvetica,sans-serif; word-wrap: break-word; font-weight: bold; text-decora=
+tion: none;">WINDOW SHADES</a> </td> </tr> </table>    </td> </tr> </table>=
+   </td> </tr> </table> <table class=3D"layout layout--1-column" style=3D"t=
+able-layout: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0"> <tr> <td class=3D"column column--1 scale stack" style=3D"width: =
+100%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb21QOc=
+TL7F7IBL03kwLC_ryVh1vZlygjGJHBC9fdx-EoHqFqSLiczzCqZ8o9191Yqsr4RypkP_ZqpkWCI=
+2I67dog48tdTasw8sx8zzc4DVtWQddfBXvJ0E0nf_w_91FM_jBaeEdO8bbOwB5f85CNibE=3D&c=
+=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU=
+_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"t=
+rue"><img data-image-content class=3D"image_content" width=3D"680" src=3D"h=
+ttps://files.constantcontact.com/789fa903201/ba2f1700-5d06-42ed-81e2-a922c3=
+0448b5.png" alt=3D"" style=3D"display: block; height: auto; max-width: 100%=
+;"></a> </td> </tr> </table> </td> </tr> </table> <table class=3D"layout la=
+yout--1-column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 sca=
+le stack" style=3D"width: 100%;" align=3D"center" valign=3D"top"><div class=
+=3D"spacer" style=3D"line-height: 10px; height: 10px;">&#x200a;</div></td> =
+</tr> </table> <table class=3D"layout layout--1-column" style=3D"table-layo=
+ut: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+> <tr> <td class=3D"column column--1 scale stack" style=3D"width: 100%;" al=
+ign=3D"center" valign=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb21QOc=
+TL7F7IBL03kwLC_ryVh1vZlygjGJHBC9fdx-EoHqFqSLiczzCqZ8o9191Yqsr4RypkP_ZqpkWCI=
+2I67dog48tdTasw8sx8zzc4DVtWQddfBXvJ0E0nf_w_91FM_jBaeEdO8bbOwB5f85CNibE=3D&c=
+=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU=
+_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"t=
+rue"><img data-image-content class=3D"image_content" width=3D"680" src=3D"h=
+ttps://files.constantcontact.com/789fa903201/5b89eafe-fa1a-4d69-85c5-cc11ef=
+efc603.png" alt=3D"" style=3D"display: block; height: auto; max-width: 100%=
+;"></a> </td> </tr> </table> </td> </tr> </table> <table class=3D"layout la=
+yout--1-column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 sca=
+le stack" style=3D"width: 100%;" align=3D"center" valign=3D"top"><div class=
+=3D"spacer" style=3D"line-height: 20px; height: 20px;">&#x200a;</div></td> =
+</tr> </table> <table class=3D"layout layout--1-column" style=3D"table-layo=
+ut: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+> <tr> <td class=3D"column column--1 scale stack" style=3D"width: 50%;" ali=
+gn=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b90KwcI_fbqc78YyNAEbOPdaY81dtffKmhLZEAOIRFiKfLc5yK_SeGhWyzVnGJkMRDFuAcq6LCM=
+k9bPJGcpsSNTNyxtVBHu9lzguw4zZVcKVWF6vRHEHqccHc4TG1Nlgz88hxPgMZNc2GZ0VNaNEMI=
+kQIfzocyrbL9wFwkN_a__V&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-k=
+kPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=
+=3D" data-trackable=3D"true"><img data-image-content class=3D"image_content=
+" width=3D"260" src=3D"https://files.constantcontact.com/789fa903201/4892a3=
+5d-3e98-405b-888d-578a98988e40.png" alt=3D"" style=3D"display: block; heigh=
+t: auto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text t=
+ext--padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-=
+cell content-padding-horizontal" style=3D"text-align: left; font-family: Ar=
+ial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-hei=
+ght: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=
+=3D"left" valign=3D"top"><p style=3D"text-align: center; margin: 0;" align=
+=3D"center"><span style=3D'font-size: 16px; font-family: "Open Sans", sans-=
+serif;'>Onyx Black &amp; Off White Horizontal Striped Printed Cotton Curtai=
+n</span></p></td> </tr> </table> </td>  <td class=3D"column column--1 scale=
+ stack" style=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IdjrLT6L-X5o6iHzvGxoKBoigCBg3CoY5VA5Ces4OkLOCTa_xkRKHfbtES2r3Gvh=
+aq2phqwjFOWu024dLIrA5TXYgEU2uGGYEnQ95EZRUAA-6NuwuGcwDQ8XNYSoGQPX6xEHlRdOiiz=
+weoV8ta4YCh9He_cIYGGGU&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-k=
+kPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=
+=3D" data-trackable=3D"true"><img data-image-content class=3D"image_content=
+" width=3D"340" src=3D"https://files.constantcontact.com/789fa903201/7837c7=
+f9-0222-4a11-9cb5-7d51e22800f8.png" alt=3D"" style=3D"display: block; heigh=
+t: auto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text t=
+ext--padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-=
+cell content-padding-horizontal" style=3D"text-align: left; font-family: Ar=
+ial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-hei=
+ght: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=
+=3D"left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+'font-size: 16px; font-family: "Open Sans", sans-serif;'>Solarium Yellow Ro=
+om&#xa0;</span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+'font-size: 16px; font-family: "Open Sans", sans-serif;'><span class=3D"ql-=
+cursor">&#xfeff;</span>Darkening Curtain</span></p>
+</td> </tr> </table> </td> </tr> </table> <table class=3D"layout layout--1-=
+column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack=
+" style=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IdlQ3SJyB8qeSM_6yqaAxy3kUkkAc0v70jtsDV6in4eY9KlFvYw7CKGuClXdrOW_=
+z5ohdnKY13y63XRX29vEMbsWdqdqRxiMx_I6Tpn191yHYDhqjCRPoJXcQQs56vF4cWH5hxeAeJG=
+NVQ_x_pPmNKDkhZhTF-twBHokCXvja_zU=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p8=
+0_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wr=
+IjHz3gE6bXw=3D=3D" data-trackable=3D"true"><img data-image-content class=3D=
+"image_content" width=3D"340" src=3D"https://files.constantcontact.com/789f=
+a903201/35ef2324-52a4-43a6-abc8-4edb33d10cdc.png" alt=3D"" style=3D"display=
+: block; height: auto; max-width: 100%;"></a> </td> </tr> </table> <table c=
+lass=3D"text text--padding-vertical" width=3D"100%" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D=
+"text_content-cell content-padding-horizontal" style=3D"text-align: left; f=
+ont-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: =
+14px; line-height: 1.2; display: block; word-wrap: break-word; padding: 10p=
+x 40px;" align=3D"left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Ice Vintage Textured Faux </span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;"><span class=3D"ql-cursor">&#xfeff;</span>Dupioni Silk Bl=
+ackout Curtain</span></p>
+</td> </tr> </table> </td>  <td class=3D"column column--1 scale stack" styl=
+e=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IAn5-_oNT60jE7kRLYlgPETC-Oe2P44FD-EsJdUrcWQHzK4P2L2UGBhoHLeOZMhw=
+Ehre6_BNseLLUeOqNOMQLIQteSlRjQHyrcH8NFBxOXSBn3kKVJgxYc0zixWSRZX1l_O9m9bOsZP=
+Uo5HZeQRxDjpteswIy6aqs&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-k=
+kPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=
+=3D" data-trackable=3D"true"><img data-image-content class=3D"image_content=
+" width=3D"340" src=3D"https://files.constantcontact.com/789fa903201/47f77e=
+e4-518f-46e7-ba8a-0d2b21f1299d.png" alt=3D"" style=3D"display: block; heigh=
+t: auto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text t=
+ext--padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-=
+cell content-padding-horizontal" style=3D"text-align: left; font-family: Ar=
+ial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-hei=
+ght: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=
+=3D"left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Tea Time Copper Brown </span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;"><span class=3D"ql-cursor">&#xfeff;</span>Room Darkening =
+Curtain</span></p>
+</td> </tr> </table> </td> </tr> </table> <table class=3D"layout layout--1-=
+column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack=
+" style=3D"width: 100%;" align=3D"center" valign=3D"top"><div class=3D"spac=
+er" style=3D"line-height: 15px; height: 15px;">&#x200a;</div></td> </tr> </=
+table> <table class=3D"layout layout--1-column" style=3D"table-layout: fixe=
+d;" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <=
+td class=3D"column column--1 scale stack" style=3D"width: 100%;" align=3D"c=
+enter" valign=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb9j_Gf=
+nMAYx38F2MEdxAsObeT-HBkqZXxcePDHWwgF6Uqdir5E2zRqOqT00pN0IaRtVdt3umBiMkPpWvJ=
+csT05GEfiofKmQ_Vf9q7W2P9nhQ-fJ5K2HgcYO-iUe_l596XA=3D=3D&c=3DGPzhGrZye3HoYya=
+AP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADY=
+A1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true"><img data-ima=
+ge-content class=3D"image_content" width=3D"680" src=3D"https://files.const=
+antcontact.com/789fa903201/b5c33ef8-5ddc-4a38-929c-79ba2c1e2d35.png" alt=3D=
+"" style=3D"display: block; height: auto; max-width: 100%;"></a> </td> </tr=
+> </table> </td> </tr> </table> <table class=3D"layout layout--1-column" st=
+yle=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack" style=3D=
+"width: 100%;" align=3D"center" valign=3D"top"><div class=3D"spacer" style=
+=3D"line-height: 10px; height: 10px;">&#x200a;</div></td> </tr> </table> <t=
+able class=3D"layout layout--1-column" style=3D"table-layout: fixed;" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=
+=3D"column column--1 scale stack" style=3D"width: 100%;" align=3D"center" v=
+align=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4NbyA1c6=
+7kcyqe1o-nZugY85-CRK-capfOG-T3DDTvqb4prgJZykoqfUnw8CUSwyLBk5159Z04CE1sRNEAg=
+TyyX-dfswb3b184Y1IH05YhuuhsFWJWn1IPkrKk0VnaMXiScw=3D=3D&c=3DGPzhGrZye3HoYya=
+AP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADY=
+A1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true"><img data-ima=
+ge-content class=3D"image_content" width=3D"680" src=3D"https://files.const=
+antcontact.com/789fa903201/a9d4cff2-5f60-44ee-b3db-dc58668cbcee.png" alt=3D=
+"" style=3D"display: block; height: auto; max-width: 100%;"></a> </td> </tr=
+> </table> </td> </tr> </table> <table class=3D"layout layout--1-column" st=
+yle=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack" style=3D=
+"width: 100%;" align=3D"center" valign=3D"top"><div class=3D"spacer" style=
+=3D"line-height: 10px; height: 10px;">&#x200a;</div></td> </tr> </table> <t=
+able class=3D"layout layout--1-column" style=3D"table-layout: fixed;" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=
+=3D"column column--1 scale stack" style=3D"width: 50%;" align=3D"center" va=
+lign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IVTvlB127SA-GeRtfI4GF6O9AX8H_fIOu_Vyug6dP7QZT_jM5Hn81ntikLdsafNW=
+N8bKPlvB9uP3gpzb1wME9TMqlg0wKLwIpWzY7BTKXsnjT8dFKNgFPfo85PQycVjsENG0aUY_FBb=
+KoT-rnrS2U0Fl4DBxX1_Tf&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-k=
+kPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=
+=3D" data-trackable=3D"true"><img data-image-content class=3D"image_content=
+" width=3D"340" src=3D"https://files.constantcontact.com/789fa903201/b1f2a8=
+4a-8c1f-4839-9dc2-15c882fefdd9.png" alt=3D"" style=3D"display: block; heigh=
+t: auto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text t=
+ext--padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-=
+cell content-padding-horizontal" style=3D"text-align: left; font-family: Ar=
+ial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-hei=
+ght: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=
+=3D"left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Mecca Brown Printed Cotton </span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;"><span class=3D"ql-cursor">&#xfeff;</span>Tie-Up Window S=
+hade</span></p>
+</td> </tr> </table> </td>  <td class=3D"column column--1 scale stack" styl=
+e=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IsooChgi_zK-xIvokz5hIyi8UjDb3PUlLnoE2GvZBsxC5QYGDBZdzBx4g1qMXU-n=
+YgC9uAIHNF06yUwyvVBjzy1Q-ht1eCYidcMA1IZBNh9dWkedpGd7676NPTqPre4ey4tEHuwAzgQ=
+iU3OCIW4pg1w=3D=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4=
+PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D"=
+ data-trackable=3D"true"><img data-image-content class=3D"image_content" wi=
+dth=3D"340" src=3D"https://files.constantcontact.com/789fa903201/ab9609e5-2=
+02c-4d3c-8c45-3246eace1d8d.png" alt=3D"" style=3D"display: block; height: a=
+uto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text text-=
+-padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-cell=
+ content-padding-horizontal" style=3D"text-align: left; font-family: Arial,=
+Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height:=
+ 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=3D"=
+left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Martinique Yellow </span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Printed&#xa0;Cotton Apron</span></p>
+</td> </tr> </table> </td> </tr> </table> <table class=3D"layout layout--1-=
+column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack=
+" style=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7In6zQcP2sP20a1i5IgHaKTgIhwlUEvUS9-Pl4vgfFycCwlpG5engb_m2fvxy-5yO=
+V_iXNbM5hmFzdwEui8pZQ1BBo5JL7Ne-hRP0XU_dyjR8tHVSqtXo1XZ2JYU8Zo8F72OG8bjao-m=
+dTJESnxZ8ptQ=3D=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4=
+PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D"=
+ data-trackable=3D"true"><img data-image-content class=3D"image_content" wi=
+dth=3D"260" src=3D"https://files.constantcontact.com/789fa903201/09c5218d-9=
+66a-472b-9efa-c886bc323b6f.png" alt=3D"" style=3D"display: block; height: a=
+uto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text text-=
+-padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-cell=
+ content-padding-horizontal" style=3D"text-align: left; font-family: Arial,=
+Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height:=
+ 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=3D"=
+left" valign=3D"top">
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;">Metal Ball Nickel Extendable </span></p>
+<p style=3D"text-align: center; margin: 0;" align=3D"center"><span style=3D=
+"font-size: 16px;"><span class=3D"ql-cursor">&#xfeff;</span>Metal Rod Set</=
+span></p>
+</td> </tr> </table> </td>  <td class=3D"column column--1 scale stack" styl=
+e=3D"width: 50%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+b21QOcTL7F7IBSiJUK8JzJNdrTInThWxuZPPp5DBd4n9-TZooluoECtacoJsmgSo-c6RdDN10um=
+Qd-uqd5dVmmAOvnTQATll-u1f8SMGI1oUmju4EiJMiEHGJuMO0WqxRdSx3mDMZKEhX2dd9WZGgW=
+0FW2e_BSsebg=3D=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4=
+PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D"=
+ data-trackable=3D"true"><img data-image-content class=3D"image_content" wi=
+dth=3D"340" src=3D"https://files.constantcontact.com/789fa903201/71c54940-c=
+6e5-4b31-8cbb-9ca920a96e9f.png" alt=3D"" style=3D"display: block; height: a=
+uto; max-width: 100%;"></a> </td> </tr> </table> <table class=3D"text text-=
+-padding-vertical" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"table-layout: fixed;"> <tr> <td class=3D"text_content-cell=
+ content-padding-horizontal" style=3D"text-align: left; font-family: Arial,=
+Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height:=
+ 1.2; display: block; word-wrap: break-word; padding: 10px 40px;" align=3D"=
+left" valign=3D"top"><p style=3D"text-align: center; margin: 0;" align=3D"c=
+enter"><span style=3D"font-size: 16px;">Castleford Striped Designer Silk Cu=
+shion Covers - Pair</span></p></td> </tr> </table> </td> </tr> </table> <ta=
+ble class=3D"layout layout--1-column" style=3D"table-layout: fixed;" width=
+=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=
+=3D"column column--1 scale stack" style=3D"width: 100%;" align=3D"center" v=
+align=3D"top"><div class=3D"spacer" style=3D"line-height: 15px; height: 15p=
+x;">&#x200a;</div></td> </tr> </table> <table class=3D"layout layout--1-col=
+umn" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale stack" s=
+tyle=3D"width: 100%;" align=3D"center" valign=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4NbxzZJ2=
+pjCid_X_3-l2JH8hjSxnyx65_rQR_0NnP5ploSk9MHws15oJJXyUfGRWcbVtK4pmHBV0t5K15aj=
+TrfV2mlkIfP65kB5w=3D=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-=
+kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=
+=3D=3D" data-trackable=3D"true"><img data-image-content class=3D"image_cont=
+ent" width=3D"680" src=3D"https://files.constantcontact.com/789fa903201/d99=
+0a96a-7c68-49b2-b0db-e27577dbcde5.png" alt=3D"" style=3D"display: block; he=
+ight: auto; max-width: 100%;"></a> </td> </tr> </table> </td> </tr> </table=
+> <table class=3D"layout layout--3-column" style=3D"table-layout: fixed;" w=
+idth=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td cl=
+ass=3D"column column--1 scale stack" style=3D"width: 33%;" align=3D"center"=
+ valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 0px 10px 40px;"> <a href=3D"ht=
+tps://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15=
+mrnL3iT4Nb3VE3dDdEfnMQv5p9sboI5ZPc3cX4B9E3n4fWdA9DwoGMees0QN7vXQzC_nFp7rDFQ=
+B7IWbA3aCoJPUsPeoVUpjCqOodZbYpnl5vf9sJw6yb&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRW=
+fpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDs=
+e0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true"><img data-image-content cl=
+ass=3D"image_content" width=3D"187" src=3D"https://files.constantcontact.co=
+m/789fa903201/c57e2ca1-8f5f-424b-9ccb-4dded0ab68a0.png" alt=3D"" style=3D"d=
+isplay: block; height: auto; max-width: 100%;"></a> </td> </tr> </table> </=
+td>  <td class=3D"column column--2 scale stack" style=3D"width: 33%;" align=
+=3D"center" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 20px;"> <a href=3D"https://r20=
+.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4N=
+bzXZsxvoeNQMsIVG-HO-S-x3canYQrZJMvOZHbgb5PNQcjRmbcDGBi7sPHHwl2DC8WpqXDxmetu=
+IeGXgRdOQJbjX4PUnJhTkHgY598WB5o0L&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_S=
+UdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjH=
+z3gE6bXw=3D=3D" data-trackable=3D"true"><img data-image-content class=3D"im=
+age_content" width=3D"187" src=3D"https://files.constantcontact.com/789fa90=
+3201/63889b6f-ce4c-40d6-80f5-5ddac6155c25.png" alt=3D"" style=3D"display: b=
+lock; height: auto; max-width: 100%;"></a> </td> </tr> </table> </td>  <td =
+class=3D"column column--3 scale stack" style=3D"width: 33%;" align=3D"cente=
+r" valign=3D"top">
+<table class=3D"image image--padding-vertical image--mobile-scale image--mo=
+bile-center" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+"> <tr> <td class=3D"image_container content-padding-horizontal" align=3D"c=
+enter" valign=3D"top" style=3D"padding: 10px 40px 10px 0px;"> <a href=3D"ht=
+tps://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15=
+mrnL3iT4Nbzfo6MrI46XMJRznhNnoT_5DqPqSey0afeGEDOrC0DD5-P8629BYMOcDOZWLvoFAzS=
+daqTjV2m66X1gvEvONDhvr-zPKFJVcB2Fw1Fu2lxnzYfbWslJP10KrBAs14sWGMA=3D=3D&c=3D=
+GPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EY=
+m-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true=
+"><img data-image-content class=3D"image_content" width=3D"187" src=3D"http=
+s://files.constantcontact.com/789fa903201/ca06b08b-8cb5-495e-9ee9-52d747b59=
+b73.png" alt=3D"" style=3D"display: block; height: auto; max-width: 100%;">=
+</a> </td> </tr> </table> </td> </tr> </table> <table class=3D"layout layou=
+t--1-column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale =
+stack" style=3D"width: 100%;" align=3D"center" valign=3D"top">
+<table class=3D"socialFollow socialFollow--padding-vertical" width=3D"100%"=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0"> <tr> <td class=3D"social=
+Follow_container content-padding-horizontal" width=3D"100%" align=3D"right"=
+ valign=3D"top" style=3D"height: 1px; line-height: 1px; padding: 10px 40px;=
+"> <a href=3D"https://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voN=
+Cf8z4D2lzyV0Vx15mrnL3iT4Nb76E_KSmS6JT43TbmyMBnt02fSqSq_-QXtJnkqKpWR7Jy-2u0O=
+gQIWhxRj73rv9RhhsZPvW1gmn4uazIMqoZzEqpVTj29NAWGSbfDqSXpKPySgTKwVgIKwA=3D&c=
+=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU=
+_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"t=
+rue"><img class=3D"socialFollow_icon" alt=3D"Facebook" width=3D"32" border=
+=3D"0" src=3D"https://imgssl.constantcontact.com/letters/images/CPE/SocialI=
+cons/circles/circleBlack_Facebook.png" style=3D"display: inline-block; marg=
+in: 0; padding: 0;"></a> &#xa0;<a href=3D"https://r20.rs6.net/tn.jsp?f=3D00=
+1G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4NbxgDSqRVzBo43kunhHKFwD=
+0wc47H0yvzqEnPInaTH0JkZ3j9CYE8t9_UtLE2M1C6oNImJVgxcEoEGgOKuT-kZ-3TwpWD-R4Hv=
+OksVNIqELXkW69bvL-qqsY=3D&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_WnE=
+j-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6bXw=
+=3D=3D" data-trackable=3D"true"><img class=3D"socialFollow_icon" alt=3D"Ins=
+tagram" width=3D"32" border=3D"0" src=3D"https://imgssl.constantcontact.com=
+/letters/images/CPE/SocialIcons/circles/circleBlack_Instagram.png" style=3D=
+"display: inline-block; margin: 0; padding: 0;"></a> &#xa0;<a href=3D"https=
+://r20.rs6.net/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrn=
+L3iT4Nb_CaL4OfxYp1_ZEtHUZEUOJSfzXlLtRI5pYl9DekqT-_Qmv3j1Y2nehy4W8qPM7F-67bh=
+cfoGq5BBRXHstnhJvq6QxNtNvM__KphHoqWNAI_qPpm9svg_nQ=3D&c=3DGPzhGrZye3HoYyaAP=
+_0td3vy6pRWfpF1p80_SUdhN_WnEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1=
+ZRnygPqLiDse0i_wrIjHz3gE6bXw=3D=3D" data-trackable=3D"true"><img class=3D"s=
+ocialFollow_icon" alt=3D"Pinterest" width=3D"32" border=3D"0" src=3D"https:=
+//imgssl.constantcontact.com/letters/images/CPE/SocialIcons/circles/circleB=
+lack_Pinterest.png" style=3D"display: inline-block; margin: 0; padding: 0;"=
+></a> </td> </tr> </table> </td> </tr> </table> <table class=3D"layout layo=
+ut--1-column" style=3D"table-layout: fixed;" width=3D"100%" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"column column--1 scale=
+ stack" style=3D"width: 100%;" align=3D"center" valign=3D"top">
+<table class=3D"text text--padding-vertical" width=3D"100%" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" style=3D"table-layout: fixed;"> <tr> <td =
+class=3D"text_content-cell content-padding-horizontal" style=3D"text-align:=
+ left; font-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; fon=
+t-size: 14px; line-height: 1.2; display: block; word-wrap: break-word; padd=
+ing: 10px 40px;" align=3D"left" valign=3D"top"><p style=3D"text-align: righ=
+t; margin: 0;" align=3D"right"><span style=3D"color: rgb(0, 0, 0);"> Follow=
+ us on Instagram @halfpricedrapes.com</span></p></td> </tr> </table> </td> =
+</tr> </table> <table class=3D"layout layout--1-column" style=3D"table-layo=
+ut: fixed;" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+> <tr> <td class=3D"column column--1 scale stack" style=3D"width: 100%;" al=
+ign=3D"center" valign=3D"top">
+<table class=3D"image image--mobile-scale image--mobile-center" width=3D"10=
+0%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td class=3D"ima=
+ge_container" align=3D"center" valign=3D"top"> <a href=3D"https://r20.rs6.n=
+et/tn.jsp?f=3D001G9CsLE_LmXFLIlqzglc8xkJ0voNCf8z4D2lzyV0Vx15mrnL3iT4Nb3VE3d=
+DdEfnMQv5p9sboI5ZPc3cX4B9E3n4fWdA9DwoGMees0QN7vXQzC_nFp7rDFQB7IWbA3aCoJPUsP=
+eoVUpjCqOodZbYpnl5vf9sJw6yb&c=3DGPzhGrZye3HoYyaAP_0td3vy6pRWfpF1p80_SUdhN_W=
+nEj-kkPc4PA=3D=3D&ch=3DraZtbU_EYm-e9tfhx8pNkADYA1ZRnygPqLiDse0i_wrIjHz3gE6b=
+Xw=3D=3D" data-trackable=3D"true"><img data-image-content class=3D"image_co=
+ntent" width=3D"680" src=3D"https://files.constantcontact.com/789fa903201/4=
+839ccfa-231b-4c03-90fa-72d53ffcb25e.png" alt=3D"" style=3D"display: block; =
+height: auto; max-width: 100%;"></a> </td> </tr> </table> </td> </tr> </tab=
+le>  </td> </tr> </table> </td> </tr> </table> </td> </tr> <tr> <td class=
+=3D"shell_panel-cell shell_panel-cell--systemFooter" style=3D"" align=3D"ce=
+nter" valign=3D"top"> <table class=3D"shell_width-row scale" style=3D"width=
+: 100%;" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=
+ <tr> <td class=3D"shell_width-cell" style=3D"padding: 0px;" align=3D"cente=
+r" valign=3D"top"> <table class=3D"shell_content-row" width=3D"100%" align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td clas=
+s=3D"shell_content-cell" style=3D"background-color: #FFFFFF; padding: 0; bo=
+rder: 0 solid #3e3e3e;" align=3D"center" valign=3D"top" bgcolor=3D"#FFFFFF"=
+> <table class=3D"layout layout--1-column" style=3D"table-layout: fixed;" w=
+idth=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"> <tr> <td cl=
+ass=3D"column column--1 scale stack" style=3D"width: 100%;" align=3D"center=
+" valign=3D"top"> <table class=3D"footer" width=3D"100%" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" style=3D"font-family: Verdana,Geneva,sans-se=
+rif; color: #5d5d5d; font-size: 12px;"> <tr> <td class=3D"footer_container"=
+ align=3D"center"> <table class=3D"footer-container" width=3D"100%" cellpad=
+ding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"background-color: #fffff=
+f; margin-left: auto; margin-right: auto; table-layout: auto !important;" b=
+gcolor=3D"#ffffff">
+<tr>
+<td width=3D"100%" align=3D"center" valign=3D"top" style=3D"width: 100%;">
+<div class=3D"footer-max-main-width" align=3D"center" style=3D"margin-left:=
+ auto; margin-right: auto; max-width: 100%;">
+<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<tr>
+<td class=3D"footer-layout" align=3D"center" valign=3D"top" style=3D"paddin=
+g: 16px 0px;">
+<table class=3D"footer-main-width" style=3D"width: 580px;" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0">
+<tr>
+<td class=3D"footer-text" align=3D"center" valign=3D"top" style=3D"color: #=
+5d5d5d; font-family: Verdana,Geneva,sans-serif; font-size: 12px; padding: 4=
+px 0px;">
+<span class=3D"footer-column">Exclusive Fabrics &amp; Furnishings, LLC<span=
+ class=3D"footer-mobile-hidden"> | </span></span><span class=3D"footer-colu=
+mn">440 Boulder Court<span class=3D"footer-mobile-hidden">, </span></span><=
+span class=3D"footer-column">Ste 100<span class=3D"footer-mobile-hidden">, =
+</span></span><span class=3D"footer-column"></span><span class=3D"footer-co=
+lumn">Pleasanton, CA 94566</span><span class=3D"footer-column"></span>
+</td>
+</tr>
+<tr>
+<td class=3D"footer-row" align=3D"center" valign=3D"top" style=3D"padding: =
+10px 0px;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<tr>
+<td class=3D"footer-text" align=3D"center" valign=3D"top" style=3D"color: #=
+5d5d5d; font-family: Verdana,Geneva,sans-serif; font-size: 12px; padding: 4=
+px 0px;">
+<a href=3D"https://visitor.constantcontact.com/do?p=3Dun&m=3D001jJA5Q5cGEW2=
+ifnEicrNPsA%3D&ch=3Da6976b5e-f8ca-11ec-a35b-fa163e22e13c&ca=3Dd5b52450-b1f4=
+-4da6-8c7b-4bddd9a70de2" data-track=3D"false" style=3D"color: #5d5d5d;">Uns=
+ubscribe psychodoughboy2@gmail.com<span class=3D"partnerOptOut"></span></a>
+<span class=3D"partnerOptOut"></span>
+</td>
+</tr>
+<tr>
+<td class=3D"footer-text" align=3D"center" valign=3D"top" style=3D"color: #=
+5d5d5d; font-family: Verdana,Geneva,sans-serif; font-size: 12px; padding: 4=
+px 0px;">
+<a href=3D"https://visitor.constantcontact.com/do?p=3Doo&m=3D001jJA5Q5cGEW2=
+ifnEicrNPsA%3D&ch=3Da6976b5e-f8ca-11ec-a35b-fa163e22e13c&ca=3Dd5b52450-b1f4=
+-4da6-8c7b-4bddd9a70de2" data-track=3D"false" style=3D"color: #5d5d5d;">Upd=
+ate Profile</a> |
+<a href=3D"https://www.halfpricedrapes.com/privacypolicy.html" data-track=
+=3D"false" style=3D"color: #5d5d5d;">Our Privacy Policy</a><span class=3D"f=
+ooter-mobile-hidden"> |</span>
+<a class=3D"footer-about-provider footer-mobile-stack footer-mobile-stack-p=
+adding" href=3D"http://www.constantcontact.com/legal/about-constant-contact=
+" data-track=3D"false" style=3D"color: #5d5d5d;">Constant Contact Data Noti=
+ce</a>
+</td>
+</tr>
+<tr>
+<td class=3D"footer-text" align=3D"center" valign=3D"top" style=3D"color: #=
+5d5d5d; font-family: Verdana,Geneva,sans-serif; font-size: 12px; padding: 4=
+px 0px;">
+Sent by
+<a href=3D"mailto:customerservice@halfpricedrapes.com" style=3D"color: #5d5=
+d5d; text-decoration: none;">customerservice@halfpricedrapes.com</a>
+<span class=3D"footer-column">in collaboration with</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"footer-text" align=3D"center" valign=3D"top" style=3D"color: #=
+5d5d5d; font-family: Verdana,Geneva,sans-serif; font-size: 12px; padding: 4=
+px 0px;">
+<a href=3D"http://www.constantcontact.com/index.jsp?cc=3Dnge&rmc=3DVF21_CPE=
+&pn=3DROVING&nav=3Dd5b52450-b1f4-4da6-8c7b-4bddd9a70de2" data-track=3D"fals=
+e" style=3D"color: #5d5d5d; text-decoration: none;"> <img alt=3D"Trusted Em=
+ail from Constant Contact - Try it FREE today." width=3D"160" border=3D"0" =
+hspace=3D"0" vspace=3D"0" src=3D"https://imgssl.constantcontact.com/letters=
+/images/CTCTFooter/Logo_Blue_Orange_2022.png"></a>
+<div class=3D"footer-cta-text" style=3D"color: #5d5d5d; font-family: Verdan=
+a,Geneva,sans-serif; font-size: 9px; line-height: 2;">
+<a href=3D"http://www.constantcontact.com/index.jsp?cc=3Dnge&rmc=3DVF21_CPE=
+&pn=3DROVING&nav=3Dd5b52450-b1f4-4da6-8c7b-4bddd9a70de2" data-track=3D"fals=
+e" style=3D"color: #5d5d5d; text-decoration: none;">Try email marketing for=
+ free today!</a>
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table> </td> </tr> </table>   </td> </tr> </table>  </td> </tr> </table> =
+</td> </tr> </table> </td> </tr>  </table> </div>  </body> </html>
+
+------=_Part_176852816_1439510759.1670787302419--

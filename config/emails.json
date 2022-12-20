@@ -1,11 +1,11 @@
 {"emails":
     [
         {
-        "sender": "Sprint",
-        "preview":"Important information on your bill",
+        "sender": "Google",
+        "preview": "Thanks for signing into Google on your Windows device. Please confirm your Google Account settings are still right for you.",
         "email_id": 1,
         "num_links": 3,
-        "link_id": 30,
+        "link_id": 20,
         "is_phish": true
         },
         {
@@ -49,11 +49,11 @@
         "is_phish": false
         },
         {
-        "sender": "Google",
-        "preview": "Thanks for signing into Google on your Windows device. Please confirm your Google Account settings are still right for you.",
+        "sender": "Sprint",
+        "preview":"Important information on your bill",
         "email_id": 7,
         "num_links": 3,
-        "link_id": 20,
+        "link_id": 30,
         "is_phish": false
         },
         {
@@ -74,12 +74,52 @@
         },
         {
         "sender": "Paypal",
-        "preview": "Enjoy auto-login for faster checkout. You’ve chosen to skip login with PayPal One Touch™. From now on you won’t be asked for your email or password when paying with PayPal on this device: Desktop Firefox Windows 10 NT 10.0.",
+        "preview": "Thanks for using PayPal. Here are the details for your purchase. ",
         "email_id": 10,
         "num_links": 3,
         "link_id": 20,
         "is_phish": false
+        },
+        {
+        "sender": "Chase",
+        "preview": "We posted a new notice or letter in your Chase Mobile® app and at chase.com/statements. Here's what it's about: We have updated information about your claim",
+        "email_id": 11,
+        "num_links": 3,
+        "link_id": 10,
+        "is_phish": false
+        },
+        {
+        "sender": "Tumblr",
+        "preview": "It’s that time again. It’s Tumblr's 2022 Year in Review! Every year, the team behind Fandometrics analyzes, categorizes, and ranks all the most discussed things on Tumblr—that's a year’s worth of your tags, searches, posts, likes, and reblogs—and packages them up into a little thing we like to call Year in Review.",
+        "email_id": 12,
+        "num_links": 3,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Half Priced Drapes",
+        "preview": "Shop BIG holiday specials, up to 70% off selected items! Use code: HOLIDAY22, offer expires 12/20/22",
+        "email_id": 13,
+        "num_links": 3,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Hello Fresh",
+        "preview": "Our Best Deal Ever: Cyber Monday Sale HelloFresh Cyber Monday Sale: Our best deal ever 1 day only GET 17 FREE MEALS PLUS FREE SHIPPING + 3 SURPRISE GIFTS USE PROMO CODE P3-9Q337 AT CHECKOUT Download.",
+        "email_id": 14,
+        "num_links": 3,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Capital One",
+        "preview": "Thanks for scheduling your payment. Confirmation Number: O0W8X116 Thanks for scheduling your card payment with Online Banking. Here are the details:",
+        "email_id": 15,
+        "num_links": 3,
+        "link_id": 20,
+        "is_phish": false
         }
-        
+    
     ]
 }

@@ -15,10 +15,10 @@ server_path = os.path.join(here, 'server_logs.log')
 error_path = os.path.join(here, 'error_logs.log')
 
 redirect_cases = {
-    1: 'https://www.sprint.com/',
+    1: 'https://www.google.com/gmail/about/',
     2: 'https://www.walmart.com/',
     3: 'https://www.westernunion.com/',
-    4: 'https://www.delta.com/',
+    # 4: 'https://www.delta.com/',
 }
 
 # Set client ajax logger
@@ -51,9 +51,12 @@ def index(request):
         if user is not None:
             #sometimes you need to ban or restrict users
             if user.is_active:
-                login(request, user)
+                try:
+                    login(request, user)
                 #send an authenticated, active user and their randomized emails to the inbox
-                return redirect('mail:inbox')
+                    return redirect('mail:inbox')
+                except Exception as e:
+                    error_logger.info(username+',' + e)
             else:
                 return render(request, 'mail/index.html', {'error_message': 'Your account has been disabled'})
         else:

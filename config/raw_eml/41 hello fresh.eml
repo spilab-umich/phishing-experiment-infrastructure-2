@@ -1,0 +1,400 @@
+Delivered-To: psychodoughboy2@gmail.com
+Received: by 2002:a05:6602:2be3:0:0:0:0 with SMTP id d3csp6722858ioy;
+        Mon, 29 Nov 2021 19:48:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwwS+FfKlU/q1bCahUEQO8wlRSyF7LWIRt2oeptsIB0UMZfaSvlJYO64/bif1LAOcBuXr/m
+X-Received: by 2002:a05:6808:14:: with SMTP id u20mr2014951oic.69.1638244089568;
+        Mon, 29 Nov 2021 19:48:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1638244089; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WxmU4L0peu+lwilyTsBbMUBwYdixI1h3dtzP/0u30DFSQEhyaMLHl+OTm4dxcxoCCB
+         kQDrl9l4VuHKm3K6q+Jh2p42ztC7ZVnFBbnbd33N+axS8ceEHHeuYstxSA8PDsohaF+b
+         WchFcNiRIwB/DvCEhAhlIs7WuYlzY9jJaOWg5wTe/H3mIHWgleLc9NgaJ1CjU5jLYAIM
+         OgIGDo5ctZwwyVABldewZ7lh036Oar5bGzoTGX/AQi4EHhJacdFUYXlY4SJt8XRGX5tK
+         6fhMm90IyTsP55r0zO4aGP2ByWtTm1zXxx7gizPMIXvN4ht2JXfhhb7qLfNO3GUkEb6r
+         v4ZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:feedback-id:message-id:list-id:reply-to
+         :mime-version:list-unsubscribe-post:list-unsubscribe:date:subject:to
+         :from:dkim-signature;
+        bh=cv9WuLeHd1Q1ICcIt3hd5pT25gHGvS/G3xZr3FkQf1s=;
+        b=NgGs2gsIOBjTnlgie+4z0fmpSQP8gra5EM8hIMoGGaVucUyxdNEeNYi3OjnWOlBjSE
+         v8/WfCY8gbZ8hAUbzSZm1tY3BHRRO5x0LWmc7hywsdaBKZBZBokQaTt4qR3FFojzX4Mg
+         alaWvN99Cwq0d1mZX21K9vULSDa6E9rNMWESEpO6nZk5dC3vBmVBcW5w3SujeSPK/CRQ
+         QuMn93I2OvSDmxhZIgsKu5WSXmshK+/JuN241PSFlQDcFC7TkYfsH7PqzTdfVc/4hEXb
+         uI0biD4CL/Okt1d0AFsBj8Av6BQW12BSjqAMtJXNUylbfqmgOUv9RpkuiohL8cAsKBTM
+         /VDg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@g.hellofresh.com header.s=50dkim1 header.b=LQ54IWiT;
+       spf=pass (google.com: domain of bounce-14621_html-280426362-300773-510000970-16336@bounce.g.hellofresh.com designates 161.71.38.72 as permitted sender) smtp.mailfrom=bounce-14621_HTML-280426362-300773-510000970-16336@bounce.g.hellofresh.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=g.hellofresh.com
+Return-Path: <bounce-14621_HTML-280426362-300773-510000970-16336@bounce.g.hellofresh.com>
+Received: from mta2.link.hellofresh.com (mta2.link.hellofresh.com. [161.71.38.72])
+        by mx.google.com with ESMTPS id f5si23296928otu.75.2021.11.29.19.48.08
+        for <psychodoughboy2@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Nov 2021 19:48:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce-14621_html-280426362-300773-510000970-16336@bounce.g.hellofresh.com designates 161.71.38.72 as permitted sender) client-ip=161.71.38.72;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@g.hellofresh.com header.s=50dkim1 header.b=LQ54IWiT;
+       spf=pass (google.com: domain of bounce-14621_html-280426362-300773-510000970-16336@bounce.g.hellofresh.com designates 161.71.38.72 as permitted sender) smtp.mailfrom=bounce-14621_HTML-280426362-300773-510000970-16336@bounce.g.hellofresh.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=g.hellofresh.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=50dkim1; d=g.hellofresh.com;
+ h=From:To:Subject:Date:List-Unsubscribe:List-Unsubscribe-Post:MIME-Version:
+ Reply-To:List-ID:X-CSA-Complaints:Message-ID:Content-Type:
+ Content-Transfer-Encoding; i=hello@g.hellofresh.com;
+ bh=cv9WuLeHd1Q1ICcIt3hd5pT25gHGvS/G3xZr3FkQf1s=;
+ b=LQ54IWiThA6zGBqMN9rzEfoVGZxIunA2T3qOoEmJrLHi7BaErRbWOf6Ablwq9Nuqvlm6jnvcGXvJ
+   B5G3ngcbAyGTaQeF+94fJTJC+OdXFEnrhTcbKHto5cu9LQtwNWV1t8RsrYsPspWMvYhHOldsSix6
+   aU1vAfROzGtUnc4G2nzoYcd+TJaasD8golzBmMN7m+hJUSxOtdQuJqlnDJRGcWS4yYw7/9rlmPPv
+   NSun/Por9CONsBb+y4yMnNTUklYLiyblG5M+wDlCjOrfDDKNOz9xUJWcsRgRgbBrGEBvYAniq/cQ
+   m8dixdp4xpZiA4hJreqDEqL8yCaYxyR16gwO8g==
+Received: by mta2.link.hellofresh.com id hkmffi2fmd4j for <psychodoughboy2@gmail.com>; Tue, 30 Nov 2021 01:00:06 +0000 (envelope-from <bounce-14621_HTML-280426362-300773-510000970-16336@bounce.g.hellofresh.com>)
+From: "HelloFresh" <hello@g.hellofresh.com>
+To: <psychodoughboy2@gmail.com>
+Subject: =?UTF-8?B?MTcgRlJFRSBNRUFMUyArIPCfjoHwn46B8J+OgSAoMyBmcmVlIGdp?=
+ =?UTF-8?B?ZnRzISk=?=
+Date: Mon, 29 Nov 2021 19:00:06 -0600
+List-Unsubscribe: <https://click.link.hellofresh.com/subscription_center.aspx?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtaWQiOiI1MTAwMDA5NzAiLCJzIjoiMjgwNDI2MzYyIiwibGlkIjoiMTQ2MjEiLCJqIjoiMzAwNzczIiwiamIiOiIxNjMzNiIsImQiOiI1MDAwMDUifQ.na-S8t68vNKC86YtIs1Q3OUYafwvcqZw4fhHP9Is9kY>, <mailto:leave-fced1574736605122d502d29-fe2e16787560067b761272-fecb17707563037e-fe3911717564047d7c1370-fefc1576766702@leave.link.hellofresh.com>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+x-CSA-Compliance-Source: SFMC
+MIME-Version: 1.0
+Reply-To: "HelloFresh" <reply-fecb17707563037e-14621_HTML-280426362-510000970-16336@link.hellofresh.com>
+List-ID: <500009790.xt.local>
+X-CSA-Complaints: csa-complaints@eco.de
+X-SFMC-Stack: 50
+x-job: 510000970_300773
+Message-ID: <bf8c7cf5-87c1-40a5-8cb7-1930c5658409@fra3s50mta123.xt.local>
+Feedback-ID: 510000970:300773:161.71.38.72:sfmktgcld
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<!-- ============================================================================== ================================================================================ -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+</style>
+
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap'); 
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:800;src:local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(https://fonts.gstatic.com/s/montserrat/v12/JTURjIg1_i6t8kCHKm45_c5H3gnD_vx3rCs.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+html, body{margin:0 !important;padding:0 !important;height:100% !important;width:100% !important;}
+table{border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin:0 auto !important;}
+.gmailFix, .gmailFix img { display:none !important; } 
+.footertrack img { display:none !important; } 
+table table table{table-layout:auto;}
+a[x-apple-data-detectors]{color:inherit !important;}
+h1{font-family:montserrat,'Open Sans', Arial, sans-serif;color:#91c11e;font-weight:bold;font-size:25px;line-height:0;text-transform:uppercase;text-decoration:none;text-align:center;}
+h3, .subheading{font-family:montserrat,'Open Sans', Arial, sans-serif;color:#333333;font-weight:bold;font-size:22px;line-height:30px;text-decoration:none;text-align:left;}
+h4{font-family:'Open Sans', sans-serif;font-size:16px;line-height:0;font-weight:normal;}
+
+#meal-choice-desktop{display:table;}
+#meal-choice-mobile{display:none;}
+.bgcolor{background-color:#F8F8F8;}
+.recipe-card{border:1px solid #F0F0F0;}
+.container{border:1px solid #ffffff;border-width:0 30px 0 30px;}
+.logo{display:block;padding-left:5px;}
+.header-app-icon{display:none;}
+.prospect-nav-text{font-family:'Open Sans', Arial, sans-serif;font-size:13px;line-height:18px;color:#666666;background-color:#ffffff;padding-right:0;padding-bottom:10px;text-decoration:none;}
+.nav-text{font-family:'Open Sans', Arial, sans-serif;font-size:13px;line-height:18px;padding-right:0;color:#666666 !important;text-decoration:none !important;}
+#green-bar{background-color:#91c11e;display:table;width:100%;height:15px;font-size:16px;line-height:40px;padding-bottom:0;}
+.green-bar-text{font-family:'Montserrat', Arial, sans-serif;background-color:#FFC20E;color:#513D00;font-weight:normal;font-size:14px;padding:15px;text-transform:uppercase;text-decoration:none;}
+.recipe-title{font-size:20px;letter-spacing:1.5px;color:#444444;font-family:'Montserrat', Arial;font-weight:normal;text-align:center;text-transform:uppercase;padding:20px 0;}
+.address a{color:#666666 !important;text-decoration:none !important;}
+.recipecardtext span{line-height:140%!important;font-size:14px!important;padding-left:20px!important;padding-top:20px;padding-right:35px;padding-bottom:20px;display:block;background-image:url(http://i66.tinypic.com/2nl9s43.png);background-repeat:no-repeat;background-position:top right;}
+.background-1{background:url(https://cdn.hellofresh.com/us/cms/CRM-US/Wine/2018/Wine%20Shipping%202.0/wine_glasses_2.png);background-repeat:no-repeat;background-size:100% 100%;}
+.background-2{background:url("https://cdn.hellofresh.com/us/cms/CRM-US/Wine/2018/Wine%20Shipping%202.0/HF_Wine_Shipping-Confirmation-Email_v2_(2).png");background-repeat:no-repeat;background-size:100% 100%;}
+.header{font-size:25px !important;line-height:30px !important;letter-spacing:1px !important;color:#91c11e;font-family:'Montserrat', Arial;font-weight:bold;text-align:center;text-transform:uppercase;}
+.recipeLabel{font-family:montserrat,'Open Sans', Arial, sans-serif;color:#ffffff;font-weight:bold;font-size:18px;text-transform:uppercase;text-decoration:none;text-align:center;}
+.nameHeroRecipe{color:#333333;font-family:'Open Sans', Arial, sans-serif;font-weight:bold;font-size:20px;line-height:30px;letter-spacing:.5px;text-transform:capitalize;text-decoration:none;text-align:center;border-collapse:collapse;padding-top:10px;padding-bottom:0;padding-left:40px;padding-right:40px;}
+.descriptionHeroRecipe{font-weight:normal;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:15px;line-height:19px;text-transform:capitalize;letter-spacing:.5px;color:#666666;padding-bottom:15px;padding-top:5px;}
+.wineName{display:inline-block;text-align:left;font-family:Montserrat, 'Open Sans', Arial, sans-serif;font-weight:normal;font-size:16px;line-height:17px;color:#333333;}
+ .wine-copy-1{text-align:center;text-decoration:none;font-family:Montserrat, 'Open Sans', Arial, sans-serif;font-size:14px;font-weight:bold;line-height:15px;color:#91c11e;}
+.wine-copy-2{text-align:left;font-family:'Open Sans', Arial, sans-serif;font-size:14px;line-height:15px;color:#333333;padding:0;}
+.inbox{vertical-align:top;background-color:#91c11e;color:#ffffff;display:inline-block;font-family:Montserrat, sans-serif;font-size:10px;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;width:80px;height:18px;}
+.coupon-desktop{display:table;}
+.coupon-mobile{display:none;}
+.CTA-wine{background-color:#ffffff;color:#91c11e;display:inline-block;font-family:'Montserrat', 'Open Sans', Arial;font-size:16px;font-weight:bold;line-height:17px;padding-top:5px;text-align:center;text-decoration:none;}
+.recipe{text-align:left;text-decoration:none;font-family:Montserrat, 'Open Sans', Arial, sans-serif;font-size:14px;color:#333333;padding-left:0;}
+.recipe-mobile{text-align:left;font-family:Montserrat, 'Open Sans', Arial, sans-serif;font-size:14px;line-height:18px;color:#333333;}
+.recipe-banner-text{padding:2px 0 5px 0;text-align:center;text-decoration:none;font-family:'Open Sans', Arial, sans-serif;color:#333333;font-size:16px;line-height:23px;text-transform:none;border-collapse:collapse;}
+.rating-text{text-align:center;text-decoration:none;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:23px;padding-bottom:5px;color:#333333;border-collapse:collapse;}
+.wine-text-temp{font-family:'Open Sans', sans-serif;font-size:16px;font-weight:normal;line-height:20px;text-decoration:none;color:#666666;padding:0 20px;letter-spacing:.25px;}
+.customer-name{font-weight:bold;text-align:left;font-family:'Open Sans', Arial, sans-serif;font-size:16px;color:#333333;}
+.body-text{font-family:'Open Sans', sans-serif;font-size:16px;line-height:18px;}
+.body-text-2{font-family:'Open Sans', sans-serif;font-size:16px;line-height:23px;}
+.testimony{font-family:Montserrat, 'Open Sans', sans-serif;font-size:16px;padding:10px 10px 0 10px;}
+.CTA{background-color:#91c11e;color:#ffffff;display:inline-block;font-family:'Montserrat', Arial;font-size:20px;font-weight:600px;line-height:48px;letter-spacing:0px;text-align:center;text-decoration:none;width:300px;border-radius:3px;}
+.CTA-second{color:#91c11e;display:inline-block;font-family:'Montserrat', Arial;font-size:18px;font-weight:bold;text-align:center;text-decoration:none;}
+.CTA-prospect-voucher{background-color:#91c11e;color:#ffffff;display:inline-block;font-family:'Montserrat', Arial;font-size:16px;font-weight:normal;line-height:40px;text-align:center;text-decoration:none;width:200px;border-radius:3px;}
+.active-former-voucher-text{text-align:center;text-decoration:none;font-family:'Open Sans', Arial, sans-serif;color:#333333;font-weight:bold;font-size:20px;line-height:26px;padding-bottom:5px;text-decoration:none;text-transform:none;border-collapse:collapse;}
+.prospect-voucher-text{font-weight:bold;text-align:left;font-family:'Open Sans', Arial, sans-serif;font-size:20px;line-height:26px;text-align:center;text-decoration:none;}
+.prospect-voucher-box{border:3px solid #91c11e;padding:30px 20px 20px 20px;}
+.footer-text-1{font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding:10px 0;}
+.disclaimer-text{font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;border-collapse:collapse;padding:20px;}
+.footer-text-1{font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding:10px 0;}
+.footer-text-2{font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding:20px;}
+</style>
+<!-- Progressive Enhancements -->
+<style>
+.button-td, .button-a{transition:all 100ms ease-in;}
+.button-td:hover, .button-a:hover{background:#659a41 !important;border-color:#659a41 !important;}
+.hover-text:hover{color:#659a41 !important;}
+@media screen and (max-width:600px){
+h1{font-size:18px !important;line-height:10px !important;}
+h3{font-size:12px !important;line-height:12px !important;}
+.subheading{font-size:12px !important;line-height:12px !important;padding-bottom:5px !important;padding-top:10px !important;}
+h4{font-size:11px !important;line-height:0 !important;}
+.secondary-CTA{color:#91c11e !important;line-height:0 !important;}
+#meal-choice-desktop{display:none !important;}
+#meal-choice-mobile{display:table !important;}
+.bgcolor{background-color:#ffffff !important;}
+.email-container{width:100% !important;}
+.email-container_light_bg{width:93% !important;}
+.fluid, .fluid-centered{max-width:100% !important;height:auto !important;margin-left:auto !important;margin-right:auto !important;}
+.fluid-centered{margin-left:auto !important;margin-right:auto !important;}
+.stack-column, .stack-column-center{display:block !important;width:100% !important;max-width:100% !important;direction:ltr !important;margin:auto !important}
+.stack-column-center{text-align:center !important;}
+.center-on-narrow{text-align:center !important;display:block !important;margin-left:auto !important;margin-right:auto !important;float:none !important;}
+.pair-this-with{height:10px !important;}
+.hidden-spacer{display:none !important;}
+.body-padding{width:90% !important;}
+.logo{width:120px !important;}
+.header-app-icon{display:inline !important;padding-right:5px !important;}
+.prospect-nav-text{display:none !important;}
+.nav-text{padding-right:3px !important;font-size:9px !important;}
+.green-bar-text{font-size:15px !important;padding:5px !important;}
+.address a{font-size:10px !important;line-height:14px !important;color:#666666 !important;text-decoration:none !important;}
+.header{font-size:22px !important;line-height:25px !important;letter-spacing:.5px !important;}
+.recipe-title{font-size:16px !important;letter-spacing:1px !important;}
+.recipe-banner-text{font-size:12px !important;line-height:12px !important;}
+.customer-name{font-size:14px !important;padding:0 !important;}
+.body-text{font-size:14px !important;line-height:16px !important;}
+.body-text-2{font-size:10px !important;line-height:13px !important;}
+.wine-text-temp{font-size:10px !important;line-height:11px !important;padding:0 5px !important;}
+.testimony{font-size:14px !important;}
+.nameHeroRecipe{padding-top:10px !important;padding-bottom:0 !important;font-size:15px !important;line-height:15px !important;letter-spacing:1px !important;}
+.descriptionHeroRecipe{font-size:12px !important;line-height:16px !important;letter-spacing:1px !important;padding-top:5px !important;}
+.inbox{font-size:10px !important;width:70px !important;}
+.inbox-2{font-size:10px !important;}
+.recipe{font-size:12px !important;line-height:12px !important;}
+.recipeLabel{font-size:12px !important;}
+.recipe-mobile{font-size:12px !important;line-height:15px !important;}
+.coupon-desktop{display:none !important;}
+.coupon-mobile{display:table !important;}
+.coupon-padding{max-width:300px !important;}
+.CTA-wine{font-size:12px !important;padding-top:2px !important;}
+.wineName, .wine-copy-1, .wine-copy-2{font-size:12px !important;line-height:15px !important;}
+ .active-former-voucher-text{font-size:15px !important;line-height:18px !important;}
+.prospect-voucher-text{font-size:15px !important;line-height:18px !important;}
+.disclaimer-text{font-size:8px !important;line-height:10px !important;padding:10px !important;}
+.footer-text-2{font-size:8px !important;line-height:10px !important;padding:10px !important;}
+.footer-container{width:95% !important;}
+.money-icon{width:40px !important;}
+.hidden-mobile{display:none !important;}
+.receipt {width: 100% !important;}
+.receipt td {width: 50% !important;}
+.receipt-2 {margin: auto !important; width: 94% !important;}  
+}
+  
+ @media only screen and (max-width: 480px) {
+  body {
+    -webkit-text-size-adjust: none !important;
+  }
+  table {
+    -webkit-text-size-adjust: none !important;
+  }
+  td {
+    -webkit-text-size-adjust: none !important;
+  }
+  p {
+    -webkit-text-size-adjust: none !important;
+  }
+  a {
+    -webkit-text-size-adjust: none !important;
+  }
+  li {
+    -webkit-text-size-adjust: none !important;
+  }
+  blockquote {
+    -webkit-text-size-adjust: none !important;
+  }
+  body {
+    width: 100% !important; min-width: 100% !important;
+  }
+  }
+@media screen and (max-width:320px){
+h1{font-size:15px !important;line-height:10px !important;}
+h3{font-size:9px !important;line-height:9px !important;}
+.subheading{font-size:9px !important;line-height:9px !important;padding-bottom:3px !important;}
+h4{font-size:9px !important;line-height:0 !important;}
+#meal-choice-desktop{display:none !important;}
+#meal-choice-mobile{display:table !important;}
+.body-text{font-size:12px !important;line-height:12px !important;}
+.body-text-2{font-size:8px !important;line-height:10px !important;}
+.secondary-CTA{color:#91c11e !important;line-height:0 !important;}
+.logo{width:90px !important;}
+.header-app-icon{display:inline !important;}
+.nav-text{padding-right:3px !important;font-size:7px !important;}
+.green-bar-text{font-size:15px !important;}
+.recipe-banner-text{font-size:10px !important;line-height:10px !important;}
+.wine-text-temp{font-size:8px !important;line-height:10px !important;padding:0 5px !important;}
+.pair-this-with{height:10px !important;}
+.recipe{font-size:10px !important;line-height:10px !important;}
+.spacing{padding:5px 0 !important;}
+.recipeLabel{font-size:12px !important;}
+.nameHeroRecipe{font-size:20px !important;line-height:20px !important;letter-spacing:0 !important;}
+.recipe-mobile{font-size:10px !important;line-height:12px !important;padding-left:0 !important;}
+.descriptionHeroRecipe{font-size:12px !important;line-height:13px !important;letter-spacing:1px !important;}
+.customer-name{font-size:8px !important;line-height:8px !important;padding:0 !important;}
+.active-former-voucher-text{font-size:12px !important;line-height:15px !important;}
+.prospect-voucher-text{font-size:12px !important;line-height:15px !important;}
+.CTA{width:250px !important;}
+.coupon-padding{max-width:250px !important;}
+.CTA-prospect-voucher{width:150px !important;}
+.disclaimer-text{font-size:5px !important;line-height:6px !important;padding:10px !important;}
+.footer-text-2{font-size:5px !important;line-height:6px !important;padding:10px !important;}
+.money-icon{width:30px !important;}
+}
+</style>
+
+
+
+</head>
+
+<body style="margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;height:100% !important;width:100% !important;background-color:#F8F8F8;" ><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Our Best Deal Ever: Cyber Monday Sale</div>
+
+
+
+<table  cellspacing="0" cellpadding="0"  class="email-container"  align="center" valign="top" border="0" width="600" style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;" >
+<tr>
+   <td  class="hero" >
+     
+  
+
+
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table class="email-container" style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin: 0 auto !important" width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#F5F6F6" align="center">
+  <tr> <td style="display:block;" width="100%" valign="center" align="center"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e19f781e85933b05659c73d326f24ee3a719d3ba67b3386cc3577fea41b023ea7cc5032d2c02704c644bf6fabed12b23d80e47592a7f106f93" target="_blank"><img src="https://hf-crm-assets.s3-eu-west-1.amazonaws.com/New_logo_Full_width.png" heigh="auto" alt="HelloFresh" style="display:block;height:auto;width:100%;" width="100%" border="0"></a>
+    </td>
+  </tr>
+</table>
+
+</td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" title=""   data-linkto="other"><img data-assetid="156749" src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/6f798cde-d05b-4614-85b3-c12f383bfa4c.png" alt="Cyber Monday Sale: Our best deal ever 1 day only " width="600" style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px none transparent;"></a></td></tr></table></td></tr>
+</table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="center"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" title=""   data-linkto="other"><img data-assetid="156752" src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/d7b80edc-ec3a-4b09-8540-a653beeca775.png" alt="GET 17 FREE MEALS PLUS FREE SHIPPING + 3 SURPRISE GIFTS" width="600" style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px;"></a></td></tr></table></td></tr></table>
+<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table class="email-container" valign="middle" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;margin:0 auto;" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="300030" align="center"> 
+<tr>
+    <td style="font-weight:normal;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:18px;line-height:30px;letter-spacing:.5px;color:#ffffff;padding-bottom:40px;padding-top:15px;font-weight: bold;" width="40%" align="center">USE PROMO CODE <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" style="-ms-text-size-adjust:100% !important;-webkit-text-size-adjust:100% !important;color:#ffffff;text-decoration:none;font-weight:bold;text-transform:uppercase;">P3-9Q337</a> AT CHECKOUT <br>
+
+    </td>
+</tr>
+</table>
+
+          
+        </td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table><table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"> 
+
+<table cellspacing="0" cellpadding="0" class="email-container bgcolor" width="600" border="0" align="center" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;">
+  <tr>
+    <td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#F5F5F5;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="footer-text-1" style="font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;">Download our app</td>
+  </tr>
+</table>
+
+<!-- "DOWNLOAD OUR APPS" -->
+<table cellspacing="0" cellpadding="0" class="email-container bgcolor" width="600" border="0" align="center" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;">
+
+  <tr>
+    <td width="50%" valign="center" border="0" align="right" style="padding-right:10px;"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e196de2baa901f46626ed249bf3f594f47306574412e5926a1c632db990ae900e7da6ab282532c506726f0d274b9f8537c1842de320233c7a0" target="_blank"><img width="100" height="" src="https://cdn.hellofresh.com/us/cms/CRM-US/Testing/AppNew.png" alt=""></a>
+    </td>
+
+    <td width="50%" valign="center" border="0" align="left" style="padding-left:10px;"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1b8158a5b10479378f8052cd65c64d453d37e9419bedde3e27a7715a31577c37c343e0e8867251bae543867731121e250b3ff78bbd9626af4" target="_blank"><img width="100" src="https://cdn.hellofresh.com/us/cms/CRM-US/Testing/PlayNew.png" alt=""></a>
+    </td>
+  </tr>
+  <tr>
+    <td height="20" style="font-size:1px;line-height:1px;">&nbsp;<!-- <hr size="15" color="#91c11e"> --></td>
+  </tr>
+</table>
+
+<!-- SOCIAL MEDIA ICONS -->
+<table cellspacing="0" cellpadding="0" class="email-container bgcolor" width="600" border="0" align="center" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;">
+  <tr>
+    <td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#e8e8e8;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="footer-text-1" style="font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;">Follow us. Or give us a shout out.</td>
+  </tr>
+
+
+  <tr align="center">
+    <td class="center-on-narrow bgcolor" width="0" align="center" style="background-color:#F8F8F8;">
+
+    <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e16a22e6da5da14493db80bc89d3ca16b83ca51fa4af19d653a3aef82564bb009e3fcac272c279f4f3be98623893802811521ca7ddc67ad58d" target="_blank" style="text-decoration:none;"><img src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/facebook.png" height="25" alt="Facebook" border="0" style="max-width:32px;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"></a>
+
+    <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1c91b21a296c91db4a2f44dac84abc2911e0cf43b84586b12690e3ea98121a008a651fcee73a1ea8efebe78fb9dd4a5d351ca6d8611cc8d4c" target="_blank" style="text-decoration:none;">&nbsp;<img src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/instagram.png" height="25" alt="Instagram" border="0" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"></a>
+
+    <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1400ba6a2505873e90540bc275c562297355c7177cb42c0b35d59bdccba7216b8a6072e2c4f0df773f007cab5773f407354954f7ce7aad6e2" target="_blank" style="text-decoration:none;">&nbsp;<img src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/twitter.png" height="25" alt="Twitter" border="0" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"></a>
+
+    <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1090e1e1ec390521eb7fedc359579fbd48bf8d2c65ae8c7f080e55ae40087e03ac9becc0b016835f0d800a98d9dab3038237c7e55843747a9" target="_blank" style="text-decoration:none;">&nbsp;<img src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/pinterest.png" height="25" alt="Pinterest" border="0" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"></a>
+
+    <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e12506c1b32ae660796333a614b77e6090b830402b6431e70ef6ea647544549ac6e629e08823245c6824dd9aabab73a97cea57e8c1c309421e" target="_blank" style="text-decoration:none;">&nbsp;<img src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/wordpress.png" height="25" alt="Blog" border="0" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"></a>
+  </td></tr>
+  <tr>
+    <td height="20" style="font-size:1px;line-height:1px;">&nbsp;</td>
+  </tr>
+        <tr>
+    <td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#e8e8e8;">&nbsp;</td>
+  </tr>
+</table>
+<table width="600" cellspacing="0" cellpadding="0" border="0" valign="middle" align="center" class="email-container bgcolor" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;">
+    <tr>
+    <td class="footer-text-2" align="center" style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#e8e8e8;">
+
+*Offer only valid for new customers with an auto-renewing subscription purchase. Offer is based on a total discount applied over a 8-week period for a two-person, four-recipe subscription (offer varies for other plans). Save $46 on your 1st box, $30 on your 2nd box, $18 on your 3rd, 4th, and 5th boxes, $8 on your 6th and 7th boxes, and $7 on your 8th box including free shipping on your 1st box. A shipping fee of approx. $9.99 shall apply on all deliveries thereafter. Additionally, as part of your subscription pursuant to this offer, you will be eligible to receive a free gift after the purchase of your 4th, 6th and 8th boxes, while supplies last.  Offer must be redeemed by 11/29/2021 11:59 PM PST. Offer only valid towards meal plan purchase, does not apply to gift cards, premiums, meal
+ up-grades, add-ons, taxes, or shipping fees. Offer may not be combined with any other promotion. Offer has no cash value. Void where prohibited. HelloFresh has the right to end or modify any offer at any time. Additional restrictions may apply, see HelloFresh.com/termsandconditions for more details.
+
+  </td></tr>
+  <tr>
+    <td class="footer-text-2" align="center" style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">You’re receiving this email because you’ve signed up to receive emails from HelloFresh. If you’d prefer not to receive updates, you can <a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e13a0b9e2e8a7447da1f416f13accc4826c6c956d97ef64fe86c7f31a20182ab381712d34d8ee16a4ebcb8b81190d83799c2ceb1ba727eeea6" target="_blank" style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;text-decoration:underline;">unsubscribe</a>. Use of the HelloFresh service and website is subject to our 
+<a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1089f9d38b214772f6de5d0689fcb198aa9d8785dc6891f566f2646336af747830271a6a4c271efc5aa0d437ba63712fce723194036b5343e" target="_blank" style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;">Terms of Use</a>.<br><br>
+
+      Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc., registered in the U.S. and other countries. Google Play and the Google Play logo are trademarks of Google LLC.<br><br>
+
+      &copy; 2021 HelloFresh. <a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e10f108fef323f8cdfcf62b8ff19b529ecb2b6a1cbc10f5ea7785dc981afe30f10dd3ba7b0e33f4c33899b1c576159fc936469e829cb078e9a" target="_blank" style="text-decoration:none;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;">28 Liberty Street, New York, NY 10005 USA</a>. All Rights reserved.
+  </td></tr>
+</table>
+
+
+
+
+
+</td></tr></table> 
+ </td>
+</tr>
+</table> 
+
+  
+  <img src="https://click.link.hellofresh.com/open.aspx?ffcb10-fecb17707563037e-fe3715767464047c7d1271-fe3911717564047d7c1370-ff011574736605-fe2e16787560067b761272-fefc1576766702&d=500005&bmt=0" width="1" height="1" alt="">
+  
+</body>
+</html> 
