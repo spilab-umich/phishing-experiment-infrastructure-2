@@ -56,7 +56,7 @@ def index(request):
                 #send an authenticated, active user and their randomized emails to the inbox
                     return redirect('mail:inbox')
                 except Exception as e:
-                    error_logger.info(username+',' + e)
+                    error_logger.info(username+',' + str(e))
             else:
                 return render(request, 'mail/index.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -363,7 +363,7 @@ def collect_ajax(res):
             })
         # print('client log saved')
     except Exception as e:
-        error_logger.info(username+',' + e)
+        error_logger.info(username+',' + str(e))
     return
 
 def collect_log(request):
