@@ -165,7 +165,7 @@ def revise_html(html, email):
     soup = BeautifulSoup(html, 'html.parser')
     for num, tag in enumerate(soup.find_all('a')):
         tag['id'] = (num+1) * 10
-        # print(tag['id'])
+        tag['target'] = "_blank"
         # check if the current link id  matches the phish_id of the email
         if ((p_link == tag['id']) & is_phish):
         #     # pick a shuffled domain manipulation wrt the email_id
@@ -244,18 +244,22 @@ for i in range(0, n_users):
     # First email should have the last time_sent
     # j=9 
     dates = [
-        'Wed, 24 Oct 2021 10:19:30 -0700 (PDT)',
-        'Wed, 25 Oct 2021 7:19:30 -0700 (PDT)',
-        'Wed, 25 Oct 2021 8:19:30 -0700 (PDT)',
-        'Wed, 25 Oct 2021 9:19:30 -0700 (PDT)',
-        'Wed, 26 Oct 2021 10:19:30 -0700 (PDT)',
-        'Wed, 26 Oct 2021 7:19:30 -0700 (PDT)',
-        'Wed, 26 Oct 2021 9:19:30 -0700 (PDT)',
-        'Wed, 26 Oct 2021 8:19:30 -0700 (PDT)',
-        'Wed, 26 Oct 2021 10:19:30 -0700 (PDT)',
-        'Wed, 27 Oct 2021 1:19:30 -0700 (PDT)',
-        'Wed, 27 Oct 2021 2:19:30 -0700 (PDT)',
-        'Wed, 27 Oct 2021 10:19:30 -0700 (PDT)',
+        'Fri, 4 Nov 2022 8:19:30 -0700',
+        'Tue, 8 Nov 2022 9:19:30 -0700',
+        'Sun, 13 Nov 2022 10:19:30 -0700',
+        'Thu, 17 Nov 2022 7:19:30 -0700',
+        'Thu, 17 Nov 2022 7:19:30 -0700',
+        'Sat, 19 Nov 2022 9:19:30 -0700',
+        'Mon, 21 Nov 2022 8:19:30 -0700',
+        'Tue, 22 Nov 2022 9:19:30 -0700',
+        'Fri, 25 Nov 2022 8:19:30 -0700',
+        'Sun, 27 Nov 2022 10:19:30 -0700',
+        'Wed, 30 Nov 2022 10:19:30 -0700',
+        'Sat, 3 Dec 2022 1:19:30 -0700',
+        'Sun, 4 Dec 2022 2:19:30 -0700',
+        'Thu, 8 Dec 2022 2:19:30 -0700',
+        'Sat, 10 Dec 2022 1:19:30 -0700',
+        'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
     for email in emails_to_add:
         j = 1

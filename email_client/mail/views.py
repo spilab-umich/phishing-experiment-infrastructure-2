@@ -51,12 +51,9 @@ def index(request):
         if user is not None:
             #sometimes you need to ban or restrict users
             if user.is_active:
-                # try:
-                    login(request, user)
-                #send an authenticated, active user and their randomized emails to the inbox
-                    return redirect('mail:inbox')
-                # except Exception as e:
-                #     error_logger.info(username+',' + str(e))
+                login(request, user)
+            #send an authenticated, active user and their randomized emails to the inbox
+                return redirect('mail:inbox')
             else:
                 return render(request, 'mail/index.html', {'error_message': 'Your account has been disabled'})
         else:

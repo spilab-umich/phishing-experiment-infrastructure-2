@@ -50,7 +50,7 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	 sm73fkGMO1NkNBhXPKdNoDERSeMgofm2Vl6LzPfc=
 From: "Capital One" <capitalone@notification.capitalone.com>
 Message-ID: <BD.7C.21086.2EED2936@gf.mta2vrest.cc.prd.sparkpost>
-Subject: Your payment of $200.00 is scheduled for Dec 09,2022
+Subject: Your payment of $200.00 is scheduled
 To: jpetelka@gmail.com
 Date: Fri, 09 Dec 2022 07:08:18 +0000
 Content-Type: multipart/alternative; boundary="_----kxtYclVBtV+lXs9062tJMA===_99/EA-38966-59F7B326"

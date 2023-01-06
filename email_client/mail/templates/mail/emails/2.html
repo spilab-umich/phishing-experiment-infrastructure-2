@@ -1,280 +1,547 @@
-<!DOCTYPE html>
-
-<html>
 <head>
-<title>Walmart.com</title>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<style type="text/css">
-.icon-img.walmart a img {
-    width: 57px;
-    height: 53px;
-}
-.icon-img.pharmacy a img {
-    width: 57px;
-    height: 57px;
-}
-		.mobile-welcome-banner{
-              display:none;
-              }
-              .desk-banner{
-              display:block;
-              }
-             .desktop-text-align {
-             display:block;
-             }
-             .mobile-text-align{
-             display:none;
-             }
-             td.icon-boxx {
-    		padding-bottom: 40px;
-			}
-			td.icon-box1 {
-    			padding-bottom: 60px;
-			}
-			.icon-box2 {
-    			padding-bottom: 60px;
-			}
-   		 @media only screen and (max-width: 480px){
-           .mobile_view { float: right;}
-   		 }
+	<title>Walmart.com</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<style type="text/css">
+		.icon-img.walmart a img {
+			width: 57px;
+			height: 53px;
+		}
+
+		.icon-img.pharmacy a img {
+			width: 57px;
+			height: 57px;
+		}
+
+		.mobile-welcome-banner {
+			display: none;
+		}
+
+		.desk-banner {
+			display: block;
+		}
+
+		.desktop-text-align {
+			display: block;
+		}
+
+		.mobile-text-align {
+			display: none;
+		}
+
+		td.icon-boxx {
+			padding-bottom: 40px;
+		}
+
+		td.icon-box1 {
+			padding-bottom: 60px;
+		}
+
+		.icon-box2 {
+			padding-bottom: 60px;
+		}
 
 		@media only screen and (max-width: 480px) {
-		.info-section{
-		width:100%;
+			.mobile_view {
+				float: right;
+			}
 		}
-		.inbox-boxx {
-		    width: 100%;
-		    float: left;
-		    padding-left: 0px !important;
+
+		@media only screen and (max-width: 480px) {
+			.info-section {
+				width: 100%;
 			}
-		.inbox-box {
-		    float: left;
-		    width: 100%;
-		    margin-bottom: 32px;
+
+			.inbox-boxx {
+				width: 100%;
+				float: left;
+				padding-left: 0px !important;
 			}
+
+			.inbox-box {
+				float: left;
+				width: 100%;
+				margin-bottom: 32px;
+			}
+
 			td.icon-boxx {
-    		padding-bottom: 0px;
+				padding-bottom: 0px;
 			}
+
 			td.icon-box1 {
-    			padding-bottom: 0px;
+				padding-bottom: 0px;
 			}
+
 			.icon-box2 {
-    			padding-bottom: 0px;
+				padding-bottom: 0px;
 			}
+
 			p.icon-img.pharmacy {
-    			margin-top: 5px;
-    			margin-bottom: 0px;
+				margin-top: 5px;
+				margin-bottom: 0px;
 			}
+
 			.block-img {
-    			width: 100%;
-    			text-align: center;
+				width: 100%;
+				text-align: center;
 			}
+
 			table.block-img td {
-    			text-align: center;
+				text-align: center;
 			}
+
 			table.block-img p {
-    			text-align: center !important;
+				text-align: center !important;
 			}
-			table.block-img h4, h3, h2 {
-    			text-align: center !important;
+
+			table.block-img h4,
+			h3,
+			h2 {
+				text-align: center !important;
 			}
+
 			p.item-text {
-    			margin-bottom: 0px;
-    			padding-bottom: 60px;
+				margin-bottom: 0px;
+				padding-bottom: 60px;
 			}
+
 			p.img-text {
-    			margin-bottom: 0px;
-    			padding-bottom: 40px;
+				margin-bottom: 0px;
+				padding-bottom: 40px;
 			}
+
 			.mobile-text-align td p {
-    			text-align: center !important;
+				text-align: center !important;
 			}
+
 			.responsive-devicea.socialIcon {
-    			width: 100%;
+				width: 100%;
 			}
+
 			.responsive-devicea.socialIcon th {
-    			text-align:center;
+				text-align: center;
 			}
+
 			table.responsive-deviceb {
-    			width: 100%;
+				width: 100%;
 			}
-			body { background-color: #FFFFFF; margin:0px auto; padding:0px; margin-left: auto !important; margin-right: auto !important; }
-			table td { border-collapse: collapse; }
- 			td[class=blueLine] { height: 3px !important; }
+
+			body {
+				background-color: #FFFFFF;
+				margin: 0px auto;
+				padding: 0px;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			table td {
+				border-collapse: collapse;
+			}
+
+			td[class=blueLine] {
+				height: 3px !important;
+			}
+
 			/** global **/
-			[class=assetOff] { display: none !important; width: 0px !important; }
-			[class=setDisplayWidth] { width: 303px !important; }
-			[class=setDisplayWidthInner] { width: 360px !important; }
-			[class=setDisplayImage] { width: 280px !important; }
-			[class=makeBlock] { display: block !important; clear: both !important; }
-			[class=makeInlineBlock] { display: inline-block !important; }
-			[class=moduleBreak] { height: 25px !important; }
-			[class=moduleBreakLine]{width : 290px!important}
-			[class=moduleBreakPOV] { height: 0px !important; }
-			[class=makeOneZeroOne] { width: 101px !important; }
-			[class=makeOneFiftyOne] { width: 151px !important; }
-			[class=greyText]{font-size:13px!important;}
-			[class=pinkText]{font-size:13px!important;}
-			[class=blackText]{font-size:13px!important;}
-			[class=blockHeader]{font-size:25px!important;}
-			[class=titleHeader]{font-size:16px!important;}
-			[class=titleHeaderGrey]{font-size:14px!important;}
-			[class=trackButton]{height:20px!important; width:122px!important;}
-			[class=columnHeader]{font-size:16px!important;}
-			[class=bannerHeader]{font-size:30px!important;}
-			[class=headerSize]{height: 80px !important; background-color:#041e42 !important;}
-			[class=responsiveButton]{width:100%!important}
-			[class=headerImgSpark]{
-					width: 42px!important;
-				  height: 45px!important;
-				  font-family: WalmartNewIcons;
-				  font-size: 57.6px;
-				  text-align: center;
-				  color: #ffc220;
+			[class=assetOff] {
+				display: none !important;
+				width: 0px !important;
 			}
-			*[class~=hide_on_mobile] { display: none !important;}       
-		    *[class~=show_on_mobile] {
-		        display : block !important;
-		        width : auto !important;
-		        max-height: inherit !important;
-		        overflow : visible !important;
-		        float : none !important;
-		    }
-		    td[class=headerImageSwap] a { display: block !important; width: 303px; height: 43px; }
-			td[class=mobileBannerDefault]{
+
+			[class=setDisplayWidth] {
+				width: 303px !important;
+			}
+
+			[class=setDisplayWidthInner] {
+				width: 360px !important;
+			}
+
+			[class=setDisplayImage] {
+				width: 280px !important;
+			}
+
+			[class=makeBlock] {
+				display: block !important;
+				clear: both !important;
+			}
+
+			[class=makeInlineBlock] {
+				display: inline-block !important;
+			}
+
+			[class=moduleBreak] {
+				height: 25px !important;
+			}
+
+			[class=moduleBreakLine] {
+				width: 290px !important
+			}
+
+			[class=moduleBreakPOV] {
+				height: 0px !important;
+			}
+
+			[class=makeOneZeroOne] {
+				width: 101px !important;
+			}
+
+			[class=makeOneFiftyOne] {
+				width: 151px !important;
+			}
+
+			[class=greyText] {
+				font-size: 13px !important;
+			}
+
+			[class=pinkText] {
+				font-size: 13px !important;
+			}
+
+			[class=blackText] {
+				font-size: 13px !important;
+			}
+
+			[class=blockHeader] {
+				font-size: 25px !important;
+			}
+
+			[class=titleHeader] {
+				font-size: 16px !important;
+			}
+
+			[class=titleHeaderGrey] {
+				font-size: 14px !important;
+			}
+
+			[class=trackButton] {
+				height: 20px !important;
+				width: 122px !important;
+			}
+
+			[class=columnHeader] {
+				font-size: 16px !important;
+			}
+
+			[class=bannerHeader] {
+				font-size: 30px !important;
+			}
+
+			[class=headerSize] {
+				height: 80px !important;
+				background-color: #041e42 !important;
+			}
+
+			[class=responsiveButton] {
+				width: 100% !important
+			}
+
+			[class=headerImgSpark] {
+				width: 42px !important;
+				height: 45px !important;
+				font-family: WalmartNewIcons;
+				font-size: 57.6px;
+				text-align: center;
+				color: #ffc220;
+			}
+
+			*[class~=hide_on_mobile] {
+				display: none !important;
+			}
+
+			*[class~=show_on_mobile] {
+				display: block !important;
+				width: auto !important;
+				max-height: inherit !important;
+				overflow: visible !important;
+				float: none !important;
+			}
+
+			td[class=headerImageSwap] a {
+				display: block !important;
+				width: 303px;
+				height: 43px;
+			}
+
+			td[class=mobileBannerDefault] {
 				width: 100% !important;
 				height: 408px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-2027/k2-_d7b9324f-a978-4ca2-b4b2-849c352cd118.v1.jpg") !important; 
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-2027/k2-_d7b9324f-a978-4ca2-b4b2-849c352cd118.v1.jpg") !important;
 			}
-			td[class=mobileBannerDefault] a img { display: none !important; width: 0px !important; }
-			td[class=mobileBannerDefault] a { display: block !important; }
-			td[class=mobileBannerLaptop]{
+
+			td[class=mobileBannerDefault] a img {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			td[class=mobileBannerDefault] a {
+				display: block !important;
+			}
+
+			td[class=mobileBannerLaptop] {
 				width: 100% !important;
 				height: 408px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-3b28/k2-_26c6ad9f-4c3c-4573-a982-8451f8197a6e.v1.jpg") !important; 
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-3b28/k2-_26c6ad9f-4c3c-4573-a982-8451f8197a6e.v1.jpg") !important;
 			}
-			td[class=mobileBannerLaptop] a { display: block !important; }
-			td[class=mobileBannerLaptop] a img { display: none !important; width: 0px !important; }
-			td[class=mobileBannerTv]{
+
+			td[class=mobileBannerLaptop] a {
+				display: block !important;
+			}
+
+			td[class=mobileBannerLaptop] a img {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			td[class=mobileBannerTv] {
 				width: 100% !important;
 				height: 408px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-1bf2/k2-_82fd076a-dd0e-459e-8bcd-66dd161c4173.v1.jpg") !important; 
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-1bf2/k2-_82fd076a-dd0e-459e-8bcd-66dd161c4173.v1.jpg") !important;
 			}
-			td[class=mobileBannerTv] a { display: block !important; }
-			td[class=mobileBannerTv] a img { display: none !important; width: 0px !important; }
-			td[class=mobileBannerPhone]{
+
+			td[class=mobileBannerTv] a {
+				display: block !important;
+			}
+
+			td[class=mobileBannerTv] a img {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			td[class=mobileBannerPhone] {
 				width: 100% !important;
 				height: 408px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-9e03/k2-_00216837-d7db-424c-a414-ff9d106596b6.v1.jpg") !important; 
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-9e03/k2-_00216837-d7db-424c-a414-ff9d106596b6.v1.jpg") !important;
 			}
-			td[class=mobileBannerPhone] a { display: block !important; }
-			td[class=mobileBannerPhone] a img { display: none !important; width: 0px !important; }
-			td[class=mobileBannerTab]{
+
+			td[class=mobileBannerPhone] a {
+				display: block !important;
+			}
+
+			td[class=mobileBannerPhone] a img {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			td[class=mobileBannerTab] {
 				width: 100% !important;
 				height: 408px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-5dd6/k2-_6b07803a-292c-4774-96a6-00e72f721529.v1.jpg") !important; 
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-5dd6/k2-_6b07803a-292c-4774-96a6-00e72f721529.v1.jpg") !important;
 			}
-			td[class=mobileBannerTab] a { display: block !important; }
-			td[class=mobileBannerTab] a img { display: none !important; width: 0px !important; }
-			img[class=upcAsset] { display: block !important; margin: 0px auto !important; }
-			font[class=moduleHeading] { font-size: 22px !important; font-weight: bold !important; line-height: 22px !important; }
-			font[class=moduleSubHeading] { font-size: 18px !important; font-weight: bold !important; line-height: 18px !important; }
-			td[class=widthToTen] { width: 10px; }
-			font[class=columnHeading] { font-size: 15px !important; font-weight: bold !important; line-height: 14px !important; }
+
+			td[class=mobileBannerTab] a {
+				display: block !important;
+			}
+
+			td[class=mobileBannerTab] a img {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			img[class=upcAsset] {
+				display: block !important;
+				margin: 0px auto !important;
+			}
+
+			font[class=moduleHeading] {
+				font-size: 22px !important;
+				font-weight: bold !important;
+				line-height: 22px !important;
+			}
+
+			font[class=moduleSubHeading] {
+				font-size: 18px !important;
+				font-weight: bold !important;
+				line-height: 18px !important;
+			}
+
+			td[class=widthToTen] {
+				width: 10px;
+			}
+
+			font[class=columnHeading] {
+				font-size: 15px !important;
+				font-weight: bold !important;
+				line-height: 14px !important;
+			}
 
 			/** header **/
-			img[id=logo] { display: none !important; width: 0px !important; }
-			td[class=headerImageSwap] { 
-				width: 303px !important; 
-				height: 43px !important; 
+			img[id=logo] {
+				display: none !important;
+				width: 0px !important;
+			}
+
+			td[class=headerImageSwap] {
+				width: 303px !important;
+				height: 43px !important;
 				display: block !important;
-				background-repeat:no-repeat;
-				background-position:0 0;
-				background-color:transparent;
-				background-image:url("https://i5.walmartimages.com/dfw/4ff9c6c9-b20d/k2-_316f116a-3b4b-4fbf-9802-09673d39fc4e.v1.jpg") !important; 
-				}
-			td[class=headerImageSwap] a { display: block !important; width: 303px; height: 43px; }
-			img[class=upcAsset] { display: block !important; margin: 0px auto !important; }
-			font[class=moduleHeading] { font-size: 22px !important; font-weight: bold !important; line-height: 22px !important; }
-			font[class=moduleSubHeading] { font-size: 20px !important; font-weight: bold !important; line-height: 20px !important; }
-			td[class=widthToTen] { width: 10px; }
-			font[class=columnHeading] { font-size: 15px !important; font-weight: bold !important; line-height: 14px !important; }
+				background-repeat: no-repeat;
+				background-position: 0 0;
+				background-color: transparent;
+				background-image: url("https://i5.walmartimages.com/dfw/4ff9c6c9-b20d/k2-_316f116a-3b4b-4fbf-9802-09673d39fc4e.v1.jpg") !important;
+			}
 
-			td[class=columnWidth01] { width: 70px !important; }
+			td[class=headerImageSwap] a {
+				display: block !important;
+				width: 303px;
+				height: 43px;
+			}
 
-			font[class=topMessage] { font-size: 22px !important; } 
-			img[class=barCode] { width: 240px; display: block !important; margin: 0px auto !important; }
-			font[class=returnCode] { font-size: 16px; line-height: 16px !important; }
-			[class=returnCodeValue] { display: block !important; clear: both !important; padding: 5px 0 !important; }
-			td[class=primaryNavMobile] { width: 50% !important; }
-			td[class=fourUpSecondGroupHeightTop] { height: 0px !important; }
-			[class=makeOneFiftyOneTrans] { width: 151px !important; border-spacing: 0px; }
-			[class=fourUpImgContainer] { width: 135px; margin: 0px 0px 11px 11px !important; }
-			[class=fourUpImg] { width: 115px; height: 115px; }
-			td[class=columnBodyDataCell] { line-height: 14px !important; padding-bottom: 5px; }
-			font[class=columnBody] { font-size: 13px !important; }
-			img[class=imgWidth]{width:100% !important;}
-           .header-text {
-             font-size: 28px !important;
-             font-family: Arial;
-          }
-   
+			img[class=upcAsset] {
+				display: block !important;
+				margin: 0px auto !important;
+			}
+
+			font[class=moduleHeading] {
+				font-size: 22px !important;
+				font-weight: bold !important;
+				line-height: 22px !important;
+			}
+
+			font[class=moduleSubHeading] {
+				font-size: 20px !important;
+				font-weight: bold !important;
+				line-height: 20px !important;
+			}
+
+			td[class=widthToTen] {
+				width: 10px;
+			}
+
+			font[class=columnHeading] {
+				font-size: 15px !important;
+				font-weight: bold !important;
+				line-height: 14px !important;
+			}
+
+			td[class=columnWidth01] {
+				width: 70px !important;
+			}
+
+			font[class=topMessage] {
+				font-size: 22px !important;
+			}
+
+			img[class=barCode] {
+				width: 240px;
+				display: block !important;
+				margin: 0px auto !important;
+			}
+
+			font[class=returnCode] {
+				font-size: 16px;
+				line-height: 16px !important;
+			}
+
+			[class=returnCodeValue] {
+				display: block !important;
+				clear: both !important;
+				padding: 5px 0 !important;
+			}
+
+			td[class=primaryNavMobile] {
+				width: 50% !important;
+			}
+
+			td[class=fourUpSecondGroupHeightTop] {
+				height: 0px !important;
+			}
+
+			[class=makeOneFiftyOneTrans] {
+				width: 151px !important;
+				border-spacing: 0px;
+			}
+
+			[class=fourUpImgContainer] {
+				width: 135px;
+				margin: 0px 0px 11px 11px !important;
+			}
+
+			[class=fourUpImg] {
+				width: 115px;
+				height: 115px;
+			}
+
+			td[class=columnBodyDataCell] {
+				line-height: 14px !important;
+				padding-bottom: 5px;
+			}
+
+			font[class=columnBody] {
+				font-size: 13px !important;
+			}
+
+			img[class=imgWidth] {
+				width: 100% !important;
+			}
+
+			.header-text {
+				font-size: 28px !important;
+				font-family: Arial;
+			}
+
 		}
-		.responsiveButton{
-			width : 65%;
+
+		.responsiveButton {
+			width: 65%;
 		}
-		.greyText{
-		  height: 16px;
-		  font-family: Arial;
-		  font-size: 14px;
-		  text-align: left;
-		  color: #6d6e71;
+
+		.greyText {
+			height: 16px;
+			font-family: Arial;
+			font-size: 14px;
+			text-align: left;
+			color: #6d6e71;
 		}
-		.blackText{
-		  height: 16px;
-		  font-family: Arial;
-		  font-size: 14px;
-		  text-align: right;
-		  color: #000000;
+
+		.blackText {
+			height: 16px;
+			font-family: Arial;
+			font-size: 14px;
+			text-align: right;
+			color: #000000;
 		}
-		.pinkText{
-		  height: 22px;
-		  font-family: Arial;
-		  font-size: 16px;
-		  line-height: 1.38;
-		  text-align: center;
-		  color: #cb2c90;
+
+		.pinkText {
+			height: 22px;
+			font-family: Arial;
+			font-size: 16px;
+			line-height: 1.38;
+			text-align: center;
+			color: #cb2c90;
 		}
-		.setDisplayWidth{
-			width:700px;
+
+		.setDisplayWidth {
+			width: 700px;
 		}
-		.setDisplayWidthInner{
-			width:660px;
+
+		.setDisplayWidthInner {
+			width: 660px;
 		}
-		.columnWidth01{
-			width : 430px;
+
+		.columnWidth01 {
+			width: 430px;
 		}
-		.blockHeader{
+
+		.blockHeader {
 			/*width: 346px;
 		 	height: 27px;*/
 			font-family: Arial;
@@ -282,553 +549,572 @@
 			text-align: left;
 			color: #000000;
 		}
-		.titleHeader{
+
+		.titleHeader {
 			/*width: 159px;
 		  height: 20px;*/
-		  font-family: Arial;
-		  font-size: 18px;
-		  text-align: left;
-		  color: #000000;
+			font-family: Arial;
+			font-size: 18px;
+			text-align: left;
+			color: #000000;
 		}
-		.titleHeaderGrey{
-		 width: 197px;
-		  height: 20px;
-		  font-family: Arial;
-		  font-size: 18px;
-		  line-height: 1.11;
-		  text-align: left;
-		  color: #6d6e71;
-		}
-		.columnHeader{
-			 width: 197px;
-		  height: 20px;
-		  font-family: Arial;
-		  font-size: 18px;
-		  line-height: 1.11;
-		  text-align: left;
-		  color: #000000;
-		}
-		.headerSize{
-			background-color:#041e42;
-			height : 100px;
-		}
-		.headerImgSpark{
-		    width: 60px;
-		    height: 68px;
-		    font-family: WalmartNewIcons;
-		    font-size: 72px;
-		    text-align: center;
-		    color: #ffc220;
-		    margin-top: 14px;
-		}
-		.bannerHeader{
-			  height: 72px;
-			  font-family: Arial;
-			  font-size: 32px;
-			  text-align: left;
-			  color: #000000;
-		}
-		.moduleBreakLine{
-			margin-bottom:40px;
-			margin-top:40px;
-			width:660px;
-		}
-   		.shipment-status {
-            width: 100px;
-            height: 20px;
-            font-family: Bogle;
-            font-size: 14px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #ffffff;
-            display: inline-block;
-            padding: 10px 12px;
-       }
-  	   .header-text {
-         font-size: 40px;
-         font-family: Arial;
-         margin: 0px;
-		 font-weight: normal;
-  		}
-  		p.icon-img {
-   		 height: 53px;
-		}
-      
-		@media only screen and (max-width: 480px) {
-		.desktop-text-align {
-              display:none !important;
-             }
-             .mobile-text-align{
-             display:block !important;
-             }
-		td.box-img {
-    		width: 100% !important;
-    		float: left;
-		}
-		td.subscribe {
-    		width: 100% !important;
-    		float: left;
-    		padding-left: 24px;
-    		padding-right: 0px !important;
-    		padding-bottom: 24px !important;
-		}
-		td.box-txt {
-    		width: 100% !important;
-    		float: left;
-    		padding-left: 0px !important;
-    		    padding-right: 0px;
-		}
-		td.box-img img {
-    		padding-left: 24px;
-    		
-		}
-		td.box-txt p {
-    		padding-left: 24px !important;
-    		margin: 0px !important;
-    		padding-top: 16px !important;
-    		padding-right: 24px !important;
-    		
-		}
-		.box-txt h5 {
-    		padding-left: 24px !important;
-    		}
-    	.box-img{
-    	padding-left: 0px !important;
-    	}		
-		.box-txt .txt1 {
-    		padding-top: 8px !important;
-    		padding-bottom: 16px !important;
-    		padding-right: 24px !important;
-		}
-		.text2 {
-    		padding-left: 24px;
-    		padding-right: 24px;
-    		margin-bottom: 0px;
-    		margin-top: 0px;
-    		padding-top: 8px;
-		}
-		td.icon-box.service .icon-img {
-   			margin-bottom: 0px;
-		}
-		p.icon-img.walmart img {
-    		width: 38px;
-    		height: 28px;
-		}
-		p.icon-img.pharmacy img {
-    		width: 27px;
-    		height: 36px;
-		}
-		td.icon-box.service img {
-    		width: 38px;
-    		height: 28px;
-		}
-		p.icon-img.reg img {
-    		width: 31px;
-    		height: 31px;
-		}
-		p.icon-img.store img {
-    		width: 36px;
-    		height: 27px;
-		}
-		.icon-box p span {
-    		font-size: 14px !important;
-		}
-		.icon-img {
-    		height: auto !important;;
-		}
-		table#icon-section {
-    		padding-top: 10px !important;
-		}
-		.mobile-banner {
-    		display: block !important;
-		}
-		.desk-banner {
-    		display: none !important;
-		}
-		.mobile-welcome-banner {
-    		display: block !important;
-		}
-		}
-				@media only screen and (max-width: 320px) {
 
-			body { background-color: #FFFFFF; margin:0px auto; padding:0px; margin-left: auto !important; margin-right: auto !important; }
-			table td { border-collapse: collapse; }
-			[class=setDisplayWidth] { width: 286px !important; }
-			[class=setDisplayWidthInner] { width: 280px !important; }
-			[class=setDisplayImage] { width: 280px !important; }
-			
+		.titleHeaderGrey {
+			width: 197px;
+			height: 20px;
+			font-family: Arial;
+			font-size: 18px;
+			line-height: 1.11;
+			text-align: left;
+			color: #6d6e71;
+		}
+
+		.columnHeader {
+			width: 197px;
+			height: 20px;
+			font-family: Arial;
+			font-size: 18px;
+			line-height: 1.11;
+			text-align: left;
+			color: #000000;
+		}
+
+		.headerSize {
+			background-color: #041e42;
+			height: 100px;
+		}
+
+		.headerImgSpark {
+			width: 60px;
+			height: 68px;
+			font-family: WalmartNewIcons;
+			font-size: 72px;
+			text-align: center;
+			color: #ffc220;
+			margin-top: 14px;
+		}
+
+		.bannerHeader {
+			height: 72px;
+			font-family: Arial;
+			font-size: 32px;
+			text-align: left;
+			color: #000000;
+		}
+
+		.moduleBreakLine {
+			margin-bottom: 40px;
+			margin-top: 40px;
+			width: 660px;
+		}
+
+		.shipment-status {
+			width: 100px;
+			height: 20px;
+			font-family: Bogle;
+			font-size: 14px;
+			font-weight: bold;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: normal;
+			letter-spacing: normal;
+			text-align: center;
+			color: #ffffff;
+			display: inline-block;
+			padding: 10px 12px;
+		}
+
+		.header-text {
+			font-size: 40px;
+			font-family: Arial;
+			margin: 0px;
+			font-weight: normal;
+		}
+
+		p.icon-img {
+			height: 53px;
+		}
+
+		@media only screen and (max-width: 480px) {
+			.desktop-text-align {
+				display: none !important;
+			}
+
+			.mobile-text-align {
+				display: block !important;
+			}
+
+			td.box-img {
+				width: 100% !important;
+				float: left;
+			}
+
+			td.subscribe {
+				width: 100% !important;
+				float: left;
+				padding-left: 24px;
+				padding-right: 0px !important;
+				padding-bottom: 24px !important;
+			}
+
+			td.box-txt {
+				width: 100% !important;
+				float: left;
+				padding-left: 0px !important;
+				padding-right: 0px;
+			}
+
+			td.box-img img {
+				padding-left: 24px;
+
+			}
+
+			td.box-txt p {
+				padding-left: 24px !important;
+				margin: 0px !important;
+				padding-top: 16px !important;
+				padding-right: 24px !important;
+
+			}
+
+			.box-txt h5 {
+				padding-left: 24px !important;
+			}
+
+			.box-img {
+				padding-left: 0px !important;
+			}
+
+			.box-txt .txt1 {
+				padding-top: 8px !important;
+				padding-bottom: 16px !important;
+				padding-right: 24px !important;
+			}
+
+			.text2 {
+				padding-left: 24px;
+				padding-right: 24px;
+				margin-bottom: 0px;
+				margin-top: 0px;
+				padding-top: 8px;
+			}
+
+			td.icon-box.service .icon-img {
+				margin-bottom: 0px;
+			}
+
+			p.icon-img.walmart img {
+				width: 38px;
+				height: 28px;
+			}
+
+			p.icon-img.pharmacy img {
+				width: 27px;
+				height: 36px;
+			}
+
+			td.icon-box.service img {
+				width: 38px;
+				height: 28px;
+			}
+
+			p.icon-img.reg img {
+				width: 31px;
+				height: 31px;
+			}
+
+			p.icon-img.store img {
+				width: 36px;
+				height: 27px;
+			}
+
+			.icon-box p span {
+				font-size: 14px !important;
+			}
+
+			.icon-img {
+				height: auto !important;
+				;
+			}
+
+			table#icon-section {
+				padding-top: 10px !important;
+			}
+
 			.mobile-banner {
-                display:block !important;
-                width:100%;
-                overflow: visible !important;
-                border-bottom: 4px solid #000000 !important;
-    	      }
-              .desk-banner{
-              	display:none !important;
-              }
-              .mobile-welcome-banner{
-               display:block !important;
-               width:100%;
-              }
-              .desktop-text-align{
-               display:none !important;
-              }
-              .mobile-text-align{
-              display:block !important;
-              }
-             
+				display: block !important;
+			}
+
+			.desk-banner {
+				display: none !important;
+			}
+
+			.mobile-welcome-banner {
+				display: block !important;
+			}
+		}
+
+		@media only screen and (max-width: 320px) {
+
+			body {
+				background-color: #FFFFFF;
+				margin: 0px auto;
+				padding: 0px;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+
+			table td {
+				border-collapse: collapse;
+			}
+
+			[class=setDisplayWidth] {
+				width: 286px !important;
+			}
+
+			[class=setDisplayWidthInner] {
+				width: 280px !important;
+			}
+
+			[class=setDisplayImage] {
+				width: 280px !important;
+			}
+
+			.mobile-banner {
+				display: block !important;
+				width: 100%;
+				overflow: visible !important;
+				border-bottom: 4px solid #000000 !important;
+			}
+
+			.desk-banner {
+				display: none !important;
+			}
+
+			.mobile-welcome-banner {
+				display: block !important;
+				width: 100%;
+			}
+
+			.desktop-text-align {
+				display: none !important;
+			}
+
+			.mobile-text-align {
+				display: block !important;
+			}
+
 		}
 	</style>
 </head>
-<body align="center" bgcolor="#FFFFFF" style="margin:0px;padding:0px;-webkit-text-size-adjust: none;">
-<img alt="" height="1" src="https://rptrcks.walmart.com/comm-smart-app/services/tracking/openTracker?redirectTo=mh75dwx4aoN0OlYcNcGxQOlKkdSgFFmGfEPFa3xC7OATbQq0sze9l5jLCWZEoxRqqmU8aiuGA2QoCdufjdjzsuXC01kxHRwSSP%2BK9DqFFlv3JMm/hCzcsVMl8emZLsJmASymbdk7S4O8CAn4A9M7azLVjgUEOvLu75lChQMP36PNNgxlpT0VEk6K1VClnVi51BXkoRlP9nUd7igLm1GyYqJPd27ijVEEHUFXUCFLLpn9lGPJaimhugYlJppCVpo6pQhVCN2eQ%2B36wumIGMPcxos1A0GCj5Fpe94mIISt1A39yQ2Db1CtsT/ZqoJbSc6fJsV6mkFNCDp/68o0AOFTjdceoJZwkm/0kcpnSUC/UcrnNkIkHx/K8Rnj8jblaGWTjYCTpypqqKYTSEWINkTsdFQsHzoD5D8ipmmKT8NEgtBNRtGNC/igtwOJ9l2u59/5OyJAqq2DrRvroLRJEs1QK13jwJX9d4EZof7m4msXo/pJ8%2B4sRaQUxR%2BGlFv5euZhD5incku9pkMSL2b2hWrF7vOpbXUBNvHzwH/yH7rhK9JpzEkcDXFD4zTmW6w85LrOeGYbft6o2aydRQxRwwIs3ahhxfqmiJ4PkRTeIcodreR9uf1db0x7lXxU5rmSYmnj&amp;meta=A6A6bt6w6VP%2FpScIwMmARk9%2B54qu%2FbzAMg2hJMSIXnpujVmsYpx25eQun3ENVDkma%2F%2FnUFxZKseM9F8XJHMbEuPUe1paIZUgXfSLLtPnSDOn9x3wvGPgyZ7xAQouV9XGrrNsM5Rk%2FmwQXm8ScDpUCPaoxdoDyhcPFsSeYwhJ09TpdipD%2FLI7Nw86Uv6134k09rPzhG8mh03KxhWyCLPkhcC13109bBjexpUzizt0Nqc%3D&amp;iv=3La4ZG1XvT1mUj6AhiHy6g%3D%3D" width="1"/>
-<div class="header">
-<table align="center" cellpadding="0" cellspacing="0" class="full" width="640">
-<tbody>
-<tr align="left" bgcolor="#fff">
-<td align="left" style="line-height:11px;" valign="middle">
-<div style="display: none; max-height: 0px; overflow: hidden;">
-						Your new account is ready to use
-					</div>
-<!-- Insert ‌  hack after hidden preview text -->
-<div style="display: none; max-height: 0px; overflow: hidden;">  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
-                        </div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" id="wrapper" width="700">
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" height="100" role="presentation">
-<tr>
-<td>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidth" id="header" role="presentation">
-<tr height="80">
-<td align="center" style="padding-bottom:3px;" valign="middle">
-<a href="https://www.walmart.com" id="10">
-<img align="center" alt="Walmart homepage" height="48" src="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=87KoFOkfQN6b3Sz1qXeziFk0nFmx4K5e8sX3hXg5a202cfYhx6WXES7e%2Bn%2BZUG93A65%2B%2BDEqMQIQKeJyD29DMz6NNnIXc0vbvEiyeX5n6%2B8dM7O%2BrvSXU671vtz15Nj89gCD8%2BV3VPo9rhvxzmcTwmh%2BfdC9SkMS4zZxY0pU9AR5h208AiDAmf5ELvPXqTqX/EoIvb1yiOCCCDBee7NeUsDpHOu9Mhqf1COFxNGVWeLUcQrHl%2B0eVkXamM7ktY%2Bnxdm2MwUKklak2YvAZ1hhSJd%2BOAfL6ZgOxQBDPiXTcBVojeoyS/fgysqcxQ7gLCImB9D7MO1xT2Noy5wDQURIz6ZTzTOC7TfvIkUeMF4%2BuHSxlkyKqgrME0/N8Dm6YUEW6IumQoC/MzQ6EzSaV6vc7Pdjtgm60X3qaorlNifmqmVLlCKCf8BA9TyeWlEj7vUkfZhDRPUlNgMrMEZhVsz31mKgAaK7rA6%2BiyhuWiN7weebNkyS9KuSZMN8A3FPwjl5cco1ScA%2BWsK4JYm426LLtIwIO1P2be4bkQxDkEpbK3AF0l/69FYmOD9cNkVndBX0W7Eki08ILDKGgvKKuOqlLTZntFRuMFrvc4n2NPP4T7FqwsskYEE6o1ro%2BLciDzOF1LpYMtgBPeIC4HMKJ%2BBQ7ciY0Kh0TVYGGflrfdmQq4hpUpVOKXUSkUnXS%2BZgFQXhRW0SvpK4RcbqiBTEdyyDfA%3D%3D&amp;meta=%2BnTaVg1pnuaLrRy3Ux9G9AlVuIIjqfyaPcPKuLJxJTWeSmVQNoNw2TcapoWQL%2FKFYhHoKenNCYKp8CND9Zy0BcpYUr9Oy2OFRJ2UJkgeJH0nfNy0mkpU7qiKiOnhBWGNkgNeCljYT9wDDbeMGiogkPolkx6KoLfIDmXIwH2kSYJ0qDqgKCCD7EUupuVObf55ZVxYdeEQ2Aqpi%2BUMrfHZlyruqO%2F7ffJx7k6dcv5J5n0%3D&amp;iv=d0c0zFov65Ut%2BfrHvZJwgQ%3D%3D" valign="middle" width="180"/>
-</a>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-<tr>
-<td>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" style="background-color: #f8f8f8;width: 636px; ">
-<tr height="49">
-<td align="center" style="padding-top:16px;padding-bottom:16px;padding-left:16px;padding-right:16px;">
-<span style="font-family: Helvetica; font-size: 14px; text-align: center; color: #000000;">
-<b>COVID-19:</b> How we're prioritizing safety &amp; shopping needs. <a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=%2BAZ3Nt6yS7p/BXa9D%2BNPBcH%2B3B0NDEp7wUTYKC1PUJXHwfiDMmrtqA7tCmoBfpgGWcV6BMntpcTGTog2YvyAQJO8JgEZYA1zp2u4vWKFNYEyOZaetiN3Yc8YffWGQiLRDZTJzCdyCgtMUK784sVLxpzoaze3gcEbm3B%2B0BU057K%2Boi4cbzEEuil2eSvYPO5nnVHaGOUcBytMqIU2eUJb3biOUPrd2uG41rNXgBRJI8ivU6makZ9wEv9EdG0kkZSVxo/sdZNzChShO/GXdKrIMl9A/gQydYcvJHAtyM3h7UfoTdOZ6P9AJLxXO%2B7C2TceUR3khe4HCKqLFYtIaeRHdfwDzsZEEE0ENxcj4rvEsPr4/XfmSRxsTGVkFst1oQGqdRI16kHolwEV3qrj8sgxr3k3UpEOiX%2BBRLvg64hM/q0PDE5OYrSCHQtn%2BclKHLdNIUCg5jEnBleuiElc4Xh68%2B7DZXRzjbBNuWLjGlR3OdDoVUoRwN2rKAduIWRG/3UcZA%2Bb9xcsbg0rnvEdJedmkiRta1tABAKP7Fz8kqvyaL2pqjmGk0aLlrrc7RjAzAZxNLgwFMmemUgzlvDHdrMTNRiWbH0fN1ty8A7XOSk5VwP/senhcW0LkmrzAXg0I7m9qv050NyTiYkR9CZgH2gps1iqhNlNyjKQFqYVQljuanrjAPpJijHfhUoGa/wrQBs5/v3I9mzk4krGZhbij5ygp8vCjU3qcIetuySRnJdIlTQ%3D&amp;meta=XXS0tFg9IfpTRQ2Lu0a8rEkAN%2Fp4q73BTm%2F51fow4cFdanuCV%2FRRwPPQsS5s2ZGvLmsV352A38jFk9ufVX4o0xvxHgr45nRoqOSz4aaz0CNNZnuG4FG5y10UCbV5I3kdegWnfymQERASSEqkrhTN2Hst4LN%2BZE6NSfkvmwAv6SRuqaOwwTxaMMI5sA4W3GqlX5635z%2F%2B9%2FqWCdjHsWcBE5%2FNgm%2FuRQDbHQcMcKE2mN0%3D&amp;iv=lKSUq3kerOwZgDBaSnpnqA%3D%3D" id="20" style="color:#000;">Learn more</a>
-</span>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- End Header -->
-<!-- Begin Banner -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" role="presentation" style="width: 636px;height: 292px;border-radius: 4px;background-color: #e6f1fc;padding-top:16px" width="636">
-<tr>
-<td align="left">
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="desk-banner" role="presentation">
-<tr>
-<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
-<img alt="Welcome to Walmart" class="" height="292" src="https://i5.walmartimages.com/dfw/4ff9c6c9-4983/k2-_1c0c93e1-6359-428d-bd52-94c27f7298bb.v1.png" width="100%"/>
-</td>
-<td align="center" style="width: 380px;height: 68px;padding-right: 29px;padding-left: 25px;">
-<h1 style="font-weight:normal;font-family: Helvetica;font-size: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align: left;">
-							Welcome to Walmart!
-					
-												</h1>
-<p style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #000000;">With everything at your fingertips, it's even easier to save time and money. Shop millions of items on Walmart.com, schedule pickup or delivery or use store tools and services at your local Walmart. 
-					</p>
-<!--[if !mso]>-->
-<p style="line-height: 1.38;letter-spacing: normal;text-align: left;marging-top:24px;">
-<span style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text-decoration: none;background-color: #0071dc;cursor: pointer;">
-<a href="{{email.p_url}}" id="30" style="text-decoration:none;color: #ffffff;text-align: center;font-family: Helvetica;">Start shopping</a>
-</span>
-</p>
-<!--[endif]-->
-<!--[if mso]>
+
+<div align="center" bgcolor="#FFFFFF" style="margin:0px;padding:0px;-webkit-text-size-adjust: none;">
+	<img alt="" height="1"
+		src="https://rptrcks.walmart.com/comm-smart-app/services/tracking/openTracker?redirectTo=mh75dwx4aoN0OlYcNcGxQOlKkdSgFFmGfEPFa3xC7OATbQq0sze9l5jLCWZEoxRqqmU8aiuGA2QoCdufjdjzsuXC01kxHRwSSP%2BK9DqFFlv3JMm/hCzcsVMl8emZLsJmASymbdk7S4O8CAn4A9M7azLVjgUEOvLu75lChQMP36PNNgxlpT0VEk6K1VClnVi51BXkoRlP9nUd7igLm1GyYqJPd27ijVEEHUFXUCFLLpn9lGPJaimhugYlJppCVpo6pQhVCN2eQ%2B36wumIGMPcxos1A0GCj5Fpe94mIISt1A39yQ2Db1CtsT/ZqoJbSc6fJsV6mkFNCDp/68o0AOFTjdceoJZwkm/0kcpnSUC/UcrnNkIkHx/K8Rnj8jblaGWTjYCTpypqqKYTSEWINkTsdFQsHzoD5D8ipmmKT8NEgtBNRtGNC/igtwOJ9l2u59/5OyJAqq2DrRvroLRJEs1QK13jwJX9d4EZof7m4msXo/pJ8%2B4sRaQUxR%2BGlFv5euZhD5incku9pkMSL2b2hWrF7vOpbXUBNvHzwH/yH7rhK9JpzEkcDXFD4zTmW6w85LrOeGYbft6o2aydRQxRwwIs3ahhxfqmiJ4PkRTeIcodreR9uf1db0x7lXxU5rmSYmnj&amp;meta=A6A6bt6w6VP%2FpScIwMmARk9%2B54qu%2FbzAMg2hJMSIXnpujVmsYpx25eQun3ENVDkma%2F%2FnUFxZKseM9F8XJHMbEuPUe1paIZUgXfSLLtPnSDOn9x3wvGPgyZ7xAQouV9XGrrNsM5Rk%2FmwQXm8ScDpUCPaoxdoDyhcPFsSeYwhJ09TpdipD%2FLI7Nw86Uv6134k09rPzhG8mh03KxhWyCLPkhcC13109bBjexpUzizt0Nqc%3D&amp;iv=3La4ZG1XvT1mUj6AhiHy6g%3D%3D"
+		width="1" />
+	<div class="header">
+		<table align="center" cellpadding="0" cellspacing="0" class="full" width="640">
+			<tbody>
+				<tr align="left" bgcolor="#fff">
+					<td align="left" style="line-height:11px;" valign="middle">
+						<div style="display: none; max-height: 0px; overflow: hidden;">
+							Your new account is ready to use
+						</div>
+						<!-- Insert ‌  hack after hidden preview text -->
+						<div style="display: none; max-height: 0px; overflow: hidden;">
+							 ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" id="wrapper"
+		width="700">
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" height="100"
+			role="presentation">
+			<tr>
+				<td>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidth" id="header"
+						role="presentation">
+						<tr height="80">
+							<td align="center" style="padding-bottom:3px;" valign="middle">
+									<img align="center" alt="Walmart homepage" height="48"
+										src="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=87KoFOkfQN6b3Sz1qXeziFk0nFmx4K5e8sX3hXg5a202cfYhx6WXES7e%2Bn%2BZUG93A65%2B%2BDEqMQIQKeJyD29DMz6NNnIXc0vbvEiyeX5n6%2B8dM7O%2BrvSXU671vtz15Nj89gCD8%2BV3VPo9rhvxzmcTwmh%2BfdC9SkMS4zZxY0pU9AR5h208AiDAmf5ELvPXqTqX/EoIvb1yiOCCCDBee7NeUsDpHOu9Mhqf1COFxNGVWeLUcQrHl%2B0eVkXamM7ktY%2Bnxdm2MwUKklak2YvAZ1hhSJd%2BOAfL6ZgOxQBDPiXTcBVojeoyS/fgysqcxQ7gLCImB9D7MO1xT2Noy5wDQURIz6ZTzTOC7TfvIkUeMF4%2BuHSxlkyKqgrME0/N8Dm6YUEW6IumQoC/MzQ6EzSaV6vc7Pdjtgm60X3qaorlNifmqmVLlCKCf8BA9TyeWlEj7vUkfZhDRPUlNgMrMEZhVsz31mKgAaK7rA6%2BiyhuWiN7weebNkyS9KuSZMN8A3FPwjl5cco1ScA%2BWsK4JYm426LLtIwIO1P2be4bkQxDkEpbK3AF0l/69FYmOD9cNkVndBX0W7Eki08ILDKGgvKKuOqlLTZntFRuMFrvc4n2NPP4T7FqwsskYEE6o1ro%2BLciDzOF1LpYMtgBPeIC4HMKJ%2BBQ7ciY0Kh0TVYGGflrfdmQq4hpUpVOKXUSkUnXS%2BZgFQXhRW0SvpK4RcbqiBTEdyyDfA%3D%3D&amp;meta=%2BnTaVg1pnuaLrRy3Ux9G9AlVuIIjqfyaPcPKuLJxJTWeSmVQNoNw2TcapoWQL%2FKFYhHoKenNCYKp8CND9Zy0BcpYUr9Oy2OFRJ2UJkgeJH0nfNy0mkpU7qiKiOnhBWGNkgNeCljYT9wDDbeMGiogkPolkx6KoLfIDmXIwH2kSYJ0qDqgKCCD7EUupuVObf55ZVxYdeEQ2Aqpi%2BUMrfHZlyruqO%2F7ffJx7k6dcv5J5n0%3D&amp;iv=d0c0zFov65Ut%2BfrHvZJwgQ%3D%3D"
+										valign="middle" width="180" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!-- End Header -->
+		<!-- Begin Banner -->
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner"
+			role="presentation"
+			style="width: 636px;height: 292px;border-radius: 4px;background-color: #e6f1fc;padding-top:16px"
+			width="636">
+			<tr>
+				<td align="left">
+					<table align="left" border="0" cellpadding="0" cellspacing="0" class="desk-banner"
+						role="presentation">
+						<tr>
+							<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
+								<img alt="Welcome to Walmart" class="" height="292"
+									src="https://i5.walmartimages.com/dfw/4ff9c6c9-4983/k2-_1c0c93e1-6359-428d-bd52-94c27f7298bb.v1.png"
+									width="100%" />
+							</td>
+							<td align="center"
+								style="width: 380px;height: 68px;padding-right: 29px;padding-left: 25px;">
+								<h1
+									style="font-weight:normal;font-family: Helvetica;font-size: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align: left;">
+									Welcome to Walmart!
+
+								</h1>
+								<p
+									style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #000000;">
+									With everything at your fingertips, it's even easier to save time and money. Shop
+									millions of items on Walmart.com, schedule pickup or delivery or use store tools and
+									services at your local Walmart.
+								</p>
+								<!--[if !mso]>-->
+								<p style="line-height: 1.38;letter-spacing: normal;text-align: left;marging-top:24px;">
+									<span
+										style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text-decoration: none;background-color: #0071dc;cursor: pointer;">
+										<a href="{{email.p_url}}" id="30"
+											style="text-decoration:none;color: #ffffff;text-align: center;font-family: Helvetica;"
+											target="_blank">Start shopping</a>
+									</span>
+								</p>
+								<!--[endif]-->
+								<!--[if mso]>
 											<p style="line-height: 1.38;letter-spacing: normal;text-align: left;marging-top:24px;">
 										
 									<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo&#x3D;OfS2C8RreyCd7udqyMYiK0%2ByVNPFPPNI5JCmYzQSLHinexm7ZAEmipLw19IvLVc26dW5xJdFMjCWKUM4oHB3SLYgemsHWPgFcuvGGLbyFtaKP/e2u%2BgbosqWrruDzilIWnYMRE8zCPWZcKsFy15K23xowzoXl329mq/jFeVQO7e4xV6ftXFcX59btsCQ9zrpzL8cdp2FIZCfpKSoK6m4OWlVbEaQvGpb2q%2BErc3Kr9/nLRwqgTUtiOSICXh792/xJ6mV7Vj6q5vFnVSBTLXgrbJDaTrxco4V8S7DzS2VW2q5%2B1otcytYHg3cKLYRzxQaCnp8TVxFhZ1dPQPLJyOI%2BAwC96cZVIurQ8ak8aV2wz%2BkxH7l1ZAh52OgdTur2yE7bDoFSe%2BrzNlUjDgklnGUPp81qYssBZ%2B/s147hXPt4idHTrakP4aUFJp/CxSabogIgIPctCpAxSua60RYuOjq2tqnyI5jYEG1IZtg42RG/SShye2ePfsgoDV0RGFDmnM6p7FPr%2BgYatseYS%2BwtgtLulC7qkyVOqZhrB47jW6TlvDBEIKFmxy2SKbKgPUt5PrK//odBemL3RT5GQ4fcJhaX3rE5Hs4ivByxViR7UVVatk5Sa/sLYlsDf%2BC65PK8rWIl%2BakqZ2LQZTg%2BeT%2BsU/JzxDbWsGCOtSgoSSGMsXTMquwInAxUMj4pZ976ZZUYhi/RYKeQ/ZLqaloNCwgXWfJtA%3D%3D&amp;meta&#x3D;ZGkhxd34la5iFtINFXx51GgydgQqmhTkG0JwshSFJCz8mYFsmLS7O0S3rOd9SlQzEV%2B8SoAW%2BOJylhKlxQWA5%2FTmeJuxdFkK4bVUey5NHJPzaZPCIjBGGKyhle8kwN2%2Bp5fBmLI9JyXIyQxx5Jrf%2BJiJW9YrwZzQgSL1AnXA3nY7eZqsJ3Bf5mUgY6pzviHUZGJFawBkrcaFqt6hQIHn48g6%2BeT7PTuzK0QMsbnpIno%3D&amp;iv&#x3D;rVnRfpRk0PP%2FJa3c96jVmA%3D%3D" style="text-decoration:none;color: #ffffff;text-align: center;font-family: Helvetica;padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text-decoration: none;background-color: #0071dc;cursor: pointer;">Start shopping</a>
 													
 											</p>
 											<![endif]-->
-</td>
-</tr>
-</table>
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="mobile-welcome-banner" role="presentation" style="display:none;width:640;">
-<tr>
-<td align="left" style="line-height: 0;min-width:640px;">
-<img alt="Welcome to Walmart" class="" height="280" src="https://i5.walmartimages.com/dfw/4ff9c6c9-5c67/k2-_2e477e2c-6cf3-4e80-86d9-e25e63506ffd.v1.png" width="100%"/>
-</td>
-</tr>
-<tr>
-<td align="center" style="height: 68px;padding-right: 24px;padding-left: 24px;min-width:480px;">
-<h1 style="font-weight:normal;font-family: Helvetica;font-size: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align: left;">
-							Welcome to Walmart!
-					
-													</h1>
-<p style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #000000;">With everything at your fingertips, it's even easier to save time and money. Shop millions of items on Walmart.com, schedule pickup or delivery or use store tools and services at your local Walmart. 
+							</td>
+						</tr>
+					</table>
+					<table align="left" border="0" cellpadding="0" cellspacing="0" class="mobile-welcome-banner"
+						role="presentation" style="display:none;width:640;">
+						<tr>
+							<td align="left" style="line-height: 0;min-width:640px;">
+								<img alt="Welcome to Walmart" class="" height="280"
+									src="https://i5.walmartimages.com/dfw/4ff9c6c9-5c67/k2-_2e477e2c-6cf3-4e80-86d9-e25e63506ffd.v1.png"
+									width="100%" />
+							</td>
+						</tr>
+						<tr>
+							<td align="center"
+								style="height: 68px;padding-right: 24px;padding-left: 24px;min-width:480px;">
+								<h1
+									style="font-weight:normal;font-family: Helvetica;font-size: 28px;line-height: 1.21;letter-spacing: normal; color: #000000;text-align: left;">
+									Welcome to Walmart!
+
+								</h1>
+								<p
+									style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #000000;">
+									With everything at your fingertips, it's even easier to save time and money. Shop
+									millions of items on Walmart.com, schedule pickup or delivery or use store tools and
+									services at your local Walmart.
+								</p>
+								<p
+									style="line-height: 1.38;letter-spacing: normal;text-align: left;marging-top:24px;padding-bottom: 32px;margin-bottom: 0px;">
+									<span
+										style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text-decoration: none;background-color: #0071dc;cursor: pointer;">
+										<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=BvsTAZSoHClX5ZwCQhnF5V60eoeERE0iQy32ykjvasN1dvxnBpURRbMMXA91BCIi%2BKSjzWPaSn6OT2m3Ro52cOUCOnPwzDE7kWmsFaXG4hHdGg5rFsobrbcFAmLHDGiO1My0MIbNFLbC6wFATteZuicqCj/vg59sBHI8TnI2k4YftqlY6kLe2r/3mF7KtmusnySV1mWPEowbYn3/uHRK1o%2BpmtQkB4HtCGTcBVbfktBwhaYXTKikrCzqTL31px3Q%2BclVO1Fxp/O//47IQJ45LAnWAORgWiHl7cUURxVqrTcN8ZyZdbO7xGgmx2T6R6zn4IUaknsw9x/ByHFgAVsrTw0y%2BJo8UkqAxDN4gHeJhN57eB%2BtGbtDeAxOw5OxaHcvAdZi1zRTttaGg69KAw5XIyeX62BLvtj0QpwUSNXrceKak96ChNF1HPnNUUpVrcxhHiU2dZ2/6e4hFzuJYNHpgGtViloS19VLJSWn7MFEv5PhjpNyWeDLzc/AYD4EVokvGdo0%2BQ2AdArHtlHq41q6OzEfDR9iUpMK2VdAAONIMG8/8xnq9/E8xKLEjvylLB7%2BkZXewSYjn%2BaA6N8gOdTONdH5yD1tUFIuvqVx/fyLq%2BntnCJ3KJDymY0bGxCdCnew7AbU8ZACTSOv35uLRAZ9L5YQ/Ioj2TfNEBDM2VlbWX5UiqeXqB01ygfYwZmtQjjiAp2AzZjDIhVQc3oxOjtMYg%3D%3D&amp;meta=4SXrvsK08OsKXn5dqwGzT28MMewVDBR33zNDY6XNt1iCQ4grVnQLhOqo7ZKrNPM8oi208F1KlCR976LvJD0pju0Yk2%2F%2FUO8AEHz0cgoGUwWq6ocq1GqZ1Rf0ixEABGHuhRucRSPhZjXhu8dxchxWZF2foQ%2FdypbVxuFG1%2F9AnuArT%2BGQCQCzNUMWdyEmhoBtHd%2F86DPUw4dSw1ELq%2BTFOXsDBZKLBOKu3MtcRVbpu8U%3D&amp;iv=WkgMCDK%2FLP4bvt5nvGn1jA%3D%3D"
+											id="40"
+											style="text-decoration:none;color: #ffffff;text-align: center;font-family: Helvetica;"
+											target="_blank">Start shopping</a>
+									</span>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!-- End Banner -->
+		<!-- Begin Container1 -->
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner"
+			role="presentation" width="636">
+			<tr>
+				<td align="left" class="icon-boxx" style="padding-top:32px;">
+					<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
+								<img alt="Let us do the shopping" class="" height="180"
+									src="https://i5.walmartimages.com/dfw/4ff9c6c9-4768/k2-_1e412c94-108d-42b5-bd9e-21c6f99befb4.v1.png"
+									width="100%" />
+							</td>
+						</tr>
+					</table>
+					<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="width:408px;height: 180px;">
+								<h2
+									style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;">
+									Let us do the shopping
+								</h2>
+								<p class="img-text"
+									style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">
+									Our associates are trained to be picky! Order your grocery favorites and more, and
+									we'll have your items ready for curbside pickup or delivery to your door.
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!-- End Container1 -->
+		<!-- Begin Container2 -->
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner"
+			role="presentation" style="" width="636">
+			<tr>
+				<td align="left" class="icon-box1">
+					<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
+								<img alt="Browse millions of items" class="" height="180"
+									src="https://i5.walmartimages.com/dfw/4ff9c6c9-8c33/k2-_bb51e2f1-73c5-4c21-82f9-839f9e9efa5e.v1.png"
+									width="100%" />
+							</td>
+						</tr>
+					</table>
+					<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="width:408px;height: 180px;">
+								<h3
+									style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;">
+									Browse millions of items
+								</h3>
+								<p class="item-text"
+									style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">
+									Shop trusted brands in electronics, fashion, decor and so much more - get fast, free
+									shipping on orders over $35.
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!-- End Container2 -->
+		<!-- Begin Container3 -->
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner"
+			role="presentation" style="" width="636">
+			<tr>
+				<td align="left" class="icon-box2">
+					<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
+								<img alt="Save time – stay safe" class="" height="180"
+									src="https://i5.walmartimages.com/dfw/4ff9c6c9-ba43/k2-_8e4d80c7-9785-4c94-9bec-efb4c083b50b.v1.png"
+									width="100%" />
+							</td>
+						</tr>
+					</table>
+					<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img"
+						role="presentation">
+						<tr>
+							<td align="left" style="width:408px;height: 180px;">
+								<h4
+									style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;margin-bottom: 0px;margin-top: 0px">
+									Save time - stay safe</h4>
+								<p class="img-text"
+									style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">
+									Schedule a no-contact pickup or delivery, or if you're in store, use maps and make
+									touch-free payments.
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!-- End Container3 -->
+		<!-- Begin Inbox container -->
+		<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" height="124"
+			role="presentation" style="border-radius: 4px;border: solid 1px #e6e7e8;background-color: #ffffff;"
+			width="636">
+			<tr>
+				<td align="left" class="box-img" style="width: 48px;width: 48px;padding-left: 24px;padding-top: 24px;"
+					valign="top">
+					<img alt="Fresh ideas in your inbox" height="33"
+						src="https://i5.walmartimages.com/dfw/4ff9c6c9-b680/k2-_1a788f85-783a-4e5c-86f1-e78634f02af8.v1.png"
+						width="100%" />
+				</td>
+				<td align="left" class="box-txt"
+					style="width: 394px;width: 394px;padding-left: 16px;padding-right: 38px;padding-bottom: 24px;">
+					<h5
+						style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;margin-bottom: 0px;padding-top: 24px;margin-top: 0px">
+						Fresh ideas in your inbox
+					</h5>
+					<p class="txt1"
+						style="margin-bottom: 0px;padding-right: 38px;font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;margin-top: 8px;">
+						Get the weekly scoop on hot items, great savings, and more.
 					</p>
-<p style="line-height: 1.38;letter-spacing: normal;text-align: left;marging-top:24px;padding-bottom: 32px;margin-bottom: 0px;">
-<span style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #0071dc;display: inline-block;font-size: 16px;font-weight: bold;width:161px;border-radius:20px;text-decoration: none;background-color: #0071dc;cursor: pointer;">
-<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=BvsTAZSoHClX5ZwCQhnF5V60eoeERE0iQy32ykjvasN1dvxnBpURRbMMXA91BCIi%2BKSjzWPaSn6OT2m3Ro52cOUCOnPwzDE7kWmsFaXG4hHdGg5rFsobrbcFAmLHDGiO1My0MIbNFLbC6wFATteZuicqCj/vg59sBHI8TnI2k4YftqlY6kLe2r/3mF7KtmusnySV1mWPEowbYn3/uHRK1o%2BpmtQkB4HtCGTcBVbfktBwhaYXTKikrCzqTL31px3Q%2BclVO1Fxp/O//47IQJ45LAnWAORgWiHl7cUURxVqrTcN8ZyZdbO7xGgmx2T6R6zn4IUaknsw9x/ByHFgAVsrTw0y%2BJo8UkqAxDN4gHeJhN57eB%2BtGbtDeAxOw5OxaHcvAdZi1zRTttaGg69KAw5XIyeX62BLvtj0QpwUSNXrceKak96ChNF1HPnNUUpVrcxhHiU2dZ2/6e4hFzuJYNHpgGtViloS19VLJSWn7MFEv5PhjpNyWeDLzc/AYD4EVokvGdo0%2BQ2AdArHtlHq41q6OzEfDR9iUpMK2VdAAONIMG8/8xnq9/E8xKLEjvylLB7%2BkZXewSYjn%2BaA6N8gOdTONdH5yD1tUFIuvqVx/fyLq%2BntnCJ3KJDymY0bGxCdCnew7AbU8ZACTSOv35uLRAZ9L5YQ/Ioj2TfNEBDM2VlbWX5UiqeXqB01ygfYwZmtQjjiAp2AzZjDIhVQc3oxOjtMYg%3D%3D&amp;meta=4SXrvsK08OsKXn5dqwGzT28MMewVDBR33zNDY6XNt1iCQ4grVnQLhOqo7ZKrNPM8oi208F1KlCR976LvJD0pju0Yk2%2F%2FUO8AEHz0cgoGUwWq6ocq1GqZ1Rf0ixEABGHuhRucRSPhZjXhu8dxchxWZF2foQ%2FdypbVxuFG1%2F9AnuArT%2BGQCQCzNUMWdyEmhoBtHd%2F86DPUw4dSw1ELq%2BTFOXsDBZKLBOKu3MtcRVbpu8U%3D&amp;iv=WkgMCDK%2FLP4bvt5nvGn1jA%3D%3D" id="40" style="text-decoration:none;color: #ffffff;text-align: center;font-family: Helvetica;">Start shopping</a>
-</span>
-</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- End Banner -->
-<!-- Begin Container1 -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" role="presentation" width="636">
-<tr>
-<td align="left" class="icon-boxx" style="padding-top:32px;">
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
-<img alt="Let us do the shopping" class="" height="180" src="https://i5.walmartimages.com/dfw/4ff9c6c9-4768/k2-_1e412c94-108d-42b5-bd9e-21c6f99befb4.v1.png" width="100%"/>
-</td>
-</tr>
-</table>
-<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="width:408px;height: 180px;">
-<h2 style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;">
-							Let us do the shopping
-							</h2>
-<p class="img-text" style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Our associates are trained to be picky! Order your grocery favorites and more, and we'll have your items ready for curbside pickup or delivery to your door. 
-						</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- End Container1 -->
-<!-- Begin Container2 -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" role="presentation" style="" width="636">
-<tr>
-<td align="left" class="icon-box1">
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
-<img alt="Browse millions of items" class="" height="180" src="https://i5.walmartimages.com/dfw/4ff9c6c9-8c33/k2-_bb51e2f1-73c5-4c21-82f9-839f9e9efa5e.v1.png" width="100%"/>
-</td>
-</tr>
-</table>
-<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="width:408px;height: 180px;">
-<h3 style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;">
-							Browse millions of items
-							</h3>
-<p class="item-text" style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Shop trusted brands in electronics, fashion, decor and so much more - get fast, free shipping on orders over $35. 
-						</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- End Container2 -->
-<!-- Begin Container3 -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" role="presentation" style="" width="636">
-<tr>
-<td align="left" class="icon-box2">
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="padding-left: 8px;padding-right: 16px;line-height: 0;">
-<img alt="Save time – stay safe" class="" height="180" src="https://i5.walmartimages.com/dfw/4ff9c6c9-ba43/k2-_8e4d80c7-9785-4c94-9bec-efb4c083b50b.v1.png" width="100%"/>
-</td>
-</tr>
-</table>
-<table align="right" border="0" cellpadding="0" cellspacing="0" class="block-img" role="presentation">
-<tr>
-<td align="left" style="width:408px;height: 180px;">
-<h4 style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;margin-bottom: 0px;margin-top: 0px">
-							Save time - stay safe</h4>
-<p class="img-text" style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Schedule a no-contact pickup or delivery, or if you're in store, use maps and make touch-free payments. 
-						</p>
-</td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- End Container3 -->
-<!-- Begin Inbox container -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" height="124" role="presentation" style="border-radius: 4px;border: solid 1px #e6e7e8;background-color: #ffffff;" width="636">
-<tr>
-<td align="left" class="box-img" style="width: 48px;width: 48px;padding-left: 24px;padding-top: 24px;" valign="top">
-<img alt="Fresh ideas in your inbox" height="33" src="https://i5.walmartimages.com/dfw/4ff9c6c9-b680/k2-_1a788f85-783a-4e5c-86f1-e78634f02af8.v1.png" width="100%"/>
-</td>
-<td align="left" class="box-txt" style="width: 394px;width: 394px;padding-left: 16px;padding-right: 38px;padding-bottom: 24px;">
-<h5 style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: left;margin-bottom: 0px;padding-top: 24px;margin-top: 0px">
-							Fresh ideas in your inbox
-							</h5>
-<p class="txt1" style="margin-bottom: 0px;padding-right: 38px;font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;margin-top: 8px;">Get the weekly scoop on hot items, great savings, and more.
-			</p>
-</td>
-<td align="left" class="subscribe" style="width: 128px;height: 40px;padding-right: 24px;">
-<span style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #000000;display: inline-block;font-size: 16px;font-weight: bold;border-radius:20px;text-decoration: none;cursor: pointer;">
-<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=SSLTNiHq07GrGN/SXupMNEHFSbSGiLzEv4xlc/vEOYPzgnYjPUGvhMdjHwg607YOgreV/MDFjaNQa1H5oumuKHjSdzZ4OXyBgbt3xp/HJmCkCMLwUSMu8NWWDVCWMgb4C6CD84IRVIFECWtuEyFNmZLusbpXA0kLaS9FUSCZnGrsAymLhEz43AynFeqHQeC947fjKluKTKNnTLY7nWo5pdw%2BAvSlwtt1Xxju5N4AqRGthIzs4/i2u1PDK43g/cIbnuWo9krjNvDL35aQ8VugDjf1V29Ql9KIQmaTGkMLp13rbdMdJjq/iUedJ2dizbJLc%2B1a86GjxQXMyAN2K1lu5IfLxZscKgQouQWNl8%2Bn4dahZi88u3QIAZk/5NckbJXz6SBhYlBjDlTV2RSWpZ5Ay1oHzxYa5yVbBJq2PYlfa2NQ6S%2BHs0nNMAi7vLtLwjtjbt8b3xFnE1w3U5sHibbkdhOQKOpshOtIvDf0wRVt8LdI/llPF6TTz0jTGd5WrnMyrOzEPS1bEkI867HbV6zU9WSnH6IfNLUGbpFLmmFUVsTxkzvBlCYMrFL44rELlvnDLxkwmv3HlR7es/Cf6M9H9cXIUOWPZEr/qTdb3CYz4iJfS35CDE2/HKDK/17Uk02OS5m/1f72ovh6ukuXvcNKx/vUjNV37bVz1FOyXw3PKCbCM487l42zJuNCpZIbeJeLygzJqSbZI%2BapkGr3ZNGicuF7IMmKcDPmswaK2nZgvzo8f7GLOK0DsxH7A6R8ENCI&amp;meta=e0ck2whAX2h8eJx7Ww5hMrr1tiXHA9NKstfcK0b7OfGAevzK0bbr2g4YPEcKwVWOTW4RitELLaDaM8p3sKbLxqqlSx1W1FM6DbbQtZwraHzH29n0wZBkKM3qU7R6sjOP46mzSiIWFsZODK%2FtmtCbBA6JaXcVBu32HCPxCe%2FM3CqnTu%2F0wY3xHyNIb6%2FhHfHN5BuroJg76S8KkzAOw6zpKGjSFsz6Q9J3Pgb6DKy8LqE%3D&amp;iv=HAOWbSvEqaGuZdeCZz%2BP9w%3D%3D" id="50" style="text-decoration:none;color: #000000;text-align: center;font-family: Helvetica;">Subscribe</a>
-</span>
-</td>
-</tr>
-</table>
-<!-- End Inbox container -->
-<!-- Begin services container -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="padding-top:40px;">
-<tr>
-<td align="center" style="width: 360px;height: 68px;">
-<h6 style="font-weight:normal;font-family: Helvetica;font-size: 20px;line-height: 1.2;letter-spacing: normal; color: #000000;text-align: center;margin: 0px;">
-							We're here to help!
-							</h6>
-<p class="text2" style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: center; color: #515357;margin-top: 8px;">Use the app to access these popular services
-			</p>
-</td>
-</tr>
-</table>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="setDisplayWidthInner" id="icon-section" role="presentation" style="padding-top:40px;">
-<tr>
-<td align="center" class="icon-box" style="width:92px;">
-<p class="icon-img walmart">
-<img alt="Walmart pay" height="43px" src="https://i5.walmartimages.com/dfw/4ff9c6c9-5190/k2-_b5e61bc6-4223-48f2-9b31-55ad88845be7.v1.png" width="57px">
-</img></p>
-<p>
-<span style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Walmart pay</span>
-</p>
-</td>
-<td align="center" class="icon-box" style="width:92px;">
-<p class="icon-img pharmacy">
-<img alt="Pharmacy" height="57px" src="https://i5.walmartimages.com/dfw/4ff9c6c9-43c3/k2-_a7536411-f109-4fe2-8d4c-c503c89dcb6b.v1.png" width="43px">
-</img></p>
-<p>
-<span style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Pharmacy</span>
-</p>
-</td>
-<td align="center" class="icon-box service" style="width:92px;">
-<p class="icon-img">
-<img alt="Money services" height="57px" src="https://i5.walmartimages.com/dfw/4ff9c6c9-5712/k2-_b7be24dd-dcce-4110-a9e4-63d5fa87abb0.v1.png" width="57px">
-</img></p>
-<p>
-<span style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Money services</span>
-</p>
-</td>
-<td align="center" class="icon-box" style="width:92px;">
-<p class="icon-img reg">
-<img alt="Baby registry" height="50px" src="https://i5.walmartimages.com/dfw/4ff9c6c9-3708/k2-_cb08fbab-2fb7-4456-933d-ba5eaefdc30b.v1.png" width="50px">
-</img></p>
-<p>
-<span style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Baby registry</span>
-</p>
-</td>
-<td align="center" class="icon-box" style="width:92px;">
-<p class="icon-img store">
-<img alt="Store finder" height="57px" src="https://i5.walmartimages.com/dfw/4ff9c6c9-4757/k2-_b4f9e235-853a-4b37-ae8e-15b0d35b78ce.v1.png" width="57px">
-</img></p>
-<p>
-<span style="font-family: Helvetica;font-size: 16px;line-height: 1.38;letter-spacing: normal;text-align: left; color: #515357;">Store finder</span>
-</p>
-</td>
-</tr>
-</table>
-<!-- End services container -->
-<!-- Begin app banner -->
-<!-- desktop view -->
-<table align="center" cellpadding="0" cellspacing="0" class="wrapper desk-banner" style="order-spacing: 0px;" width="700">
-<tbody>
-<tr>
-<td style="border-spacing: 0px; padding: 0px;padding-top:40px;border-bottom: 4px solid #000000;" width="700">
-<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=l1qPVVMv29MIrrmQj5IWxyPT2Tm56x%2BvVkXsroA5I7WQhh7Sy0S2JfO2/PMK1XXpEwZ5lQcMOGlsmRX2wNEOx7mgql7%2BCrxTcDzmkhhuW1lXINxA3gqzsyfl7QfqXqP2qV4Ay2vSLCfNytG6uhBNaZfmREJkMp7ZAI59TUx6gHHraoCYjyXj3I0kY8r6TCCU5iiBcOo%2B2frVPoMZvw5UZR1k2w1RdQ1ea6Jb26VWPaBUkhpxQb9dPgKKFK9u2yeSAVuCroZFMUr3TCKisEWphwt7%2BeJoDjuVJx1xGp6BiolaZksgwNBxIBivFM%2B4H4uv5r0mHNJ86Zrv2V8%2BhPREZTC8MsB3VA0W72zBb4MiKddaPrxdR0Th5txiYpGUtxQcjiJs2ZAo%2BH7q0ndU1CZ/05eXdR84dzPSKM%2BBPVKyS/iBMc5R8GksjDFcOTWctaArnssDoN/M7IkUDdBfHaXvg8oN4Dfdwi9ycgsHI0P73BCPBlLHvQ2l0k8VC9Q41OyUMPUC4HoO5pOOz9EpCRIZBWHaiyBfWXaHNSZqAZaEBSzfC713RXOuGGH6LsOKenFJRnWKMmeatXnY9XveQPiejncZMdCPvQ53nPf9MXJd8JbPICH1oiTmg2KStqy2AYiR9GzfP8K08dFX52SZIUXsk8Vms4Uu3k0s8qN19GAo4ZDOEwFq1o994O72DElUA%2BZJKEaGpK1/GcqtIl7VTHHU%2BvhMlT3aLUNKEesjzNjzNix2NNzmOtaUw%2BeKYuI7p5STKcfRJA2g3sLcrwD%2BtIAsv6vGfqqWSRB8QYRInrOTDowwiSg5IGiRtroq2Nio5/It746VQFYZKVajXF70GkRi9g%3D%3D&amp;meta=labzVZw5B4KlHBGUiNgUFhcdPoSi7rAjspMvJzP8DFND9b0VnseMw9dBswqAYVMZsX3LB0iU8%2Bxco05o%2FqELSGuJxJV9TK59kXev9t5HKvNU5ixiQGMKmjNp2f1qvqbT2Nd5r%2FJwRcErDTxcUUB9xgiYfjFK%2BhHdgQOxzWSKH7T4w8lZTcx%2BYlXzZ3E6v7VKZ3yN6DUsSdpjI9S2P8Vq96XRcMWMH2uaCvSNwEEscEI%3D&amp;iv=p4RK31pJacqFKc1nsXJSGA%3D%3D" id="60" style="text-decoration: none;color: #000000;text-decoration: none;" target="_blank"><img src="https://i5.walmartimages.com/dfw/4ff9c6c9-a061/k2-_fd17eb4d-9f4d-4a53-857c-a3e0c77868d1.v1.jpg" style="max-width:100%;width:100%;display:block;" width="700"> </img></a>
-</td>
-</tr>
-</tbody>
-</table>
-<!-- desktop view end-->
-<!-- mobile view -->
-<table align="center" cellpadding="0" cellspacing="0" class="wrapper mobile-banner" style="width: 100% !important;max-width:100% !important; display: none;border-spacing: 0px;border-top: 1px solid #fff;border-bottom: 1px solid #fff;" width="700">
-<tbody>
-<tr>
-<td style="border-spacing: 0px; padding: 0px;padding-top:30px;" width="700">
-<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=DVoVltd7dsAUXDoWTNzcyi6yld1TLeWzG81fE6AQqDVuMEuWu6mpjZkgvtNSQinCrb9Q4ojmUOvffsthLhUg41kjzpjVw3HVO7YgMFp3G0YTz2N21dzIJpIgsfgCTtHx%2BFSRUvXVk106iPPVf5K/QWBNQc/ZZa2JXmneHmG4jePO5FZmixDbVWIC6D0vE6rf56HBsfI%2BlCnh%2B1vP%2BgJl6Y7YU8dMG7crjG5xlO31TuXYDSCJM7mfhoc3CoH93wxeMI4CN4LZ13kBmhsI%2Bk0bIHAtLoT4Vd2jY2KWSq9GMI%2Bq%2B%2B3jxij4sX0OCQE9ERpZ1hn6atrsjk3ffHUTVyCC3pdHYJK%2BqySdBewR%2Bwx7ckjQXKRQx6xXhFiZg3U0q0zcPnz0bXlIDZQk2NE//VOmt7w1xi%2BrqF8%2BQ3kUlX9UN%2Bp5ouH1Tkhhoa4GaAZ%2BBi3djv057Anf6EhALc03AnyXRIcgK2V0CX3iJrYL6%2BBY4SKPQKZlKbssNQzeyd69uX3yWRgmALioHBsJn/noROgbkmyRoU749SeHlVQCjowLWwnNW9%2BS4Nh5a8psHdZ4QP46xuDZxAh9TBG/MZRpazvSM7PQJvd%2B47Km5Vuu2l%2Bn3KC%2BLK5GUKWR%2BwlKeHzL8jHNj6afWX1dQwtqYZCBISbDb10X4CtVKXUnPBNQ/4MaT5WVVfmhIg1WRC8wTvxTUtRsAF9zbZwAGeIkqUj6p1PC8r5OxFk4Mrjxuwn%2BArUitkhDzcftNjgnYQI7cSGu9yqUzSA/DBCic6Za7vt//3Irod0T1B9X0qOt5Wh69At1NIDtiGYHUuESqRTEd%2BekSx9zD1gVgB3qKboEmbAF6JDx0w%3D%3D&amp;meta=9vz1HCvxRBz5ImY%2BxgXyo3CxSm%2FurVrRSwxv%2FLYDsp47AA41aaR6MTw%2FnBMVyiUoWeBeLhzNGi%2Bn5tFUiQQL111TO%2BjkL9e8RkXG1W1UgvgntaWs0yJF%2F6cWyleUNLwzj9JzmiDsjBizeK1qokpOx3G7QBfmfZEm887%2BHkt%2Fqzw9vL8vqPoJ1dejtjA2eQcjddZiehbEvEgGMLM0BWdCopOlcsxtX8A8tJPhNj7XTmk%3D&amp;iv=Ibpm%2FNHIx9s9whLNDJEfGg%3D%3D" id="70" style="text-decoration: none;color: #000000;text-decoration: none;" target="_blank"><img src="https://i5.walmartimages.com/dfw/4ff9c6c9-5da3/k2-_4f167f9a-e21a-48ed-9843-3500440ee5b2.v1.jpg" style="max-width:100%;width:100%;display:block;"/></a>
-</td>
-</tr>
-</tbody>
-</table>
-<!-- mobile view end-->
-<!-- End app banner -->
-<!-- Begin footer -->
-<table align="center" border="0" cellpadding="10" cellspacing="0" class="setDisplayWidthInner" role="presentation" width="700">
-<tr>
-<th align="left" class="footerSection padd-bottom" style="padding-left: 16px;padding-right: 16px;padding-bottom:32px;padding-top:0px;line-height: 0;">
-<table align="left" border="0" cellpadding="0" cellspacing="0" class="responsive-devicea socialIcon" role="presentation" style="padding-top:32px;">
-<tr>
-<th align="left" style="padding-left: 10px;line-height: 0;font-family: Arial;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: normal;color: #000000;">
-<b>Questions?</b> Visit our  
-																		<a data-automation-id="helpCenterFooterLink " href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=hEr6xtZlor2MquPHy5n/CIbg1dWt7J5bjuy1gtHsA67VrPCsa5bnBOETz9s9taNkhsgRUcUXIKu8cY9G8wDt9MKvEFykrDHlLouCFbH0lHmVKfyONdu0gt/uPMOqFXLrsA6zwWspXtH8/bvMgLzJy%2B/VLQEWvTgtw5QUBQlaPR27nF2dUBtbvnQwqG%2B2SEdKFGuc2GVJM2l12bRNn3krcrKUf%2BbZ4nxSgMjjJSrCLKUGPijOPoKLHzN5vAT8JLpZcKZsNYBMxU8scwGol7ua7/Ar0BvZLfa0hQDCEzZIkVNfvt50Cz3Rft9tGbEriNLxFoHOCKwyyuDD/pvUAnh4iqPeWyWYi4hSZWBo8XfqRaati2HmYzGAyteOdCH09v4wjVqhZg28dgMQwLUteMJsWaZ0hfm%2BYtuc9ujbAiyR8FyohUIiEMb8JCNkyB/H8B8fvfZx9N/JOnH2vserrOe/oQ21gKb7lldgfZUR3g9mEwtjzdm36i8K3YhHG02%2BQF44N/zOd/pmhUM86ZwMo1OMRSxaSKi%2Bk/60S74uW6/AqvoWlaccOOR8kAqDprLrS2O/WL2EQMwo1l%2B0UEVcRZ3jk8HAYOEgyKwacv%2BiHkOdPj3PtfEdAmNuXRXQ/fEjidXjy8dgbIQf6UoA9N7UKyBnPZdB%2BFvtTA2oQDnpcFFhpun/zh2IwXmo0oZa3/E2s76zstbvpkHpDJ0N1glZEI2img%3D%3D&amp;meta=08gAXO9XrQluaEcj5Iq2dVPhmsVov0XLnozWvzHsDbGpc689MpskGhqypslWSNzCI%2BYOpoc6KGVLHWeySwbIpeWy2iybThrBXssyYSRRAIw1CT3kLPFzQC20Q9tGZsNZoJV35W2nH6DPbLMHkmEBsvOwwL8maWiqQHcHwEzM%2FDZhJ9m%2BD4eix8%2FQnAD4Q1VMJUbjDKyB5W3ejw%2FJhQU%2FwT6eIhjw%2FZzdfk8kolyTjJQ%3D&amp;iv=8VhUYkLUstdh9UWzFyaIjA%3D%3D" id="80" style="text-decoration: underline;color:#000000" target="_blank">Help Center</a>
-</th>
-</tr>
-</table>
-<table align="right" border="0" cellpadding="0" cellspacing="0" class="responsive-deviceb socialIcon full-width-mobile-view" role="presentation" style="padding-top:32px;">
-<tr>
-<th align="left" style="width:66px;">
-<a data-automation-id="smTwitterImg" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=UtjLl%2Bfg5YABVR6ndUZq4jmFbBHInFZkPFtcB9%2BPxTJbi17yx4FQgl2N0KvawelyaBXY9ZMgC%2BkD7qJXhz9G/wZ67fSb8fpanMGLYf08SjbaByM16m0Yyk729PWPYKbHChwh5MxWGdPXYalQp9MjfOwnALvirygWtuqGuWLTxlvWFWN6Tf64MiWw9Xxb4rqHjgkF2ZlXwTxfzcnyozeXxqypeZmsYv9I3U21%2BAKCJhaIRjRR8c1zy//RuDnYQmOslJ0LqLgaIItq0Bse4zysf/U6XfcgPPb3OsLPAlz912WSFbU0NrGqAnRDQhS0jPBU1TUuOJzOQtk3TyAKbFmt8PHGHDfplhxdbZ2sCox5O3U8jVi9f8VZP1yKjdi5mJHTiqYvt4%2BrXyqf7efHOafUZtLbni2f42EX3QCX7H7EnDjln34q4e%2Bn4sNCFvUSEmmWF/uIsAyXTzyPywLQNgvxCSshM4gcVxASBnlQsa%2BvHHGdUm9wGr%2BYR7q2VLSM8PKdEVBSxtul5sC1fyQltF94oU0zJU6cY7yapp0uFZ7WuVydqkWsk9QnKf/ZrtCRIYKqcbCFVhBo2Sukxg8aiDQuEa4rS/1J7V9gfaxyyHxF4GNeye8t7Il/Tzc2BTpjeGpA&amp;meta=%2FsmvmkiQ0t7hYX81Z70VUL3LQw3qg3vYxXAjFHRyHj9QNCSLnZYrzXrhF41uFQx3xIcJezb%2BsAH0VM4QSxcfo%2BZkTNt6VoUGYPe6PYpiR5zyzSu8dNI2k%2B3JXQK7cPoQ9ODITk5CDFOzr0M3CN3l7XE00h%2FcqnUmiYezg4gKAOHaJrd6OqFqFZsYZtkL6z6q3ISjjB%2Flt81qrZdLjnlm1DprfeClEEdaRZOKiDLsEnY%3D&amp;iv=Tv%2BJ2o1busWCC%2BWmYHI54w%3D%3D" id="90" style="line-height: 0;" target="_blank">
-<img alt="Twitter" src="https://i5.walmartimages.com/dfw/4ff9c6c9-eeb8/k2-_5d328594-7d7b-4fd2-af81-6325c88d2bc0.v1.png"/>
-</a>
-</th>
-<th align="left" style="width:66px;">
-<a data-automation-id="smPinInterestImg" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=It/2JgrNp5AaZ2IfhwOzEhNZTmQVXoL1djL9DWvDpKPUdGbt7DlH3f8CJrwdSEE81HH4%2B4XJ1rHI0yUzrX2q6bsfOXGi3W971MQyjHv8atZoyqfVySNKvkZSmxoisO2CY/AGiqP5fUcyyOfXkC6G52cVMN7blpEVvpv9umXJyzFyDccdQq48rfvub%2BInDoVxLJEtge9hjUZGG2aAuWPfKDUOQZj%2B5npCL/EjabrepyWGRn2CmoSp5gfQsQmRoMQSPU/meiqBOTbvNuFe52te6lvinhiknaoHoDsEy%2BhsiXITpvhFQtBNyevjHCinCanlVDltlBgHbpxtQFW5aI5XsIBTi2ruCVN36Zg%2BtFAIFIJe2t5b8CX0WU3owLzLRPsbt8B8CLCiAJHGg0PjrezNQLJdInx45ws3STYYo0vlNO532ZzqvArWNk/l0R9USsb5UArddPlbScGjOKJ3gEagQtvOIUSAeEDUtJz1zdmSk3wDi2A%2BR5yGvVBJ1qsdy7NDDTYZQ70GSZu0sAlI38KVUW6FewdparBjXNu8tIbKp7d/ht1Vsjhy1KjpO3aIvJKCdHLU9Z%2BwyYdFnMkV8lv0TBdIN1ZCtkzPc3sFNfSP2yn5f4Qgc6%2BZHHBrqFjWxFz6&amp;meta=%2F8GQ3k%2B%2BTwgOWWrILGquTr5CEyFclQvzQea9MMXg%2BfKdwzSsugzUQrGsJf3CADFz5a9AmKYzvUmlURpkpgPjaQmOdO7htyp7f14OWWnWSRh%2FfM2cdF3RwTNWFgx5lUQ8nJLN3dRHvlZ1kqdx%2BGs%2FsjfhuxILgqXqg7uKN2MtVU%2F5L1f%2BqyrElpKH3utDusux%2FhoGVpIK2k1vMuK6A7dIrwzkJCfLymCTsF5aIAvBfug%3D&amp;iv=utGsDw8QN0A%2FkiEePwbhBA%3D%3D" id="100" style="line-height: 0;" target="_blank">
-<img alt="Pinterest" src="https://i5.walmartimages.com/dfw/4ff9c6c9-a44c/k2-_de5fada7-d832-4a53-a9c3-bc27b6e68aab.v1.png"/>
-</a>
-</th>
-<th align="left" style="width:66px;">
-<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=Y1BVMubOKH9CfFzKN88xPA5/WjU3cS6Q8Q0gjNJRcqNPwRkFa1beZBe5zSpG917taaVQH8r9lWpicGzHi3fP/QQYD%2BYT/5uLiiEP8%2BT3pvpaQ/POnfpjP292Ceh25I974IVp5ZCNcJPVFWTg5hkngMqlhBH8kMaeQD8T/MCwyPmQSAISqMFrD1DCGpxkXgVjZrvTdux9spU2uRINQ/7mampcitHJN5jqKla9KlrAVxMObHKGEPymPHzhNumT/6xEXOazEd2jbDPK6GP%2B5qFugjt1smGaqSG9cf3Oeb7ghJWdY8gn8zjLNOIOv7weNqJ45UqLLVaqe%2BbUfMeKzabOjQyrxwXpd2%2B6Zk4MBlE9NSaDeOoUmCtV9kIv7tCfk7jgHhPYbPaj0QLVn6TJCxzyiFM97oZ5v9SvqfYUp4hzZ5FYd8Wo/OEEFfUcJIdF5ebGdwXIMnMkRPVxsdgzsBiRPJXCQKkKBP/MZGEkWWfV0s7%2BiP0Ywq6GkU3BXqjph2oSFjno54XUrPjSQyiPgCWrwfXLFno%2BWirGUZypX1LQ8AHskV98KMi3xcWh6MmpVodUpRtdirdOYwLiKkheEvpaSu/4tO6LoJkw5ALI6Gvcsrtf3ki2srzmLhQWU73xbpJM&amp;meta=HnJwe57%2B6jAetHqGouiwNc9Jqs8JMSZKtAGosMs1tCrcwgGGh7oBDJhWSzO9qkEcy1N%2B%2BakWbryyqNhiflvcBtBJclB%2BfK%2FelSEPvvgEmXzNV51uwIf2Lfb0LGPry1EObys7bDG%2Fm2cW8IP8lrr6hKPEZIVkRB7Sc2Qot8JNOYoUatCZSdg2jlJevu8lFN41Qw6oNPtW%2FDHmnNBiwst182oewJ5FJRjBt3kkjEpYzws%3D&amp;iv=SvcioZHTKqgQXr5a4B4hVg%3D%3D" id="110" style="line-height: 0;" target="_blank">
-<img alt="Facebook" src="https://i5.walmartimages.com/dfw/4ff9c6c9-3c9f/k2-_d6dfcf7d-f784-45c6-8c53-279daf5e1802.v1.png"/>
-</a>
-</th>
-<th align="left" style="width:66px;">
-<a data-automation-id="smYouTubeImg" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=sQT0ulkxjdJxXs/p616PHsIEeqeBfKZQZdlO7cUIp9CxC74ho9BLPmKkfEwQHEVLcxgK5F5i2CsYrATHF0n5GZD9s8X/tx0cSO5JT9eAD0EzWDN1WwBH8ChW5/lFL8OWpts8A5y3X3EOhwEH/Jz%2Bxxs4XNZ3WOB9%2BKy3frB8%2B0kak76ARdDev1C7lqsM0x/mX10bHtpdqrkWibhgQRL1MBEB%2BgfXXbSP96CIDHA4Mx3VkAPEwvnwO2d4XcDZRVfN0VpJZ8BFX%2B7jWlOgL2Ht5pNc/evoux3aM92D5QVyK1LkMWtZTdZV3oJTBp4265Te80sJ%2Bq7k1TObb90C3khMPz09syPLzrGLakW8FyPahqNvQdDuIvjn5Hr3f6Rdkc3IVs1HhjevJQZBbJFmOCMjbEfinAgqkcuja%2BDejtDdXJYXGbbJgbphQdJ%2Bg5xmn45DM0w4GfsjrR5KsRWmOznaro5rPGW6ca42pZkJ5BSucuxCUKOWwSFMifSWbDtbJ6FRHZkBMdbadnYg3nkrfKQCFofMsLhmQ5LJGAVIBj8KltqvMclJHXGBJbV0REAX1%2BldabDP6XcPwY7P1pv989MOE5ycbdTcfEEcRcnU59N6bfVgd5Dr8d05PBrEHEz%2BTB62&amp;meta=kzPfsYxM1ZrqyvsRq1VolkNSsIrE0tINsanAIm0ITG9iPnhC7IreppIgGO6DEpPpEQXQePsjLeaUINih3KQ6wdTdYG8HfqvhEbPkvx%2FO5OAJMhiLyXkxUQO82q%2B1tJG6bKiwqjNKkL%2FCHjv13U3dkIEvvDzsydfyLoHamSVcfuUGYD%2BtWAq%2B4on1dBajmPLvRZ5up7TNTwe8JqO9oILaiaOE4869sp6s9hNYOLV1%2BUk%3D&amp;iv=uBjM1n58FmJBBeXF%2FROD0A%3D%3D" id="120" style="line-height: 0;" target="_blank">
-<img alt="Youtube" src="https://i5.walmartimages.com/dfw/4ff9c6c9-b83b/k2-_b952cc0d-7c07-4b9d-a2c0-6a177d3c388b.v1.png"/>
-</a>
-</th>
-<th align="left" style="width:22px !important;">
-<a data-automation-id="smInstagramImg" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=CXO/G7Qs9c/SLoeRNHi/hR5SM5khvvS0tTeUmDr5X4DlgL4zwyKL9/Iq8%2BuEAiBdaHfhwsFHLCGD57filED9tg2CjJLh54rH1KRf7A3W9fF1fN//aw1UmYUNtkFqFqp3dwUy2Bhs7WMxDxnoe%2BKLgtX48LEAtll/34TucSl172JBukNmqV984GxhKa8boxPJEi4yVk61tlVODvSKsZ5yjiBm3Xti6hXqiEZ/oBLHMlS8TagGcbBQx41%2BgXt6pTgTyT4sls4e2o/RFq5ELt7JA3eQGKQW2gKT4is2kOpq5AqioN8nCJfBDdksIAYVPavUEjiIcCtIfN/TzZQjJi8Q0pdbj9sr14Yh6KVLVGFlGwzAn4yqUJ6qNv%2B9KOHrL3P8lQUsm7C8CEAByfgmquhKvhGkS53rJaFkNfGIVbhiTxNFFA2bK5hCZg4kQ/UX9LVKz0k8AzxtKPZlUpk4qJYYYbsKL%2BGjDaZ35X9y7hbhXxGPOey5OMn%2BWiuPLlj%2BSoD7YIiWbbxzz8n%2BDSZO9g5G%2BvpYWFTd9qrUP9KECj8UiGAwlUMHsrbdQH94cXKRZm1qEy7nKBXpNq/djlRJa1gJkpim44yGtTHQDC%2BH8Ut3tr0qqwqBsbnmSS84YDmVLaGX&amp;meta=kg5PFMc8iW5PQQpQAWImh03eRmElzFYltHSg8QvimtbC1lSt%2F0h5Q3qnTNaeYTCSKmEGeu%2BgizlJDr5sisOHrYblg19pB7nE8GSNbvR4uI7gW0bYG6VnOViBjNHxzaXrI5ikRgGfAXHou1m1Ao%2F%2B%2Fqo5GWgwrwP1WhqMfctQsqevyr32vZhxF0P0iUXwRHGDC6ar7Nn%2F6V0OxhXxt1tSqLEOXw5E3IS4fjeKQ8J740w%3D&amp;iv=rEoHnvSL9Yz9IrtprmXfRA%3D%3D" id="130" style="line-height: 0;" target="_blank">
-<img alt="Instagram" src="https://i5.walmartimages.com/dfw/4ff9c6c9-768a/k2-_41f595ca-b56c-4ee2-9257-6c41fda1ab0a.v1.png"/>
-</a>
-</th>
-</tr>
-</table>
-</th>
-</tr>
-<tr>
-<td align="left" border="0" cellpadding="0" cellspacing="0" class="blockSection" colspan="2" data-automation-id="footerTxt" role="presentation" style="padding-left: 16px;padding-right: 16px;padding-top: 0px;padding-bottom: 32px;">
-<p data-automation-id="FooterBodyTxt" style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal; text-align: left;  color: #6d6e71;margin: 0px;">
-                        Walmart protects your security and privacy. We will never ask for personal information (such as passwords or credit card numbers) in an email. If you receive such a request, please do not respond.
-                         
-															<a aria-label="Learn more about Online Shopping Safety Tips" data-automation-id="learnMoreFooterLink" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=WRQUGyJQEpems6mRnLrWokg0Ptc11Eo5p9WHDadhAYFbMj1tBZOV0zqOKjvr8I4dHDogaPLtzo%2BC9Zmmzp4se/jggQjJa%2BXPJwFxaz3cvYZUxM2JH5bfroGQQiBXbXXVPLLoZPku73ow9NO6iWLW3xf1h1AvG6ni1TxKutZjvCpusfycct4kzre5lQk4FvOmycsGkSF%2BiOPRRywHt5Ixgzg8MM1oFs0EXx2XoUqGNNz0o8%2BpfiSAqvpiQP%2BjhfNcgnIyplrdX/VH9Hz%2Bi%2BwPYDzMUHqsLGKA84A04CCGjYXsFSYwtfZC0yla6MtDX62ejnsABqX3iQHoUma6FqaOOmiS8NcxbgCnyhsyUC7%2BCmN7SXTV1ODMh7z1mm8jZgdCyNn/qL%2BjYpmll3UeKsnn0f41mhBlkKTXwWT%2BMFNqFeLeTnrMjb3X%2BJOQY/iMCJvxJ3nJ91mJ2xLk%2BK/gtc5MBlKm1EZtr6Pi9NnB4WYFBKD2m5YHAmxeGqbBtf4v%2Bumk5RCIZACg2zi0rhol60lD84m/RTR7aBKVNuZ%2Bkg1QoGg/zThWiHjhDoHExVdxmaQ9N/9RACcuXqGFLuECa5jXsIe0fj4wyZEgymIEg4vaZ56BsspLsXsJFcJIRTiYtCGc%2BAKVpvdd6aqNQwag7vWBQI9o7jNCdZ7QMX0ICmdwYRyixwdnqND5N6hTaIIxvRrPivYt7IJPhc/K%2B%2BGyUWHhAPxaMKmZccZgMT1Bc%2B6Yo3gf%2B25WmvTSUXiDbYfH53Ze&amp;meta=RuYSqG9aNOsVpOaHCnW3xO7Cp3QuTaopIXf7O8JGervjDALqCcCQZpMVuZsg6T2MG9xpYf1YFkzuh9md5RTgYSVRB7TE5kVo5Gp9aD5eUNQa8CQCPIZ5hY%2FMXGEDb4okn2mOm4SIX6Ckr3bNdSgE5H0s%2FmsbCI6JF3FGbvxxZ50AbYryzC5AynZjOrFltXa9EAjXqbczsFwrOeqUtkHYjACV1tody64gLSfhkDsZiIc%3D&amp;iv=SeBGj57qwQMArjeEYu%2BNYQ%3D%3D" id="140" style="color: black;text-decoration:underline;" target="_blank">Learn more</a>
-                         about online safety and see our 
-															<a data-automation-id="privacyPolicyFooterLink" href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=h8ViGlNHk1caDvN9U9lXEjtalnUbC5EC2I07A5v%2BUzKuIF9MOn7%2BQj1q842YFogV3VVeF/RcuKkH/eTHuSfRl9jrVJKiyKHBXGzWgZFVwrAjOCIRr%2BPYBECNgS7%2BiiAbp9Z%2BK2EWG5mLU3a4k4UJDUyJpKnsv6oWTaUvy5Bu%2BdUANzmFKUuJDo7yhwJQuVAm81RWifJ1F0Kp8QbvG2b4khVfIfb6iYSU9YZCO6ZthVeQ23LeHPdz/SF7FWqWemLm1TI85paskcndtyxZKhsJkNVUoCEKoAocaiPMQmlRt6hrtlAHb%2BSaxqrJsPFh04sZSPQf6CLkgnZ72GC74h3zu6KF4sB5csMLatI8TxjCPUYwGONanAJS%2BghwgWMdqSId6NR%2BxjFuM6ljrCkzJJ0Tl3E%2BCFPEc%2BSEmCe8WqVj61mYnm%2BIIompfp9NxEkIvSZOlXLNIcAXfG7c8KNJqyLrwyjlDNG8idJxm5XNK%2BkxfyOO5lTsRcjaNYEImlgFGIX5cONt2cNDtGZBMsavSGCh8vNSzuTPRe4BJVpEC%2Bb60YpXviJ61vpOLQrBfFlrZ7n6YyS/m2lE%2BgmrV8jARk00ndh8qmaIKox6yPeUWFi5wv1W2EpFM3MUYF1rLiZV3g52hHVNOdbHuS3hVap2MILWhAtalQ9TDnXPuBAblvFovX9SFmYj29mizsZhzOy%2BRujdQLmy2sotTWKDdLgRCSBWyQOVtLT1dM4nwxSyf5tJ4qwK/CucKQ1ccx%2Bm8dtzrFpDdd4hHhNaHEhz9cRgzD53NA%3D%3D&amp;meta=u%2FKUkflNV3a0%2BD5C%2BvjSOUgZo%2B7shIBW0jwFy99rHFmTeSu2M%2Fctc9JzzrTYUW1ITXvFV%2BvBkqqLPn64IaViK5kPA%2Fpu7IhLZKMNRX%2F6N7XOVJlge%2FGtmVR%2BvpkgxTPGbOrq0iPZF8h8efJwZvg4KdvSR5buB1I7%2FvXApT8A3bQCPGOWwW2j3byGyHicnV%2BcjZnYOB6ugOdCMq7%2F6SsBBM6C5JeQ1npAjvnL%2B%2FsfD8E%3D&amp;iv=dCxCvfvEhzBDQUdECYqYaA%3D%3D" id="150" style="text-decoration: underline;color:#000000" target="_blank">Privacy Policy</a>.
-														</p>
-<p data-automation-id="FooterBodyTxt" style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal; text-align: left;  color: #6d6e71;padding:16px 0px 16px 0px;margin:0;">Please do not reply to this email. This mailbox is not monitored.</p>
-<p data-automation-id="FooterBodyTxt" style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal;color: #6D6E71;margin: 0px;">© 2020 Walmart. All rights reserved.</p>
-</td>
-</tr>
-</table>
-<!-- End footer -->
-</table>
-<br/><img alt="" border="0" height="1" src="https://0xp94.mjt.lu/oo/CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy22wznWG_QQ6HGN63AUFn_wATUCg/d77b1488/e.gif" style="height:1px;width:1px;border:0;" width="1"/>
-</body>
-</html>
+				</td>
+				<td align="left" class="subscribe" style="width: 128px;height: 40px;padding-right: 24px;">
+					<span
+						style="padding:10px 23.5px 11px 24.5px;text-align: center;background-repeat: no-repeat;border: 1px solid #000000;display: inline-block;font-size: 16px;font-weight: bold;border-radius:20px;text-decoration: none;cursor: pointer;">
+						<a href="https://rptrcks.walmart.com/comm-smart-app/services/tracking/clickTracker?redirectTo=SSLTNiHq07GrGN/SXupMNEHFSbSGiLzEv4xlc/vEOYPzgnYjPUGvhMdjHwg607YOgreV/MDFjaNQa1H5oumuKHjSdzZ4OXyBgbt3xp/HJmCkCMLwUSMu8NWWDVCWMgb4C6CD84IRVIFECWtuEyFNmZLusbpXA0kLaS9FUSCZnGrsAymLhEz43AynFeqHQeC947fjKluKTKNnTLY7nWo5pdw%2BAvSlwtt1Xxju5N4AqRGthIzs4/i2u1PDK43g/cIbnuWo9krjNvDL35aQ8VugDjf1V29Ql9KIQmaTGkMLp13rbdMdJjq/iUedJ2dizbJLc%2B1a86GjxQXMyAN2K1lu5IfLxZscKgQouQWNl8%2Bn4dahZi88u3QIAZk/5NckbJXz6SBhYlBjDlTV2RSWpZ5Ay1oHzxYa5yVbBJq2PYlfa2NQ6S%2BHs0nNMAi7vLtLwjtjbt8b3xFnE1w3U5sHibbkdhOQKOpshOtIvDf0wRVt8LdI/llPF6TTz0jTGd5WrnMyrOzEPS1bEkI867HbV6zU9WSnH6IfNLUGbpFLmmFUVsTxkzvBlCYMrFL44rELlvnDLxkwmv3HlR7es/Cf6M9H9cXIUOWPZEr/qTdb3CYz4iJfS35CDE2/HKDK/17Uk02OS5m/1f72ovh6ukuXvcNKx/vUjNV37bVz1FOyXw3PKCbCM487l42zJuNCpZIbeJeLygzJqSbZI%2BapkGr3ZNGicuF7IMmKcDPmswaK2nZgvzo8f7GLOK0DsxH7A6R8ENCI&amp;meta=e0ck2whAX2h8eJx7Ww5hMrr1tiXHA9NKstfcK0b7OfGAevzK0bbr2g4YPEcKwVWOTW4RitELLaDaM8p3sKbLxqqlSx1W1FM6DbbQtZwraHzH29n0wZBkKM3qU7R6sjOP46mzSiIWFsZODK%2FtmtCbBA6JaXcVBu32HCPxCe%2FM3CqnTu%2F0wY3xHyNIb6%2FhHfHN5BuroJg76S8KkzAOw6zpKGjSFsz6Q9J3Pgb6DKy8LqE%3D&amp;iv=HAOWbSvEqaGuZdeCZz%2BP9w%3D%3D"
+							id="50"
+							style="text-decoration:none;color: #000000;text-align: center;font-family: Helvetica;"
+							target="_blank">Subscribe</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<!-- End Inbox container -->
+		<!-- Begin app banner -->
+		<!-- desktop view -->
+		<!-- desktop view end-->
+		<!-- End app banner -->
+		<!-- Begin footer -->
+		<table align="center" border="0" cellpadding="10" cellspacing="0" class="setDisplayWidthInner"
+			role="presentation" width="700">
+			<br>
+			<tr>
+				<td align="left" border="0" cellpadding="0" cellspacing="0" class="blockSection" colspan="2"
+					data-automation-id="footerTxt" role="presentation"
+					style="padding-left: 16px;padding-right: 16px;padding-top: 0px;padding-bottom: 32px;">
+					<p data-automation-id="FooterBodyTxt"
+						style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal; text-align: left;  color: #6d6e71;margin: 0px;">
+						Walmart protects your security and privacy. We will never ask for personal information (such as
+						passwords or credit card numbers) in an email. If you receive such a request, please do not
+						respond.
+
+						<a aria-label="Learn more about Online Shopping Safety Tips"
+							data-automation-id="learnMoreFooterLink"
+							href="https://corporate.walmart.com/privacy-security/stay-secure-online-cybersecurity-hygiene"
+							id="140" style="color: black;text-decoration:underline;" target="_blank">Learn more</a>
+						about online safety and see our
+						<a data-automation-id="privacyPolicyFooterLink"
+							href="https://corporate.walmart.com/privacy-security/walmart-privacy-notice"
+							id="150" style="text-decoration: underline;color:#000000" target="_blank">Privacy
+							Policy</a>.
+					</p>
+					<p data-automation-id="FooterBodyTxt"
+						style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal; text-align: left;  color: #6d6e71;padding:16px 0px 16px 0px;margin:0;">
+						Please do not reply to this email. This mailbox is not monitored.</p>
+					<p data-automation-id="FooterBodyTxt"
+						style="font-family: 'Arial',Sans-serif;  font-size: 14px; font-weight: normal;color: #6D6E71;margin: 0px;">
+						© 2022 Walmart. All rights reserved.</p>
+				</td>
+			</tr>
+		</table>
+		<!-- End footer -->
+	</table>
+	<br /><img alt="" border="0" height="1"
+		src="https://0xp94.mjt.lu/oo/CAAAAj3mF54AAAAAAAAAABJ4zkcAAAAAwg8AAAAAABlBKABhf7wy22wznWG_QQ6HGN63AUFn_wATUCg/d77b1488/e.gif"
+		style="height:1px;width:1px;border:0;" width="1" />
+</div>

@@ -1,216 +1,644 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700" rel="stylesheet" type="text/css"/>
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-</style>
-<!-- Progressive Enhancements -->
-<style>
-.button-td, .button-a{transition:all 100ms ease-in;}
-.button-td:hover, .button-a:hover{background:#659a41 !important;border-color:#659a41 !important;}
-.hover-text:hover{color:#659a41 !important;}
-@media screen and (max-width:600px){
-h1{font-size:18px !important;line-height:10px !important;}
-h3{font-size:12px !important;line-height:12px !important;}
-.subheading{font-size:12px !important;line-height:12px !important;padding-bottom:5px !important;padding-top:10px !important;}
-h4{font-size:11px !important;line-height:0 !important;}
-.secondary-CTA{color:#91c11e !important;line-height:0 !important;}
-#meal-choice-desktop{display:none !important;}
-#meal-choice-mobile{display:table !important;}
-.bgcolor{background-color:#ffffff !important;}
-.email-container{width:100% !important;}
-.email-container_light_bg{width:93% !important;}
-.fluid, .fluid-centered{max-width:100% !important;height:auto !important;margin-left:auto !important;margin-right:auto !important;}
-.fluid-centered{margin-left:auto !important;margin-right:auto !important;}
-.stack-column, .stack-column-center{display:block !important;width:100% !important;max-width:100% !important;direction:ltr !important;margin:auto !important}
-.stack-column-center{text-align:center !important;}
-.center-on-narrow{text-align:center !important;display:block !important;margin-left:auto !important;margin-right:auto !important;float:none !important;}
-.pair-this-with{height:10px !important;}
-.hidden-spacer{display:none !important;}
-.body-padding{width:90% !important;}
-.logo{width:120px !important;}
-.header-app-icon{display:inline !important;padding-right:5px !important;}
-.prospect-nav-text{display:none !important;}
-.nav-text{padding-right:3px !important;font-size:9px !important;}
-.green-bar-text{font-size:15px !important;padding:5px !important;}
-.address a{font-size:10px !important;line-height:14px !important;color:#666666 !important;text-decoration:none !important;}
-.header{font-size:22px !important;line-height:25px !important;letter-spacing:.5px !important;}
-.recipe-title{font-size:16px !important;letter-spacing:1px !important;}
-.recipe-banner-text{font-size:12px !important;line-height:12px !important;}
-.customer-name{font-size:14px !important;padding:0 !important;}
-.body-text{font-size:14px !important;line-height:16px !important;}
-.body-text-2{font-size:10px !important;line-height:13px !important;}
-.wine-text-temp{font-size:10px !important;line-height:11px !important;padding:0 5px !important;}
-.testimony{font-size:14px !important;}
-.nameHeroRecipe{padding-top:10px !important;padding-bottom:0 !important;font-size:15px !important;line-height:15px !important;letter-spacing:1px !important;}
-.descriptionHeroRecipe{font-size:12px !important;line-height:16px !important;letter-spacing:1px !important;padding-top:5px !important;}
-.inbox{font-size:10px !important;width:70px !important;}
-.inbox-2{font-size:10px !important;}
-.recipe{font-size:12px !important;line-height:12px !important;}
-.recipeLabel{font-size:12px !important;}
-.recipe-mobile{font-size:12px !important;line-height:15px !important;}
-.coupon-desktop{display:none !important;}
-.coupon-mobile{display:table !important;}
-.coupon-padding{max-width:300px !important;}
-.CTA-wine{font-size:12px !important;padding-top:2px !important;}
-.wineName, .wine-copy-1, .wine-copy-2{font-size:12px !important;line-height:15px !important;}
- .active-former-voucher-text{font-size:15px !important;line-height:18px !important;}
-.prospect-voucher-text{font-size:15px !important;line-height:18px !important;}
-.disclaimer-text{font-size:8px !important;line-height:10px !important;padding:10px !important;}
-.footer-text-2{font-size:8px !important;line-height:10px !important;padding:10px !important;}
-.footer-container{width:95% !important;}
-.money-icon{width:40px !important;}
-.hidden-mobile{display:none !important;}
-.receipt {width: 100% !important;}
-.receipt td {width: 50% !important;}
-.receipt-2 {margin: auto !important; width: 94% !important;}  
-}
-  
- @media only screen and (max-width: 480px) {
-  body {
-    -webkit-text-size-adjust: none !important;
-  }
-  table {
-    -webkit-text-size-adjust: none !important;
-  }
-  td {
-    -webkit-text-size-adjust: none !important;
-  }
-  p {
-    -webkit-text-size-adjust: none !important;
-  }
-  a {
-    -webkit-text-size-adjust: none !important;
-  }
-  li {
-    -webkit-text-size-adjust: none !important;
-  }
-  blockquote {
-    -webkit-text-size-adjust: none !important;
-  }
-  body {
-    width: 100% !important; min-width: 100% !important;
-  }
-  }
-@media screen and (max-width:320px){
-h1{font-size:15px !important;line-height:10px !important;}
-h3{font-size:9px !important;line-height:9px !important;}
-.subheading{font-size:9px !important;line-height:9px !important;padding-bottom:3px !important;}
-h4{font-size:9px !important;line-height:0 !important;}
-#meal-choice-desktop{display:none !important;}
-#meal-choice-mobile{display:table !important;}
-.body-text{font-size:12px !important;line-height:12px !important;}
-.body-text-2{font-size:8px !important;line-height:10px !important;}
-.secondary-CTA{color:#91c11e !important;line-height:0 !important;}
-.logo{width:90px !important;}
-.header-app-icon{display:inline !important;}
-.nav-text{padding-right:3px !important;font-size:7px !important;}
-.green-bar-text{font-size:15px !important;}
-.recipe-banner-text{font-size:10px !important;line-height:10px !important;}
-.wine-text-temp{font-size:8px !important;line-height:10px !important;padding:0 5px !important;}
-.pair-this-with{height:10px !important;}
-.recipe{font-size:10px !important;line-height:10px !important;}
-.spacing{padding:5px 0 !important;}
-.recipeLabel{font-size:12px !important;}
-.nameHeroRecipe{font-size:20px !important;line-height:20px !important;letter-spacing:0 !important;}
-.recipe-mobile{font-size:10px !important;line-height:12px !important;padding-left:0 !important;}
-.descriptionHeroRecipe{font-size:12px !important;line-height:13px !important;letter-spacing:1px !important;}
-.customer-name{font-size:8px !important;line-height:8px !important;padding:0 !important;}
-.active-former-voucher-text{font-size:12px !important;line-height:15px !important;}
-.prospect-voucher-text{font-size:12px !important;line-height:15px !important;}
-.CTA{width:250px !important;}
-.coupon-padding{max-width:250px !important;}
-.CTA-prospect-voucher{width:150px !important;}
-.disclaimer-text{font-size:5px !important;line-height:6px !important;padding:10px !important;}
-.footer-text-2{font-size:5px !important;line-height:6px !important;padding:10px !important;}
-.money-icon{width:30px !important;}
-}
-</style>
-<div style="margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;height:100% !important;width:100% !important;background-color:#F8F8F8;"><style type="text/css">
-div.preheader 
-{ display: none !important; } 
-</style>
-<div class="preheader" style="font-size: 1px; display: none !important;">Our Best Deal Ever: Cyber Monday Sale</div>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container" style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;" valign="top" width="600">
-<tr>
-<td class="hero">
-<table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" bgcolor="#F5F6F6" border="0" cellpadding="0" cellspacing="0" class="email-container" style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin: 0 auto !important" width="600">
-<tr> <td align="center" style="display:block;" valign="center" width="100%"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e19f781e85933b05659c73d326f24ee3a719d3ba67b3386cc3577fea41b023ea7cc5032d2c02704c644bf6fabed12b23d80e47592a7f106f93" id="10" target="_blank"><img alt="HelloFresh" border="0" heigh="auto" src="https://hf-crm-assets.s3-eu-west-1.amazonaws.com/New_logo_Full_width.png" style="display:block;height:auto;width:100%;" width="100%"/></a>
-</td>
-</tr>
-</table>
-</td></tr></table><table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" role="presentation" width="100%"><tr><td align="center"><a data-linkto="other" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" id="20" title=""><img alt="Cyber Monday Sale: Our best deal ever 1 day only " data-assetid="156749" src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/6f798cde-d05b-4614-85b3-c12f383bfa4c.png" style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px none transparent;" width="600"/></a></td></tr></table></td></tr>
-</table><table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" role="presentation" width="100%"><tr><td align="center"><a data-linkto="other" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" id="30" title=""><img alt="GET 17 FREE MEALS PLUS FREE SHIPPING + 3 SURPRISE GIFTS" data-assetid="156752" src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/d7b80edc-ec3a-4b09-8540-a653beeca775.png" style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px;" width="600"/></a></td></tr></table></td></tr></table>
-<table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" bgcolor="300030" border="0" cellpadding="0" cellspacing="0" class="email-container" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;margin:0 auto;" valign="middle" width="100%">
-<tr>
-<td align="center" style="font-weight:normal;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:18px;line-height:30px;letter-spacing:.5px;color:#ffffff;padding-bottom:40px;padding-top:15px;font-weight: bold;" width="40%">USE PROMO CODE <a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1cf5c205fc29ad6079716777df73e2750fa344b978a2b6e685b5359297596d53b74cd5173910995ec9b5386f044dd7bc8a25d12bf72738990" id="40" style="-ms-text-size-adjust:100% !important;-webkit-text-size-adjust:100% !important;color:#ffffff;text-decoration:none;font-weight:bold;text-transform:uppercase;">P3-9Q337</a> AT CHECKOUT <br/>
-</td>
-</tr>
-</table>
-</td></tr></table><table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner"></td></tr></table><table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation" style="min-width: 100%; " width="100%"><tr><td class="stylingblock-content-wrapper camarker-inner">
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container bgcolor" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;" width="600">
-<tr>
-<td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#F5F5F5;"> </td>
-</tr>
-<tr>
-<td class="footer-text-1" style="font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;">Download our app</td>
-</tr>
-</table>
-<!-- "DOWNLOAD OUR APPS" -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container bgcolor" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;" width="600">
-<tr>
-<td align="right" border="0" style="padding-right:10px;" valign="center" width="50%"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e196de2baa901f46626ed249bf3f594f47306574412e5926a1c632db990ae900e7da6ab282532c506726f0d274b9f8537c1842de320233c7a0" id="50" target="_blank"><img alt="" height="" src="https://cdn.hellofresh.com/us/cms/CRM-US/Testing/AppNew.png" width="100"/></a>
-</td>
-<td align="left" border="0" style="padding-left:10px;" valign="center" width="50%"><a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1b8158a5b10479378f8052cd65c64d453d37e9419bedde3e27a7715a31577c37c343e0e8867251bae543867731121e250b3ff78bbd9626af4" id="60" target="_blank"><img alt="" src="https://cdn.hellofresh.com/us/cms/CRM-US/Testing/PlayNew.png" width="100"/></a>
-</td>
-</tr>
-<tr>
-<td height="20" style="font-size:1px;line-height:1px;"> <!-- <hr size="15" color="#91c11e"> --></td>
-</tr>
-</table>
-<!-- SOCIAL MEDIA ICONS -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container bgcolor" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;" width="600">
-<tr>
-<td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#e8e8e8;"> </td>
-</tr>
-<tr>
-<td class="footer-text-1" style="font-weight:bold;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:12px;line-height:20px;color:#333333;padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;">Follow us. Or give us a shout out.</td>
-</tr>
-<tr align="center">
-<td align="center" class="center-on-narrow bgcolor" style="background-color:#F8F8F8;" width="0">
-<a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e16a22e6da5da14493db80bc89d3ca16b83ca51fa4af19d653a3aef82564bb009e3fcac272c279f4f3be98623893802811521ca7ddc67ad58d" id="70" style="text-decoration:none;" target="_blank"><img alt="Facebook" border="0" height="25" src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/facebook.png" style="max-width:32px;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"/></a>
-<a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1c91b21a296c91db4a2f44dac84abc2911e0cf43b84586b12690e3ea98121a008a651fcee73a1ea8efebe78fb9dd4a5d351ca6d8611cc8d4c" id="80" style="text-decoration:none;" target="_blank"> <img alt="Instagram" border="0" height="25" src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/instagram.png" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"/></a>
-<a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1400ba6a2505873e90540bc275c562297355c7177cb42c0b35d59bdccba7216b8a6072e2c4f0df773f007cab5773f407354954f7ce7aad6e2" id="90" style="text-decoration:none;" target="_blank"> <img alt="Twitter" border="0" height="25" src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/twitter.png" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"/></a>
-<a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1090e1e1ec390521eb7fedc359579fbd48bf8d2c65ae8c7f080e55ae40087e03ac9becc0b016835f0d800a98d9dab3038237c7e55843747a9" id="100" style="text-decoration:none;" target="_blank"> <img alt="Pinterest" border="0" height="25" src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/pinterest.png" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"/></a>
-<a href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e12506c1b32ae660796333a614b77e6090b830402b6431e70ef6ea647544549ac6e629e08823245c6824dd9aabab73a97cea57e8c1c309421e" id="110" style="text-decoration:none;" target="_blank"> <img alt="Blog" border="0" height="25" src="https://cdn.hellofresh.com/us/cms/CRM-US/Icons/wordpress.png" style="max-width:32px;font-family:Verdana, Geneva, sans-serif;font-size:9px;line-height:12px;color:#ffffff;padding-top:0;padding-bottom:0;padding-right:8px;padding-left:8px;display:inline-block;"/></a>
-</td></tr>
-<tr>
-<td height="20" style="font-size:1px;line-height:1px;"> </td>
-</tr>
-<tr>
-<td height="1" style="font-size:1px;line-height:1px;border-top-width:1px;border-top-style:solid;border-top-color:#e8e8e8;"> </td>
-</tr>
-</table>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container bgcolor" style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;" valign="middle" width="600">
-<tr>
-<td align="center" class="footer-text-2" style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#e8e8e8;">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+  <title></title>
+  <!-- ============================================================================== ================================================================================ -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+  </style>
+  <!-- Progressive Enhancements -->
+  <style>
+    .button-td,
+    .button-a {
+      transition: all 100ms ease-in;
+    }
 
-*Offer only valid for new customers with an auto-renewing subscription purchase. Offer is based on a total discount applied over a 8-week period for a two-person, four-recipe subscription (offer varies for other plans). Save $46 on your 1st box, $30 on your 2nd box, $18 on your 3rd, 4th, and 5th boxes, $8 on your 6th and 7th boxes, and $7 on your 8th box including free shipping on your 1st box. A shipping fee of approx. $9.99 shall apply on all deliveries thereafter. Additionally, as part of your subscription pursuant to this offer, you will be eligible to receive a free gift after the purchase of your 4th, 6th and 8th boxes, while supplies last.  Offer must be redeemed by 11/29/2021 11:59 PM PST. Offer only valid towards meal plan purchase, does not apply to gift cards, premiums, meal
- up-grades, add-ons, taxes, or shipping fees. Offer may not be combined with any other promotion. Offer has no cash value. Void where prohibited. HelloFresh has the right to end or modify any offer at any time. Additional restrictions may apply, see HelloFresh.com/termsandconditions for more details.
+    .button-td:hover,
+    .button-a:hover {
+      background: #659a41 !important;
+      border-color: #659a41 !important;
+    }
 
-  </td></tr>
-<tr>
-<td align="center" class="footer-text-2" style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">Youâ\u20ac\u2122re receiving this email because youâ\u20ac\u2122ve signed up to receive emails from HelloFresh. If youâ\u20ac\u2122d prefer not to receive updates, you can <a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e13a0b9e2e8a7447da1f416f13accc4826c6c956d97ef64fe86c7f31a20182ab381712d34d8ee16a4ebcb8b81190d83799c2ceb1ba727eeea6" id="120" style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;text-decoration:underline;" target="_blank">unsubscribe</a>. Use of the HelloFresh service and website is subject to our 
-<a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e1089f9d38b214772f6de5d0689fcb198aa9d8785dc6891f566f2646336af747830271a6a4c271efc5aa0d437ba63712fce723194036b5343e" id="130" style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;" target="_blank">Terms of Use</a>.<br/><br/>
+    .hover-text:hover {
+      color: #659a41 !important;
+    }
 
-      Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc., registered in the U.S. and other countries. Google Play and the Google Play logo are trademarks of Google LLC.<br/><br/>
+    @media screen and (max-width:600px) {
+      h1 {
+        font-size: 18px !important;
+        line-height: 10px !important;
+      }
 
-      © 2021 HelloFresh. <a class="footer-text-2" href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e10f108fef323f8cdfcf62b8ff19b529ecb2b6a1cbc10f5ea7785dc981afe30f10dd3ba7b0e33f4c33899b1c576159fc936469e829cb078e9a" id="140" style="text-decoration:none;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;" target="_blank">28 Liberty Street, New York, NY 10005 USA</a>. All Rights reserved.
-  </td></tr>
-</table>
-</td></tr></table>
-</td>
-</tr>
-</table>
-<img alt="" height="1" src="https://click.link.hellofresh.com/open.aspx?ffcb10-fecb17707563037e-fe3715767464047c7d1271-fe3911717564047d7c1370-ff011574736605-fe2e16787560067b761272-fefc1576766702&amp;d=500005&amp;bmt=0" width="1"/>
+      h3 {
+        font-size: 12px !important;
+        line-height: 12px !important;
+      }
+
+      .subheading {
+        font-size: 12px !important;
+        line-height: 12px !important;
+        padding-bottom: 5px !important;
+        padding-top: 10px !important;
+      }
+
+      h4 {
+        font-size: 11px !important;
+        line-height: 0 !important;
+      }
+
+      .secondary-CTA {
+        color: #91c11e !important;
+        line-height: 0 !important;
+      }
+
+      #meal-choice-desktop {
+        display: none !important;
+      }
+
+      #meal-choice-mobile {
+        display: table !important;
+      }
+
+      .bgcolor {
+        background-color: #ffffff !important;
+      }
+
+      .email-container {
+        width: 100% !important;
+      }
+
+      .email-container_light_bg {
+        width: 93% !important;
+      }
+
+      .fluid,
+      .fluid-centered {
+        max-width: 100% !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .fluid-centered {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        direction: ltr !important;
+        margin: auto !important
+      }
+
+      .stack-column-center {
+        text-align: center !important;
+      }
+
+      .center-on-narrow {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+      }
+
+      .pair-this-with {
+        height: 10px !important;
+      }
+
+      .hidden-spacer {
+        display: none !important;
+      }
+
+      .body-padding {
+        width: 90% !important;
+      }
+
+      .logo {
+        width: 120px !important;
+      }
+
+      .header-app-icon {
+        display: inline !important;
+        padding-right: 5px !important;
+      }
+
+      .prospect-nav-text {
+        display: none !important;
+      }
+
+      .nav-text {
+        padding-right: 3px !important;
+        font-size: 9px !important;
+      }
+
+      .green-bar-text {
+        font-size: 15px !important;
+        padding: 5px !important;
+      }
+
+      .address a {
+        font-size: 10px !important;
+        line-height: 14px !important;
+        color: #666666 !important;
+        text-decoration: none !important;
+      }
+
+      .header {
+        font-size: 22px !important;
+        line-height: 25px !important;
+        letter-spacing: .5px !important;
+      }
+
+      .recipe-title {
+        font-size: 16px !important;
+        letter-spacing: 1px !important;
+      }
+
+      .recipe-banner-text {
+        font-size: 12px !important;
+        line-height: 12px !important;
+      }
+
+      .customer-name {
+        font-size: 14px !important;
+        padding: 0 !important;
+      }
+
+      .body-text {
+        font-size: 14px !important;
+        line-height: 16px !important;
+      }
+
+      .body-text-2 {
+        font-size: 10px !important;
+        line-height: 13px !important;
+      }
+
+      .wine-text-temp {
+        font-size: 10px !important;
+        line-height: 11px !important;
+        padding: 0 5px !important;
+      }
+
+      .testimony {
+        font-size: 14px !important;
+      }
+
+      .nameHeroRecipe {
+        padding-top: 10px !important;
+        padding-bottom: 0 !important;
+        font-size: 15px !important;
+        line-height: 15px !important;
+        letter-spacing: 1px !important;
+      }
+
+      .descriptionHeroRecipe {
+        font-size: 12px !important;
+        line-height: 16px !important;
+        letter-spacing: 1px !important;
+        padding-top: 5px !important;
+      }
+
+      .inbox {
+        font-size: 10px !important;
+        width: 70px !important;
+      }
+
+      .inbox-2 {
+        font-size: 10px !important;
+      }
+
+      .recipe {
+        font-size: 12px !important;
+        line-height: 12px !important;
+      }
+
+      .recipeLabel {
+        font-size: 12px !important;
+      }
+
+      .recipe-mobile {
+        font-size: 12px !important;
+        line-height: 15px !important;
+      }
+
+      .coupon-desktop {
+        display: none !important;
+      }
+
+      .coupon-mobile {
+        display: table !important;
+      }
+
+      .coupon-padding {
+        max-width: 300px !important;
+      }
+
+      .CTA-wine {
+        font-size: 12px !important;
+        padding-top: 2px !important;
+      }
+
+      .wineName,
+      .wine-copy-1,
+      .wine-copy-2 {
+        font-size: 12px !important;
+        line-height: 15px !important;
+      }
+
+      .active-former-voucher-text {
+        font-size: 15px !important;
+        line-height: 18px !important;
+      }
+
+      .prospect-voucher-text {
+        font-size: 15px !important;
+        line-height: 18px !important;
+      }
+
+      .disclaimer-text {
+        font-size: 8px !important;
+        line-height: 10px !important;
+        padding: 10px !important;
+      }
+
+      .footer-text-2 {
+        font-size: 8px !important;
+        line-height: 10px !important;
+        padding: 10px !important;
+      }
+
+      .footer-container {
+        width: 95% !important;
+      }
+
+      .money-icon {
+        width: 40px !important;
+      }
+
+      .hidden-mobile {
+        display: none !important;
+      }
+
+      .receipt {
+        width: 100% !important;
+      }
+
+      .receipt td {
+        width: 50% !important;
+      }
+
+      .receipt-2 {
+        margin: auto !important;
+        width: 94% !important;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      body {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      table {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      td {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      p {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      a {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      li {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      blockquote {
+        -webkit-text-size-adjust: none !important;
+      }
+
+      body {
+        width: 100% !important;
+        min-width: 100% !important;
+      }
+    }
+
+    @media screen and (max-width:320px) {
+      h1 {
+        font-size: 15px !important;
+        line-height: 10px !important;
+      }
+
+      h3 {
+        font-size: 9px !important;
+        line-height: 9px !important;
+      }
+
+      .subheading {
+        font-size: 9px !important;
+        line-height: 9px !important;
+        padding-bottom: 3px !important;
+      }
+
+      h4 {
+        font-size: 9px !important;
+        line-height: 0 !important;
+      }
+
+      #meal-choice-desktop {
+        display: none !important;
+      }
+
+      #meal-choice-mobile {
+        display: table !important;
+      }
+
+      .body-text {
+        font-size: 12px !important;
+        line-height: 12px !important;
+      }
+
+      .body-text-2 {
+        font-size: 8px !important;
+        line-height: 10px !important;
+      }
+
+      .secondary-CTA {
+        color: #91c11e !important;
+        line-height: 0 !important;
+      }
+
+      .logo {
+        width: 90px !important;
+      }
+
+      .header-app-icon {
+        display: inline !important;
+      }
+
+      .nav-text {
+        padding-right: 3px !important;
+        font-size: 7px !important;
+      }
+
+      .green-bar-text {
+        font-size: 15px !important;
+      }
+
+      .recipe-banner-text {
+        font-size: 10px !important;
+        line-height: 10px !important;
+      }
+
+      .wine-text-temp {
+        font-size: 8px !important;
+        line-height: 10px !important;
+        padding: 0 5px !important;
+      }
+
+      .pair-this-with {
+        height: 10px !important;
+      }
+
+      .recipe {
+        font-size: 10px !important;
+        line-height: 10px !important;
+      }
+
+      .spacing {
+        padding: 5px 0 !important;
+      }
+
+      .recipeLabel {
+        font-size: 12px !important;
+      }
+
+      .nameHeroRecipe {
+        font-size: 20px !important;
+        line-height: 20px !important;
+        letter-spacing: 0 !important;
+      }
+
+      .recipe-mobile {
+        font-size: 10px !important;
+        line-height: 12px !important;
+        padding-left: 0 !important;
+      }
+
+      .descriptionHeroRecipe {
+        font-size: 12px !important;
+        line-height: 13px !important;
+        letter-spacing: 1px !important;
+      }
+
+      .customer-name {
+        font-size: 8px !important;
+        line-height: 8px !important;
+        padding: 0 !important;
+      }
+
+      .active-former-voucher-text {
+        font-size: 12px !important;
+        line-height: 15px !important;
+      }
+
+      .prospect-voucher-text {
+        font-size: 12px !important;
+        line-height: 15px !important;
+      }
+
+      .CTA {
+        width: 250px !important;
+      }
+
+      .coupon-padding {
+        max-width: 250px !important;
+      }
+
+      .CTA-prospect-voucher {
+        width: 150px !important;
+      }
+
+      .disclaimer-text {
+        font-size: 5px !important;
+        line-height: 6px !important;
+        padding: 10px !important;
+      }
+
+      .footer-text-2 {
+        font-size: 5px !important;
+        line-height: 6px !important;
+        padding: 10px !important;
+      }
+
+      .money-icon {
+        width: 30px !important;
+      }
+    }
+  </style>
+</head>
+
+<div
+  style="margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;height:100% !important;width:100% !important;background-color:#F8F8F8;">
+  <style type="text/css">
+    div.preheader {
+      display: none !important;
+    }
+  </style>
+  <div class="preheader" style="font-size: 1px; display: none !important;">Our Best Deal Ever: Cyber Monday Sale</div>
+  <table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container"
+    style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;"
+    valign="top" width="600">
+    <tr>
+      <td class="hero">
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner">
+              <table align="center" bgcolor="#F5F6F6" border="0" cellpadding="0" cellspacing="0" class="email-container"
+                style="border-spacing:0 !important;border-collapse:collapse !important;table-layout:fixed !important;margin: 0 auto !important"
+                width="600">
+                <tr>
+                  <td align="center" style="display:block;" valign="center" width="100%"><img alt="HelloFresh" border="0" heigh="auto"
+                        src="https://hf-crm-assets.s3-eu-west-1.amazonaws.com/New_logo_Full_width.png"
+                        style="display:block;height:auto;width:100%;" width="100%" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner">
+              <table cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                <tr>
+                  <td align="center"><a data-linkto="other"
+                      href="https://www.hellofresh.com/plans"
+                      id="20" target="_blank" title=""><img alt="Cyber Monday Sale: Our best deal ever 1 day only "
+                        data-assetid="156749"
+                        src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/6f798cde-d05b-4614-85b3-c12f383bfa4c.png"
+                        style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px none transparent;"
+                        width="600" /></a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner">
+              <table cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                <tr>
+                  <td align="center"><a data-linkto="other"
+                      href="https://www.hellofresh.com/plans"
+                      id="30" target="_blank" title=""><img
+                        alt="GET 17 FREE MEALS PLUS FREE SHIPPING + 3 SURPRISE GIFTS" data-assetid="156752"
+                        src="https://image.link.hellofresh.com/lib/fe3911717564047d7c1370/m/6/d7b80edc-ec3a-4b09-8540-a653beeca775.png"
+                        style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px;"
+                        width="600" /></a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner">
+              <table align="center" bgcolor="300030" border="0" cellpadding="0" cellspacing="0" class="email-container"
+                style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;margin:0 auto;"
+                valign="middle" width="100%">
+                <tr>
+                  <td align="center"
+                    style="font-weight:normal;text-align:center;font-family:'Open Sans', Arial, sans-serif;font-size:18px;line-height:30px;letter-spacing:.5px;color:#ffffff;padding-bottom:40px;padding-top:15px;font-weight: bold;"
+                    width="40%">USE PROMO CODE <a
+                      href="https://www.hellofresh.com/plans"
+                      id="40"
+                      style="-ms-text-size-adjust:100% !important;-webkit-text-size-adjust:100% !important;color:#ffffff;text-decoration:none;font-weight:bold;text-transform:uppercase;"
+                      target="_blank">P3-9Q337</a> AT CHECKOUT <br />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner"></td>
+          </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" role="presentation"
+          style="min-width: 100%; " width="100%">
+          <tr>
+            <td class="stylingblock-content-wrapper camarker-inner">
+              <table align="center" border="0" cellpadding="0" cellspacing="0" class="email-container bgcolor"
+                style="border-collapse:collapse !important;border-spacing:0 !important;table-layout:fixed !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:auto !important;margin-left:auto !important;background-color:#F8F8F8;"
+                valign="middle" width="600">
+                <tr>
+                  <td align="center" class="footer-text-2"
+                    style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#e8e8e8;">
+
+                    *Offer only valid for new customers with an auto-renewing subscription purchase. Offer is based on a
+                    total discount applied over a 8-week period for a two-person, four-recipe subscription (offer varies
+                    for other plans). Save $46 on your 1st box, $30 on your 2nd box, $18 on your 3rd, 4th, and 5th
+                    boxes, $8 on your 6th and 7th boxes, and $7 on your 8th box including free shipping on your 1st box.
+                    A shipping fee of approx. $9.99 shall apply on all deliveries thereafter. Additionally, as part of
+                    your subscription pursuant to this offer, you will be eligible to receive a free gift after the
+                    purchase of your 4th, 6th and 8th boxes, while supplies last. Offer must be redeemed by 11/29/2021
+                    11:59 PM PST. Offer only valid towards meal plan purchase, does not apply to gift cards, premiums,
+                    meal
+                    up-grades, add-ons, taxes, or shipping fees. Offer may not be combined with any other promotion.
+                    Offer has no cash value. Void where prohibited. HelloFresh has the right to end or modify any offer
+                    at any time. Additional restrictions may apply, see HelloFresh.com/termsandconditions for more
+                    details.
+
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="footer-text-2"
+                    style="font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">
+                    Youâ\u20ac\u2122re receiving this email because youâ\u20ac\u2122ve signed up to receive emails from
+                    HelloFresh. If youâ\u20ac\u2122d prefer not to receive updates, you can <a class="footer-text-2"
+                      href="https://click.link.hellofresh.com/?qs=6f72d7d0fcc6f1e13a0b9e2e8a7447da1f416f13accc4826c6c956d97ef64fe86"
+                      id="120"
+                      style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;text-decoration:underline;"
+                      target="_blank">unsubscribe</a>. Use of the HelloFresh service and website is subject to our
+                    <a class="footer-text-2"
+                      href="https://www.hellofresh.com/about/termsandconditions"
+                      id="130"
+                      style="padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;font-family:'Open Sans', Arial, sans-serif;font-size:10px;line-height:13px;color:#666666;"
+                      target="_blank">Terms of Use</a>.<br /><br />
+
+                    Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries.
+                    App Store is a service mark of Apple Inc., registered in the U.S. and other countries. Google Play
+                    and the Google Play logo are trademarks of Google LLC.<br /><br />
+
+                    © 2021 HelloFresh. 28 Liberty Street, New York, NY 10005 USA. All Rights reserved.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </div>
