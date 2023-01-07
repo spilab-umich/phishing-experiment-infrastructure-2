@@ -56,7 +56,7 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
 From: Venmo <venmo@venmo.com>
 Reply-To: Venmo No-reply <no-reply@venmo.com>
 To: jpetelka@gmail.com
-Subject: Alex Molina paid you $60.00
+Subject: Someone paid you $60.00
 MIME-Version: 1.0
 Content-Type: multipart/alternative; 
 	boundary="----=_Part_1263129_647058876.1671326847204"

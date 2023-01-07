@@ -82,7 +82,7 @@
         },
         {
         "sender": "Chase",
-        "preview": "We posted a new notice or letter in your Chase Mobile® app and at chase.com/statements. Here's what it's about: We have updated information about your claim",
+        "preview": "We posted a new notice or letter in your Chase Mobile app and at chase.com/statements. Here's what it's about: We have updated information about your claim",
         "email_id": 11,
         "num_links": 4,
         "link_id": 30,
@@ -90,7 +90,7 @@
         },
         {
         "sender": "Tumblr",
-        "preview": "It’s that time again. It’s Tumblr's 2022 Year in Review! Every year, the team behind Fandometrics analyzes, categorizes, and ranks all the most discussed things on Tumblr—that's a year’s worth of your tags, searches, posts, likes, and reblogs—and packages them up into a little thing we like to call Year in Review.",
+        "preview": "It`s that time again. It`s Tumblr's 2022 Year in Review! Every year, the team behind Fandometrics analyzes, categorizes, and ranks all the most discussed things on Tumblr—that's a year`s worth of your tags, searches, posts, likes, and reblogs—and packages them up into a little thing we like to call Year in Review.",
         "email_id": 12,
         "num_links": 6,
         "link_id": 80,
@@ -114,7 +114,7 @@
         },
         {
         "sender": "Capital One",
-        "preview": "Thanks for scheduling your payment. Confirmation Number: O0W8X116 Thanks for scheduling your card payment with Online Banking. Here are the details:",
+        "preview": "Thanks for scheduling your payment. Confirmation Number: P86IX1S4 Thanks for scheduling your card payment with Online Banking. Here are the details:",
         "email_id": 15,
         "num_links": 6,
         "link_id": 30,

@@ -196,7 +196,7 @@ def order_emails(emails):
     # return shuffle(emails)
 
 
-exit()
+# exit()
 
 
 # emails_to_add = order_emails(all_emails)
