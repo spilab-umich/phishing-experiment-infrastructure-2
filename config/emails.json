@@ -73,11 +73,11 @@
         "is_phish": false
         },
         {
-        "sender": "Paypal",
-        "preview": "Thanks for using PayPal. Here are the details for your purchase. ",
+        "sender": "Venmo",
+        "preview": "Someone paid you $60.",
         "email_id": 10,
-        "num_links": 3,
-        "link_id": 20,
+        "num_links": 5,
+        "link_id": 40,
         "is_phish": false
         },
         {
