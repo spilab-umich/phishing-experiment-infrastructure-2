@@ -394,7 +394,7 @@ def collect_log(request):
                 'session_id':session_id
             })
     except Exception as e:
-        log_type = 'client'
+        log_type = 'server'
         error_logger.info('%(username)s,%(server_time)s,%(e)s,%(log_type)s'%
             {
                 'username':username,
