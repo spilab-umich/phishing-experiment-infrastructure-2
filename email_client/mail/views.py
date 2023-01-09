@@ -367,7 +367,7 @@ def collect_ajax(res):
                 'log_type':log_type,
                 'server_time':server_time,
                 'e': e
-            }
+            })
     return
 
 def collect_log(request):
@@ -401,7 +401,7 @@ def collect_log(request):
                 'log_type':log_type,
                 'server_time':server_time,
                 'e': e
-            }
+            })
     # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')
