@@ -13,7 +13,7 @@
         "preview":"Your new account is ready to use. With everything at your fingertips, it's even easier to save time and money.",
         "email_id": 2,
         "num_links": 4,
-        "link_id": 10,
+        "link_id": 30,
         "is_phish": true
         },
         {
@@ -21,7 +21,7 @@
         "preview": "Welcome to Western Union. Now you can send money online anytime, from anywhere. Your final receiver can pick up the money at a convenient Western Union agent location, or get it sent directly to their bank account or mobile wallet.",
         "email_id": 3,
         "num_links": 6,
-        "link_id": 20,
+        "link_id": 10,
         "is_phish": true
         },
         {
