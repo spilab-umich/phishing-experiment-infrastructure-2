@@ -360,7 +360,14 @@ def collect_ajax(res):
             })
         # print('client log saved')
     except Exception as e:
-        error_logger.info(username+',' + str(e))
+        log_type = 'client'
+        error_logger.info('%(username)s,%(server_time)s,%(e)s,%(log_type)s'%
+            {
+                'username':username,
+                'log_type':log_type,
+                'server_time':server_time,
+                'e': e
+            }
     return
 
 def collect_log(request):
@@ -387,7 +394,14 @@ def collect_log(request):
                 'session_id':session_id
             })
     except Exception as e:
-        error_logger.info(username+',' + e)
+        log_type = 'client'
+        error_logger.info('%(username)s,%(server_time)s,%(e)s,%(log_type)s'%
+            {
+                'username':username,
+                'log_type':log_type,
+                'server_time':server_time,
+                'e': e
+            }
     # print('server log saved')
     # if (request.META.get('REMOTE_ADDR')):
     #     log.IP = request.META.get('REMOTE_ADDR')

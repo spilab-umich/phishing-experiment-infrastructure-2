@@ -10,7 +10,7 @@
         },
         {
         "sender": "Walmart",
-        "preview":"Your new account is ready to use",
+        "preview":"Your new account is ready to use. With everything at your fingertips, it's even easier to save time and money.",
         "email_id": 2,
         "num_links": 4,
         "link_id": 10,
@@ -42,7 +42,7 @@
         },
         {
         "sender": "Coursera",
-        "preview":"Short and popular courses, just for you.",
+        "preview":"Short and popular courses, just for you. Interested in quickly learning some new skills? Check out these great short courses!",
         "email_id": 6,
         "num_links": 11,
         "link_id": 130,
@@ -50,7 +50,7 @@
         },
         {
         "sender": "Sprint",
-        "preview":"Important information on your bill",
+        "preview":"Important information on your bill. Your Sprint bill is ready. Pay your phone bill anywhere, anytime with AutoPay.",
         "email_id": 7,
         "num_links": 4,
         "link_id": 30,
@@ -74,7 +74,7 @@
         },
         {
         "sender": "Venmo",
-        "preview": "Someone paid you $60.",
+        "preview": "Someone paid you $60: Watching dog on short notice. thank you. Money credited to your Venmo account.",
         "email_id": 10,
         "num_links": 5,
         "link_id": 40,
