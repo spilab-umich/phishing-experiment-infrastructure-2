@@ -15,7 +15,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
 # Input number of users
-n_users = 200
+n_users = 500
 
 n_test_users = 30
 # Input number of groups
@@ -160,8 +160,6 @@ def revise_html(html, email):
     email_id = email['email_id']
     p_link = email['phish_id']
     is_phish = email['is_phish']
-    # domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
-    # shuffle(domain_manip_available)
     soup = BeautifulSoup(html, 'html.parser')
     for num, tag in enumerate(soup.find_all('a')):
         tag['id'] = (num+1) * 10
@@ -264,7 +262,7 @@ for i in range(0, n_users):
         'Sat, 10 Dec 2022 1:19:30 -0700',
         'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
-    dates.reverse()
+    # dates.reverse()
     email_counter = 1
     for email in order_emails(all_emails):
         new = Mail()
@@ -328,7 +326,7 @@ for i in range(0, n_test_users):
         'Sat, 10 Dec 2022 1:19:30 -0700',
         'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
-    dates.reverse()
+    # dates.reverse()
     email_counter = 1
     for email in order_emails(all_emails):
         new = Mail()
@@ -355,4 +353,3 @@ for i in range(0, n_test_users):
             new.is_fp = True
         new.save()
         email_counter+=1
-exit()
