@@ -15,9 +15,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
 # Input number of users
-n_users = 0
+n_users = 200
 
-n_test_users = 80
+n_test_users = 30
 # Input number of groups
 n_of_groups = 7
 
@@ -240,6 +240,9 @@ for i in range(0, n_users):
     # user.set_password('pass1234')
     user.save()
 
+    domain_manip_available = [0, 1, 2]
+    shuffle(domain_manip_available)
+
     # This loop decrements so the dates append in the proper order
     # First email should have the last time_sent
     # j=9 
@@ -261,8 +264,9 @@ for i in range(0, n_users):
         'Sat, 10 Dec 2022 1:19:30 -0700',
         'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
-    for email in emails_to_add:
-        j = 1
+    dates.reverse()
+    email_counter = 1
+    for email in order_emails(all_emails):
         new = Mail()
         new.user = user
         new.sender = email['from'][0]
@@ -272,28 +276,24 @@ for i in range(0, n_users):
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
         # new.preview = email['preview']
-        new.preview = "Test preview for now"
+        new.preview = email['preview']
         #Adjust date
         UTCdate = datetime.datetime.strptime(dates.pop(), '%a, %d %b %Y %H:%M:%S %z')
         readible_date = datetime.datetime.strftime(UTCdate, '%m/%d/%y')
-        # print(readible_date)
         new.time_sent = readible_date
-        # new.time_sent = email['date']
         new.subject = email['subject']
-        # new.sender_address = email['sender_address']
-        new.read = "unread"
         new.ref = email['email_id']
-        # new.num_links = email['num_links']
-        # print(email['ref'])
+        new.phish_id = email['phish_id']
+        new.num_links = email['num_links']
+        new.phish_id = email['phish_id']
         if email['is_phish']:
             new.is_phish = True 
-            new.phish_id = next((item['link_id'] for item in warning_data if item['email_id'] == new.ref))
-        elif ((num_emails - 2) == j):
+            # print(new.phish_id)
+            new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
+        if (num_emails - 1) == email_counter:
             new.is_fp = True
-            ## NEED TO ASSIGN LINK FOR FP 
         new.save()
-        j += 1
-        # j-=1
+        email_counter+=1
 
 # Create a user to login into
 # This helps with checking the inbox
@@ -311,8 +311,6 @@ for i in range(0, n_test_users):
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
     dates = [
-        # 'Wed, 24 Oct 2022 10:19:30 -0700',
-        # 'Mon, 31 Oct 2022 7:19:30 -0700',
         'Fri, 4 Nov 2022 8:19:30 -0700',
         'Tue, 8 Nov 2022 9:19:30 -0700',
         'Sun, 13 Nov 2022 10:19:30 -0700',
