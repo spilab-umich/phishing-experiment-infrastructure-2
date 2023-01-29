@@ -449,13 +449,12 @@ def assign_credentials(request):
             user.save()
             group_num = user.group_num
             code = user.code
-            session_id = request.session.session_key
+            # session_id = request.session.session_key
         context = {
             'username': username,
             'password': password,
             'group_num': group_num,
             'code': code,
-            'session_id':session_id,
         }
         return JsonResponse(context)
 
@@ -463,7 +462,7 @@ def unread_check(request):
     if request.method == 'GET':
         # username = request.user.get_username()
         ## OR
-        username = request.META.get('username')
+        username = request.user.get_username()
         # unread_count = User.objects.filter(username=username).unread_count
         # get is preferred since only one object will reeturn
         # get works in manage.py shell/ so does .unread_count
