@@ -458,11 +458,10 @@ def assign_credentials(request):
         }
         return JsonResponse(context)
 
-def unread_check(request):
+def unread_check(request, username):
     if request.method == 'GET':
         # username = request.user.get_username()
         ## OR
-        username = request.user.get_username()
         # unread_count = User.objects.filter(username=username).unread_count
         # get is preferred since only one object will reeturn
         # get works in manage.py shell/ so does .unread_count
