@@ -460,7 +460,7 @@ def assign_credentials(request):
 
 def unread_check(request):
     if request.method == 'GET':
-        username = request.user.get_username()
+        username = request.GET['usesrname']
         ## OR
         # unread_count = User.objects.filter(username=username).unread_count
         # get is preferred since only one object will reeturn
