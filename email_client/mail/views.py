@@ -469,7 +469,20 @@ def unread_check(request):
         context = {
             'unread_count': unread_count
         }
-        return JsonResponse(context)
+        response = JsonResponse(context)
+        response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Methodos'] = 'GET, OPTIONS'
+        return response
+        
+        # return JsonResponse(context)
+
+        '''
+        Alternate way from stack overflow
+        
+        response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Methodos'] = 'GET, OPTIONS'
+        return response
+        '''
 
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request, email_id):
