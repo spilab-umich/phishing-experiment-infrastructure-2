@@ -458,6 +458,7 @@ def assign_credentials(request):
         }
         return JsonResponse(context)
 
+@xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def unread_check(request):
     if request.method == 'GET':
         username = request.GET['username']
