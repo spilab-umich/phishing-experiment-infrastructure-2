@@ -458,7 +458,7 @@ def assign_credentials(request):
         }
         return JsonResponse(context)
 
-@xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
+# @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def unread_check(request):
     if request.method == 'GET':
         username = request.GET['username']
@@ -471,9 +471,9 @@ def unread_check(request):
             'unread_count': unread_count
         }
         response = JsonResponse(context)
-        response["Access-Control-Allow-Origin"] = "*"
-        response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
-        response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+        # response["Access-Control-Allow-Origin"] = "*"
+        # response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+        # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
         return response
         
         # return JsonResponse(context)
