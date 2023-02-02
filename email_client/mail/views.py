@@ -471,9 +471,9 @@ def unread_check(request):
             'unread_count': unread_count
         }
         response = JsonResponse(context)
-        # response["Access-Control-Allow-Origin"] = "*"
-        # response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
-        # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+        response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
         return response
         
         # return JsonResponse(context)
