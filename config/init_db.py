@@ -2,7 +2,7 @@ import os, django, sys, json, datetime, email, mimetypes, re
 from bs4 import BeautifulSoup
 # from email.parser import Parser, BytesParser
 # from email import policy
-from html.parser import HTMLParser 
+# from html.parser import HTMLParser 
 # import lxml.html
 from pathlib import Path
 # from bs4 import BeautifulSoup
@@ -15,7 +15,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
 # Input number of users
-n_users = 500
+n_users = 1500
 
 n_test_users = 30
 # Input number of groups
@@ -304,7 +304,7 @@ for i in range(0, n_test_users):
     user.code = '432dsa4f'
     ### Set this password ###
     user.set_password('TestPassword')
-    user.assigned = False
+    user.assigned = True
     user.save()
     domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
