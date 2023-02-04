@@ -76,8 +76,6 @@
             <a href='{% url "mail:flagged_email" email.ref %}'>
             {% endif %}
                 <div class="col-2">{{email.sender}}</div>
-                <div class="col-3">{{email.subject}}</div>
-                <div class="col-4">{{email.preview}}</div>
                 <div class="col-1 text-center">
                     {% if email.is_approved %}
                     <i class="btn-np fa fa-check" style="background-color: #8ae68a; color: #fff;"></i>
@@ -89,6 +87,8 @@
                     <i class="btn-np fa fa-flag-o" style="background-color: #f0d7a9; color: #fff;"></i>
                     {% endif %}
                 </div>
+                <div class="col-3">{{email.subject}}</div>
+                <div class="col-4">{{email.preview}}</div>
                 <div class="col-1 time_sent">{{email.time_sent}}</div>
             </a>
         </div>
