@@ -69,14 +69,14 @@ from random import shuffle
 # exit()
 list_of_p_domains = {
     3:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.financial-pay.info/global-service/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.westernunion-pay.com/global-service/track-transfer/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-    2:['https://dkozzlfods.info/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS', 
-    'https://www.online-shopping-payment.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
-    'https://www.walmartpay.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
-    1:['https://etooicdfi.studio/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS/',
-    'https://www.client-mail-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS',
-    'https://mail.google-services.com/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYvjHMDjRPMSh3tviDHXIoXcPxvDgUUCCPvXMWoX_1P8SSwvgaM7IqXN16ZyETrwcyS'],
+    'https://www.financial-pay.info/global-service/?upn=9O-2F0uOvVudG71uY6JZBiNBA2kJ1h0T8XTI4yLNm5MdkRmeYD8zHAW7jbHbmeOzb5HiZ6J0i-2BudKalnQzkc5Zsw-3D', 
+    'https://www.westernunion-pay.com/global-service/track-transfer/?mid=IDS23031396257174'],
+    2:['https://dkozzlfods.info/?upn=Q0VOMzaXxjJtwt0qTuNrrDpoPL8Q50aMecLQskTq49ebjSLEfnIc2sOFoyEqqh8XG3xZOq8beINDSlACbHyDjg-3D-3D3Icc_wvJNEoKidhhoqEMrZzJrUmmvOu7ryzdlpGys6hkycPqOmZm2EkChZjSlpSQX9UXsWCZYLIzkaryw8OSP7mXcf3xnbGVwd23aEh0Z71', 
+    'https://www.online-shopping-payment.com/?ctPayload=H4sIAAAAAAAAA12QwW7CMBBE%2F8VnKtmxHSc5FrXqsQduVRXZ63UTYWLkGARC%2FHuXQlXKaaV9s6Od%2BTix0bOOBXSC11JVHExtDYQgbBsEgHVBNCKwBSsz60RtmkZoVVULts24f44J1qybdjEumN2VIWUyK7jZRlvwaWMn',
+    'https://www.walmartpay.com/?upn=31lcBBFrKkrK4MwiV2J2egimukuh7R5G2XSsnoDDvoYMcZXguaG-2BaZjUPEH9DiaYH2WX_wvJNEoKidhhoqEMrZzJrUmmvOu7ryzdlpGys6hkycPpwstx8yKB3C4X7zLcP35XbCWFMCXoQqTKsgsNXNW7hDcPx3Ef1U91-2Fe-2FNp6vDk764t-2F'],
+    1:['https://etooicdfi.studio/f/a/LtmMzAePjiulEFh9JXydXg~~/AAAAAQA~/RgRloD6JP0QgaHR0cHM6Ly9zbWFydC5saW5rL2QxMm9lanZhb3RwcmxXBmNhcG9uZUIKY7WJub1jvQng0lISanBldGVsa2FAZ21haWwuY29tWAQAAAAA',
+    'https://www.client-mail-services.com/_t/c/A1020005-1735F31E6028AC6D-68C618EC?l=AABkT3mkCxlWQIg7HFhmxV87c%2BflA7AarBYf0b6lVLikI5aFP5vpEl2cO9sOOacGdOo73nvxlym7ZJDnIZ3geEqAfdxFoT%2BAdagFjflId8Uc%2B%2F%2FqCaXfCensi1yLblcHDzWQ1%2Fhc89Cm3%2FmCMHmhFj4z28BPKwm3u5W5oOCB67WaTNRlK0oKBjLh5zeoehr2YscXAkni55OSw4vf2WIEiATEeiVKUeOh8stbzU%2BQ%2FvfzZIIBA',
+    'https://mail.google-services.com/?code=hvAga1lsCwkvVdPMyOPhaiWXSCOIprz78ck43JEhgg6GosfY%2BzuPKA'],
 }
 
 # Read emails in folder, save to models in database
