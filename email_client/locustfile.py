@@ -30,7 +30,7 @@ class LoginandCheckEmails(SequentialTaskSet):
         for item_id in EMAIL_IDs:
             self.client.get(f"/mail/u/0/inbox/{item_id}")
             next_id = rd.randint(1,4)
-            annotations = ['flag', 'delete', 'approve']
+            annotations = ['delete', 'approve']
             annotate = rd.choice(annotations)
             time.sleep(2)
             self.client.get(f"/mail/{annotate}/{item_id}/{next_id}", name=annotate)
@@ -39,6 +39,7 @@ class LoginandCheckEmails(SequentialTaskSet):
 
     def on_stop(self):
         self.client.get('/mail/logout_user')
+        OCCUPIED_USERNAMES.remove(self.username) #added this without testing
 
 class WebsiteUser(HttpUser):
     tasks = [LoginandCheckEmails]
