@@ -7,6 +7,7 @@ class User(AbstractUser):
     assigned = models.BooleanField(default=False)  # Indicates whether a User name has been taken
     response_id = models.CharField(default="0", max_length=50, null=True)  # Survey response ID
     code = models.CharField(default="Not Found", max_length=25) # User's reward code
+    # username = models.CharField(default='') # User's username
 
     def __str__(self):
         return str(self.username) + ' - ' + str(self.group_num)

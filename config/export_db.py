@@ -18,3 +18,15 @@ with open('email_data.csv','w', encoding='utf-8', newline='') as file:
             row = list(obj)
             writer.writerow(row)
 
+from mail.models import User
+
+users = User.objects.all()
+fields = [field.name for field in users[0]._meta.get_fields()]
+
+with open('user_data.csv','w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(fields)
+        for obj in users.values_list():
+            row = list(obj)
+            writer.writerow(row)
+
