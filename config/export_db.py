@@ -5,16 +5,16 @@ sys.path.append('email_client/') # Change path so email_client.settings will wor
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
-from Mail.models import Mail
+from mail.models import Mail
 
-mail = Mail.objects.all().values_list()
+mail = Mail.objects.all()
 
 fields = [field.name for field in mail[0]._meta.get_fields()]
 
 with open('email_data.csv','w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(fields)
-        for obj in mail:
+        for obj in mail.values_list():
             row = list(obj)
             writer.writerow(row)
 
