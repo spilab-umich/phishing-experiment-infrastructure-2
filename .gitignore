@@ -7,3 +7,4 @@ env/
 **/settings.py
 **.log
 web-conf/
+**.csv
