@@ -287,6 +287,8 @@ for i in range(0, n_users):
         if email['is_phish']:
             new.is_phish = True 
             # print(new.phish_id)
+            # TODO: SAVE DOMAIN MANIPULATION ID TO DB
+            # domain_manip = int(domain_manip_available.pop())
             new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
         if (num_emails - 1) == email_counter:
             new.is_fp = True

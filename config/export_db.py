@@ -11,7 +11,7 @@ mail = Mail.objects.all()
 
 fields = [field.name for field in mail[0]._meta.get_fields()]
 
-with open('email_data.csv','w', encoding='utf-8', newline='') as file:
+with open('email_db_data.csv','w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(fields)
         for obj in mail.values_list():
@@ -22,8 +22,9 @@ from mail.models import User
 
 users = User.objects.all()
 fields = [field.name for field in users[0]._meta.get_fields()]
+fields = fields[1:] # this prevents the 'mail' field from offsetting the csv
 
-with open('user_data.csv','w', encoding='utf-8', newline='') as file:
+with open('user_db_data.csv','w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(fields)
         for obj in users.values_list():
