@@ -15,11 +15,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
 # Input number of users
-n_users = 1500
+n_users = 150
 
 n_test_users = 30
 # Input number of groups
-n_of_groups = 7
+n_of_groups = 11
 
 # class MyHTMLParser(HTMLParser):
 #     prev = ""
@@ -156,7 +156,9 @@ def read_emails():
     return results
 
 def revise_html(html, email):
-    """Add Ids (#) to the selected links in each HTML file"""
+    """Add Id numbers (#) to each hyperlink in each HTML file.
+       Then change all hyperlink targets to _blank
+    """
     email_id = email['email_id']
     p_link = email['phish_id']
     is_phish = email['is_phish']
