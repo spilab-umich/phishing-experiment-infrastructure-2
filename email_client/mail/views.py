@@ -14,6 +14,9 @@ client_path = os.path.join(here, 'client_logs.log')
 server_path = os.path.join(here, 'server_logs.log')
 error_path = os.path.join(here, 'error_logs.log')
 
+num_assigned_usernames = 0
+num_of_groups = 11
+
 redirect_cases = {
     1: 'https://www.google.com/gmail/about/',
     2: 'https://www.walmart.com/',
@@ -426,7 +429,10 @@ def assign_password():
 def assign_credentials(request):
     if request.method == 'GET':
         # Return a list of the remaining available usernames
-        users = User.objects.filter(assigned=False).filter(is_superuser=False)
+        global num_assigned_usernames
+        current_group_number = num_assigned_usernames % num_of_groups
+        num_assigned_usernames += 1
+        users = User.objects.filter(assigned=False, group_num=current_group_number).filter(is_superuser=False)
         # users is a QuerySet. Calling len() on users caches the whole database at once
         # This avoids multiple db calls
         len_users = len(users)
