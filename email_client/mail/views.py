@@ -430,7 +430,8 @@ def assign_credentials(request):
     if request.method == 'GET':
         # Return a list of the remaining available usernames
         # cast the group_num variable from qualtrics to an integer
-        qual_group_num = int(request.META.get('GROUP_NUM'))
+        # print(request.GET.keys())
+        qual_group_num = int(request.META['GROUP_NUM'])
         users = User.objects.filter(assigned=False, group_num=qual_group_num).filter(is_superuser=False)
         # users is a QuerySet. Calling len() on users caches the whole database selection at once
         # This avoids multiple db calls
@@ -449,8 +450,8 @@ def assign_credentials(request):
                 user_index = rd.randint(0,len_users-1)
                 user = users[user_index]
             # Save the response_id from Qualtrics
-            if (request.META.get("RESPONSE_ID")):
-                user.response_id = request.META.get("RESPONSE_ID")
+            if (request.META("RESPONSE_ID")):
+                user.response_id = request.META("RESPONSE_ID")
             username = user.username
             password = assign_password()
             # Mark the username as 'assigned'
