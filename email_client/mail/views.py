@@ -429,16 +429,16 @@ def assign_password():
 def assign_credentials(request):
     if request.method == 'GET':
         # Return a list of the remaining available usernames
-        global num_assigned_usernames
-        current_group_number = num_assigned_usernames % num_of_groups
-        num_assigned_usernames += 1
-        users = User.objects.filter(assigned=False, group_num=current_group_number).filter(is_superuser=False)
-        # users is a QuerySet. Calling len() on users caches the whole database at once
+        # cast the group_num variable from qualtrics to an integer
+        qual_group_num = int(request.META.get('GROUP_NUM'))
+        users = User.objects.filter(assigned=False, group_num=qual_group_num).filter(is_superuser=False)
+        # users is a QuerySet. Calling len() on users caches the whole database selection at once
         # This avoids multiple db calls
         len_users = len(users)
         if len_users < 1:
             username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
             password = ''
+            code = ''
         else:
             # Choose a random available username
             # Try it twice just in case.
@@ -457,13 +457,13 @@ def assign_credentials(request):
             user.assigned = True
             user.set_password(password)
             user.save()
-            group_num = user.group_num
+            # group_num = user.group_num
             code = user.code
             # session_id = request.session.session_key
         context = {
             'username': username,
             'password': password,
-            'group_num': group_num,
+            # 'group_num': group_num,
             'code': code,
         }
         return JsonResponse(context)
