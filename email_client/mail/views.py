@@ -431,7 +431,11 @@ def assign_credentials(request):
         # Return a list of the remaining available usernames
         # cast the group_num variable from qualtrics to an integer
         # print(request.GET.keys())
-        qual_group_num = int(request.META['HTTP_GROUP_NUM'])
+        try:
+            qual_group_num = int(request.META['HTTP_GROUP_NUM'])
+        except Exception as e:
+            error_logger.info(e)
+
         users = User.objects.filter(assigned=False, group_num=qual_group_num).filter(is_superuser=False)
         # users is a QuerySet. Calling len() on users caches the whole database selection at once
         # This avoids multiple db calls
