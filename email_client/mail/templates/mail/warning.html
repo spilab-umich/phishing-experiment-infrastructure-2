@@ -21,10 +21,6 @@
                     <li class='domain-bar'>
                         <!-- <i class= 'fa fa-lock'></i> -->
                         <a label="warning-link" class="warning-link"> 
-                            <!-- {{ email.p_url }} -->
-                            <!-- <span class="pre-domain"></span>
-                            <span class="main-domain"></span>
-                            <span class="post-domain"></span> -->
                         </a>                            
                     </li>
                     <!-- <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li> -->
@@ -34,13 +30,6 @@
     </div>
 </div>
 <style>
-    /* iframe {
-        opacity:0;
-        position: absolute;
-        z-index: 2;
-        height: 40%;
-        width: 90%;
-    } */
     .tooltip-inner {
         background-color: transparent;
         /* max-width: 40%; */
@@ -69,9 +58,6 @@
 
     .domain-bar{
         padding: 0;
-        /* CHANGE THESE FOR NON DOMAIN HIGHLIGHTING
-        border-radius: 15px;
-        background-color: #E8E8F0; */
         padding: .2rem 0 .2rem 0;
         max-width: 75ch; 
     }
@@ -81,27 +67,12 @@
     }
 
     .domain-bar {
-        /* border-radius: 15px;
-        background-color: #E8E8F0;
-        padding: .2rem .2rem .2rem .5rem; */
         word-break: break-all;
     }
 
     span.main-domain {
         color: inherit;
     }
-
-    /* span.pre-domain, span.post-domain {
-        opacity: 0.5;
-    } */
-
-    /* .url-domain {
-        font-weight: bold;
-    }
-
-    .url-path, .url-protocol {
-        opacity: .75;
-    } */
 
     .warning-link {
         color: #4F4F4F;
@@ -149,10 +120,5 @@
         display: inline-block;
         vertical-align: middle;
     }
-
-    /* .timer {
-        float: right;
-        margin-top: 5px;
-    } */
 </style>
 {% endblock warning %}

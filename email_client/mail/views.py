@@ -14,9 +14,6 @@ client_path = os.path.join(here, 'client_logs.log')
 server_path = os.path.join(here, 'server_logs.log')
 error_path = os.path.join(here, 'error_logs.log')
 
-num_assigned_usernames = 0
-num_of_groups = 11
-
 redirect_cases = {
     1: 'https://www.google.com/gmail/about/',
     2: 'https://www.walmart.com/',

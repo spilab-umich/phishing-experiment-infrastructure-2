@@ -15,9 +15,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
 
 # Input number of users
-n_users = 150
+n_users = 3000
 
-n_test_users = 30
+n_test_users = 33
 # Input number of groups
 n_of_groups = 11
 
