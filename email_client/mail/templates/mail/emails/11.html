@@ -3,7 +3,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title></title>
 </head>
-
+{% load static %}
 <div style="padding: 0px;margin: 0px; background-color:#ffffff; min-width:480px;">
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
@@ -21,7 +21,7 @@
 												<td align="center"
 													style="vertical-align:middle; padding-left:5px; padding-top:10px;">
 													<img alt="Chase Logo" border="0" height="50"
-														src="https://sites.chase.com/content/mktservices/digital-assets/image.original.png/branding-photography/Logo/Brand/Chase/Chase_logo_0001_WHT.png"
+														src="{% static 'img/Chase_logo_0001_WHT.png' %}"
 														style="display:block;" width="153" />
 													<br /><br />
 												</td>
@@ -56,7 +56,7 @@
 														style="vertical-align: top; padding: 30.0px 0.0px 0.0px;">
 														<img alt="Chase logo" border="0"
 															data-assetref="chase-logo-1589465129761"
-															src="https://www.chase.com/content/dam/chaseonline/en/alerts/ondemand/eventdriven/mol/images/chaseNew.gif"
+															src="{% static 'img/chaseNew.gif' %}"
 															style="display: block;" width="153" />
 													</td>
 												</tr>
