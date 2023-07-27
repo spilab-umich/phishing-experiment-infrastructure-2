@@ -3,7 +3,7 @@
 <!-- Footer nav and logo updates 03.03.20 -->
 <!-- Media query updates 08.19.20 -->
 <!-- eCredit added 10.07.20 -->
-
+{% load static %}
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <meta content="telephone=no" name="format-detection" />
@@ -37,23 +37,6 @@
         <!-- BEGIN CONTAINER TABLE FOR EMAIL BODY -->
         <table align="center" border="0" cellpadding="0" cellspacing="0" class="container" role="presentation"
           style="margin: 0 auto; padding: 0;" width="600">
-          <!-- BEGIN FIX TO PREVENT GMAIL APP FROM INCREASING THE FONT SIZES ON SOME MOBILE DEVICES -->
-          <tr>
-            <td>
-              <table align="center" border="0" cellpadding="0" cellspacing="0" class="gmail-fix" role="presentation"
-                width="600">
-                <tr>
-                  <td class="gmail-fix" style="line-height: 1px; mso-line-height-rule: exactly; min-width: 600px;">
-                    <img class="gmail-fix" height="1"
-                      src="http://image.o.delta.com/lib/fe5815707c6201787313/m/10/3f473969-95d8-43bc-8d81-7bdb8c2d4dd8.png"
-                      style="display: block; max-height: 1px; min-height: 1px; width: 600px;" width="600">
-                    </img>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <!-- END FIX TO PREVENT GMAIL APP FROM INCREASING THE FONT SIZES ON SOME MOBILE DEVICES -->
           <tr>
             <td align="center" valign="top">
               <!-- BEGIN EMAIL BODY TABLE -->
@@ -80,7 +63,7 @@
                                       <td align="center" class="responsive-td" style="width: 43%; padding-right: 3px;"
                                         valign="middle"><img alt="DELTA" class="header_logo"
                                             data-assetid="15681" height="38"
-                                            src="https://image.o.delta.com/lib/fe5815707c6201787313/m/13/a3419f86-e2e8-47f8-adde-434f169d7e9a.png"
+                                            src="{% static 'img/a3419f86-e2e8-47f8-adde-434f169d7e9a.png' %}"
                                             style="display: block; text-align: center; height: 38px; width: 225px; margin: 12px auto 0px auto; padding: 0px; border: 0px;"
                                             width="225" /></td>
                                       <td class="responsive-td" style="width: 57%; padding-left: 3px;" valign="middle">
@@ -134,7 +117,7 @@
                               <tr>
                                 <td align="center">
                                     <img alt="We Value Your Loyalty" data-assetid="34032"
-                                      src="https://image.o.delta.com/lib/fe5815707c6201787313/m/15/AA900993_We_Value_Your_Loyalty_hero.png"
+                                      src="{% static 'img/AA900993_We_Value_Your_Loyalty_hero.jpg' %}"
                                       style="display: block; padding: 0px; text-align: center; height: auto; width: 100%; border: 0px;"
                                       width="600" /></td>
                               </tr>
@@ -214,7 +197,7 @@
                         <!-- BEGIN FOOTER LOGO REGION -->
                         <tr>
                           <td align="center" class="footer_logo" style="padding-top:30px; padding-bottom:20px;"><img alt="DELTA" height="23"
-                                src="https://image.o.delta.com/lib/fe5815707c6201787313/m/13/a3419f86-e2e8-47f8-adde-434f169d7e9a.png"
+                                src="{% static 'img/a3419f86-e2e8-47f8-adde-434f169d7e9a.png' %}"
                                 style="color:#0B1F66; font-size:1.25em; font-weight: bold; letter-spacing: 0.2em; display:block;"
                                 width="135" />
                           </td>

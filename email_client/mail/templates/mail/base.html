@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
    <head>
-    {% load static %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,42 +86,6 @@
                         </ul> 
                     </aside>                    
                     <aside class='inbox-right'>
-                        <!-- begin mobile screen nav -->
-                        <!-- <nav class="inbox-head d-md-block d-lg-none">
-                            <div class="d-flex">
-                                <form action="">
-                                    <input type="text" class="sr-input" placeholder='  Search Mail' disabled>
-                                    <a class="user-avatar" data-bs-toggle='dropdown' aria-expanded='false' aria-haspopup="true"role='button' title='Email Account'>
-                                        <img src="{% static 'img/placeholder.jpg' %}" height='42' width='42' alt="" class="rounded-circle">
-                                    </a>
-                                    <ul class='dropdown-menu dropdown-menu-end mobile-avatar-menu' aria-labbeledby='dropdownMenuLink' aria-label='Logout Menu'>
-                                        <li class='username dropdown-header'>
-                                            <h5 class='text-center'>
-                                                {{ user.username }}
-                                            </h5>
-                                        </li>
-                                        <li class='dropdown-divider'></li>
-                                        <li><a class="dropdown-item d-flex justify-content-start align-items-center" href="{% url 'mail:inbox' %}" aria-label='Return to Inbox'><i class='fa fa-inbox'></i>Inbox
-                                            {% if user.unread_count > 0 %}
-                                            <span class='visually-hidden'>Number of unread emails: </span>
-                                            <span class='label ms-auto'>
-                                                {{ user.unread_count }}
-                                            </span>
-                                            {% endif %}
-                                            </a>
-                                        </li>
-                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class='fa fa-envelope-o'></i>Sent Mail</a></li>
-                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-external-link"></i>Drafts</a></li>
-                                        <li><a class="dropdown-item" aria-hidden="true" disabled><i class=" fa fa-trash-o"></i>Trash</a></li>         
-                                        <li class='dropdown-divider'></li>
-                                        <li class=''><a href="{% url 'mail:logout_user' %}" class='dropdown-item' role='button' aria-label='Sign out button'>Sign Out</a></li>
-                                    </ul>
-                                </form>
-                            </div>
-                        </nav> -->
-                        <!-- end mobile screen nav -->
-                        <!-- begin md screen nav -->
-                        <!-- <div class='inbox-head d-none d-sm-none d-md-none d-lg-block'> -->
                         <div class='inbox-head'>
                             <div class='d-flex'>
                                 <form action='#' class='' aria-hidden='true'>
@@ -153,6 +117,5 @@
                 </div>
             </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-                <!-- <script src='{% static "js/bootstrap.bundle.min.js" %}'></script> -->
     </body>
 </html>

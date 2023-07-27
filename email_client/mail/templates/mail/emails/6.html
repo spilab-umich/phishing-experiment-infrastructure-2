@@ -1,3 +1,4 @@
+{% load static %}
 <head>
   <meta name="x-apple-disable-message-reformatting" />
   <meta ,="" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport" />
@@ -42,7 +43,7 @@
                       <tr>
                         <td align="center" style="padding: 0% 5% 0% 5%; font-size:0px; line-height:0px">
                           <img title="Coursera"><img alt="Coursera" class="coursera-logo" height="auto"
-                              src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-misc.s3.amazonaws.com/mailspin/prod/11_03_2020_18_12_04_coursera-wordmark-blue.png?w=240&amp;h=34"
+                              src="{% static 'img/11_03_2020_18_12_04_coursera-wordmark-blue.png' %}"
                               style="display: inline-block; text-align: left; height: auto; width: 120px;padding: 0%"
                               width="120" /></td>
                       </tr>
@@ -72,7 +73,7 @@
                                 <a href="https://www.coursera.org/browse"
                                   id="20" target="_blank">
                                   <img alt="Short and popular courses, just for you "
-                                    src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-misc.s3.amazonaws.com/mailspin/prod/10_08_2021_05_21_07_Mi1SdyQQ.png?w=540"
+                                    src="{% static 'img/10_08_2021_05_21_07_Mi1SdyQQ.png' %}"
                                     style="display: block; height: auto; width: 100%; max-width:540px; padding: 0; text-align: center;"
                                     width="540" />
                                 </a>
@@ -102,9 +103,7 @@
                                         id="30"
                                         style="text-decoration:none; font-family: 'Open Sans', Arial, sans-serif !important; line-height: 8px;font-size: 4px"
                                         target="_blank">
-                                        <img alt="Card" src="
-https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/df/e433cd5a284a98a62a5be7b4756c42/coursera1.jpg?w=512&amp;h=268&amp;fit=crop&amp;crop=entropy
-" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
+                                        <img alt="Card" src="{% static 'img/coursera1.jpg' %}" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
                                         <br />
                                         <br />
                                         <span class="title"
@@ -131,9 +130,7 @@ https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.ama
                                         id="40"
                                         style="text-decoration:none; font-family: 'Open Sans', Arial, sans-serif !important; line-height: 8px;font-size: 4px"
                                         target="_blank">
-                                        <img alt="Card" src="
-https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/84/89d1ab5ac1480e8a52d65e43e19bc1/Course1-logo.png?w=512&amp;h=268&amp;fit=crop&amp;crop=entropy
-" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
+                                        <img alt="Card" src="{% static 'img/Course1-logo.png' %}" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
                                         <br />
                                         <br />
                                         <span class="title"
@@ -164,9 +161,7 @@ https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.ama
                                         id="50"
                                         style="text-decoration:none; font-family: 'Open Sans', Arial, sans-serif !important; line-height: 8px;font-size: 4px"
                                         target="_blank">
-                                        <img alt="Card" src="
-https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/33/56fa78ec0542f19eaa977b8854c833/coursera2.jpg?crop=top&amp;fit=crop&amp;w=512&amp;h=268
-" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
+                                        <img alt="Card" src="{% static 'img/coursera2.jpg' %}" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
                                         <br />
                                         <br />
                                         <span class="title"
@@ -193,9 +188,7 @@ https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.ama
                                         id="60"
                                         style="text-decoration:none; font-family: 'Open Sans', Arial, sans-serif !important; line-height: 8px;font-size: 4px"
                                         target="_blank">
-                                        <img alt="Card" src="
-https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/a0/6d264755cf4c85b16223d88960b905/apple-1850613__480.jpg?w=512&amp;h=268&amp;fit=crop&amp;crop=entropy
-" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
+                                        <img alt="Card" src="{% static 'img/apple-1850613__480.jpg' %}" style="display: block; height: auto; width: 100%; padding: 0px; text-align: center;" width="256" />
                                         <br />
                                         <br />
                                         <span class="title"
@@ -250,7 +243,7 @@ https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.ama
                       <tr>
                         <td align="center" class="mobile-padding-medium" style="padding: 2.5% 0% 2.5% 0%; ">
                             <img alt="Coursera" class="coursera-logo" height="auto"
-                              src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-misc.s3.amazonaws.com/mailspin/prod/12_03_2020_03_28_01_Coursera-black-BG-F5F7F8.png?w=240&amp;h=34"
+                              src="{% static 'img/12_03_2020_03_28_01_Coursera-black-BG-F5F7F8.png' %}"
                               style="display: block; text-align: center; height: auto; width: 120px;" width="120" />
                         </td>
                       </tr>

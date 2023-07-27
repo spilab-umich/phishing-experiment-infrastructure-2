@@ -1,3 +1,4 @@
+{% load static %}
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -34,7 +35,7 @@
 												id="10" target="_blank">
 												<img alt="Sign in to your account" border="0" class="lightimg webfont"
 													height="18"
-													src="https://ecm.capitalone.com/Messaging/assets/images/icons_global/signIn_ui_3x.png"
+													src="{% static 'img/signIn_ui_3x.png' %}"
 													style="display:block; font:12px 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#141414; line-height:18px;"
 													width="17" />
 											</a>
@@ -63,7 +64,7 @@
 						<tr>
 							<td style="padding:16px 24px;">
 								<img alt="Capital One" border="0" class="webfont" height="50"
-									src="https://ecm.capitalone.com/ProductBranding/cc/1/1031/logo_header_default_675x150.png"
+									src="{% static 'img/logo_header_default_675x150.png' %}"
 									style="height:50px; display:block; font:14px 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#141414; line-height:20px;" />
 							</td>
 						</tr>
