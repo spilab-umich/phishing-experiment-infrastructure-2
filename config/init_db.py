@@ -1,12 +1,7 @@
 import os, django, sys, json, datetime, email, mimetypes, re
 from bs4 import BeautifulSoup
-# from email.parser import Parser, BytesParser
-# from email import policy
-# from html.parser import HTMLParser 
-# import lxml.html
 from pathlib import Path
-# from bs4 import BeautifulSoup
-# import eml_parser
+
 config_path = Path("config/") # Before we append the file path, grab the path to the config file
 email_folder = config_path / Path("raw_eml/")
 
@@ -18,22 +13,9 @@ django.setup()
 n_users = 3000
 
 n_test_users = 33
+
 # Input number of groups
 n_of_groups = 11
-
-# class MyHTMLParser(HTMLParser):
-#     prev = ""
-
-#     def handle_data(self, data):
-#         data = data.strip()
-#         if not '\\r\\n' in data and not 'b\'' in data and data is not "":   
-#             self.prev += " " + data
-#             # print(self.prev[:150])
-#             # return data  
-    
-#     def get_preview(self):
-#         # print(self.prev.strip())
-#         return self.prev
 
 # Load email metadata
 ## MOST RECENT EMAILS SHOULD GO FIRST
@@ -52,21 +34,6 @@ import random as rd
 import string
 from random import shuffle
 
-## Maybe Keep This ##
-# Load warning metadata
-# warning_json_fname = 'phish_domains.json'
-# open_warning_json_file = config_path / warning_json_fname
-
-# with open(open_warning_json_file) as f:
-#     d = json.load(f)
-
-# warning_data = []
-# for item in d['phish_domains']:
-#     warning_data.append(item)
-
-# phish_email_ids = [x['email_id'] for x in warning_data]
-# print(phish_email_ids)
-# exit()
 list_of_p_domains = {
     3:['https://www.hrzzhfs.xyz/?dU=v0G4RBKTXg2Gtk9jdyT5C0QhB-NuuHcbnI3N3H6KuOOlwYtyYUs_03KA==&F=v0fUYv', 
        'https://www.financial-pay.info/global-service/?upn=9O-2F0uOvVudG71uY6JZBiNBA2kJ1h0T8XTI4yLNm5Md', 
@@ -91,34 +58,18 @@ def read_emails():
     results = []
     # Create reference IDs for each email
     i = 1
-    # Convert html to text for preview pane
-    # h = html2text.HTML2Text()
-    # h.ignore_links = True
-    # pol = email.policy.SMTP
     for mail in emails:
         with open(email_folder / Path(mail), 'r') as fp:
             msg = email.parser.Parser(policy=email.policy.SMTP).parse(fp)
             
             body = msg.get_body(preferencelist=('plain','html'))
-            # print(type(body))
-            # print(type(body.get_content()))
-            # print(h.handle(body.get_content())[:250])
-            # print(body.is_multipart())
             sepr = '<'
             sender = msg['from'].split(' ' + sepr)
             # Add the separator back if it was removed 
             # This is so sender addresses are in brackets <>
             if len(sender) > 1:
                 sender[1] = sepr + sender[1]
-
-            # Would this work?
-            # sender = [[sender[0], sepr+sender[1] if len(sender) > 1]
-
             sender = [x.replace("\"","").rstrip() for x in sender] 
-            # print(msg['From'])
-
-            # Useful lines
-            # print(part.get_content_maintype())
 
             ## Matches the .eml file to the correct email metadata
             ## Search email_data for the key value pair that matches current email_id
@@ -127,18 +78,13 @@ def read_emails():
                 # 'from' item needs to be split into sender and sender address
                 'from': sender,
                 'subject': msg['subject'],
-                # 'date': msg['date'],
                 'email_id': i,
                 'num_links': email_metadata['num_links'],
                 'phish_id': email_metadata['link_id'],
                 'preview': email_metadata['preview'],
                 'is_phish': email_metadata['is_phish']
             }
-            # print(email_to_add)
-            # print("{}".format(sender))
             results.append(email_to_add)
-
-            # email.iterators._structure(msg)
             ''' Write emails to HTML file '''
             for part in msg.walk():
                 if part.get_content_maintype() == 'multipart':
@@ -176,9 +122,6 @@ def revise_html(html, email):
 all_emails = read_emails()
 
 num_emails = len(all_emails)
-# print(all_emails)
-# print('Number of emails: {}'.format(len(all_emails)))
-# exit()
 
 def order_emails(emails):
     ''' Order the emails so that:
@@ -193,17 +136,9 @@ def order_emails(emails):
     shuffle(first_emails)
     last_emails = benign_emails[-2:]
     return first_emails+last_emails
-    # return shuffle(emails)
 
 
-# exit()
-
-
-# emails_to_add = order_emails(all_emails)
-
-# These are the dates each email displayed in the inbox
-# time_sent = ['Dec 1', 'Dec 6', 'Dec 7', 'Dec 9', 'Dec 10', 'Dec 12', 'Dec 14', 'Dec 17', 'Dec 18', 'Dec 23']
-
+# string.ascii_letters contains both upper and lower case letters
 letter_pool = string.ascii_letters+'1234567890'
 codelist = []
 
@@ -224,13 +159,10 @@ while len(codelist) < n_users:
 # Generate the numbers to append to username
 usernameNumbers = rd.sample(range(0,9999), n_users)
 
-# def initialize_warnings(group_num):
-
 #initialize users
 for i in range(0, n_users):
-    # shuffle(emails_to_add)
     user = User()
-    # Initialize the numbers as usernameXXXX
+    # Append usernameNumber to 'username' (e.g. usernameXXXX)
     user.username = 'username{}'.format(usernameNumbers[i])
     # Assign to one of the group numbers
     user.group_num = i % n_of_groups
@@ -243,9 +175,7 @@ for i in range(0, n_users):
     domain_manip_available = [0, 1, 2]
     shuffle(domain_manip_available)
 
-    # This loop decrements so the dates append in the proper order
-    # First email should have the last time_sent
-    # j=9 
+    # Most recent email should be saved first (hence .pop() below)
     dates = [
         'Fri, 4 Nov 2022 8:19:30 -0700',
         'Tue, 8 Nov 2022 9:19:30 -0700',
@@ -264,7 +194,6 @@ for i in range(0, n_users):
         'Sat, 10 Dec 2022 1:19:30 -0700',
         'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
-    # dates.reverse()
     email_counter = 1
     for email in order_emails(all_emails):
         new = Mail()
@@ -275,7 +204,6 @@ for i in range(0, n_users):
         # OR ["jpetelka@gmail.com"]
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
-        # new.preview = email['preview']
         new.preview = email['preview']
         #Adjust date
         UTCdate = datetime.datetime.strptime(dates.pop(), '%a, %d %b %Y %H:%M:%S %z')
@@ -288,7 +216,6 @@ for i in range(0, n_users):
         new.phish_id = email['phish_id']
         if email['is_phish']:
             new.is_phish = True 
-            # print(new.phish_id)
             # TODO: SAVE DOMAIN MANIPULATION ID TO DB
             # domain_manip = int(domain_manip_available.pop())
             new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
@@ -300,17 +227,16 @@ for i in range(0, n_users):
 # Create a user to login into
 # This helps with checking the inbox
 for i in range(0, n_test_users):
-    # shuffle(emails_to_add)
     user = User()
     user.username = 'tempuser'+str(i)
     user.group_num = i % n_of_groups
     user.unread_count = num_emails
     user.code = '432dsa4f'
-    ### Set this password ###
+    ### Set this password for test accounts ###
     user.set_password('TestPassword')
     user.assigned = True
     user.save()
-    domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation, this is to ensure domain manipulation is (a) random and (b) without replacement
+    domain_manip_available = [0, 1, 2] # we used three forms of domain manipulation. domain manipulation is (a) random and (b) without replacement
     shuffle(domain_manip_available)
     dates = [
         'Fri, 4 Nov 2022 8:19:30 -0700',
@@ -330,7 +256,6 @@ for i in range(0, n_test_users):
         'Sat, 10 Dec 2022 1:19:30 -0700',
         'Sun, 11 Dec 2022 10:19:30 -0700',
     ]
-    # dates.reverse()
     email_counter = 1
     for email in order_emails(all_emails):
         new = Mail()
@@ -338,7 +263,6 @@ for i in range(0, n_test_users):
         new.sender = email['from'][0]
         if (len(email['from']) > 1):
             new.sender_address = email['from'][1]
-        # new.preview = email['preview']
         new.preview = email['preview']
         #Adjust date for readability
         UTCdate = datetime.datetime.strptime(dates.pop(), '%a, %d %b %Y %H:%M:%S %z')
@@ -351,8 +275,7 @@ for i in range(0, n_test_users):
         new.phish_id = email['phish_id']
         if email['is_phish']:
             new.is_phish = True 
-            # print(new.phish_id)
-            new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop avoids replacement
+            new.p_url = list_of_p_domains[int(email['email_id'])][int(domain_manip_available.pop())] # This lets us randomize domain manipulation, .pop() avoids replacement
         if (num_emails - 1) == email_counter:
             new.is_fp = True
         new.save()
