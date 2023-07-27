@@ -465,7 +465,6 @@ def assign_credentials(request):
         context = {
             'username': username,
             'password': password,
-            # 'group_num': group_num,
             'code': code,
         }
         return JsonResponse(context)
