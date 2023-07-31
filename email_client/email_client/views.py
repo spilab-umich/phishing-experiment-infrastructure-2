@@ -4,5 +4,5 @@ from django.shortcuts import redirect
 def webpage(request):
     return redirect('mail:index')
 
-def email_link(request):
-    return redirect('https://www.google.com/')
+# def email_link(request):
+#     return redirect('https://www.google.com/')

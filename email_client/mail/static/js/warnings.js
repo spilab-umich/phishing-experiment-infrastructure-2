@@ -179,7 +179,7 @@ function initListeners(eid){
         addclicklistener($(this), eid);
     });
 
-    $('.email-container a').each(function(){
+    $('.email-container a, a.warning-link').each(function(){
         addHoverListener($(this), eid);
     });
 
@@ -213,24 +213,12 @@ function addHoverListener(_this, emailid) {
 }
 
 
-// position tooltip once everything loads
+// position tooltip once page load is complete
 window.onload = function(){
-    // let offset = $('a.email-link').position();
-    // let height = $('a.email-link').outerHeight();
     let width = $('a.email-link').outerWidth();
     let wWidth = $('.tooltip').outerWidth();
-    // var top = offset.top;
-    // var right = offset.left;
-    // console.log(offset);
-    // $('.tooltip').css({
-    //     // 'position': 'absolute',
-    //     'right': offset.left,
-    //     'top': offset.top,
-    // });
     let pos = document.getElementsByClassName('email-link')[0].getBoundingClientRect();
-    // console.log(pos);
     $('.tooltip').css({
-        // 'position': 'absolute',
         'top': pos.bottom,
         'left': pos.left - 0.5 * (wWidth - width),
     });

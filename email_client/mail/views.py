@@ -195,7 +195,6 @@ def return_emails(request, email_id, page="inbox"):
         user = request.user
         # Get a dictionary list of mail objects belonging to this user
         email = Mail.objects.get(user=user, ref=email_id)
-        # page = "NA"
         if (page == 'inbox'):
             emails = Mail.objects.filter(user=user).values()
         elif (page == 'trash'):
@@ -203,7 +202,7 @@ def return_emails(request, email_id, page="inbox"):
         elif (page == 'approve'):
             emails = Mail.objects.filter(user=user, is_approved=True).values()
         else:
-            # Return inbox view if something goes wrong
+            # Return default inbox view if something goes wrong
             emails = Mail.objects.filter(user=user).values()
         
         # Evaluate the query set (hits the database)
@@ -491,6 +490,39 @@ def unread_check(request):
 
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request, email_id):
-    collect_log(request)
+    try:
+        username = request.user.get_username()
+        link = redirect_cases.get(int(email_id), 'https://www.google.com/')
+        link_id = -1
+        server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
+        session_id = request.session.session_key
+        # respondant id makes more sense to Florian
+        response_id = request.user.response_id
+        group_num = request.user.group_num
+        client_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
+        group_num = request.user.group_num
+        client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
+            {
+                'username':username,
+                'email_ref':email_id,
+                'link':link,
+                'link_id':link_id,
+                'action':'redirect',
+                'hover_time':-100,
+                'client_time':client_time,
+                'group_num':group_num,
+                'response_id':response_id,
+                'server_time':server_time,
+                'session_id':session_id
+            })
+    except Exception as e:
+        log_type = 'redirect'
+        error_logger.info('%(username)s,%(server_time)s,%(e)s,%(log_type)s'%
+            {
+                'username':username,
+                'log_type':log_type,
+                'server_time':server_time,
+                'e': e
+            })
     result = redirect_cases.get(int(email_id), 'https://www.google.com/')
     return redirect(result)
