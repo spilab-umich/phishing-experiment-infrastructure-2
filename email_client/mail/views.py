@@ -434,8 +434,8 @@ def assign_credentials(request):
 
         users = User.objects.filter(assigned=False, group_num=qual_group_num).filter(is_superuser=False)
         # users is a QuerySet. Calling len() on users caches the whole database selection at once
-        # This avoids multiple db calls
-        len_users = len(users)
+        # Django documentation says to use .count() instead
+        len_users = users.count()
         if len_users < 1:
             username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
             password = ''
@@ -475,7 +475,6 @@ def unread_check(request):
         ## OR
         # unread_count = User.objects.filter(username=username).unread_count
         # get is preferred since only one object will reeturn
-        # get works in manage.py shell/ so does .unread_count
         unread_count = User.objects.get(username=username).unread_count
         context = {
             'unread_count': unread_count
