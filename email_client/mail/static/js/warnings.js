@@ -45,7 +45,7 @@ function send_data(d){
 
 // disables clicking on a phishing link
 function disable_link(link){
-    link.attr('onclick', 'return false')
+    link.attr('onclick', 'return false;')
         .css('cursor','not-allowed');
 }
 
@@ -88,7 +88,7 @@ function load_warning(p_id,for_link,fa,time_delay,fp){
     let link_hovered = false;
     $('a.warning-link')
         .attr('target','_blank')
-        .attr('onclick','return false')
+        .attr('onclick','return false;')
         .attr('id',parseInt(p_id)+4) // disable the warning-link by default
         .attr('href', _this.attr('href'));
     if (fp){
