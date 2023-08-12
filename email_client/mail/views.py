@@ -432,10 +432,10 @@ def assign_credentials(request):
         except Exception as e:
             error_logger.info(e,request.headers.META,request.headers)
             qual_group_num = rd.randint([0,10])
-        # Select for update is needed for atomic block below
-        users = User.objects.select_for_update().filter(assigned=False, group_num=qual_group_num, is_superuser=False) # maybe this will work?
         # Put DB lock on the whole returned sub-table
         with transaction.atomic():
+            # Select for update is needed for atomic block below
+            users = User.objects.select_for_update().filter(assigned=False, group_num=qual_group_num, is_superuser=False) # maybe this will work?
             user = rd.choice(users)
             if not user:
                 username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
