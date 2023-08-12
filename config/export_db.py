@@ -11,6 +11,7 @@ mail = Mail.objects.all()
 
 fields = [field.name for field in mail[0]._meta.get_fields()]
 
+# Export individual email data for all users
 with open('email_db_data.csv','w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(fields)
@@ -24,6 +25,7 @@ users = User.objects.all()
 fields = [field.name for field in users[0]._meta.get_fields()]
 fields = fields[1:] # this prevents the 'mail' field from offsetting the csv
 
+# Export all user data
 with open('user_db_data.csv','w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(fields)

@@ -5,9 +5,9 @@ from django.db.models import F, Case, Value, When
 from .models import Mail, User
 from datetime import datetime, timezone
 from django.core import serializers
-from django.db import connection, connections
+from django.db import transaction
 from django.views.decorators.clickjacking import xframe_options_exempt
-import threading, time, logging, sys, string, os, random as rd
+import time, logging, sys, string, os, random as rd
 
 here = os.path.dirname(__file__)
 client_path = os.path.join(here, 'client_logs.log')
@@ -431,36 +431,30 @@ def assign_credentials(request):
             qual_group_num = int(request.META['HTTP_GROUP_NUM'])
         except Exception as e:
             error_logger.info(e,request.headers.META,request.headers)
-
-        users = User.objects.filter(assigned=False, group_num=qual_group_num).filter(is_superuser=False)
-        # users is a QuerySet. Calling len() on users caches the whole database selection at once
-        # Django documentation says to use .count() instead
-        len_users = users.count()
-        if len_users < 1:
-            username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
-            password = ''
-            code = ''
-        else:
-            # Choose a random available username
-            # Try it twice just in case.
-            try:
-                user_index = rd.randint(0,len_users-1)
-                user = users[user_index]
-            except:
-                user_index = rd.randint(0,len_users-1)
-                user = users[user_index]
-            # Save the response_id from Qualtrics
-            if (request.META["HTTP_RESPONSE_ID"]):
-                user.response_id = request.META["HTTP_RESPONSE_ID"]
-            username = user.username
-            password = assign_password()
-            # Mark the username as 'assigned'
-            user.assigned = True
-            user.set_password(password)
-            user.save()
-            # group_num = user.group_num
-            code = user.code
-            # session_id = request.session.session_key
+            qual_group_num = rd.randint([0,10])
+        # Select for update is needed for atomic block below
+        users = User.objects.select_for_update().filter(assigned=False, group_num=qual_group_num, is_superuser=False) # maybe this will work?
+        # Put DB lock on the whole returned sub-table
+        with transaction.atomic():
+            user = rd.choice(users)
+            if not user:
+                username = 'Available user names depleted. Please contact the research team at emailTaggingStudy@umich.edu.'
+                password = ''
+                code = ''
+            else:
+                # Duct tape fix to avoid race condition/concurrency issue from double assigning the same username between when the username is first assigned and then saved
+                # user.update(assigned=True) 
+                # Save the response_id from Qualtrics
+                # This is really "PROLIFIC_PID" but I don't want to edit the model field
+                if (request.META["HTTP_RESPONSE_ID"]):
+                    user.response_id = request.META["HTTP_RESPONSE_ID"]
+                username = user.username
+                password = assign_password()
+                # Mark the username as 'assigned'
+                user.assigned = True
+                user.set_password(password)
+                code = user.code
+                user.save()
         context = {
             'username': username,
             'password': password,
