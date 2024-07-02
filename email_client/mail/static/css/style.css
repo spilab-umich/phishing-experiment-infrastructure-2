@@ -1,17 +1,4 @@
 /* Base CSS revisions */
-
-/*anchor*/
-/* a {
-    color: #667fa0;
-    text-decoration: none;
-}*/
-
-
-/*
-a:hover {
-    color: #2A3542;
-} */
-
 .revert {
     all:revert;
 }
@@ -188,29 +175,6 @@ ul.side-panel-nav {
     border-bottom: 1px solid #d5d8df;
 }
 
-/* begin mobile avatar menu */
-
-/* ul.mobile-avatar-menu a {
-    color: #6a6a6a;
-    line-height: 45px;
-    padding: 0 15px;
-    width: 100%;
-}
-
-ul.mobile-avatar-menu li a i {
-    color: #6a6a6a;
-    font-size: 16px;
-    padding-right: 10px;
-}
-
-ul.mobile-avatar-menu li span.label {
-    color: #6a6a6a;
-    font-size: inherit;
-    font-weight: 550;
-} */
-
-/* end mobile avatar menu */
-
 ul.side-panel-nav li {
     display: inline-block;
     line-height: 45px;
@@ -232,21 +196,12 @@ ul.side-panel-nav li.inbox.active a, ul.side-panel-nav li.inbox.active a i, ul.s
     border-radius: 0 12px 12px 0;
 }
 
-/* ul.side-panel-nav li.inbox a:hover{
-    background: none repeat scroll 0 0 #fce8e6;
-    color: #d93025;
-    font-weight: bold;
-    border-radius: 0 12px 12px 0;
-} */
-
 ul.side-panel-nav li a:hover, ul.side-panel-nav li a:focus, ul.side-panel-nav li.active {
     background: none repeat scroll 0 0 rgba(0,0,0,0.075);
     color: #6a6a6a;
     font-weight: bold;
     border-radius: 0 12px 12px 0;
 }
-
-/* , ul.side-panel-nav li.active a, ul.side-panel-nav li a:focus { */ 
 
 ul.side-panel-nav li a i {
     color: #6a6a6a;
@@ -311,89 +266,6 @@ div.inbox-head .sr-input {
     padding-right: 0.5rem;
 }
 
-/* begin mobile nav */
-
-/* nav.inbox-head form {
-    background: none repeat scroll 0 0 #f1f3f4;
-    border: 1px solid transparent;
-    flex: 0 1 100%;
-    display: inline-flex;
-    border-radius: 20px;
-}
-
-nav.inbox-head .sr-input {
-    background: none repeat scroll 0 0 #f1f3f4;
-    border: medium none;
-    box-shadow: none;
-    border-radius: 20px;
-    height: 48px;
-    padding: 0 10px;
-    width: 100%;
-} */
-
-/* end mobile nav */
-
-/* begin mobile-table-inbox */
-/* 
-.mobile-table-inbox {
-    border: 1px solid #d3d3d3;
-    margin-bottom: 0;
-}
-
-.mobile-table-inbox a {
-    display: inline;
-    color: #000;
-    display: contents;
-}
-
-.mobile-table-inbox div {
-    white-space: nowrap;
-    overflow: hidden;
-    width: auto;
-    text-overflow: ellipsis;
-}
-
-.mobile-table-inbox:hover, .mobile-table-inbox:focus {
-    background-color: rgba(0,0,0,0.075);
-    text-decoration: none;
-}
-
-.mobile-table-inbox div:hover {
-    cursor: pointer;
-}
-.mobile-table-inbox div .fa-star.inbox-started, .mobile-table-inbox div .fa-star:hover {
-    color: #f78a09;
-    cursor: not-allowed;
-}
-.mobile-table-inbox div .fa-star {
-    color: #d5d5d5;
-}
-.mobile-table-inbox.unread a {
-    background: none repeat scroll 0 0 #f7f7f7;
-    font-weight: 600;
-}
-
-.mobile-table-inbox .text-center input, .mobile-table-inbox .text-center i {
-    padding: 0 10px;
-}
-
-a.mobile-table-inbox div{
-    padding-bottom: 5px;
-}
-
-.mobile-header-row {
-    padding: 10px;
-}
-
-.mobile-sender-text {
-    font-weight: 600;
-    line-height: 1.4;
-    padding-left: 0;
-} */
-
-/* end mobile-table-inbox */
-
-
 /* begin table-inbox */
 
 .table-inbox {
@@ -444,11 +316,6 @@ a.mobile-table-inbox div{
     font-weight: 600;
 }
 
-/* .table-inbox .text-center input, .table-inbox .text-center i {
-    padding: 0 10px;
-} */
-
-
 ul.inbox-pagination {
     float: right;
     width: auto;
@@ -470,7 +337,6 @@ ul.inbox-pagination li {
     border-radius: 3px !important;
     color: #afafaf;
     display: inline-block;
-    /* padding: 5px 10px; */
 }
 
 .mail-option .chk-all {
@@ -509,11 +375,6 @@ ul.inbox-pagination li {
     padding: 15px 15px 15px 15px;
 }
 
-
-/* .view-mail a {
-    color: #ff6c60;
-} */
-
 ul {
     list-style-type: none;
     padding: 0px;
@@ -540,8 +401,6 @@ input[disabled] {
 
 
 .mobile-email-head img, .email-head img {
-    /* width: auto;
-    height: auto; */
     max-width: 40px;
     max-height: 40px;
     padding: 0;
@@ -551,12 +410,7 @@ input[disabled] {
     padding: 0rem 1.5rem .75rem 1.5rem;
 }
 
-/* .email-head .email-sender {
-    padding-left: 8px;
-} */
-
 .email-head .sender-address, .mobile-email-head .sender-address {
-    /* text-decoration: underline; */
     font-size: 0.75rem;
     color: #555;
 }
@@ -586,11 +440,9 @@ input[disabled] {
 }
 
 .sender-dropdown {
-    /* background: none repeat scroll 0 0 #eaeaea; */
     color: #777;
     font-size: .6rem;
     padding: .2rem .2rem;
-    /* margin-left: .25rem; */
 }
 
 .subject-row {

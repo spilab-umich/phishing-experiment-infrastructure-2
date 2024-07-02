@@ -1,6 +1,9 @@
 import os, django, sys, json, datetime, email, mimetypes, re, csv
 from pathlib import Path
 
+''' This file is meant to extrct django database objects into CSV (i.e., User and Email object data)
+'''
+
 sys.path.append('email_client/') # Change path so email_client.settings will work below
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "email_client.settings")
 django.setup()
@@ -23,7 +26,7 @@ from mail.models import User
 
 users = User.objects.all()
 fields = [field.name for field in users[0]._meta.get_fields()]
-fields = fields[1:] # this prevents the 'mail' field from offsetting the csv
+fields = fields[1:] # this prevents the 'mail' field from offsetting the csv columns
 
 # Export all user data
 with open('user_db_data.csv','w', encoding='utf-8', newline='') as file:

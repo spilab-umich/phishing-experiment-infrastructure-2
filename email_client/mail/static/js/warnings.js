@@ -1,6 +1,7 @@
+// hover time threshold in ms
+// this is useful if you don't want any hover logs below a certain amount of hover time
+// e.g., setting this to 250 will not record any hover interactions below 250 ms
 let hover_time_limit = 0;
-// let rows = [];
-// let time_delay = 5;
 let warning_shown = false;
 let warning_shown_text = 'warning-shown';
 
@@ -16,7 +17,6 @@ function createLog(link, action, emailid, hover_time){
     // else if link is none of these things, just type 'NaN'
     else link_url = 'NaN'; 
     if (link[0].id) link_id = link[0].id; // If link has an id, link_id should be that id, else it's 0
-    // consider changing to Date().toUTCString();
     let timestamp = new Date($.now()).toUTCString().replace(',','');
     let d = {
         'ref': emailid,
@@ -49,16 +49,15 @@ function disable_link(link){
         .css('cursor','not-allowed');
 }
 
-// adjusts the cursor, changes the ID
+// adjusts the cursor, changes the ID to indicate the link is clickable
 // takes an anchor tag object and an integer link ID
 function enable_link(link){ // 
     link.css('cursor','pointer')
-        .attr('id', parseInt(link.attr('id')) + 1); // , email_id+p_id);
+        .attr('id', parseInt(link.attr('id')) + 1);
 }
 
-// takes a string anchor tag ID
+// takes a string anchor tag ID, appends the class email-link
 function add_email_link_class(email_link_id){
-    // let email_span = '<span id="em-added"></span>';
     let _this = $('.email-container a#'+email_link_id);
     _this.addClass('email-link');
 }
@@ -67,7 +66,6 @@ function add_email_link_class(email_link_id){
 function make_warning_link_clickable(for_link){
     $('a.warning-link').on('click',function(){
         let win = window.open(for_link,"_blank");
-        // win.focus();
     });
     enable_link($('a.warning-link'));
 }
@@ -76,7 +74,6 @@ function make_warning_link_clickable(for_link){
 function make_email_link_clickable(for_link){
     $('a.email-link').on('click',function(){
         let win = window.open(for_link,"_blank");
-        // win.focus();
     });
     enable_link($('a.email-link'));
 }
@@ -84,7 +81,7 @@ function make_email_link_clickable(for_link){
 function load_warning(p_id,for_link,fa,time_delay,fp){
     // copy plink
     let _this = $('.email-container a#'+p_id);
-    // adjust plink
+    // disable p-link clickability
     let link_hovered = false;
     $('a.warning-link')
         .attr('target','_blank')
@@ -97,29 +94,20 @@ function load_warning(p_id,for_link,fa,time_delay,fp){
         fp_link.innerHTML = _this.attr('href');
         fp_link.href = _this.attr('href');
     }
-    // START WARNING DEPLOYMENT
-    // initialize time_delay
-    // let time_delay = -1;
-    // set the text in the subheader
+
+    // Create a blank variable for the subheader text
     let final_subhead_text = '';
-    // create boolean for focused attention branching (groups 1, 2, 3)
-    // let fa = (group_num % 7) < 4;
      // enable links for warnings with no time delay
-     if (td <= 0){     
-        // time_delay = 0;
+     if (td <= 0){
+        // make warning link clickable     
+        make_warning_link_clickable(for_link);
+        // make email link clickable for non-focused attention groups
         if (!fa) {
             make_email_link_clickable(for_link);
-            // final_subhead_text = 'Please check the link carefully before proceeding.';
         }
-        else {
-            // final_subhead_text = 'Please check the link carefully before proceeding. The link in the warning is active.';
-        }
-        // enable original link in focused attention
-        make_warning_link_clickable(for_link);
-        // $('span.timer').text(final_subhead_text);
-           // add on-click listener to warning link cj span for no FA groups
+
     }
-    // handle warnings with time delay
+    // disable links during active time delay
     else {
         disable_link($('a.warning-link')); //this adds the no cursor and changes the link ID
         disable_link($('a.email-link'));
@@ -140,7 +128,7 @@ function load_warning(p_id,for_link,fa,time_delay,fp){
                 warning_shown = true;
             }
             // for groups with time_delay > 0, interval has to trigger
-            // trigger this countdown only if it is the first time the link has been hovered
+            // trigger this countdown only if it is the first time the link has been hovered on this page
             if (time_delay > 0 && !link_hovered){
                 link_hovered = true;
                 let countdownToClick = setInterval(function(){
@@ -174,6 +162,8 @@ function load_warning(p_id,for_link,fa,time_delay,fp){
     });
 }
 
+// add click and hover listeners to any anchor tag with an href, a label, or a tag within the email container
+// warning-link is outside of the email container so we add this manually
 function initListeners(eid){
     $('a[href], a[label]').each(function(){
         addclicklistener($(this), eid);
@@ -182,17 +172,7 @@ function initListeners(eid){
     $('.email-container a, a.warning-link').each(function(){
         addHoverListener($(this), eid);
     });
-
-    // $('.email-container a').each(function(){
-    //     addTouchListener($(this), eid);
-    // });
 }
-
-// function addTouchListener(_this, emailid) {
-//     _this.on('touchstart', function(){
-//         createLog(_this, 'touchstart', emailid);
-//     });
-// }
 
 function addclicklistener(_this, emailid) {
     _this.on('click', function() {

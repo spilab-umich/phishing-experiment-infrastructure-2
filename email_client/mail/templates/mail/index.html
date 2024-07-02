@@ -23,7 +23,7 @@
       <!--svg background image-->
       <!--sign-in card-->
       <div class="container nojs" id = "view-container" style="padding-top:75px;">
-         <div style="vertical-align: middle; background: #fff; color: rgba(0,0,0,.87); direction:ltr; font-family:'Roboto',sans-serif; font-size: 14px; line-height:20px; padding:0; box-sizing: border-box; max-width: 100%; position:relative; z-index:2; box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); display:block; margin:0 auto; width:450px; height:450px; padding:40px 40px 36px;">
+         <div style="background: #fff; color: rgba(0,0,0,.87); direction:ltr; font-family:'Roboto',sans-serif; font-size: 14px; line-height:20px; padding:0; box-sizing: border-box; max-width: 100%; position:relative; z-index:2; box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); display:block; margin:0 auto; width:450px; height:450px; padding:40px 40px 36px;">
             <!-- sign-in form -->
             <form class="form-horizontal" role="form" action="{% url 'mail:index' %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
                   <div class="form-group">

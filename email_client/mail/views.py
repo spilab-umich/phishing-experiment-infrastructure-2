@@ -14,11 +14,11 @@ client_path = os.path.join(here, 'client_logs.log')
 server_path = os.path.join(here, 'server_logs.log')
 error_path = os.path.join(here, 'error_logs.log')
 
+# Legitimate URLs for each phising link per email id (1 - 3)
 redirect_cases = {
     1: 'https://www.google.com/gmail/about/',
     2: 'https://www.walmart.com/',
     3: 'https://www.westernunion.com/',
-    # 4: 'https://www.delta.com/',
 }
 
 # Set client ajax logger
@@ -42,6 +42,7 @@ error_fh = logging.FileHandler(error_path)
 error_logger.addHandler(error_fh)
 
 # Bring up the login page
+# ~/mail
 def index(request):
     #if the request is POST, authenticate the user's credentials
     if request.method == "POST":
@@ -59,26 +60,10 @@ def index(request):
         else:
             return render(request, 'mail/index.html', {'error_message': 'Invalid login'})
 
-    #if the request is not POST, return the index(login) page
+    # if the request is not POST, return the index(login) page
     return render(request, 'mail/index.html')
 
-# These functions return the appropriate inbox view (inbox, flagged, approved, trash)
-#~mail/flagged
-# def flagged_folder(request):
-#     if not request.user.is_authenticated:
-#         return redirect('mail:index')
-#     else:
-#         user = request.user
-#         collect_log(request)
-#         emails = Mail.objects.filter(user=user,is_flagged=True).values()
-#         context = {
-#             'user': user,
-#             'emails': emails,
-#             'page': 'flag',
-#         }
-#         return render(request, 'mail/inbox.html', context)
-
-#~mail/trash
+# ~/mail/u/0/trash
 def trash_folder(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -89,11 +74,11 @@ def trash_folder(request):
         context = {
             'user': user,
             'emails': emails,
-            'page': 'trash', # shortcut for if deleted emails are shown
+            'page': 'trash', # marker to change email inbox page if trashed emails are shown
         }
         return render(request, 'mail/inbox.html', context)
 
-#~mail/approved
+# ~/mail/u/0/approved
 def approved_folder(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -108,7 +93,7 @@ def approved_folder(request):
         }
         return render(request, 'mail/inbox.html', context)
 
-#~/mail/inbox 
+# ~/mail/u/0/inbox
 def inbox(request):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -123,54 +108,25 @@ def inbox(request):
         }
         return render(request, 'mail/inbox.html', context)
 
-# These three functions handle when a user approves, flags, or delets an email
-# def flag(request, email_id, next_id):
-#     if not request.user.is_authenticated:
-#         return redirect('mail:index')
-#     else:
-#         collect_log(request)
-#         user=request.user
-#         # tstart = time.perf_counter()
-#         Mail.objects.filter(user=user, ref=email_id).update(
-#             # is_flagged=Case(
-#             #     When(is_flagged=True, then=Value(False)),
-#             #     When(is_flagged=False, then=Value(True))),
-#             is_deleted=Case(
-#                 When(is_deleted=True, then=Value(False)),
-#                 When(is_deleted=False, then=Value(False))),
-#             is_approved=Case(
-#                 When(is_approved=True, then=Value(False)),
-#                 When(is_approved=False, then=Value(False))))
-#         # tend = time.perf_counter()
-#         # time_taken = tend - tstart
-#         # print(f"{time_taken} seconds to FLAG")
-#         if int(next_id) < 1:
-#             # if "inbox" in request.META['HTTP_REFERER']:
-#             #     return redirect('mail:inbox')
-#             return redirect('mail:inbox')
-#         return redirect('mail:flagged_email', email_id=next_id)
-
+# delete a single email
+# ~/mail/delete/<this_id>/<next_id>
 def delete(request, email_id, next_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
     else:
         collect_log(request)
         user=request.user
-        # tstart = time.perf_counter()
         Mail.objects.filter(user=user, ref=email_id).update(
             is_deleted=Case(
                 When(is_deleted=True, then=Value(False)),
                 When(is_deleted=False, then=Value(True))),
             is_approved=False)
-        # tend = time.perf_counter()
-        # time_taken = tend - tstart
-        # print(f"{time_taken} seconds to DELETE")
         if int(next_id) < 1:
-            # if "inbox" in request.META['HTTP_REFERER']:
-            #     return redirect('mail:inbox')
             return redirect('mail:inbox')
         return redirect('mail:trashed_email', email_id=next_id)
 
+# approve a single email
+# ~/mail/approve/<this_id>/<next_id>
 def approve(request, email_id, next_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -183,8 +139,6 @@ def approve(request, email_id, next_id):
                 When(is_approved=False, then=Value(True))),
             is_deleted=False)
         if int(next_id) < 1:
-            # if "inbox" in request.META['HTTP_REFERER']:
-            #     return redirect('mail:inbox')
             return redirect('mail:inbox')
         return redirect('mail:approved_email', email_id=next_id)
 
@@ -203,11 +157,8 @@ def return_emails(request, email_id, page="inbox"):
             emails = Mail.objects.filter(user=user, is_approved=True).values()
         else:
             # Return default inbox view if something goes wrong
-            emails = Mail.objects.filter(user=user).values()
-        
+            emails = Mail.objects.filter(user=user).values()      
         # Evaluate the query set (hits the database)
-        # len_emails = len(emails)
-        # using count() does not hit the database
         len_emails = emails.count()
         read_status = email.read
         this_id = email.pk
@@ -248,12 +199,14 @@ def return_emails(request, email_id, page="inbox"):
             'num_emails': len_emails,
             'page': page,
         }
-        # Add warning info to context if a warning should be displayed
+        # Add warning template and function to context if a warning should be displayed
         if (email.is_phish | email.is_fp) & (user.group_num > 0):
             context['warning'] = build_warning_paramters(user.group_num)
             context ['fname'] = 'mail/warnings/' + str(1) + '.html'
         return context
 
+# This function setts the warning parameters for a user based on their group number
+# This sets (1) the time delay (0 - 5 seconds), (2) focused attention (True/False), and (3) the warning's subheader text (string)
 def build_warning_paramters(group_num):
     '''Provide warning paramters if phish or false positive based on group num
         - focused attention
@@ -290,17 +243,7 @@ def build_warning_paramters(group_num):
     }
     return warning_context
     
-
-
-#these functions display individual emails in the different pages
-# def flagged_email(request, email_id):
-#     #bounce the request if the user is not authenticated
-#     if not request.user.is_authenticated:
-#         return redirect('mail:index')
-#     else:
-#         context = return_emails(request, email_id)
-#     return render(request, 'mail/email.html', context)
-
+# ~/mail/u/0/trash/<email_id>
 def trashed_email(request, email_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -308,6 +251,7 @@ def trashed_email(request, email_id):
         context = return_emails(request, email_id)
     return render(request, 'mail/email.html', context)
 
+# ~/mail/u/0/approved/<email_id>
 def approved_email(request, email_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -315,7 +259,7 @@ def approved_email(request, email_id):
         context = return_emails(request, email_id)
     return render(request, 'mail/email.html', context)
             
-
+# ~/mail/u/0/inbox/<email_id>
 def inbox_email(request, email_id):
     if not request.user.is_authenticated:
         return redirect('mail:index')
@@ -331,8 +275,6 @@ def ajax(request):
 
 def collect_ajax(res):
     try:    
-        # username = res.user.username
-        # this is recommended instead of accessing attribute directly
         username = res.user.get_username()
         email_ref = res.POST['ref']
         link = res.POST['link']
@@ -344,8 +286,6 @@ def collect_ajax(res):
         response_id = res.user.response_id
         server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
         session_id = res.session.session_key
-        # if (res.META.get('REMOTE_ADDR')):
-            # log.IP = res.META.get('REMOTE_ADDR')
         # Convert this from .format to printf style message re: https://coralogix.com/log-analytics-blog/python-logging-best-practices-tips/
         client_logger.info('%(username)s,%(email_ref)s,%(link)s,%(link_id)s,%(action)s,%(hover_time)s,%(client_time)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
             {
@@ -361,7 +301,6 @@ def collect_ajax(res):
                 'server_time':server_time,
                 'session_id':session_id
             })
-        # print('client log saved')
     except Exception as e:
         log_type = 'client'
         error_logger.info('%(username)s,%(server_time)s,%(e)s,%(log_type)s'%
@@ -375,17 +314,13 @@ def collect_ajax(res):
 
 def collect_log(request):
     try:
-        # username = request.user.username
-        # this is recommended instead of accessing attribute directly
         username = request.user.get_username()
         link = request.path
         link_id = -1
         server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
         session_id = request.session.session_key
-        # respondant id makes more sense to Florian
         response_id = request.user.response_id
         group_num = request.user.group_num
-        # server_logger.info('{},{},{},{},{},{},{}'.format(username,link,link_id,server_time,session_id,response_id,group_num))
         server_logger.info('%(username)s,%(link)s,%(link_id)s,%(group_num)s,%(response_id)s,%(server_time)s,%(session_id)s'%
             {
                 'username':username,
@@ -405,9 +340,6 @@ def collect_log(request):
                 'server_time':server_time,
                 'e': e
             })
-    # print('server log saved')
-    # if (request.META.get('REMOTE_ADDR')):
-    #     log.IP = request.META.get('REMOTE_ADDR')
     return
 
 def logout_user(request):
@@ -422,11 +354,10 @@ def assign_password():
         str_code += rd.choice(letter_pool)
     return str_code
 
+# This function receives a request from Qualtrics and returns a username, password, and reward code for participant use
 def assign_credentials(request):
     if request.method == 'GET':
         # Return a list of the remaining available usernames
-        # cast the group_num variable from qualtrics to an integer
-        # print(request.GET.keys())
         try:
             qual_group_num = int(request.META['HTTP_GROUP_NUM'])
         except Exception as e:
@@ -462,25 +393,19 @@ def assign_credentials(request):
         }
         return JsonResponse(context)
 
-# @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
+# This function receives a request from Qualtrics and returns the number of unread emails a participant has
 def unread_check(request):
     if request.method == 'GET':
         username = request.GET['username']
-        ## OR
-        # unread_count = User.objects.filter(username=username).unread_count
-        # get is preferred since only one object will reeturn
         unread_count = User.objects.get(username=username).unread_count
         context = {
             'unread_count': unread_count
         }
         response = JsonResponse(context)
-        # response["Access-Control-Allow-Origin"] = "*"
-        # response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
-        # response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
         return response
-        
-        # return JsonResponse(context)
 
+# This function records when a participant is being re-directed from a phishing link to the legitimate site, 
+# then redirects the user to the legitimate site
 @xframe_options_exempt # this frame decorator turns off x-frame-options in header for only this URI
 def email_link(request, email_id):
     try:
@@ -489,7 +414,6 @@ def email_link(request, email_id):
         link_id = -1
         server_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")
         session_id = request.session.session_key
-        # respondant id makes more sense to Florian
         response_id = request.user.response_id
         group_num = request.user.group_num
         client_time = datetime.now(timezone.utc).strftime("%a %d %B %Y %H:%M:%S GMT")

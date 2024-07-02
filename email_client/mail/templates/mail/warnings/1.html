@@ -8,8 +8,6 @@
                 </div>
                 <div class='warning-headline'>
                     <p>This link might be dangerous!</p>
-                <!-- <span>Please check the link carefully before proceeding.</span> -->
-                <!-- <i class="fa fa-clock-o"></i> -->
                 <span class='timer'>
                 {% if warning.time_delay == 0 %}
                 {{ warning.subtext }}
@@ -19,33 +17,20 @@
                 </span>
                     <ul>
                         <li class='domain-bar'>
-                            <!-- <i class= 'fa fa-lock'></i> -->
                             <a label="warning-link" class="warning-link"> 
                                 {{ email.p_url }}
-                                <!-- <span class="pre-domain"></span>
-                                <span class="main-domain"></span>
-                                <span class="post-domain"></span> -->
                             </a>                            
                         </li>
-                        <!-- <li class='timer'><i class="fa fa-clock-o"></i>&nbsp;Link active in: <span class='secsRemaining'></span> sec(s)</li> -->
                     </ul>
                 <!-- custom warning end -->
             </div>
         </div>
     <style>
-        /* iframe {
-            opacity:0;
-            position: absolute;
-            z-index: 2;
-            height: 40%;
-            width: 90%;
-        } */
         .tooltip {
             display: none;
         }
         .tooltip-inner {
             background-color: transparent;
-            /* max-width: 40%; */
             max-width: 50rem;
         }
         .warning-wrapper {
@@ -54,7 +39,6 @@
             background-color: #686868;
             border: .2rem solid #767676;
             box-sizing: border-box;
-            /* Elevation / 6dp */
             box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
@@ -71,9 +55,6 @@
 
         .domain-bar{
             padding: 0;
-            /* CHANGE THESE FOR NON DOMAIN HIGHLIGHTING
-            border-radius: 15px;
-            background-color: #E8E8F0; */
             padding: .2rem 0 .2rem 0;
             max-width: 75ch; 
         }
@@ -83,27 +64,12 @@
         }
 
         .domain-bar {
-            /* border-radius: 15px;
-            background-color: #E8E8F0;
-            padding: .2rem .2rem .2rem .5rem; */
             word-break: break-all;
         }
 
         span.main-domain {
             color: inherit;
         }
-
-        /* span.pre-domain, span.post-domain {
-            opacity: 0.5;
-        } */
-
-        /* .url-domain {
-            font-weight: bold;
-        }
-
-        .url-path, .url-protocol {
-            opacity: .75;
-        } */
 
         .warning-link {
             color: #4F4F4F;
@@ -113,22 +79,17 @@
 
         a.warning-link:hover {
             color: black;
-            /* opacity: 0.8; */
             text-decoration-color: black;
         }
 
         .warning-headline {
             display: table-cell;
-            /* position: absolute; */
-            /* display: inline-block; */
             background-color: #FFFFFF;
             font-family: Roboto;
             font-style: normal;
             color: #4F4F4F;
             padding: 10px;
             vertical-align: middle;
-            /* width: 100%; */
-            /* mix-blend-mode: normal; */
         }
 
         .warning-headline ul {
@@ -142,7 +103,6 @@
         .warning-headline p {
             font-weight: bold;
             margin-bottom: 5px;
-            /* text-align: center; */
             font-size: 1.25rem;
         }
 
@@ -151,9 +111,4 @@
             display: inline-block;
             vertical-align: middle;
         }
-
-        /* .timer {
-            float: right;
-            margin-top: 5px;
-        } */
     </style>

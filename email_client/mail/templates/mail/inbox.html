@@ -3,7 +3,6 @@
 {% block title %} Inbox {% endblock %}
 {% block body %}
 <div class='panel-body'>
-    <!-- <div class='mail-option d-none d-sm-none d-md-none d-lg-block' aria-hidden='true'> -->
     <div class='mail-option' aria-hidden='true'>
         <div class='btn-group chk-all'>
             <input type='checkbox' class='mail-checkbox mail-group-checkbox' disabled>
@@ -57,7 +56,6 @@
     </div>
     <div class='container-fluid'>
      {% for email in emails %}
-        <!-- <div class="{{email.read}} row table-inbox justify-content-between d-none d-sm-none d-md-none d-lg-flex"> -->
         {% if email.read %}
             <div class="read row table-inbox justify-content-between">
         {% else %}
@@ -93,25 +91,7 @@
                 <div class="col-1 time_sent">{{email.time_sent}}</div>
             </a>
         </div>
-        <!-- place response text here -->
     {% endfor %}
     </div>
 </div>
 {% endblock %}
-
-        <!-- <div class="{{email.read}} row mobile-table-inbox justify-content-between d-md-flex d-lg-none">
-            <div class="col-12 w-100">
-                <a href='#{% url "mail:email" email.ref %}' class='mobile-table-inbox'>
-                    <div class="row justify-content-between mobile-header-row">
-                        <div class="col-2 mobile-sender-text">{{email.sender}}</div>
-                        <div class="col-2">{{email.time_sent}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">{{email.subject}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">{{email.preview}}</div>
-                    </div>
-                </a>
-            </div>
-        </div> -->

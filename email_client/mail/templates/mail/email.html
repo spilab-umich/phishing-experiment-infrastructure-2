@@ -3,9 +3,9 @@
 {% block title %} Inbox - {{email.sender}} {% endblock %}
 {% block body %}
 
+<!-- uncomment this line (and comment out the next line) to enable right clicks in emails -->
+<!-- <div class="inbox-body"></div> -->
 <div class="inbox-body" oncontextmenu="return false;">
-<!-- <div class="inbox-body"> -->
-    <!-- <div class= "heading-inbox row d-none d-sm-none d-md-none d-lg-flex"> -->
     <div class= "heading-inbox row">
         <div class="col-md-8 email-icons" aria-hidden='true'>
             <a title="" data-placement="top" data-original-title="Back to Inbox" class="btn btn-sm" href="{% url 'mail:inbox' %}"><i class="fa fa-arrow-left"></i></a>
@@ -47,8 +47,6 @@
                 </li>
             </ul>
     </div>
-    <!-- begin email header -->
-        <!-- <div class="subject-info row d-none d-sm-none d-md-none d-lg-flex justify-content-between"> -->
     <div class="subject-info row justify-content-between">
         <div class="col-8 subject-row">
             <span class="visually-hidden">Email subject:</span>
@@ -62,7 +60,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row email-head d-none d-sm-none d-md-none d-lg-flex"> -->
     <div class="row email-head">
         <div style="padding: 0px; max-width: 40px;">
             <svg height="40" width="40">
@@ -77,12 +74,9 @@
                         <span class="visually-hidden">Sender's email address:</span>
                         <span class='sender-address'>&nbsp;{{ email.sender_address }}</span>
                     </div>
-                <!-- <div class="col text-end"> {{email.time_sent}}
-                </div> -->
                 
             </span>
             <span class="row">
-                <!-- <span class='col d-none d-lg-flex'> -->
                 <span class='col sender-address'>
                     <span>to me</span>
                     <a class="sender-dropdown disabled" aria-hidden='true'>
@@ -92,44 +86,6 @@
             </span>
         </div> 
     </div> 
-        <!-- end email header  -->
-        <!-- begin mobile email header -->
-    <!-- <div class="row d-md-flex d-lg-none">
-        <div class="col-10 subject-row">
-            <span class="visually-hidden">Email subject:</span>
-            <h3> {{ email.subject }}</h3>
-        </div>
-        <div class='col align-self-center email-icons' aria-hidden='true'>
-            <div class="text-end">
-                <a title="" data-placement="top" data-original-title="Favorite" class="btn btn-sm disabled" ><i class="fa fa-star"></i></a>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="row mobile-email-head d-md-flex d-lg-none justify-content-start">
-            <img class='rounded-circle col' width='48' height='48' alt='' src="{% static 'img/placeholder.jpg' %}">
-            <span class='email-sender col'>
-                <span class='row justify-content-between'>
-                        <div class="col">
-                            <span class="visually-hidden">Email sender:</span>
-                            <strong>{{ email.sender }}</strong>
-                        </div>
-                    <div class="col text-end"> {{email.time_sent}}
-                    </div>
-                </span>
-                <span class="row d-flex d-lg-none">
-                    <span class='col'>
-                        <span class="visually-hidden">Sender's email address:</span>
-                        <span class='sender-address'>{{ email.sender_address }}</span>
-                        <div class='d-none d-lg-flex'>to <strong>me</strong>
-                            <a class="sender-dropdown disabled" aria-hidden='true'>
-                                <i class="fa fa-chevron-down"></i>
-                            </a>
-                        </div>
-                    </span>
-                </span>
-            </span>        
-    </div> -->
-    <!-- end mobile email header -->
     <div class="row email-container">
         <div class='col'>
             <div class="revert">
@@ -140,15 +96,12 @@
     <div class="email-footer" aria-hidden='true'>
         <a class="btn btn-sm disabled"><i class="fa fa-reply"></i> Reply</a>
         <a class="btn btn-sm disabled"><i class="fa fa-arrow-right"></i> Forward</a>
-        <!-- <a title="print" data-placement="top" data-original-title="Print" class="btn btn-sm disabled"><i class="fa fa-print"></i> </a>
-        <a title="trash" data-placement="top" data-original-title="Trash" class="btn btn-sm disabled"><i class="fa fa-trash-o"></i></a> -->
     </div>
 </div>
 {% if fname %}
 {% include fname %}
 {% endif %}
 <script src="{% static 'js/warnings.js' %}"></script>
-<!-- <script src="{% static 'js/jquery.touchSwipe.min.js' %}"></script> -->
 
 <script>
     const fp_detected = ('{{ email.is_fp }}' == 'True');
