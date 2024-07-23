@@ -373,8 +373,6 @@ def assign_credentials(request):
                 password = ''
                 code = ''
             else:
-                # Duct tape fix to avoid race condition/concurrency issue from double assigning the same username between when the username is first assigned and then saved
-                # user.update(assigned=True) 
                 # Save the response_id from Qualtrics
                 # This is really "PROLIFIC_PID" but I don't want to edit the model field
                 if (request.META["HTTP_RESPONSE_ID"]):

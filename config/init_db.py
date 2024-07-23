@@ -17,6 +17,7 @@ django.setup()
 n_users = 3000
 
 # Input a number of test users with a default password
+# I used these test accounts to login and check the inbox when making changes
 n_test_users = 33
 
 # Input number of experimental groups
@@ -24,8 +25,6 @@ n_test_users = 33
 n_of_groups = 11
 
 # Load email metadata
-# Note: the timestamps in emails.json should be descending (i.e., earliest emails first)
-# An email's date does not actually matter, but doing this ensures the emails present by Most Recent in the inbox 
 json_fname = "emails.json"
 open_json_file = config_path / Path(json_fname)
 
@@ -54,8 +53,8 @@ list_of_p_domains = {
        'https://mail.google-services.com/?code=hvAga1lsCwkvVdPMyOPhaiWXSCOIprz78ck43JEhgg6GosfY%2BzuPKA'],
 }
 
-''' This function (1) reads in .eml files in the email folder, 
-    (2) extracts the HTML from the .eml files and writes an HTML file,
+''' This function (1) reads in .eml files in the ~config/raw_eml folder, 
+    (2) extracts the HTML content from .eml and saves an HTML file to ~config/raw_html,
     (3) appends additional data from the email metadata dictionary. 
     We will later save the email dictionary items to Django's database.'''
 def read_emails():
