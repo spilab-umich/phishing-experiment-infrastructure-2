@@ -8,5 +8,7 @@ env/
 **.log
 web-conf/
 **.csv
-config/raw_eml/**
-config/raw_html/**.html
+**/raw_eml/**
+**/raw_html/**
+**/templates/mail/emails/**
+**/static/img/**
