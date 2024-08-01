@@ -11,13 +11,18 @@ This source code requires `Python 3.10` and the Python library `Django 4.1` (htt
 ## Features
 This project displays selected emails inside of a realistic email inbox, records user mouse interactions with hyperlinks (e.g., clicks and hovers), and displays customized anti-phishing warnings.
 
-Our inbox also can display phishing URLs. We use a [clickjacking method](https://github.com/jpetelka/phishing_infrastructure/blob/main/docs/inbox_customization.md#phishing-hyperlink-redirection) so participants who click on phishing URLs are re-directed to legitimate websites. We accomplish this by replacing the default `onclick` method for the phishing link.
+Our inbox also can display phishing URLs. We use a [clickjacking method](docs/inbox_customization.md#phishing-hyperlink-redirection) so participants who click on phishing URLs are re-directed to legitimate websites. We accomplish this by replacing the default `onclick` method for the phishing link.
 
 ## Installation
-Please see our [Installation document](https://github.com/jpetelka/phishing_infrastructure/blob/main/docs/installation_readme.md) to for instructions and requirements to deploy this project on your device.
+Please see our [Installation document](docs/installation_readme.md) to for instructions and requirements to deploy this project on your device.
 
 ## Customization
-Please see our [Customization document](https://github.com/jpetelka/phishing_infrastructure/blob/main/docs/inbox_customization.md) to learn how to change the default inbox behavior (e.g., warnings, phishing links, link redirection).
+Please see our [Customization document](docs/inbox_customization.md) to learn how to change the default inbox behavior (e.g., warnings, phishing links, link redirection).
 
 ## Repo Maintenance
 We appreciate your contributions to this project, but this repo is not regularly maintained. We will address pull requests as we are able to, but might not be able to offer help with installation and debugging beyond these documents.
+
+
+```python
+
+```
