@@ -8,7 +8,9 @@ env/
 **.log
 web-conf/
 **.csv
-**/raw_eml/**
-**/raw_html/**
-**/templates/mail/emails/**
-**/static/img/**
+config/raw_eml/**
+config/raw_html/**.html
+email_client/mail/templates/mail/emails/**.html
+email_client/mail/static/img/**
+**/locustfile.py
+**/locustTests.py
