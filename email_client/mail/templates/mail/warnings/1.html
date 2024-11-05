@@ -1,0 +1,114 @@
+
+    <div class="tooltip" role="tooltip" oncontextmenu="return false;">
+        <div class="tooltip-arrow"></div>
+            <div class='warning-wrapper'>
+                <!-- custom warning start -->
+                <div class='warning-sidebar'>
+                    <i class="fa fa-exclamation-triangle fa-3x warning-icon"></i>
+                </div>
+                <div class='warning-headline'>
+                    <p>This link might be dangerous!</p>
+                <span class='timer'>
+                {% if warning.time_delay == 0 %}
+                {{ warning.subtext }}
+                {% else %}
+                Please check the link carefully before proceeding. Link active in <span class="secsRemaining">{{warning.time_delay}}</span> seconds.
+                {% endif %}
+                </span>
+                    <ul>
+                        <li class='domain-bar'>
+                            <a label="warning-link" class="warning-link"> 
+                                {{ email.p_url }}
+                            </a>                            
+                        </li>
+                    </ul>
+                <!-- custom warning end -->
+            </div>
+        </div>
+    <style>
+        .tooltip {
+            display: none;
+        }
+        .tooltip-inner {
+            background-color: transparent;
+            max-width: 50rem;
+        }
+        .warning-wrapper {
+            position: relative;
+            border-radius: 15px;
+            background-color: #686868;
+            border: .2rem solid #767676;
+            box-sizing: border-box;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* custom warning stylesheets */
+        .warning-sidebar {
+            height: 100%;
+            background-color: #b8b8b8;
+            padding: 10px;
+            display: table-cell;
+            width: 50px;
+            vertical-align: middle;
+        }
+
+        .domain-bar{
+            padding: 0;
+            padding: .2rem 0 .2rem 0;
+            max-width: 75ch; 
+        }
+
+        .domain-bar i {
+            padding: 0 .5rem 0 .5rem;
+        }
+
+        .domain-bar {
+            word-break: break-all;
+        }
+
+        span.main-domain {
+            color: inherit;
+        }
+
+        .warning-link {
+            color: #4F4F4F;
+            text-decoration: underline;
+            display: inline-block;
+        }
+
+        a.warning-link:hover {
+            color: black;
+            text-decoration-color: black;
+        }
+
+        .warning-headline {
+            display: table-cell;
+            background-color: #FFFFFF;
+            font-family: Roboto;
+            font-style: normal;
+            color: #4F4F4F;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .warning-headline ul {
+            margin-top: .5rem;
+        }
+
+        .warning-headline span {
+            text-align: left;
+        }
+
+        .warning-headline p {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.25rem;
+        }
+
+        .warning-icon {
+            color: #FFD439;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>

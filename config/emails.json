@@ -1,0 +1,125 @@
+{"emails":
+    [
+        {
+        "sender": "Google",
+        "preview": "Thanks for signing into Google on your Windows device. Please confirm your Google Account settings are still right for you.",
+        "email_id": 1,
+        "num_links": 3,
+        "link_id": 10,
+        "is_phish": true
+        },
+        {
+        "sender": "Walmart",
+        "preview":"Your new account is ready to use. With everything at your fingertips, it's even easier to save time and money.",
+        "email_id": 2,
+        "num_links": 4,
+        "link_id": 30,
+        "is_phish": true
+        },
+        {
+        "sender": "Western Union",
+        "preview": "Welcome to Western Union. Now you can send money online anytime, from anywhere. Your final receiver can pick up the money at a convenient Western Union agent location, or get it sent directly to their bank account or mobile wallet.",
+        "email_id": 3,
+        "num_links": 6,
+        "link_id": 10,
+        "is_phish": true
+        },
+        {
+        "sender": "Delta",
+        "preview": "As we welcome you back to flying after the most difficult year in our history, we know extra time and understanding is important for everyone while we all adjust to what our &quot;new normal&quot; looks like.",
+        "email_id": 4,
+        "num_links": 7,
+        "link_id": 70,
+        "is_phish": false
+        },
+        {
+        "sender": "Allstate",
+        "preview":"Please click on the button below to reset the password for your account. The link will expire in 120 minutes.",
+        "email_id": 5,
+        "num_links": 4,
+        "link_id": 30,
+        "is_phish": false
+        },
+        {
+        "sender": "Coursera",
+        "preview":"Short and popular courses, just for you. Interested in quickly learning some new skills? Check out these great short courses!",
+        "email_id": 6,
+        "num_links": 11,
+        "link_id": 130,
+        "is_phish": false
+        },
+        {
+        "sender": "Sprint",
+        "preview":"Important information on your bill. Your Sprint bill is ready. Pay your phone bill anywhere, anytime with AutoPay.",
+        "email_id": 7,
+        "num_links": 4,
+        "link_id": 30,
+        "is_phish": false
+        },
+        {
+        "sender": "Steam",
+        "preview": "Someone has accepted your gift. You can see all of your sent and unredeemed gifts on your Gift Inventory page.",
+        "email_id": 8,
+        "num_links": 5,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Unidays",
+        "preview": "TIME'S RUNNING OUT. Renew now for 12 more months of student deals, exclusive opportunities and UNiDAYS FUTURES.",
+        "email_id": 9,
+        "num_links": 5,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Venmo",
+        "preview": "Someone paid you $60: Watching dog on short notice. thank you. Money credited to your Venmo account.",
+        "email_id": 10,
+        "num_links": 5,
+        "link_id": 40,
+        "is_phish": false
+        },
+        {
+        "sender": "Chase",
+        "preview": "We posted a new notice or letter in your Chase Mobile app and at chase.com/statements. Here's what it's about: We have updated information about your claim",
+        "email_id": 11,
+        "num_links": 4,
+        "link_id": 30,
+        "is_phish": false
+        },
+        {
+        "sender": "Tumblr",
+        "preview": "It`s that time again. It`s Tumblr's 2022 Year in Review! Every year, the team behind Fandometrics analyzes, categorizes, and ranks all the most discussed things on Tumblr—that's a year`s worth of your tags, searches, posts, likes, and reblogs—and packages them up into a little thing we like to call Year in Review.",
+        "email_id": 12,
+        "num_links": 6,
+        "link_id": 80,
+        "is_phish": false
+        },
+        {
+        "sender": "Half Priced Drapes",
+        "preview": "Shop BIG holiday specials, up to 70% off selected items! Use code: HOLIDAY22, offer expires 12/20/22",
+        "email_id": 13,
+        "num_links": 3,
+        "link_id": 50,
+        "is_phish": false
+        },
+        {
+        "sender": "Hello Fresh",
+        "preview": "Our Best Deal Ever: Cyber Monday Sale HelloFresh Cyber Monday Sale: Our best deal ever 1 day only GET 17 FREE MEALS PLUS FREE SHIPPING + 3 SURPRISE GIFTS USE PROMO CODE P3-9Q337 AT CHECKOUT Download.",
+        "email_id": 14,
+        "num_links": 5,
+        "link_id": 20,
+        "is_phish": false
+        },
+        {
+        "sender": "Capital One",
+        "preview": "Thanks for scheduling your payment. Confirmation Number: P86IX1S4 Thanks for scheduling your card payment with Online Banking. Here are the details:",
+        "email_id": 15,
+        "num_links": 6,
+        "link_id": 30,
+        "is_phish": false
+        }
+    
+    ]
+}
